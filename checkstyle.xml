@@ -11,9 +11,6 @@
 <module name="Checker">
   <property name="severity" value="warning"/>
   <module name="TreeWalker">
-    <module name="LineLength">
-      <property name="severity" value="warning"/>
-    </module>
     <module name="MethodLength">
       <metadata name="net.sf.eclipsecs.core.comment" value="Break into submethods"/>
       <property name="severity" value="warning"/>
