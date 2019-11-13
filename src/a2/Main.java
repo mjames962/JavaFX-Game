@@ -1,8 +1,8 @@
 package a2;
 
 /**
- * @author Jensen
  * Class containing the Main Method.
+ * @author Jensen
  */
 public class Main {
 	
