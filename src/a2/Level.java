@@ -34,7 +34,7 @@ public class Level {
 	
 	/**
 	 * @param in
-	 * @return
+	 * @return 2D array of Cell type
 	 */
 	public static Cell[][] readFile(Scanner in){
 		

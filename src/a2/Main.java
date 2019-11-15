@@ -1,3 +1,4 @@
+
 package a2;
 	
 import javafx.application.Application;
@@ -37,6 +38,4 @@ public class Main extends Application {
 				launch(args);
 			}
 	}
-	
 
-	
