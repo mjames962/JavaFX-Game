@@ -22,20 +22,20 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("C:/Users/Jensen/git/a2/src/a2/resources/MainMenu.fxml"));
+			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("../a2/resources/MainMenu.fxml"));
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
 	
 			// Place the main scene on stage and show it.
-					primaryStage.setScene(scene);
-					primaryStage.setTitle(WINDOW_TITLE);
-					primaryStage.show();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			
-			public static void main(String[] args) {
-				launch(args);
-			}
+			primaryStage.setScene(scene);
+			primaryStage.setTitle(WINDOW_TITLE);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+			
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
 

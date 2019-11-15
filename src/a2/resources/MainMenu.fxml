@@ -5,4 +5,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<BorderPane fx:id="BorderPane" prefHeight="364.0" prefWidth="347.9999000000025" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="MainMenuController" />
+<BorderPane fx:controller="a2.Main" xmlns:fx="http://javafx.com/fxml" 
+    prefHeight="200" prefWidth="320">
+</BorderPane>
