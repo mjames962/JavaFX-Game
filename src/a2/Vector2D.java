@@ -37,6 +37,14 @@ public class Vector2D {
 	}
 	
 	/**
+	 * Copies another vectors values.
+	 * @param vec the other vector
+	 */
+	public void copy(Vector2D vec) {
+		set(vec.getX(), vec.getY());
+	}
+	
+	/**
 	 * Sets the x coordinate of the vector.
 	 * @param x x coordinate
 	 */
