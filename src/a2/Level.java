@@ -4,11 +4,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * @author Jensen, Mitch
+ *
+ */
 public class Level {
 	
 	
 	
 	
+	/**
+	 * @param fileName
+	 * @return
+	 */
 	public static Cell[][] readFile(String fileName) {
 		File inputFile = new File(fileName);
 
@@ -24,6 +32,10 @@ public class Level {
 		return Level.readFile(in);
 	}
 	
+	/**
+	 * @param in
+	 * @return
+	 */
 	public static Cell[][] readFile(Scanner in){
 		
 		int xLength = in.nextInt();
@@ -61,6 +73,9 @@ public class Level {
 		return null;
 	}
 	
+	/**
+	 * @param in
+	 */
 	public static void readEntity(Scanner in) {
 		int startX = in.nextInt();
 		int startY = in.nextInt();
