@@ -5,15 +5,13 @@
     This configuration file was written by the eclipse-cs plugin configuration editor
 -->
 <!--
-    Checkstyle-Configuration: cs230checks
-    Description: none
+    Checkstyle-Configuration: CS230Checks
+    Description: 
+CS230 Checks
 -->
 <module name="Checker">
   <property name="severity" value="warning"/>
   <property name="tabWidth" value="4"/>
-  <module name="LineLength">
-    <property name="severity" value="warning"/>
-  </module>
   <module name="TreeWalker">
     <module name="MethodLength">
       <metadata name="net.sf.eclipsecs.core.comment" value="Break into submethods"/>
@@ -133,7 +131,6 @@
     </module>
     <module name="RightCurly">
       <property name="severity" value="error"/>
-      <property name="option" value="alone"/>
     </module>
     <module name="TypecastParenPad">
       <property name="severity" value="error"/>
@@ -150,5 +147,8 @@
       <property name="message" value="Indentation level of more than 5. Consider breaking into submethods."/>
       <property name="illegalPattern" value="true"/>
     </module>
+  </module>
+  <module name="LineLength">
+    <property name="severity" value="warning"/>
   </module>
 </module>
