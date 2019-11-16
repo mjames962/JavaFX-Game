@@ -18,12 +18,17 @@ public class Main extends Application {
 	private static final int MAIN_WINDOW_HEIGHT = 400;
 	private static final String WINDOW_TITLE = "PlaceHolder";
 	
+	/**
+	 * Loads the main window of the game.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("resources/MainMenu.fxml"));
-			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
+			BorderPane root = (BorderPane) FXMLLoader.
+					load(getClass().getResource("resources/MainMenu.fxml"));
+			Scene scene = new Scene(root, 
+					MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT);
 	
 			// Place the main scene on stage and show it.
 			primaryStage.setScene(scene);
@@ -33,7 +38,10 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-			
+	/**
+	 * The main method of the program.
+	 * @param args arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
