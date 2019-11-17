@@ -20,5 +20,7 @@ public abstract class Specialised extends Cell {
 	/**
 	 * The action to perform when the player moves onto the tile.
 	 */
-	public abstract void doAction();
+	public void doAction() {
+		
+	}
 }

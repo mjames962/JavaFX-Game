@@ -1,10 +1,12 @@
 package a2;
 /**
  * A cell that teleports the player from one teleporter to another.
- * @author george
+ * @author george and Tom
  *
  */
 public class Teleporter extends Specialised {
+	
+	private Vector2D linkedTP;
 
 	
 	
@@ -15,7 +17,7 @@ public class Teleporter extends Specialised {
 	 */
 	public Teleporter(Vector2D pos, Vector2D linkedTP) {
 		super(pos);
-		// TODO Auto-generated constructor stub
+		this.linkedTP = linkedTP;
 	}
 	
 	/**
@@ -25,16 +27,49 @@ public class Teleporter extends Specialised {
 	public Teleporter(Vector2D pos) {
 		super(pos);
 	}
-
 	
 	/**
 	 * Teleport the player.
+	 * 
+	 * @param direction represents the direction the player is moving in.
+	 * @param player reprents the player that will be moved to the new space
 	 */
-	@Override
-	public void doAction() {
-		//Get player here
+	
+	public void doActionTP(String direction, Player player) {
+	    player.setX(linkedTP.getX());
+	    player.setY(linkedTP.getY());
+	    switch (direction) {
+	    
+	    	case "LEFT":
+	    		player.setX(player.getX() - 1);
+	    		break;
+	    	case "RIGHT":
+	    		player.setX(player.getX() + 1);
+	    		break;
+	    	case "UP":
+	    		player.setY(player.getY() + 1);
+	    		break;
+	    	case "DOWN":
+	    		player.setX(player.getY() - 1);
+	    		break;
+	    	
+	    }
+	    	
 
 	}
+	
+	/**
+	 * Sets the teleporter That it will be linked with.
+	 * 
+	 * @param linkedTP the position of the linked teleporter 
+	 * 
+	 */
+	
+	public void setLinkedTP(Vector2D linkedTP) {
+		this.linkedTP = linkedTP;
+	}
+	
+	
 	
 	
 	
