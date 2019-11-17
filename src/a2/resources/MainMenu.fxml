@@ -2,9 +2,37 @@
 
 <?import java.lang.*?>
 <?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:controller="a2.Main" xmlns:fx="http://javafx.com/fxml" 
-    prefHeight="200" prefWidth="320">
+<BorderPane prefHeight="596.0" prefWidth="594.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.Main">
+  <center>
+    <Pane prefHeight="200.0" prefWidth="200.0">
+      <children>
+        <Button fx:id="btn_Create" layoutX="146.0" layoutY="221.0" mnemonicParsing="false" text="Create Account" />
+        <Label layoutX="146.0" layoutY="197.0" text="Create Account" />
+        <PasswordField id="pbox_Passowrd" fx:id="pbox_Password" layoutX="147.0" layoutY="123.0" prefWidth="200.0" promptText="Password" />
+        <PasswordField fx:id="pbox_Username" layoutX="147.0" layoutY="94.0" prefWidth="200.0" promptText="Username" />
+        <Label layoutX="147.0" layoutY="69.0" text="Log In" />
+        <Button fx:id="btn_LogIn" layoutX="147.0" layoutY="151.0" mnemonicParsing="false" text="Log In" />
+      </children>
+    </Pane>
+  </center>
+  <top>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+        <Label prefHeight="100.0" prefWidth="395.0" text="Placeholder">
+          <font>
+            <Font name="System Bold" size="70.0" />
+          </font>
+        </Label>
+      </children>
+      <BorderPane.margin>
+        <Insets left="100.0" right="100.0" />
+      </BorderPane.margin>
+    </HBox>
+  </top>
 </BorderPane>
