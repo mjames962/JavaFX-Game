@@ -1,34 +1,29 @@
 package a2;
 
+import java.util.ArrayList;
+
 /**
  * This hold the player class.
  * @author Darius Thomas and James Colebourn
  * @version 1.0
+ * @param <T>
  */
 
-public class Player extends Entity {
+public class Player<T> extends Entity {
 	
 	private boolean alive;
-	private int inventory[];
-	
-	/**
-	 * Constructor for the player.
-	 * @param x the x coordinate of the player
-	 * @param y the y coordinate of the player
-	 * @param alive the field to determine whether the player can continue
-	 * @param inventory the inventory of the player
-	 */
+	private ArrayList<T> inventory;
 	
 	/**
 	 * Constructs the player object.
-	 * @param vector Inherited from entity. Holds player coordinates
-	 * @param entityID Inherited from entity. Holds the ID of the player
+	 * @param pos Inherited from entity. Holds player coordinates
+	 * @param playerID Inherited from entity. Holds the ID of the player
 	 * @param alive Determines if the player can continue
 	 * @param inventory the collection of collectibles the player has
 	 */
-	public Player(Vector2D vector, int entityID, boolean alive,
-			int inventory[]) {
-		super(vector, entityID);
+	public Player(Vector2D pos, int playerID, boolean alive,
+			ArrayList<T> inventory) {
+		super(pos, playerID);
 		this.alive = alive;
 		this.inventory = inventory;
 	}
@@ -48,15 +43,21 @@ public class Player extends Entity {
 	 */
 	
 	public void pickupItem() {
-		
+		inventory.add(null); //Needs fixing
 	}
 	
 	/**
 	 * Ensures the player has the correct collectible.
 	 * @param item the collectible being picked up
+	 * @return true If the item is in the inventory
+	 * or false if the item isn't present
 	 */
-	public void hasItem(int item) {
-		
+	public boolean hasItem(int item) {
+		if (inventory.contains(item)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
@@ -64,7 +65,7 @@ public class Player extends Entity {
 	 * @param input The input of the player
 	 */
 	public void handleInput(Enum<?> input) {
-		
+		//TODO
 	}
 	
 	/**
@@ -72,14 +73,14 @@ public class Player extends Entity {
 	 * @param direction The direction the player is moving
 	 */
 	public void attemptMove(Enum<?> direction) {
-		
+		//TODO
 	}
 	
 	/**
 	 * Clears the player's inventory.
 	 */
 	public void clearInventory() {
-		
+		inventory.clear();
 	}
 	
 }
