@@ -18,9 +18,9 @@ public class Level {
 	 * @param fileName
 	 */
 	public Level(String fileName) {
-		this.level = readFile(fileName); 
+		this.level = readFile(fileName);
 	}
-	
+
 	/**
 	 * @return entityList
 	 */
@@ -90,13 +90,70 @@ public class Level {
 		Cell[][] level = new Cell[xLength][yLength];
 
 		in.nextLine();
+		String line;
+		char str;
 
+		do {
 		// level grid
 		for (int i = yLength; i > 0; i--) {
+			line = in.nextLine();
 			for (int j = 0; j < xLength; j++) {
-				// level[j][i] = new Cell();
+				str = line.charAt(j);
+				switch(str) {
+				case '#':
+					level[j][i] = new Wall(new Vector2D(j, i));
+					break;
+				case '_':
+					level[j][i] = new Ground();
+					break;
+				case 'X':
+					level[j][i] = new Cell();
+					break;
+				case 'T':
+					level[j][i] = new Cell();
+					break;
+				case 'F':
+					level[j][i] = new Cell();
+					break;
+				case 'W':
+					level[j][i] = new Cell();
+					break;
+				case 'R':
+					level[j][i] = new Cell();
+					break;
+				case 'B':
+					level[j][i] = new Cell();
+					break;
+				case 'G':
+					level[j][i] = new Cell();
+					break;
+				case 'w':
+					level[j][i] = new Cell();
+					break;
+				case 'f':
+					level[j][i] = new Cell();
+					break;
+				case 'r':
+					level[j][i] = new Cell();
+					break;
+				case 'b':
+					level[j][i] = new Cell();
+					break;
+				case 'g':
+					level[j][i] = new Cell();
+					break;
+				case 'D':
+					level[j][i] = new Cell();
+					break;
+				case 'd':
+					level[j][i] = new Cell();
+					break;
+				default:
+					break;
+				}
 			}
 		}
+} while();
 
 		in.nextLine();
 
