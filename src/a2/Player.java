@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @param <T>
  */
 
-public class Player<T> extends Entity {
+public class Player extends Entity {
 	
 	public enum Item {
 		RED_KEY,
