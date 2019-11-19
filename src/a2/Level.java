@@ -89,71 +89,19 @@ public class Level {
 
 		Cell[][] level = new Cell[xLength][yLength];
 
-		in.nextLine();
-		String line;
-		char str;
+		String line = in.nextLine();
+		char c;
 
 		do {
-		// level grid
-		for (int i = yLength; i > 0; i--) {
-			line = in.nextLine();
-			for (int j = 0; j < xLength; j++) {
-				str = line.charAt(j);
-				switch(str) {
-				case '#':
-					level[j][i] = new Wall(new Vector2D(j, i));
-					break;
-				case '_':
-					level[j][i] = new Ground();
-					break;
-				case 'X':
-					level[j][i] = new Cell();
-					break;
-				case 'T':
-					level[j][i] = new Cell();
-					break;
-				case 'F':
-					level[j][i] = new Cell();
-					break;
-				case 'W':
-					level[j][i] = new Cell();
-					break;
-				case 'R':
-					level[j][i] = new Cell();
-					break;
-				case 'B':
-					level[j][i] = new Cell();
-					break;
-				case 'G':
-					level[j][i] = new Cell();
-					break;
-				case 'w':
-					level[j][i] = new Cell();
-					break;
-				case 'f':
-					level[j][i] = new Cell();
-					break;
-				case 'r':
-					level[j][i] = new Cell();
-					break;
-				case 'b':
-					level[j][i] = new Cell();
-					break;
-				case 'g':
-					level[j][i] = new Cell();
-					break;
-				case 'D':
-					level[j][i] = new Cell();
-					break;
-				case 'd':
-					level[j][i] = new Cell();
-					break;
-				default:
-					break;
+			// level grid
+			for (int i = yLength; i > 0; i--) {
+				line = in.nextLine();
+				for (int j = 0; j < xLength; j++) {
+					c = line.charAt(j);
+					level[j][i] = readChar(c);
 				}
 			}
-		}
-} while();
+		} while (!line.equals("*"));
 
 		in.nextLine();
 
@@ -171,7 +119,18 @@ public class Level {
 			readTokenDoor(in);
 		}
 
+		// teleporters
+		temp = in.nextLine();
+		if (!temp.equals("*")) {
+			readTeleporter(in);
+		}
+
 		return level;
+	}
+
+	private static void readTeleporter(Scanner in) {
+		// TODO Auto-generated method stub
+
 	}
 
 	/**
@@ -206,5 +165,44 @@ public class Level {
 
 		// update object info
 
+	}
+
+	public static Cell readChar(char c) {
+		switch (c) {
+		case '#':
+			return new Wall(new Vector2D(j, i));
+		case '_':
+			return new Ground();
+		case 'X':
+			return new Cell();
+		case 'T':
+			return new Cell();
+		case 'F':
+			return new Cell();
+		case 'W':
+			return new Cell();
+		case 'R':
+			return new Cell();
+		case 'B':
+			return new Cell();
+		case 'G':
+			return new Cell();
+		case 'w':
+			return new Cell();
+		case 'f':
+			return new Cell();
+		case 'r':
+			return new Cell();
+		case 'b':
+			return new Cell();
+		case 'g':
+			return new Cell();
+		case 'D':
+			return new Cell();
+		case 'd':
+			return new Cell();
+		default:
+			return new Cell();
+		}
 	}
 }
