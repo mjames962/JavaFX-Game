@@ -4,24 +4,20 @@ import java.lang.System;
 
 public class Timer {
 	
-	long lastTime;
-	boolean running;
+	private static long lastTime;
+	private static boolean running = false;
 	
-	public Timer() {
-		running = false;
-	}
-	
-	public void start() {
+	public static void start() {
 		lastTime = System.currentTimeMillis();
 		running = true;
 	}
 	
-	public long checkTimeElapsed() {
+	public static long checkTimeElapsed() {
 		long curTime = System.currentTimeMillis();
 		return curTime - lastTime;
 	}
 	
-	public void stop() {
+	public static void stop() {
 		running = false;
 	}
 

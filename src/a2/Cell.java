@@ -48,5 +48,9 @@ public abstract class Cell {
 	public Object getSprite() {
 		return sprite;
 	}
+	
+//	public void draw() {
+//		
+//	}
 
 }

@@ -13,7 +13,9 @@ public class Level {
 
 	private static Cell[][] level;
 	private static ArrayList<Entity> entityList = new ArrayList<>();
-
+	
+	public int levelNo;
+	
 	/**
 	 * @param fileName
 	 */
@@ -167,6 +169,7 @@ public class Level {
 		// update object info
 
 	}
+<<<<<<< HEAD
 
 	/**
 	 * Checks cell type and creates corresponding cell.
@@ -211,4 +214,11 @@ public class Level {
 				return new Cell();
 		}
 	}
+=======
+	
+	public int getLevelNo() {
+		return levelNo;
+	}
+	
+>>>>>>> branch 'master' of https://gitlab.com/cs230g34/a2.git
 }
