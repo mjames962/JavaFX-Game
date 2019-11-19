@@ -13,7 +13,9 @@ public class Level {
 
 	private static Cell[][] level;
 	private static ArrayList<Entity> entityList = new ArrayList<>();
-
+	
+	public int levelNo;
+	
 	/**
 	 * @param fileName
 	 */
@@ -150,4 +152,9 @@ public class Level {
 		// update object info
 
 	}
+	
+	public int getLevelNo() {
+		return levelNo;
+	}
+	
 }
