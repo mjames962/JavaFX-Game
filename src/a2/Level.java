@@ -152,6 +152,7 @@ public class Level {
 	}
 
 	/**
+	 * 
 	 * @param in
 	 */
 	public static void readTokenDoor(Scanner in) {
@@ -167,42 +168,47 @@ public class Level {
 
 	}
 
+	/**
+	 * Checks cell type and creates corresponding cell.
+	 * @param c cell type
+	 * @return cell newly created cell
+	 */
 	public static Cell readChar(char c) {
 		switch (c) {
-		case '#':
-			return new Wall(new Vector2D(j, i));
-		case '_':
-			return new Ground();
-		case 'X':
-			return new Cell();
-		case 'T':
-			return new Cell();
-		case 'F':
-			return new Cell();
-		case 'W':
-			return new Cell();
-		case 'R':
-			return new Cell();
-		case 'B':
-			return new Cell();
-		case 'G':
-			return new Cell();
-		case 'w':
-			return new Cell();
-		case 'f':
-			return new Cell();
-		case 'r':
-			return new Cell();
-		case 'b':
-			return new Cell();
-		case 'g':
-			return new Cell();
-		case 'D':
-			return new Cell();
-		case 'd':
-			return new Cell();
-		default:
-			return new Cell();
+			case '#':
+				return new Wall(new Vector2D(j, i));
+			case '_':
+				return new Ground();
+			case 'X':
+				return new Cell();
+			case 'T':
+				return new Cell();
+			case 'F':
+				return new Cell();
+			case 'W':
+				return new Cell();
+			case 'R':
+				return new Cell();
+			case 'B':
+				return new Cell();
+			case 'G':
+				return new Cell();
+			case 'w':
+				return new Cell();
+			case 'f':
+				return new Cell();
+			case 'r':
+				return new Cell();
+			case 'b':
+				return new Cell();
+			case 'g':
+				return new Cell();
+			case 'D':
+				return new Cell();
+			case 'd':
+				return new Cell();
+			default:
+				return new Cell();
 		}
 	}
 }
