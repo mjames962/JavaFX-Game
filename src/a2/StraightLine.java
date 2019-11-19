@@ -7,6 +7,7 @@ package a2;
  * */
 public class StraightLine extends Entity {
 
+	private static final String FINAL = null;
 	private Vector2D currentVector;
 
 	/**
@@ -19,12 +20,34 @@ public class StraightLine extends Entity {
 	}
 	
 	/**
-	 * Moves the enemy.
+	 * determines the next moves the enemy.
 	 */
-	public void move() {
+
+	//Send to J to fix logic
+	/*	public void nextMove() {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
+		Vector2D nextVector = null;
+		if (direction == v) {
+			FINAL int X = cX;
+			if (validMove == True) {
+				nY = cY++;
+				
+			}
+			else {
+				nY = cY--
+				
+			}
+			
+		}
+		else {
+			FINAL int Y = cY;
+		}
 		
-	}
+		if (validMove == True){
+			
+		} 
+		else
+	} */
 
 }
