@@ -1,5 +1,7 @@
 package a2;
 
+import a2.Player.Item;
+
 /**
  * A ground cell that has an item that can be picked up on it.
  * @author george
@@ -8,7 +10,8 @@ package a2;
 public abstract class Collectible extends Replaceable {
 
 	
-	private Enum item; //TODO Make this an item
+	
+	private Item item; //TODO Make this an item
 	
 	/**
 	 * Creates a new collectible cell.
@@ -22,7 +25,7 @@ public abstract class Collectible extends Replaceable {
 	 * Gets the item of the collectible.
 	 * @return the item enum
 	 */
-	public Enum getItem() {
+	public Item getItem() {
 		return item;
 	}
 
