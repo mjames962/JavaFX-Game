@@ -11,8 +11,16 @@ import java.util.ArrayList;
 
 public class Player<T> extends Entity {
 	
+	public enum Item {
+		RED_KEY,
+		BLUE_KEY,
+		GREEN_KEY,
+		FLIPPERS,
+		FIRE_BOOTS,
+	}
+	
 	private boolean alive;
-	private ArrayList<T> inventory;
+	private ArrayList<Item> inventory;
 	
 	/**
 	 * Constructs the player object.
@@ -22,7 +30,7 @@ public class Player<T> extends Entity {
 	 * @param inventory the collection of collectibles the player has
 	 */
 	public Player(Vector2D pos, int playerID, boolean alive,
-			ArrayList<T> inventory) {
+			ArrayList<Item> inventory) {
 		super(pos, playerID);
 		this.alive = alive;
 		this.inventory = inventory;
@@ -52,12 +60,8 @@ public class Player<T> extends Entity {
 	 * @return true If the item is in the inventory
 	 * or false if the item isn't present
 	 */
-	public boolean hasItem(int item) {
-		if (inventory.contains(item)) {
-			return true;
-		} else {
-			return false;
-		}
+	public boolean hasItem(Item item) {
+		return inventory.contains(item);
 	}
 	
 	/**
