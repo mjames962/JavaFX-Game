@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="307.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <BorderPane layoutX="0.0" layoutY="14.0" prefHeight="165.0" prefWidth="307.0">
+      <center>
+        <AnchorPane prefHeight="100.0" prefWidth="307.0">
+          <children>
+            <MenuButton fx:id="menu_LevelSelect" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Select Level">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Level 1" />
+                <MenuItem mnemonicParsing="false" text="Level 2" />
+                <MenuItem mnemonicParsing="false" text="Level 3" />
+              </items>
+            </MenuButton>
+            <Button fx:id="btn_LoadLevel" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" text="Load Level" />
+          </children>
+        </AnchorPane>
+      </center>
+      <top>
+        <HBox prefHeight="50.0" prefWidth="307.0">
+          <children>
+            <Label text="Level Selection">
+              <font>
+                <Font size="30.0" />
+              </font>
+            </Label>
+          </children>
+          <BorderPane.margin>
+            <Insets left="50.0" right="50.0" />
+          </BorderPane.margin>
+        </HBox>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
