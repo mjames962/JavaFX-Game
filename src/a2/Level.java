@@ -117,14 +117,14 @@ public class Level {
 
 		// token doors
 		while (!line.equals("*")) {
-			//readTokenDoor(line);
+			// readTokenDoor(line);
 			line = in.nextLine();
 		}
 		line = in.nextLine();
 
 		// teleporters
 		while (!line.equals("*")) {
-			//readTeleporter(line);
+			// readTeleporter(line);
 			line = in.nextLine();
 		}
 
@@ -141,7 +141,7 @@ public class Level {
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);
-		
+
 		int startX = in.nextInt() - 1; // -1 to convert file to 0 indexed array
 		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
@@ -182,7 +182,7 @@ public class Level {
 	 */
 	public void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
-		
+
 		int xPosition = in.nextInt();
 		int yPosition = in.nextInt();
 		Cell door = getCellAt(xPosition, yPosition);
