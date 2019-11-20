@@ -8,29 +8,29 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="596.0" prefWidth="594.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.Main">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.Main">
   <center>
-    <Pane prefHeight="200.0" prefWidth="200.0">
+    <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
-        <Button fx:id="btn_Create" layoutX="147.0" layoutY="195.0" mnemonicParsing="false" text="Create Account" />
-        <Label layoutX="145.0" layoutY="171.0" text="Create Account" />
-        <Label layoutX="147.0" layoutY="69.0" text="Log In" />
-        <Button fx:id="btn_LogIn" layoutX="146.0" layoutY="129.0" mnemonicParsing="false" text="Log In" />
-        <TextField fx:id="tbox_Username" layoutX="145.0" layoutY="93.0" prefWidth="200.0" promptText="Username" />
+        <Button fx:id="btn_LogIn" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" text="Log In" />
+        <TextField fx:id="tbox_Username" layoutX="14.0" layoutY="44.0" prefWidth="200.0" promptText="Enter Username" />
+        <Button fx:id="btn_Create" layoutX="14.0" layoutY="143.0" mnemonicParsing="false" text="Create" />
+        <Label layoutX="15.0" layoutY="22.0" text="Username" />
+        <Label layoutX="14.0" layoutY="117.0" text="Create New User" />
       </children>
-    </Pane>
+    </AnchorPane>
   </center>
   <top>
-    <HBox prefHeight="100.0" prefWidth="200.0">
+    <HBox prefHeight="100.0" prefWidth="305.0">
       <children>
-        <Label prefHeight="100.0" prefWidth="395.0" text="Placeholder">
+        <Label prefHeight="100.0" prefWidth="305.0" text="Placeholder">
           <font>
-            <Font name="System Bold" size="70.0" />
+            <Font name="System Bold" size="50.0" />
           </font>
         </Label>
       </children>
       <BorderPane.margin>
-        <Insets left="100.0" right="100.0" />
+        <Insets left="50.0" right="50.0" />
       </BorderPane.margin>
     </HBox>
   </top>
