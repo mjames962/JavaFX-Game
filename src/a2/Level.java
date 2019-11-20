@@ -11,11 +11,11 @@ import java.util.Scanner;
  */
 public class Level {
 
-	private static Cell[][] level;
-	private static ArrayList<Entity> entityList = new ArrayList<>();
-	
+	private Cell[][] level;
+	private ArrayList<Entity> entityList = new ArrayList<>();
+
 	public int levelNo;
-	
+
 	/**
 	 * @param fileName
 	 */
@@ -33,8 +33,8 @@ public class Level {
 	/**
 	 * @param entity entity to be added to level
 	 */
-	public static void addEntity(Entity entity) {
-		entityList.add(entity);
+	public void addEntity(Entity entity) {
+		this.entityList.add(entity);
 	}
 
 	/**
@@ -49,8 +49,8 @@ public class Level {
 	 * @param y
 	 * @return level[x][y] cell at coords
 	 */
-	public static Cell getCellAt(int x, int y) {
-		return level[x][y];
+	public Cell getCellAt(int x, int y) {
+		return this.level[x][y];
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class Level {
 	 * @param fileName the name and file extension of the level file
 	 * @return Level[][] level layout array
 	 */
-	public static Cell[][] readFile(String fileName) {
+	public Cell[][] readFile(String fileName) {
 		File inputFile = new File(fileName);
 
 		Scanner in = null;
@@ -77,60 +77,61 @@ public class Level {
 			System.exit(0);
 		}
 
-		return Level.readFile(in);
+		return readFile(in);
 	}
 
 	/**
 	 * @param in scanner
 	 * @return 2D array of Cell type
 	 */
-	public static Cell[][] readFile(Scanner in) {
+	public Cell[][] readFile(Scanner in) {
 
-		int xLength = in.nextInt();
-		int yLength = in.nextInt();
+		int x = in.nextInt();
+		int y = in.nextInt();
 
-		Cell[][] level = new Cell[xLength][yLength];
+		in.nextLine();
+		in.nextLine();
+
+		Cell[][] level = new Cell[x][y];
 
 		String line = in.nextLine();
 		char c;
 
-		do {
-			// level grid
-			for (int i = yLength; i > 0; i--) {
-				line = in.nextLine();
-				for (int j = 0; j < xLength; j++) {
-					c = line.charAt(j);
-					level[j][i] = readChar(c);
-				}
+		// level grid
+		for (int i = y - 1; i >= 0; i--) {
+			for (int j = 0; j < x; j++) {
+				c = line.charAt(j);
+				level[j][i] = readChar(c, j, y);
 			}
-		} while (!line.equals("*"));
+			line = in.nextLine();
+		}
 
-		in.nextLine();
-
-		String temp = in.nextLine();
+		line = in.nextLine();
 
 		// entity info
-		while (!temp.equals("*")) {
-			readEntity(in);
-			temp = in.nextLine();
+		while (!line.equals("*")) {
+			readEntity(line);
+			line = in.nextLine();
 		}
+		line = in.nextLine();
 
 		// token doors
-		temp = in.nextLine();
-		if (!temp.equals("*")) {
-			readTokenDoor(in);
+		while (!line.equals("*")) {
+			//readTokenDoor(line);
+			line = in.nextLine();
 		}
+		line = in.nextLine();
 
 		// teleporters
-		temp = in.nextLine();
-		if (!temp.equals("*")) {
-			readTeleporter(in);
+		while (!line.equals("*")) {
+			//readTeleporter(line);
+			line = in.nextLine();
 		}
 
 		return level;
 	}
 
-	private static void readTeleporter(Scanner in) {
+	private static void readTeleporter(String str) {
 		// TODO Auto-generated method stub
 
 	}
@@ -138,18 +139,40 @@ public class Level {
 	/**
 	 * @param in scanner
 	 */
-	public static void readEntity(Scanner in) {
-		int startX = in.nextInt();
-		int startY = in.nextInt();
+	public void readEntity(String str) {
+		Scanner in = new Scanner(str);
+		
+		int startX = in.nextInt() - 1; // -1 to convert file to 0 indexed array
+		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
-
-		in.useDelimiter("~");
 
 		String direction = in.next();
 
 		Vector2D vector = new Vector2D(startX, startY);
 
-		addEntity(new Entity(vector, entityID));
+		Entity entity = null;
+
+		switch (entityID) {
+		case 0:
+			entity = new Player(vector, entityID, false, null);
+			break;
+		case 1:
+			entity = new StraightLine(vector, entityID);
+			break;
+		case 2:
+			entity = new WallFollowing(vector, entityID);
+			break;
+		case 3:
+			entity = new DumbTargeting(vector, entityID);
+			break;
+		case 4:
+			// entity = new SmartTargeting();
+			break;
+		default:
+			entity = null;
+		}
+
+		this.addEntity(entity);
 
 	}
 
@@ -157,68 +180,67 @@ public class Level {
 	 * 
 	 * @param in
 	 */
-	public static void readTokenDoor(Scanner in) {
+	public void readTokenDoor(String str) {
+		Scanner in = new Scanner(str);
+		
 		int xPosition = in.nextInt();
 		int yPosition = in.nextInt();
 		Cell door = getCellAt(xPosition, yPosition);
-
-		in.useDelimiter("~");
 
 		String tokenCount = in.next();
 
 		// update object info
 
 	}
-<<<<<<< HEAD
 
 	/**
 	 * Checks cell type and creates corresponding cell.
+	 * 
 	 * @param c cell type
 	 * @return cell newly created cell
 	 */
-	public static Cell readChar(char c) {
+	public Cell readChar(char c, int x, int y) {
+		Vector2D position = new Vector2D(x, y);
+
 		switch (c) {
-			case '#':
-				return new Wall(new Vector2D(j, i));
-			case '_':
-				return new Ground();
-			case 'X':
-				return new Cell();
-			case 'T':
-				return new Cell();
-			case 'F':
-				return new Cell();
-			case 'W':
-				return new Cell();
-			case 'R':
-				return new Cell();
-			case 'B':
-				return new Cell();
-			case 'G':
-				return new Cell();
-			case 'w':
-				return new Cell();
-			case 'f':
-				return new Cell();
-			case 'r':
-				return new Cell();
-			case 'b':
-				return new Cell();
-			case 'g':
-				return new Cell();
-			case 'D':
-				return new Cell();
-			case 'd':
-				return new Cell();
-			default:
-				return new Cell();
+		case '#':
+			return new Wall(position);
+		case '_':
+			return new Ground(position);
+		case 'X':
+			return new Goal(position);
+		case 'T':
+			return new Teleporter(position);
+		case 'F':
+			return new Fire(position);
+		case 'W':
+			return new Water(position);
+		case 'R':
+			return new ColourDoor(position);
+		case 'B':
+			return new ColourDoor(position);
+		case 'G':
+			return new ColourDoor(position);
+		case 'w':
+			return new Flippers(position);
+		case 'f':
+			return new FireBoots(position);
+		case 'r':
+			return new Key(position, Player.Item.RED_KEY);
+		case 'b':
+			return new Key(position, Player.Item.BLUE_KEY);
+		case 'g':
+			return new Key(position, Player.Item.GREEN_KEY);
+		case 'D':
+			return new TokenDoor(position);
+		case 'd':
+			return new Token(position);
+		default:
+			return new Wall(position);
 		}
 	}
-=======
-	
+
 	public int getLevelNo() {
 		return levelNo;
 	}
-	
->>>>>>> branch 'master' of https://gitlab.com/cs230g34/a2.git
 }
