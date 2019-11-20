@@ -8,13 +8,13 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.Main">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.MainMenuController">
   <center>
     <AnchorPane prefHeight="200.0" prefWidth="200.0">
       <children>
-        <Button fx:id="btn_LogIn" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" text="Log In" />
+        <Button fx:id="btn_LogIn" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleLogInBtn" text="Log In" />
         <TextField fx:id="tbox_Username" layoutX="14.0" layoutY="44.0" prefWidth="200.0" promptText="Enter Username" />
-        <Button fx:id="btn_Create" layoutX="14.0" layoutY="143.0" mnemonicParsing="false" text="Create" />
+        <Button fx:id="btn_Create" layoutX="15.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleCreateBtn" text="Create" />
         <Label layoutX="15.0" layoutY="22.0" text="Username" />
         <Label layoutX="14.0" layoutY="117.0" text="Create New User" />
       </children>

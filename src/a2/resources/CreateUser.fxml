@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="257.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="257.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.CreateUserController">
   <children>
     <BorderPane layoutX="0.0" layoutY="4.0" prefHeight="232.0" prefWidth="257.0">
       <center>
@@ -16,7 +16,7 @@
           <children>
             <TextField fx:id="tbox_NewUsername" layoutX="30.0" layoutY="59.0" prefWidth="200.0" promptText="Enter New Username" />
             <Label layoutX="30.0" layoutY="35.0" text="Enter New Username" />
-            <Button fx:id="btn_CreateUser" layoutX="31.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleCreateBtn" text="Create" />
+            <Button fx:id="btn_CreateUser" layoutX="31.0" layoutY="90.0" mnemonicParsing="false" text="Create" />
           </children>
         </AnchorPane>
       </center>
