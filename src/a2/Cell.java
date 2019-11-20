@@ -41,8 +41,6 @@ public abstract class Cell {
 		return pos;
 	}
 	
-	public Vector2D 
-	
 	/**
 	 * Get the sprite (placeholder).
 	 * @return the sprite being used
@@ -50,5 +48,9 @@ public abstract class Cell {
 	public Object getSprite() {
 		return sprite;
 	}
+	
+//	public void draw() {
+//		
+//	}
 
 }

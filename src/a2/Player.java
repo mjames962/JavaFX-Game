@@ -6,13 +6,35 @@ import java.util.ArrayList;
  * This hold the player class.
  * @author Darius Thomas and James Colebourn
  * @version 1.0
- * @param <T>
  */
 
-public class Player<T> extends Entity {
+public class Player extends Entity {
+	
+	/**
+	 * Set of collectible.
+	 * @author 	George Williams-Walton
+	 */
+	public enum Item {
+		RED_KEY,
+		BLUE_KEY,
+		GREEN_KEY,
+		FLIPPERS,
+		FIRE_BOOTS,
+	}
+	
+	/**
+	 * Sets of directions the player can move.
+	 * @author Darius Thomas
+	 */
+	public enum Direction {
+		UP,
+		DOWN,
+		LEFT,
+		RIGHT,
+	}
 	
 	private boolean alive;
-	private ArrayList<T> inventory;
+	private ArrayList<Item> inventory;
 	
 	/**
 	 * Constructs the player object.
@@ -22,7 +44,7 @@ public class Player<T> extends Entity {
 	 * @param inventory the collection of collectibles the player has
 	 */
 	public Player(Vector2D pos, int playerID, boolean alive,
-			ArrayList<T> inventory) {
+			ArrayList<Item> inventory) {
 		super(pos, playerID);
 		this.alive = alive;
 		this.inventory = inventory;
@@ -52,7 +74,7 @@ public class Player<T> extends Entity {
 	 * @return true If the item is in the inventory
 	 * or false if the item isn't present
 	 */
-	public boolean hasItem(int item) {
+	public boolean hasItem(Item item) {
 		if (inventory.contains(item)) {
 			return true;
 		} else {
@@ -64,7 +86,7 @@ public class Player<T> extends Entity {
 	 * Deals with the input of the player.
 	 * @param input The input of the player
 	 */
-	public void handleInput(Enum<?> input) {
+	public void handleInput(Direction input) {
 		//TODO
 	}
 	
@@ -72,7 +94,7 @@ public class Player<T> extends Entity {
 	 * Handles invalid moves.
 	 * @param direction The direction the player is moving
 	 */
-	public void attemptMove(Enum<?> direction) {
+	public void attemptMove(Direction direction) {
 		//TODO
 	}
 	
