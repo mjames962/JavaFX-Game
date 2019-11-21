@@ -7,12 +7,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
+
 /**
  * The main class for this program.
  * 
  * @author Jensen Mitch
  *
  */
+
 public class Main extends Application {
 
 	public static final int LEVEL_LOADER_WINDOW_WIDTH = 600;

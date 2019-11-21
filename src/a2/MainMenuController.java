@@ -95,6 +95,7 @@ public class MainMenuController {
 			e.printStackTrace();
 			// Quit the program (with an error code)
 			System.exit(-1);
+			
 		}
 	}
 }
