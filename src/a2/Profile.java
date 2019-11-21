@@ -1,6 +1,9 @@
 package a2;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +18,7 @@ public class Profile {
 	private File pfile;
 	private String name;
 	private int highestLevel;
-	private ArrayList<Integer> bestTimes = new ArrayList<>();
+	private ArrayList<Long> bestTimes = new ArrayList<>();
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -37,7 +40,7 @@ public class Profile {
 		name = in.nextLine();
 		highestLevel = in.nextInt();
 		while (in.hasNext()) {
-			int time = in.nextInt();
+			long time = in.nextLong();
 			bestTimes.add(time);
 		}
 	}
@@ -59,7 +62,7 @@ public class Profile {
 	 * @param time The new time the user has just set.
 	 * @return if the new time is higher than the old highest time.
 	 */
-	private boolean isHighestTime(int level, int time) {
+	public boolean isHighestTime(int level, long time) {
 		return bestTimes.get(level) > time;
 	}
 	
@@ -69,10 +72,36 @@ public class Profile {
 	 * @param time the new highest time of the level.
 	 */
 	
-	private void setBestTime(int level, int time) {
+	public void setBestTime(int level, long time) {
 		if (isHighestTime(level, time)) {
 			bestTimes.add(level, time);
 		}
+	}
+	
+	/**
+	 * Updates user file with changes made since reading
+	 * from file.
+	 * 
+	 * @param file The location of the users file.
+	 */
+	
+	public void updateFile(String file) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(file));
+			out.write(name);
+			out.newLine();
+			out.write(highestLevel);
+			out.newLine();
+			for (int i = 0; i < bestTimes.size(); i++) {
+				out.write(Long.toString(bestTimes.get(i)));
+				out.newLine();
+			}
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			System.out.println("Failed to load file");
+		}
+		
 	}
 	
 	

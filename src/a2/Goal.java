@@ -25,12 +25,18 @@ public class Goal extends Specialised {
 	 * This will end the level and timer and if a record time has been reached 
 	 * it will update the players save file and leaderboard with the new 
 	 * time before creating the next level.
+	 * @param ply the player currently on the level
+	 * @param user The user profile currently in use
+	 * @param lv The level the user is currently on
 	 */
 	
-	public void doAction() {
+	public void doAction(Player ply, Profile user, Level lv) {
 		Level.readFile("level2.txt");
 		long finishTime = Timer.checkTimeElapsed();
-		//Add time to user profile
+		if (user.isHighestTime(lv.getLevelNo(), finishTime)) {
+			user.setBestTime(lv.getLevelNo(), finishTime);
+		}
+		
 		//Level call for method to create a new level.
 		Timer.stop();
 	}

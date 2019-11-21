@@ -14,7 +14,7 @@ public class Level {
 	private Cell[][] level;
 	private ArrayList<Entity> entityList = new ArrayList<>();
 
-	public int levelNo;
+	private int levelNo;
 
 	/**
 	 * @param fileName
