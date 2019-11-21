@@ -10,6 +10,11 @@ package a2;
  */
 public class Wall extends Cell {
 	
+	/**
+	 * Send the position to the cell superclass.
+	 * 
+	 * @param pos Holds the position of the Cell 
+	 */
 	
 	public Wall(Vector2D pos) {
 		super(pos);
