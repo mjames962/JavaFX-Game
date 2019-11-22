@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 
 /**
  * This Class Controls the actions for the GUI in the Main Menu Window.
+ * 
  * @author Jensen, Mitch
  */
 public class MainMenuController {

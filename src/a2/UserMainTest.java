@@ -6,8 +6,6 @@ import javafx.scene.control.Alert.AlertType;
 public class UserMainTest {
 
 	public static void main(String[] args) {
-		
-
 
 	}
 
