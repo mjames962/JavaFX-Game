@@ -29,7 +29,7 @@ public class StraightLine extends Entity {
 
 
 		public Vector2D nextMove() {
-<<<<<<< HEAD
+
 			int cX = currentVector.getX();
 			int cY = currentVector.getY();
 			final int X;
@@ -41,27 +41,24 @@ public class StraightLine extends Entity {
 			if (direction == "v") {
 				X = cX;
 				if (increaseDirection == true) {
-=======
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
 		Vector2D nextVector = null;
 			if (direction == V) {
 				FINAL int X = cX;
 				if (+Direction == true) {
->>>>>>> branch 'master' of https://gitlab.com/cs230g34/a2.git
 					nY = cY++;
 					nextVector = (nX,nY);
 				} else {
 					nY = cY--;
 					//nextVector = (nX,nY);
 				}
-<<<<<<< HEAD
+
 			} else if(direction == "h") {
 				Y = cY;
 				if (increaseDirection == true) {
-=======
 				else {
-					nY = cY--
+					nY = cY--;
 							nextVector = (nX,nY);
 				}
 			
@@ -69,7 +66,6 @@ public class StraightLine extends Entity {
 			else { // direction == H
 				FINAL int Y = cY;
 				if (+Direction == true) {
->>>>>>> branch 'master' of https://gitlab.com/cs230g34/a2.git
 					nX = cX++;
 					//nextVector = (nX,nY);
 				} else {
@@ -89,4 +85,4 @@ public class StraightLine extends Entity {
 				
 			}
 		}
-} 
+}
