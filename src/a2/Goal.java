@@ -33,7 +33,7 @@ public class Goal extends Specialised {
 	public void doAction(Player ply, Profile user, Level lv) {
 		Level.readFile("level2.txt");
 		long finishTime = Timer.checkTimeElapsed();
-		if (user.isHighestTime(lv.getLevelNo(), finishTime)) {
+		if (user.isBestTime(lv.getLevelNo(), finishTime)) {
 			user.setBestTime(lv.getLevelNo(), finishTime);
 		}
 		
