@@ -7,9 +7,9 @@ package a2;
  * */
 public class StraightLine extends Entity {
 
-	private static final String FINAL = null;
 	private Vector2D currentVector;
-	//private boolean +Direction = true;
+	private boolean increaseDirection = true;
+	private String direction;
 	/**
 	 * Constructs the StraightLine class.
 	 * @param currentVector the position of the enemy
@@ -26,50 +26,46 @@ public class StraightLine extends Entity {
 	
 	 //determines the next moves the enemy.
 	 
-/*
+
 
 		public Vector2D nextMove() {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
-		Vector2D nextVector = null;
-			if (direction == v) {
-				FINAL int X = cX;
-				if (+Direction == true) {
+			int cX = currentVector.getX();
+			int cY = currentVector.getY();
+			final int X;
+			final int Y;
+			int nX = 0;
+			int nY = 0;
+			Vector2D nextVector;
+			
+			if (direction == "v") {
+				X = cX;
+				if (increaseDirection == true) {
 					nY = cY++;
 					nextVector = (nX,nY);
+				} else {
+					nY = cY--;
+					//nextVector = (nX,nY);
 				}
-				else {
-					nY = cY--
-							nextVector = (nX,nY);
-				}
-			
-			}
-			else { // direction == h
-				FINAL int Y = cY;
-				if (+Direction == true) {
+			} else if(direction == "h") {
+				Y = cY;
+				if (increaseDirection == true) {
 					nX = cX++;
-					nextVector = (nX,nY);
-				}
-				else {
+					//nextVector = (nX,nY);
+				} else {
 					nX = cX--;
-					nextVector = (nX,nY);
+					//nextVector = (nX,nY);
 				}
-			}
-			
-
-			if (isValidMove(this.nextVector) == False) {
-				if (+Direction == false); {
-					+Direction = True;
+				if (isValidMove(nextVector) == false) {
+					if (increaseDirection == false); {
+						increaseDirection = true;
+						nextMove();
+					}
+				} else {
+					increaseDirection = false;
 					nextMove();
-				}
-				else {
-					+Direction = False;
-					nextMove();
-				}
+				} 
+				return nextVector;
+				
 			}
-			else {
-				return this.nextVector;
-			}
-		} 
-	*/
+		}
 } 

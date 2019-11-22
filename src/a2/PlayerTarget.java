@@ -13,6 +13,10 @@ public abstract class PlayerTarget extends Entity {
  * @param playerY holds the player's current Vertical position	
  */
 	
+	public PlayerTarget(Vector2D vector, int entityID) {
+		super(vector, entityID);
+	}
+
 	private Object playerVector;
 	
 	/**
