@@ -1,5 +1,13 @@
 package a2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
+
 public class MOTD {
 	private static final int MIN_CHAR = 65;
     private static final int MAX_CHAR = 90;
@@ -7,32 +15,75 @@ public class MOTD {
     private static final String PUZZLE_GET = "puzzle";
     private static final String PUZZLE_RESPONSE = "message?solution=";
 
-    public static char shift(char c,Boolean forward) {
-        int s;
+    private static char shift(char chr, boolean forward) {
+        int shiftNum;
         if (forward) {
-            s = 1;
+            shiftNum = 1;
         } else {
-            s = -1;
+            shiftNum = -1;
         }
-        int tmp = c + s; //possible improvement to algo involving mods
-        if (tmp > MAX_CHAR) {
+        int newchr = chr + shiftNum; //possible improvement to algo involving mods
+        if (newchr > MAX_CHAR) {
             return MIN_CHAR;
-        } else if (tmp < MIN_CHAR) {
+        } else if (newchr < MIN_CHAR) {
             return MAX_CHAR;
         } else {
-            return (char) tmp;
+            return (char) newchr;
         }
     }
     
-    public static String solvePuzzle(String puz) {
+    private static String solvePuzzle(String puz) {
         char[] solvedchars = new char[puz.length()];
         boolean forward = true;
         for (int i = 0; i < puz.length(); i++) {
-            char c = puz.charAt(i);
-            System.out.println(c);
-            solvedchars[i] = shift(c, forward);
+            char chr = puz.charAt(i);
+            solvedchars[i] = shift(chr, forward);
             forward = !forward;
         }
         return new String(solvedchars);
+    }
+    
+    private static String attemptReadResponse(URL url) throws IOException {
+    	Integer response = null;
+    	try {
+    		HttpURLConnection httpresponse = (HttpURLConnection) url.openConnection();
+        	response = httpresponse.getResponseCode();
+    		InputStreamReader stream = new InputStreamReader(url.openStream());
+    		BufferedReader in = new BufferedReader(stream);
+    		String line = in.readLine();
+    		in.close();
+            return line;
+    	} catch (IOException e) {
+    		if ((response != null) && (response == HttpURLConnection.HTTP_FORBIDDEN)) {
+    			throw new InvalidPuzzleSolutionException();
+    		} else {
+    			throw e;
+    		}
+    	}
+    }
+    
+    private static String getPuzzle() throws IOException {
+    	String puz = attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
+        return puz;
+    }
+   
+    private static String submitSolvedPuzzle(String solvedPuzzle) throws IOException {
+    	String solvedPuz = attemptReadResponse(
+    			new URL(BASE_URL + PUZZLE_RESPONSE + solvedPuzzle)
+    			);
+    	return solvedPuz;
+    }
+    
+    //Could be useful to handle no connection differently -> catch UnknownHostException
+    //In possiblility we are too slow to get solution -> catch InvalidPuzzleSolutionException
+    //Other errors -> IOException
+    public static String getMOTD() throws IOException {
+    	String puzzle = getPuzzle();
+    	String solve = solvePuzzle(puzzle);
+    	return submitSolvedPuzzle(solve);
+    }
+    
+    public static void main(String[] args) throws IOException {
+    	System.out.println(getMOTD());
     }
 }

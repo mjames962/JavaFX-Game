@@ -7,7 +7,7 @@ package a2;
  *
  */
 
-public class Token extends Cell {
+public class Token extends Collectible {
 
 	
 	/**
