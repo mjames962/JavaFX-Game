@@ -8,10 +8,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="307.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <BorderPane layoutX="0.0" layoutY="14.0" prefHeight="165.0" prefWidth="307.0">
-      <center>
+      <bottom>
         <AnchorPane prefHeight="100.0" prefWidth="307.0">
           <children>
             <MenuButton fx:id="menu_LevelSelect" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Select Level">
@@ -24,7 +25,7 @@
             <Button fx:id="btn_LoadLevel" layoutX="14.0" layoutY="48.0" mnemonicParsing="false" text="Load Level" />
           </children>
         </AnchorPane>
-      </center>
+      </bottom>
       <top>
         <HBox prefHeight="50.0" prefWidth="307.0">
           <children>

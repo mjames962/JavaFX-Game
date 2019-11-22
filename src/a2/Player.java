@@ -49,8 +49,7 @@ public class Player extends Entity {
 		this.alive = alive;
 		this.inventory = inventory;
 	}
-
-
+	 
 	
 	/**
 	 * This method handles the death of the player.

@@ -1,7 +1,7 @@
 package a2;
 /**
  * A cell that teleports the player from one teleporter to another.
- * @author george and Tom
+ * @author george and Tom Wood
  *
  */
 public class Teleporter extends Specialised {
@@ -32,25 +32,25 @@ public class Teleporter extends Specialised {
 	 * Teleport the player.
 	 * 
 	 * @param direction represents the direction the player is moving in.
-	 * @param player reprents the player that will be moved to the new space
+	 * @param player represents the player that will be moved to the new space
 	 */
 	
 	public void doActionTP(String direction, Player player) {
-	    player.setX(linkedTP.getX());
-	    player.setY(linkedTP.getY());
-	    switch (direction) {
-	    
+		Vector2D pos = player.getVector();
+	    pos.setX(linkedTP.getX());
+	    pos.setY(linkedTP.getY());
+	    switch (direction) {	    
 	    	case "LEFT":
-	    		player.setX(player.getX() - 1);
+	    		pos.setX(pos.getX() - 1);
 	    		break;
 	    	case "RIGHT":
-	    		player.setX(player.getX() + 1);
+	    		pos.setX(pos.getX() + 1);
 	    		break;
 	    	case "UP":
-	    		player.setY(player.getY() + 1);
+	    		pos.setY(pos.getY() + 1);
 	    		break;
 	    	case "DOWN":
-	    		player.setX(player.getY() - 1);
+	    		pos.setX(pos.getY() - 1);
 	    		break;
 	    	
 	    }
