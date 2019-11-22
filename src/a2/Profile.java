@@ -62,7 +62,7 @@ public class Profile {
 	 * @param time The new time the user has just set.
 	 * @return if the new time is higher than the old highest time.
 	 */
-	public boolean isHighestTime(int level, long time) {
+	public boolean isBestTime(int level, long time) {
 		return bestTimes.get(level) > time;
 	}
 	
@@ -73,7 +73,7 @@ public class Profile {
 	 */
 	
 	public void setBestTime(int level, long time) {
-		if (isHighestTime(level, time)) {
+		if (isBestTime(level, time)) {
 			bestTimes.add(level, time);
 		}
 	}

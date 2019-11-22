@@ -10,6 +10,8 @@ public class Entity {
 	
 	private Vector2D vector;
 	private int entityID;
+	protected Vector2D currentVector;
+	protected Vector2D nextVector;
 	
 	/**
 	 * Constructor for the Entity superclass.
@@ -45,6 +47,28 @@ public class Entity {
 	public void setEntityID(int entityID) {
 		this.entityID = entityID;
 	}
+	
+	/**
+	 * determines validity of moving onto the requested cell.
+	 * @return returns a boolean for if the requested move is legal
+	 */
+	
+	public boolean isValidMove(int entityID) {
+		if (entityID != 0) { // Enemies
+
+			if (getCellAt(nextVector) == ground) { 	//getCellAt from level
+				return true;						//Ground Cell class
+			}
+			else {
+				return false;
+			}
+		}
+		else { //player class will overide with access restraints.
+			return false;
+		}
+	}
+	
+	
 	
 	/**
 	 * This is responsible for handling moves. 

@@ -7,7 +7,7 @@ package a2;
  */
 public abstract class Cell {
 	private Vector2D pos;
-	private Object sprite; //placeholder
+	private String sprite; //placeholder
 	
 	/**
 	 * Creates a new cell.

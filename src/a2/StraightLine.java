@@ -32,7 +32,7 @@ public class StraightLine extends Entity {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
 		Vector2D nextVector = null;
-			if (direction == v) {
+			if (direction == V) {
 				FINAL int X = cX;
 				if (+Direction == true) {
 					nY = cY++;
@@ -44,7 +44,7 @@ public class StraightLine extends Entity {
 				}
 			
 			}
-			else { // direction == h
+			else { // direction == H
 				FINAL int Y = cY;
 				if (+Direction == true) {
 					nX = cX++;
