@@ -63,7 +63,7 @@ public class Entity {
 				return false;
 			}
 		}
-		else { //player class will overide with access restraints.
+		else { //player class will override with access restraints.
 			return false;
 		}
 	}
