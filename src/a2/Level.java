@@ -139,6 +139,7 @@ public class Level {
 
 	/**
 	 * @param in scanner
+	 * @param str;
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);
@@ -154,23 +155,23 @@ public class Level {
 		Entity entity = null;
 
 		switch (entityID) {
-		case 0:
-			entity = new Player(vector, entityID, false, null);
-			break;
-		case 1:
-			entity = new StraightLine(vector, entityID);
-			break;
-		case 2:
-			entity = new WallFollowing(vector, entityID);
-			break;
-		case 3:
-			entity = new DumbTargeting(vector, entityID);
-			break;
-		case 4:
-			// entity = new SmartTargeting();
-			break;
-		default:
-			entity = null;
+			case 0:
+				entity = new Player(vector, entityID, false, null);
+				break;
+			case 1:
+				entity = new StraightLine(vector, entityID);
+				break;
+			case 2:
+				entity = new WallFollowing(vector, entityID);
+				break;
+			case 3:
+				entity = new DumbTargeting(vector, entityID);
+				break;
+			case 4:
+				// entity = new SmartTargeting();
+				break;
+			default:
+				entity = null;
 		}
 
 		this.addEntity(entity);
@@ -179,6 +180,7 @@ public class Level {
 
 	/**
 	 * 
+	 * @param str 
 	 * @param in
 	 */
 	public void readTokenDoor(String str) {
@@ -198,49 +200,54 @@ public class Level {
 	 * Checks cell type and creates corresponding cell.
 	 * 
 	 * @param c cell type
+	 * @param x x coordinate
+	 * @param y y coordinate
 	 * @return cell newly created cell
 	 */
 	public Cell readChar(char c, int x, int y) {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
-		case '#':
-			return new Wall(position);
-		case '_':
-			return new Ground(position);
-		case 'X':
-			return new Goal(position);
-		case 'T':
-			return new Teleporter(position);
-		case 'F':
-			return new Fire(position);
-		case 'W':
-			return new Water(position);
-		case 'R':
-			return new ColourDoor(position);
-		case 'B':
-			return new ColourDoor(position);
-		case 'G':
-			return new ColourDoor(position);
-		case 'w':
-			return new Flippers(position);
-		case 'f':
-			return new FireBoots(position);
-		case 'r':
-			return new Key(position, Player.Item.RED_KEY);
-		case 'b':
-			return new Key(position, Player.Item.BLUE_KEY);
-		case 'g':
-			return new Key(position, Player.Item.GREEN_KEY);
-		case 'D':
-			return new TokenDoor(position);
-		case 'd':
-			return new Token(position);
-		default:
-			return new Wall(position);
+			case '#':
+				return new Wall(position);
+			case '_':
+				return new Ground(position);
+			case 'X':
+				return new Goal(position);
+			case 'T':
+				return new Teleporter(position);
+			case 'F':
+				return new Fire(position);
+			case 'W':
+				return new Water(position);
+			case 'R':
+				return new ColourDoor(position);
+			case 'B':
+				return new ColourDoor(position);
+			case 'G':
+				return new ColourDoor(position);
+			case 'w':
+				return new Flippers(position);
+			case 'f':
+				return new FireBoots(position);
+			case 'r':
+				return new Key(position, Player.Item.RED_KEY);
+			case 'b':
+				return new Key(position, Player.Item.BLUE_KEY);
+			case 'g':
+				return new Key(position, Player.Item.GREEN_KEY);
+			case 'D':
+				return new TokenDoor(position);
+			case 'd':
+				return new Token(position);
+			default:
+				return new Wall(position);
 		}
 	}
 
+	/**
+	 * @return
+	 */
 	public int getLevelNo() {
 		return levelNo;
 	}
