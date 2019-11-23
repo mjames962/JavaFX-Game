@@ -11,6 +11,7 @@ import java.nio.file.*;
 
 
 /**
+ * Controls the CreateUser window.
  * @author Jensen
  *
  */
