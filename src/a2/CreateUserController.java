@@ -24,16 +24,19 @@ public class CreateUserController {
 	private void handleCreateBtn(ActionEvent event) {
 		System.out.println("Testing");
 		String newUser = tbox_NewUsername.getText();
+		
 		if (UserData.doesExist(newUser)) {
+			
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
 			alert.setHeaderText("User Already Exists");
 			alert.setContentText(null);
 			alert.showAndWait();
-		} else {		
+			
+		} else {
+			
 			try {
 				System.out.println(newUser);
-
 				Files.write(Paths.get("src/a2/resources/Users.txt"), 
 						("\n" + newUser).getBytes(), StandardOpenOption.APPEND);
 		        System.out.println("Done");
