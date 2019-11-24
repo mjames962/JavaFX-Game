@@ -35,21 +35,79 @@ public class Player extends Entity {
 	
 	private boolean alive;
 	private ArrayList<Item> inventory;
-	
+	private Vector2D nextVector;
+	private Vector2D currentVector;
 	/**
 	 * Constructs the player object.
-	 * @param pos Inherited from entity. Holds player coordinates
-	 * @param playerID Inherited from entity. Holds the ID of the player
+	 * @param entityID = 0, defines the entity as a player type
 	 * @param alive Determines if the player can continue
 	 * @param inventory the collection of collectibles the player has
+	 * @param currentVector the current location of the player
 	 */
-	public Player(Vector2D pos, int playerID, boolean alive,
+	public Player(Vector2D currentVector, int entityID, boolean alive,
 			ArrayList<Item> inventory) {
-		super(pos, playerID);
+		super(currentVector, entityID);
 		this.alive = alive;
 		this.inventory = inventory;
 	}
-	 
+	/**
+	 * the method for enacting a movement specified by the player.
+	 * @param currentVector is the current position of the player
+	 * @param input is the intended movement direction of the player
+	 * @return returns an updated position for the player
+	 */
+	
+	public Vector2D move(Vector2D currentVector, direction input) {
+		int cX = currentVector.getX();
+		int cY = currentVector.getY();
+		switch (input) {
+			case 0:
+				input = UP;
+				Vector2D nextVector = new Vector2D(cX, cY++);
+				break;
+			case 1:
+				input = DOWN;
+				Vector2D nextVector = new Vector2D(cX, cY--);
+				break;
+			case 2:
+				input = LEFT;
+				Vector2D nextVector = new Vector2D(cX--, cY);
+				break;
+			case 3:
+				input = RIGHT;
+				Vector2D nextVector = new Vector2D(cX++, cY);
+				break;
+			default:
+				input = null;
+		}
+		isValidMove(0, nextVector);
+		return null; //needs changing from null to something else to 
+		             //change the players location and update the map
+	}
+	
+	/**
+	 * Overrides the isValidMove method in Entity for player entities.
+	 * @return returns a boolean for if the requested move is valid
+	 */	
+	public boolean isValidMove() {
+		if (getCellAt(nextVector) == Wall) {
+			return false;
+		}
+		else if (getCellAt(nextVector) == Door) {
+			if (Door.hasItem(inventory()) = true) {
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		}
+		else {
+			return true;
+		}
+		
+		
+	}
 	
 	/**
 	 * This method handles the death of the player.

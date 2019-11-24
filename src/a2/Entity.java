@@ -51,9 +51,11 @@ public class Entity {
 	/**
 	 * determines validity of moving onto the requested cell.
 	 * @return returns a boolean for if the requested move is legal
+	 * @param entityID the unique identifier for an entity type
+	 * @param nextVector the intended next location for the entity
 	 */
 	
-	public boolean isValidMove(int entityID) {
+	public boolean isValidMove(int entityID, Vector2D nextVector) {
 		if (entityID != 0) { // Enemies
 
 			if (getCellAt(nextVector) == ground) { 	//getCellAt from level
