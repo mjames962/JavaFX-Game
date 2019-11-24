@@ -57,25 +57,22 @@ public class Player extends Entity {
 	 * @return returns an updated position for the player
 	 */
 	
-	public Vector2D move(Vector2D currentVector, direction input) {
+	public Vector2D move(Vector2D currentVector, Direction input) {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
+		Vector2D nextVector = null;
 		switch (input) {
-			case 0:
-				input = UP;
-				Vector2D nextVector = new Vector2D(cX, cY++);
+			case UP:
+				nextVector = new Vector2D(cX, cY++);
 				break;
-			case 1:
-				input = DOWN;
-				Vector2D nextVector = new Vector2D(cX, cY--);
+			case DOWN:
+				nextVector = new Vector2D(cX, cY--);
 				break;
-			case 2:
-				input = LEFT;
-				Vector2D nextVector = new Vector2D(cX--, cY);
+			case LEFT:
+				nextVector = new Vector2D(cX--, cY);
 				break;
-			case 3:
-				input = RIGHT;
-				Vector2D nextVector = new Vector2D(cX++, cY);
+			case RIGHT:
+				nextVector = new Vector2D(cX++, cY);
 				break;
 			default:
 				input = null;
@@ -92,17 +89,14 @@ public class Player extends Entity {
 	public boolean isValidMove() {
 		if (getCellAt(nextVector) == Wall) {
 			return false;
-		}
-		else if (getCellAt(nextVector) == Door) {
+		} else if (getCellAt(nextVector) == Door) {
 			if (Door.hasItem(inventory()) = true) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 			
-		}
-		else {
+		} else {
 			return true;
 		}
 		
