@@ -69,6 +69,20 @@ public class Teleporter extends Specialised {
 		this.linkedTP = linkedTP;
 	}
 	
+	public Vector2D getLinkedTP() {
+		return this.linkedTP;
+	}
+	
+	/**
+	 * Sets up the teleporter linkup on both teleporters at once
+	 * 
+	 * @param link
+	 */
+	public void setLinks(Teleporter link) {
+		this.setLinkedTP(link.getPos());
+		link.setLinkedTP(this.getPos());
+	}
+	
 	
 	
 	

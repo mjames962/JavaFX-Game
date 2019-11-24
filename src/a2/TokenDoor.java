@@ -33,6 +33,14 @@ public class TokenDoor extends Door {
 		return requiredTokens <= ply.getTokens();
 	}
 	
+	/**
+	 * Sets the number of tokens required by the door
+	 * @param requiredTokens
+	 */
+	public void setReqTokens(int requiredTokens) {
+		this.requiredTokens = requiredTokens;
+	}
+	
 	
 	
 	

@@ -21,7 +21,7 @@ public class Level {
 	 * @param fileName
 	 */
 	public Level(String fileName) {
-		this.level = readFile(fileName);
+		this.readFile(fileName);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class Level {
 	 * @param fileName the name and file extension of the level file
 	 * @return Level[][] level layout array
 	 */
-	public Cell[][] readFile(String fileName) {
+	public void readFile(String fileName) {
 		File inputFile = new File(fileName);
 
 		Scanner in = null;
@@ -78,14 +78,14 @@ public class Level {
 			System.exit(0);
 		}
 
-		return readFile(in);
+		this.readFile(in);
 	}
 
 	/**
 	 * @param in scanner
 	 * @return 2D array of Cell type
 	 */
-	public Cell[][] readFile(Scanner in) {
+	public void readFile(Scanner in) {
 
 		int x = in.nextInt();
 		int y = in.nextInt();
@@ -93,7 +93,7 @@ public class Level {
 		in.nextLine();
 		in.nextLine();
 
-		Cell[][] level = new Cell[x][y];
+		 this.level = new Cell[x][y];
 
 		String line = in.nextLine();
 		char c;
@@ -102,7 +102,8 @@ public class Level {
 		for (int i = y - 1; i >= 0; i--) {
 			for (int j = 0; j < x; j++) {
 				c = line.charAt(j);
-				level[j][i] = readChar(c, j, y);
+				Cell cell = readChar(c,j,i);
+				this.setLevel(cell, j, i);
 			}
 			line = in.nextLine();
 		}
@@ -125,21 +126,28 @@ public class Level {
 
 		// teleporters
 		while (!line.equals("*")) {
-			// readTeleporter(line);
+			readTeleporter(line);
 			line = in.nextLine();
 		}
-
-		return level;
 	}
 
-	private static void readTeleporter(String str) {
-		// TODO Auto-generated method stub
+	private void readTeleporter(String str) {
+		Scanner in = new Scanner(str);
 
+		int xPosition1 = in.nextInt() - 1; // -1 because of 0 indexed array
+		int yPosition1 = in.nextInt() - 1;
+		Cell teleporter1 = this.getCellAt(xPosition1, yPosition1);
+		
+		int xPosition2 = in.nextInt() - 1;
+		int yPosition2 = in.nextInt() - 1;
+		Cell teleporter2 = this.getCellAt(xPosition2, yPosition2);
+		
+		((Teleporter) teleporter1).setLinks((Teleporter) teleporter2);
 	}
 
 	/**
 	 * @param in scanner
-	 * @param str;
+	 * @param    str;
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);
@@ -155,23 +163,23 @@ public class Level {
 		Entity entity = null;
 
 		switch (entityID) {
-			case 0:
-				entity = new Player(vector, entityID, false, null);
-				break;
-			case 1:
-				entity = new StraightLine(vector, entityID);
-				break;
-			case 2:
-				entity = new WallFollowing(vector, entityID);
-				break;
-			case 3:
-				entity = new DumbTargeting(vector, entityID);
-				break;
-			case 4:
-				// entity = new SmartTargeting();
-				break;
-			default:
-				entity = null;
+		case 0:
+			entity = new Player(vector, entityID, false, null);
+			break;
+		case 1:
+			entity = new StraightLine(vector, entityID);
+			break;
+		case 2:
+			entity = new WallFollowing(vector, entityID);
+			break;
+		case 3:
+			entity = new DumbTargeting(vector, entityID);
+			break;
+		case 4:
+			// entity = new SmartTargeting();
+			break;
+		default:
+			entity = null;
 		}
 
 		this.addEntity(entity);
@@ -180,19 +188,19 @@ public class Level {
 
 	/**
 	 * 
-	 * @param str 
+	 * @param str
 	 * @param in
 	 */
 	public void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
 
-		int xPosition = in.nextInt();
-		int yPosition = in.nextInt();
+		int xPosition = in.nextInt() - 1; // -1 because of 0 indexed array
+		int yPosition = in.nextInt() - 1;
 		Cell door = getCellAt(xPosition, yPosition);
 
-		String tokenCount = in.next();
+		int tokenCount = in.nextInt();
 
-		// update object info
+		((TokenDoor) door).setReqTokens(tokenCount);
 
 	}
 
@@ -208,40 +216,40 @@ public class Level {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
-			case '#':
-				return new Wall(position);
-			case '_':
-				return new Ground(position);
-			case 'X':
-				return new Goal(position);
-			case 'T':
-				return new Teleporter(position);
-			case 'F':
-				return new Fire(position);
-			case 'W':
-				return new Water(position);
-			case 'R':
-				return new ColourDoor(position);
-			case 'B':
-				return new ColourDoor(position);
-			case 'G':
-				return new ColourDoor(position);
-			case 'w':
-				return new Flippers(position);
-			case 'f':
-				return new FireBoots(position);
-			case 'r':
-				return new Key(position, Player.Item.RED_KEY);
-			case 'b':
-				return new Key(position, Player.Item.BLUE_KEY);
-			case 'g':
-				return new Key(position, Player.Item.GREEN_KEY);
-			case 'D':
-				return new TokenDoor(position);
-			case 'd':
-				return new Token(position);
-			default:
-				return new Wall(position);
+		case '#':
+			return new Wall(position);
+		case '_':
+			return new Ground(position);
+		case 'X':
+			return new Goal(position);
+		case 'T':
+			return new Teleporter(position);
+		case 'F':
+			return new Fire(position);
+		case 'W':
+			return new Water(position);
+		case 'R':
+			return new ColourDoor(position);
+		case 'B':
+			return new ColourDoor(position);
+		case 'G':
+			return new ColourDoor(position);
+		case 'w':
+			return new Flippers(position);
+		case 'f':
+			return new FireBoots(position);
+		case 'r':
+			return new Key(position, Player.Item.RED_KEY);
+		case 'b':
+			return new Key(position, Player.Item.BLUE_KEY);
+		case 'g':
+			return new Key(position, Player.Item.GREEN_KEY);
+		case 'D':
+			return new TokenDoor(position);
+		case 'd':
+			return new Token(position);
+		default:
+			return new Wall(position);
 		}
 	}
 

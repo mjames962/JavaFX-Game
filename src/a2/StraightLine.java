@@ -17,7 +17,7 @@ public class StraightLine extends Entity {
 	 * @param enemyID the ID of the enemy
 	 * 	 
 	 */
-	private StraightLine(Vector2D currentVector, int enemyID) {
+	public StraightLine(Vector2D currentVector, int enemyID) {
 		super(currentVector, enemyID);
 	}
 	
