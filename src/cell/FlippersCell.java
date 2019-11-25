@@ -1,5 +1,7 @@
-package a2;
+package cell;
 
+import a2.Flippers;
+import a2.Vector2D;
 
 /**
  * Flipper cell that will be added to the players inventory when the cell

@@ -1,8 +1,11 @@
-package a2;
+package cell;
 
-public class GreenDoor extends Door {
+import a2.Player;
+import a2.Vector2D;
 
-	public GreenDoor(Vector2D pos) {
+public class BlueDoor extends Door {
+
+	public BlueDoor(Vector2D pos) {
 		super(pos);
 		// TODO Auto-generated constructor stub
 	}
@@ -10,7 +13,7 @@ public class GreenDoor extends Door {
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		// TODO Auto-generated method stub
-		return false;
+		return ply.hasItem(p);
 	}
 
 }

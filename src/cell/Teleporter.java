@@ -1,4 +1,8 @@
-package a2;
+package cell;
+
+import a2.Player;
+import a2.Vector2D;
+
 /**
  * A cell that teleports the player from one teleporter to another.
  * @author george and Tom Wood

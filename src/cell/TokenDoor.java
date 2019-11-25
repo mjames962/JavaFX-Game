@@ -1,4 +1,6 @@
-package a2;
+package cell;
+
+import a2.Vector2D;
 
 /**
  * the door that will open when the user has

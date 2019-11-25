@@ -1,4 +1,7 @@
-package a2;
+package cell;
+
+import a2.BlueKey;
+import a2.Vector2D;
 
 public class BlueKeyCell extends Collectible {
 

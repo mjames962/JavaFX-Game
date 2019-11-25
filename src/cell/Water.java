@@ -1,4 +1,6 @@
-package a2;
+package cell;
+
+import a2.Vector2D;
 
 /**
  * The water cell that will kill the player if
