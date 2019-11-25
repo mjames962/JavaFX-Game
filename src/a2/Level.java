@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import cell.*;
+
 /**
  * class for the creation of the level.
  * @author Jensen, Mitch
