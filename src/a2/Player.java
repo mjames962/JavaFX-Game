@@ -37,11 +37,12 @@ public class Player extends Entity {
 	private ArrayList<Item> inventory;
 	private Vector2D nextVector;
 	private Vector2D currentVector;
+	private int tokenCount;
 	/**
 	 * Constructs the player object.
 	 * @param entityID = 0, defines the entity as a player type
 	 * @param alive Determines if the player can continue
-	 * @param inventory the collection of collectibles the player has
+	 * @param inventory the collection of collectible(s) the player has
 	 * @param currentVector the current location of the player
 	 */
 	public Player(Vector2D currentVector, int entityID, boolean alive,
@@ -49,6 +50,7 @@ public class Player extends Entity {
 		super(currentVector, entityID);
 		this.alive = alive;
 		this.inventory = inventory;
+		this.tokenCount = 0;
 	}
 	/**
 	 * the method for enacting a movement specified by the player.
@@ -86,22 +88,47 @@ public class Player extends Entity {
 	 * Overrides the isValidMove method in Entity for player entities.
 	 * @return returns a boolean for if the requested move is valid
 	 */	
-	public boolean isValidMove() {
-		if (getCellAt(nextVector) == Wall) {
-			return false;
-		} else if (getCellAt(nextVector) == Door) {
-			if (Door.hasItem(inventory()) = true) {
-				return true;
-			} else {
+	public boolean isValidMove(Vector2D currentVector) {
+		int cX = currentVector.getX();
+		int cY = currentVector.getY();
+		
+		String cellType = (Level.getCellAt(cX, cY).cellName);
+		
+		switch (cellType) {
+			case "Wall": //Wall
 				return false;
-			}
-			
-		} else {
-			return true;
+				break;
+			case "TokenDoor": //Token Door
+				if (TokenDoor.meetsRequirement(tokenCount)) {
+					return true;
+				}
+				else {
+					return false;						
+				}
+
+				break;
+			case "Door": //blue door
+				return true;
+				return false;
+				break;
+			case "Fire":
+				;
+				break;
+			case "FireBoots":
+				;
+				break;
+			case "Water":
+				;
+				break;
+			case "Flippers":
+				;
+				break;
+			default:
+				return true;
+				break;
 		}
 		
 		
-	}
 	
 	/**
 	 * This method handles the death of the player.
@@ -133,27 +160,8 @@ public class Player extends Entity {
 		}
 	}
 	
-	/**
-	 * Deals with the input of the player.
-	 * @param input The input of the player
-	 */
-	public void handleInput(Direction input) {
-		//TODO
-	}
-	
-	/**
-	 * Handles invalid moves.
-	 * @param direction The direction the player is moving
-	 */
-	public void attemptMove(Direction direction) {
-		//TODO
-	}
-	
-	/**
-	 * Clears the player's inventory.
-	 */
-	public void clearInventory() {
-		inventory.clear();
+	public int getTokens() {
+		return tokenCount;
 	}
 	
 }
