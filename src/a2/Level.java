@@ -9,6 +9,7 @@ import cell.*;
 
 /**
  * class for the creation of the level.
+ * 
  * @author Jensen, Mitch
  *
  */
@@ -21,7 +22,9 @@ public class Level {
 
 	/**
 	 * .
-	 * @param fileName name of the file
+	 * 
+	 * @param fileName
+	 *            name of the file
 	 */
 	public Level(String fileName) {
 		this.readFile(fileName);
@@ -29,6 +32,7 @@ public class Level {
 
 	/**
 	 * .
+	 * 
 	 * @return entityList list of entities
 	 */
 	public ArrayList<Entity> getEntityList() {
@@ -37,7 +41,9 @@ public class Level {
 
 	/**
 	 * .
-	 * @param entity entity to be added to level
+	 * 
+	 * @param entity
+	 *            entity to be added to level
 	 */
 	public void addEntity(Entity entity) {
 		this.entityList.add(entity);
@@ -45,6 +51,7 @@ public class Level {
 
 	/**
 	 * .
+	 * 
 	 * @return level layout of level
 	 */
 	public Cell[][] getLevel() {
@@ -53,8 +60,11 @@ public class Level {
 
 	/**
 	 * .
-	 * @param x coordinate
-	 * @param y coordinate
+	 * 
+	 * @param x
+	 *            coordinate
+	 * @param y
+	 *            coordinate
 	 * @return level[x][y] cell at coords
 	 */
 	public Cell getCellAt(int x, int y) {
@@ -63,9 +73,13 @@ public class Level {
 
 	/**
 	 * placing cells in the level.
-	 * @param cell cell to be input
-	 * @param x    x-coord
-	 * @param y    y-coord
+	 * 
+	 * @param cell
+	 *            cell to be input
+	 * @param x
+	 *            x-coord
+	 * @param y
+	 *            y-coord
 	 */
 	public void setLevel(Cell cell, int x, int y) {
 		this.level[x][y] = cell;
@@ -73,7 +87,9 @@ public class Level {
 
 	/**
 	 * reads the file for level data.
-	 * @param fileName the name and file extension of the level file
+	 * 
+	 * @param fileName
+	 *            the name and file extension of the level file
 	 * @return Level[][] level layout array
 	 */
 	public void readFile(String fileName) {
@@ -92,7 +108,9 @@ public class Level {
 
 	/**
 	 * reads files.
-	 * @param in scanner
+	 * 
+	 * @param in
+	 *            scanner
 	 * @return 2D array of Cell type
 	 */
 	public void readFile(Scanner in) {
@@ -139,6 +157,8 @@ public class Level {
 			readTeleporter(line);
 			line = in.nextLine();
 		}
+		
+		in.close();
 	}
 
 	private void readTeleporter(String str) {
@@ -147,18 +167,23 @@ public class Level {
 		int xPosition1 = in.nextInt() - 1; // -1 because of 0 indexed array
 		int yPosition1 = in.nextInt() - 1;
 		Cell teleporter1 = this.getCellAt(xPosition1, yPosition1);
-		
+
 		int xPosition2 = in.nextInt() - 1;
 		int yPosition2 = in.nextInt() - 1;
 		Cell teleporter2 = this.getCellAt(xPosition2, yPosition2);
-		
+
 		((Teleporter) teleporter1).setLinks((Teleporter) teleporter2);
+		
+		in.close();
 	}
 
 	/**
 	 * reads in Entities + ajoined data.
-	 * @param in integral to Scanner
-	 * @param str a string read in from file
+	 * 
+	 * @param in
+	 *            integral to Scanner
+	 * @param str
+	 *            a string read in from file
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);
@@ -174,33 +199,38 @@ public class Level {
 		Entity entity = null;
 
 		switch (entityID) {
-		    case 0:
-			    entity = new Player(vector, entityID, false, null);
-			    break;
-		    case 1:
-		    	entity = new StraightLine(vector, entityID);
-		    	break;
-		    case 2:
-		    	entity = new WallFollowing(vector, entityID);
-		    	break;
-		    case 3:
-		    	entity = new DumbTargeting(vector, entityID);
-		    	break;
-		    case 4:
-		    	// entity = new SmartTargeting();
-		    	break;
-		    default:
-		    	entity = null;
+		case 0:
+			entity = new Player(vector, entityID, false, null);
+			break;
+		case 1:
+			entity = new StraightLine(vector, entityID);
+			break;
+		case 2:
+			entity = new WallFollowing(vector, entityID);
+			break;
+		case 3:
+			entity = new DumbTargeting(vector, entityID);
+			break;
+		case 4:
+			// entity = new SmartTargeting();
+			break;
+		default:
+			entity = null;
 		}
 
 		this.addEntity(entity);
+		
+		in.close();
 
 	}
 
 	/**
 	 * reading in token doors.
-	 * @param str needed for reading in from file
-	 * @param in integral to Scanner
+	 * 
+	 * @param str
+	 *            needed for reading in from file
+	 * @param in
+	 *            integral to Scanner
 	 */
 	public void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
@@ -212,60 +242,65 @@ public class Level {
 		int tokenCount = in.nextInt();
 
 		((TokenDoor) door).setReqTokens(tokenCount);
+		in.close();
 
 	}
 
 	/**
 	 * Checks cell type and creates corresponding cell.
 	 * 
-	 * @param c cell type
-	 * @param x x coordinate
-	 * @param y y coordinate
+	 * @param c
+	 *            cell type
+	 * @param x
+	 *            x coordinate
+	 * @param y
+	 *            y coordinate
 	 * @return cell newly created cell
 	 */
 	public Cell readChar(char c, int x, int y) {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
-			case '#':
-				return new Wall(position);
-			case '_':
-				return new Ground(position);
-			case 'X':
-				return new Goal(position);
-			case 'T':
-				return new Teleporter(position);
-			case 'F':
-				return new Fire(position);
-			case 'W':
-				return new Water(position);
-			case 'R':
-				return new ColourDoor(position);
-			case 'B':
-				return new ColourDoor(position);
-			case 'G':
-				return new ColourDoor(position);
-			case 'w':
-				return new FlippersCell(position);
-			case 'f':
-				return new FireBootsCell(position);
-			case 'r':
-				return new KeyCell(position, Player.Item.RED_KEY);
-			case 'b':
-				return new KeyCell(position, Player.Item.BLUE_KEY);
-			case 'g':
-				return new KeyCell(position, Player.Item.GREEN_KEY);
-			case 'D':
-				return new TokenDoor(position);
-			case 'd':
-				return new TokenCell(position);
-			default:
-				return new Wall(position);
+		case '#':
+			return new Wall(position);
+		case '_':
+			return new Ground(position);
+		case 'X':
+			return new Goal(position);
+		case 'T':
+			return new Teleporter(position);
+		case 'F':
+			return new Fire(position);
+		case 'W':
+			return new Water(position);
+		case 'R':
+			return new RedDoor(position);
+		case 'B':
+			return new BlueDoor(position);
+		case 'G':
+			return new GreenDoor(position);
+		case 'w':
+			return new FlippersCell(position);
+		case 'f':
+			return new FireBootsCell(position);
+		case 'r':
+			return new RedKeyCell(position);
+		case 'b':
+			return new BlueKeyCell(position);
+		case 'g':
+			return new GreenKeyCell(position);
+		case 'D':
+			return new TokenDoor(position);
+		case 'd':
+			return new TokenCell(position);
+		default:
+			return new Wall(position);
 		}
 	}
 
 	/**
 	 * gives the level number.
+	 * 
 	 * @return returns the level number
 	 */
 	public int getLevelNo() {
