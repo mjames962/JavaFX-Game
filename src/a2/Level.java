@@ -242,19 +242,19 @@ public class Level {
 		case 'G':
 			return new ColourDoor(position);
 		case 'w':
-			return new Flippers(position);
+			return new FlippersCell(position);
 		case 'f':
-			return new FireBoots(position);
+			return new FireBootsCell(position);
 		case 'r':
-			return new Key(position, Player.Item.RED_KEY);
+			return new KeyCell(position, Player.Item.RED_KEY);
 		case 'b':
-			return new Key(position, Player.Item.BLUE_KEY);
+			return new KeyCell(position, Player.Item.BLUE_KEY);
 		case 'g':
-			return new Key(position, Player.Item.GREEN_KEY);
+			return new KeyCell(position, Player.Item.GREEN_KEY);
 		case 'D':
 			return new TokenDoor(position);
 		case 'd':
-			return new Token(position);
+			return new TokenCell(position);
 		default:
 			return new Wall(position);
 		}
