@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import java.nio.file.*;
@@ -23,7 +24,6 @@ public class CreateUserController {
 	
 	@FXML
 	private void handleCreateBtn(ActionEvent event) {
-		System.out.println("Testing");
 		String newUser = tbox_NewUsername.getText();
 		
 		if (UserData.doesExist(newUser)) {
@@ -40,7 +40,8 @@ public class CreateUserController {
 				System.out.println(newUser);
 				Files.write(Paths.get("src/a2/resources/Users.txt"), 
 						("\n" + newUser).getBytes(), StandardOpenOption.APPEND);
-		        System.out.println("Done");
+				Stage stage = (Stage) btn_CreateUser.getScene().getWindow();
+			    stage.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(-1);
