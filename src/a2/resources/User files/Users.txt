@@ -1,7 +1,11 @@
 
 Jensen
+<<<<<<< HEAD
 Mitch
 newUser
 User
 User2
 user3
+=======
+Darius
+>>>>>>> refs/remotes/origin/master

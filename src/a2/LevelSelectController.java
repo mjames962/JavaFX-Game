@@ -22,12 +22,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * .
- * @author Darius Thomas
- *
+ * Displays the current level.
+ * @author Jensen Beard and George Williams-Walton
+ * @version 1.0
  */
 public class LevelSelectController {
-	private Stage stage;
 	
 	@FXML
 	private Button btn_LoadLevel;
@@ -40,23 +39,15 @@ public class LevelSelectController {
 	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) {
-		Stage s = new Stage();
+		final int MAX_WINDOW_HEIGHT = 300;
+		final int MAX_WINDOW_WIDTH = 250;
+		Stage newStage = new Stage();
 		//s.setTitle("Drawing Operations Test");
         Group root = new Group();
-        Canvas canvas = new Canvas(300, 250);
+        Canvas canvas = new Canvas(MAX_WINDOW_HEIGHT, MAX_WINDOW_WIDTH);
      
         root.getChildren().add(canvas);
-        s.setScene(new Scene(root));
-        s.show();
-        
-		
-
-	}	
-	public void drawShapes(GraphicsContext gc) {
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(5);
-        gc.strokeLine(40, 10, 10, 40);
-        gc.fillOval(10, 60, 30, 30);
-    }
+        newStage.setScene(new Scene(root));
+        newStage.show();
+	}
 }
