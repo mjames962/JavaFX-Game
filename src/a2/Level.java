@@ -94,6 +94,16 @@ public class Level {
 	public int levelYLength() {
 		return this.yLength;
 	}
+	
+	public Entity getPlayer() {
+		for (Entity e : this.entityList) { 
+		    if (e.getEntityID() == 0) {
+		    	return e;
+		    }
+		}
+		
+		return null;
+	}
 
 	/**
 	 * reads the file for level data.
