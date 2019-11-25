@@ -34,6 +34,7 @@ public class MainMenuController {
 		try {
 			// Create a FXML loader for loading the Edit Country FXML file.
 			FXMLLoader fxmlLoader = new FXMLLoader(getClass().
+					//
 					getResource("resources/fxml docs/CreateUser.fxml"));     
 
 			// Run the loader
