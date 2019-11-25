@@ -236,11 +236,11 @@ public class Level {
 		case 'W':
 			return new Water(position);
 		case 'R':
-			return new ColourDoor(position);
+			return new RedDoor(position);
 		case 'B':
-			return new ColourDoor(position);
+			return new BlueDoor(position);
 		case 'G':
-			return new ColourDoor(position);
+			return new GreenDoor(position);
 		case 'w':
 			return new FlippersCell(position);
 		case 'f':
