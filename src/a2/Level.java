@@ -109,7 +109,7 @@ public class Level {
 		for (int i = y - 1; i >= 0; i--) {
 			for (int j = 0; j < x; j++) {
 				c = line.charAt(j);
-				Cell cell = readChar(c,j,i);
+				Cell cell = readChar(c, j, i);
 				this.setLevel(cell, j, i);
 			}
 			line = in.nextLine();
@@ -154,7 +154,7 @@ public class Level {
 
 	/**
 	 * @param in scanner
-	 * @param    str;
+	 * @param str a string read in from file
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);

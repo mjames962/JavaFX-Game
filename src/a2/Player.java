@@ -2,6 +2,9 @@ package a2;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 /**
  * This hold the player class.
  * @author Darius Thomas and James Colebourn
@@ -82,19 +85,27 @@ public class Player extends Entity {
 		isValidMove(0, nextVector);
 		return null; //needs changing from null to something else to 
 		             //change the players location and update the map
+	/*	if (nextVector == Goal) {
+			//end level
+		}*/
 	}
 	
 	/**
 	 * Overrides the isValidMove method in Entity for player entities.
+	 * @param Level the given level currently loaded
+	 * @param nextVector the requested cell to move to
 	 * @return returns a boolean for if the requested move is valid
 	 */	
-	public boolean isValidMove(Vector2D currentVector) {
+	public boolean isValidMove(Vector2D nextVector, Level Level) {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
-		
-		String cellType = (Level.getCellAt(cX, cY).cellName);
+		String cellType = (Level.getCellAt(cX, cY).cellName());
 		
 		switch (cellType) {
+		
+			case "Ground": //Ground
+				return false;
+				break;
 			case "Wall": //Wall
 				return false;
 				break;
@@ -107,24 +118,45 @@ public class Player extends Entity {
 				}
 
 				break;
-			case "Door": //blue door
+			case "Door": //doors of various kinds
 				return true;
 				return false;
 				break;
 			case "Fire":
-				;
-				break;
-			case "FireBoots":
-				;
-				break;
-			case "Water":
-				;
-				break;
-			case "Flippers":
-				;
-				break;
-			default:
+				//check if FB owned
+				//react
 				return true;
+				break;
+			
+			case "FireBoots":
+				//add to inv
+				//call replace
+				return true;
+				break;
+			
+			case "Water":
+				//check if Flippers owned
+				//react
+				return true;
+				break;
+			
+			case "Flippers":
+				//add to inv
+				//call replace
+				return true;
+				break;
+			case "Teleporter":
+				return true;
+				break;
+			case "Goal":
+				return true;
+				break;
+			
+			
+			
+			
+			default:
+				return false;
 				break;
 		}
 		
@@ -136,6 +168,11 @@ public class Player extends Entity {
 	
 	private void playerDeath() {
 		alive = false;
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Death");
+		alert.setHeaderText("You are of become Ded");
+		alert.setContentText(null);
+		alert.showAndWait();
 	}
 	
 	/**
