@@ -17,6 +17,8 @@ public class Level {
 
 	private Cell[][] level;
 	private ArrayList<Entity> entityList = new ArrayList<>();
+	private int xLength;
+	private int yLength;
 
 	private int levelNo;
 
@@ -84,6 +86,24 @@ public class Level {
 	public void setLevel(Cell cell, int x, int y) {
 		this.level[x][y] = cell;
 	}
+	
+	public int levelXLength() {
+		return this.xLength;
+	}
+	
+	public int levelYLength() {
+		return this.yLength;
+	}
+	
+	public Entity getPlayer() {
+		for (Entity e : this.entityList) { 
+		    if (e.getEntityID() == 0) {
+		    	return e;
+		    }
+		}
+		
+		return null;
+	}
 
 	/**
 	 * reads the file for level data.
@@ -116,7 +136,10 @@ public class Level {
 	public void readFile(Scanner in) {
 
 		int x = in.nextInt();
+		this.xLength = x;
+		
 		int y = in.nextInt();
+		this.yLength = y;
 
 		in.nextLine();
 		in.nextLine();

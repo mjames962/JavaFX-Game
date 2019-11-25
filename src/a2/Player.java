@@ -1,6 +1,7 @@
 package a2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -25,7 +26,7 @@ public class Player extends Entity {
 	}
 	
 	private boolean alive;
-	private ArrayList<Item> inventory;
+	private LinkedList<Item> inventory;
 	private Vector2D nextVector;
 	private Vector2D currentVector;
 	private int tokenCount;
@@ -37,7 +38,7 @@ public class Player extends Entity {
 	 * @param currentVector the current location of the player
 	 */
 	public Player(Vector2D currentVector, int entityID, boolean alive,
-			ArrayList<Item> inventory) {
+			LinkedList<Item> inventory) {
 		super(currentVector, entityID);
 		this.alive = alive;
 		this.inventory = inventory;
@@ -187,17 +188,18 @@ public class Player extends Entity {
 		alive = false;
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Death");
-		alert.setHeaderText("You are of become Ded");
+		alert.setHeaderText("You died.");
 		alert.setContentText(null);
 		alert.showAndWait();
 	}
 	
 	/**
 	 * Puts an item into the player's inventory.
+	 * @param collectible 
 	 */
 	
-	public void pickupItem() {
-		inventory.add(null); //Needs fixing
+	public void pickupItem(Item item) {
+		inventory.add(item);
 	}
 	
 	/**
@@ -207,13 +209,25 @@ public class Player extends Entity {
 	 * or false if the item isn't present
 	 */
 	public boolean hasItem(Item item) {
-		if (inventory.contains(item)) {
-			return true;
-		} else {
-			return false;
-		}
+		boolean status = inventory.contains(item); 
+        if(status) 
+            return true; 
+        else
+            return false;
 	}
 	
+	/**
+	 * This removes the item from the inventory
+	 * @param item the current item being removed
+	 */
+	public void removeItem(Item item) {
+		inventory.remove(item);
+	}
+	
+	/**
+	 * Gets the number of tokens
+	 * @return tokenCount
+	 */
 	public int getTokens() {
 		return tokenCount;
 	}

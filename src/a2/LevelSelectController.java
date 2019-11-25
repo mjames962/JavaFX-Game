@@ -22,12 +22,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
+<<<<<<< HEAD
  * .
  * @author 
  *
+=======
+ * Displays the current level.
+ * @author Jensen Beard and George Williams-Walton
+ * @version 1.0
+>>>>>>> branch 'master' of https://gitlab.com/cs230g34/a2.git
  */
 public class LevelSelectController {
-	private Stage stage;
 	
 	private static final int CANVAS_WIDTH = 350;
 	private static final int CANVAS_LENGTH = 350;
@@ -67,5 +72,4 @@ public class LevelSelectController {
 	private void setCellTypes() {
 		
 	}
-	
 }
