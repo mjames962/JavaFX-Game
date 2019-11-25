@@ -47,7 +47,7 @@ public abstract class Cell {
 	 * Get the sprite (placeholder).
 	 * @return the sprite being used
 	 */
-	public Object getSprite() {
+	public String getSprite() {
 		return sprite;
 	}
 	

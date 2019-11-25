@@ -23,11 +23,15 @@ import javafx.stage.Stage;
 
 /**
  * .
- * @author Darius Thomas
+ * @author 
  *
  */
 public class LevelSelectController {
 	private Stage stage;
+	
+	private static final int CANVAS_WIDTH = 350;
+	private static final int CANVAS_LENGTH = 350;
+	
 	
 	@FXML
 	private Button btn_LoadLevel;
@@ -40,23 +44,28 @@ public class LevelSelectController {
 	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) {
+		Level level = new Level("resources/file formats/testFileFormat1.txt");
+		createLevelStage(level);
+	}	
+	
+	private void createLevelStage(Level level) {
 		Stage s = new Stage();
 		//s.setTitle("Drawing Operations Test");
         Group root = new Group();
-        Canvas canvas = new Canvas(300, 250);
-     
+        Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
         root.getChildren().add(canvas);
         s.setScene(new Scene(root));
         s.show();
+        int playerX = Level.getPlayer().getVector().getX();
+        int playerY = Level.getPlayer().getVector().getY();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.drawImage(level.getCellAt(playerX, playerY).getSprite(), playerX, playerY);
         
+	}
+	
+	
+	private void setCellTypes() {
 		
-
-	}	
-	public void drawShapes(GraphicsContext gc) {
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(5);
-        gc.strokeLine(40, 10, 10, 40);
-        gc.fillOval(10, 60, 30, 30);
-    }
+	}
+	
 }
