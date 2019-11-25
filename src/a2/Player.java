@@ -2,6 +2,9 @@ package a2;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 /**
  * This hold the player class.
  * @author Darius Thomas and James Colebourn
@@ -37,11 +40,12 @@ public class Player extends Entity {
 	private ArrayList<Item> inventory;
 	private Vector2D nextVector;
 	private Vector2D currentVector;
+	private int tokenCount;
 	/**
 	 * Constructs the player object.
 	 * @param entityID = 0, defines the entity as a player type
 	 * @param alive Determines if the player can continue
-	 * @param inventory the collection of collectibles the player has
+	 * @param inventory the collection of collectible(s) the player has
 	 * @param currentVector the current location of the player
 	 */
 	public Player(Vector2D currentVector, int entityID, boolean alive,
@@ -49,6 +53,7 @@ public class Player extends Entity {
 		super(currentVector, entityID);
 		this.alive = alive;
 		this.inventory = inventory;
+		this.tokenCount = 0;
 	}
 	/**
 	 * the method for enacting a movement specified by the player.
@@ -80,28 +85,82 @@ public class Player extends Entity {
 		isValidMove(0, nextVector);
 		return null; //needs changing from null to something else to 
 		             //change the players location and update the map
+	/*	if (nextVector == Goal) {
+			//end level
+		}*/
 	}
 	
 	/**
 	 * Overrides the isValidMove method in Entity for player entities.
+	 * @param Level the given level currently loaded
+	 * @param nextVector the requested cell to move to
 	 * @return returns a boolean for if the requested move is valid
 	 */	
-	public boolean isValidMove() {
-		if (getCellAt(nextVector) == Wall) {
-			return false;
-		} else if (getCellAt(nextVector) == Door) {
-			if (Door.hasItem(inventory()) = true) {
-				return true;
-			} else {
+	public boolean isValidMove(Vector2D nextVector, Level Level) {
+		int cX = currentVector.getX();
+		int cY = currentVector.getY();
+		String cellType = (Level.getCellAt(cX, cY).cellName());
+		
+		switch (cellType) {
+		
+			case "Ground": //Ground
 				return false;
-			}
+				break;
+			case "Wall": //Wall
+				return false;
+				break;
+			case "TokenDoor": //Token Door
+				if (TokenDoor.meetsRequirement(tokenCount)) {
+					return true;
+				}
+				else {
+					return false;						
+				}
+
+				break;
+			case "Door": //doors of various kinds
+				return true;
+				return false;
+				break;
+			case "Fire":
+				//check if FB owned
+				//react
+				return true;
+				break;
 			
-		} else {
-			return true;
+			case "FireBoots":
+				//add to inv
+				//call replace
+				return true;
+				break;
+			
+			case "Water":
+				//check if Flippers owned
+				//react
+				return true;
+				break;
+			
+			case "Flippers":
+				//add to inv
+				//call replace
+				return true;
+				break;
+			case "Teleporter":
+				return true;
+				break;
+			case "Goal":
+				return true;
+				break;
+			
+			
+			
+			
+			default:
+				return false;
+				break;
 		}
 		
 		
-	}
 	
 	/**
 	 * This method handles the death of the player.
@@ -109,6 +168,11 @@ public class Player extends Entity {
 	
 	private void playerDeath() {
 		alive = false;
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Death");
+		alert.setHeaderText("You are of become Ded");
+		alert.setContentText(null);
+		alert.showAndWait();
 	}
 	
 	/**
@@ -133,27 +197,8 @@ public class Player extends Entity {
 		}
 	}
 	
-	/**
-	 * Deals with the input of the player.
-	 * @param input The input of the player
-	 */
-	public void handleInput(Direction input) {
-		//TODO
-	}
-	
-	/**
-	 * Handles invalid moves.
-	 * @param direction The direction the player is moving
-	 */
-	public void attemptMove(Direction direction) {
-		//TODO
-	}
-	
-	/**
-	 * Clears the player's inventory.
-	 */
-	public void clearInventory() {
-		inventory.clear();
+	public int getTokens() {
+		return tokenCount;
 	}
 	
 }

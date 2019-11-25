@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * 
+ * class for the creation of the level.
  * @author Jensen, Mitch
  *
  */
@@ -18,20 +18,23 @@ public class Level {
 	private int levelNo;
 
 	/**
-	 * @param fileName
+	 * .
+	 * @param fileName name of the file
 	 */
 	public Level(String fileName) {
 		this.readFile(fileName);
 	}
 
 	/**
-	 * @return entityList
+	 * .
+	 * @return entityList list of entities
 	 */
 	public ArrayList<Entity> getEntityList() {
 		return entityList;
 	}
 
 	/**
+	 * .
 	 * @param entity entity to be added to level
 	 */
 	public void addEntity(Entity entity) {
@@ -39,6 +42,7 @@ public class Level {
 	}
 
 	/**
+	 * .
 	 * @return level layout of level
 	 */
 	public Cell[][] getLevel() {
@@ -46,8 +50,9 @@ public class Level {
 	}
 
 	/**
-	 * @param x
-	 * @param y
+	 * .
+	 * @param x coordinate
+	 * @param y coordinate
 	 * @return level[x][y] cell at coords
 	 */
 	public Cell getCellAt(int x, int y) {
@@ -55,6 +60,7 @@ public class Level {
 	}
 
 	/**
+	 * placing cells in the level.
 	 * @param cell cell to be input
 	 * @param x    x-coord
 	 * @param y    y-coord
@@ -64,6 +70,7 @@ public class Level {
 	}
 
 	/**
+	 * reads the file for level data.
 	 * @param fileName the name and file extension of the level file
 	 * @return Level[][] level layout array
 	 */
@@ -102,7 +109,7 @@ public class Level {
 		for (int i = y - 1; i >= 0; i--) {
 			for (int j = 0; j < x; j++) {
 				c = line.charAt(j);
-				Cell cell = readChar(c,j,i);
+				Cell cell = readChar(c, j, i);
 				this.setLevel(cell, j, i);
 			}
 			line = in.nextLine();
@@ -147,7 +154,7 @@ public class Level {
 
 	/**
 	 * @param in scanner
-	 * @param    str;
+	 * @param str a string read in from file
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);

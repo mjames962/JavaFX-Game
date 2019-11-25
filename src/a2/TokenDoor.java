@@ -24,23 +24,26 @@ public class TokenDoor extends Door {
 	/**
 	 * Checks to see if the player has the required number
 	 * of tokens to open the door.
-	 * @param ply the player on the map
+	 * @param tokenCount #of tokens held by the player
 	 * @return if the players token total is higher than the required
 	 * tokens.
 	 */
 	
-	public boolean meetsRequirement(Player ply) {
-		return requiredTokens <= ply.getTokens();
+	public boolean meetsRequirement(int tokenCount) {
+		return requiredTokens <= tokenCount;
 	}
 	
 	/**
-	 * Sets the number of tokens required by the door
-	 * @param requiredTokens
+	 * Sets the number of tokens required by the door.
+	 * @param requiredTokens # of tokens needed to open the door
 	 */
 	public void setReqTokens(int requiredTokens) {
 		this.requiredTokens = requiredTokens;
 	}
-	
+	/**
+	 * allows the name of the cell to compared as a string.
+	 * @return the name as a string
+	 */
 	public String cellName() {
 		return "TokenDoor";
 	}
