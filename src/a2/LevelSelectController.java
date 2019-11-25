@@ -28,7 +28,7 @@ public class LevelSelectController {
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) {
 		Stage mainStage = null;
-		Scene levelScene = new Scene(LevelDisplay.start(mainStage));
+		//Scene levelScene = new Scene(LevelDisplay.start(mainStage));
 	}
 	
 }
