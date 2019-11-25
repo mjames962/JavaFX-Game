@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Item;
 import a2.Vector2D;
 
 /**
@@ -17,6 +18,6 @@ public abstract class Collectible extends Replaceable {
 		super(pos);
 	}
 	
-	abstract public Item createItem();
+	public abstract Item createItem();
 	
 }

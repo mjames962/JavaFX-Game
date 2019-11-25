@@ -114,7 +114,7 @@ public class Level {
 	 */
 	public void readFile(String fileName) {
 		File inputFile = new File(fileName);
-
+		System.out.println(inputFile.exists());
 		Scanner in = null;
 		try {
 			in = new Scanner(inputFile);

@@ -9,7 +9,7 @@ import a2.Vector2D;
  */
 public abstract class Cell {
 	private Vector2D pos;
-	private String sprite; //placeholder
+	private String sprite = "a2/resources/stock photos/Ground_Cell.png"; //placeholder
 	
 	/**
 	 * Creates a new cell.
