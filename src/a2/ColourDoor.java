@@ -33,4 +33,8 @@ public class ColourDoor extends Door {
 			return false;
 		}
 	}
+	
+	public String cellName() {
+		return "ColourDoor";
+	}
 }

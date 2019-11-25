@@ -20,4 +20,8 @@ public class Wall extends Cell {
 		super(pos);
 		
 	}
+	
+	public String cellName() {
+		return "Wall";
+	}
 }

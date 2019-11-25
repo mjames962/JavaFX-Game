@@ -40,4 +40,8 @@ public class Goal extends Specialised {
 		//Level call for method to create a new level.
 		Timer.stop();
 	}
+	
+	public String cellName() {
+		return "Goal";
+	}
 }

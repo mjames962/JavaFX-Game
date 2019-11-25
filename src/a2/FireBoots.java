@@ -22,4 +22,8 @@ public class FireBoots extends Collectible {
 	public FireBoots(Vector2D pos) {
 		super(pos);
 	}
+	
+	public String cellName() {
+		return "FireBoots";
+	}
 }

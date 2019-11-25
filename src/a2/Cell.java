@@ -49,6 +49,10 @@ public abstract class Cell {
 		return sprite;
 	}
 	
+	public String cellName() {
+		return "";
+	}
+	
 //	public void draw() {
 //		
 //	}

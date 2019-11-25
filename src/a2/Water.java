@@ -19,4 +19,8 @@ public class Water extends Cell {
 		super(pos);
 		
 	}
+	
+	public String cellName() {
+		return "Water";
+	}
 }
