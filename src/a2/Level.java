@@ -89,6 +89,7 @@ public class Level {
 	}
 
 	/**
+	 * reads files.
 	 * @param in scanner
 	 * @return 2D array of Cell type
 	 */
@@ -100,7 +101,7 @@ public class Level {
 		in.nextLine();
 		in.nextLine();
 
-		 this.level = new Cell[x][y];
+		this.level = new Cell[x][y];
 
 		String line = in.nextLine();
 		char c;
@@ -153,7 +154,8 @@ public class Level {
 	}
 
 	/**
-	 * @param in scanner
+	 * reads in Entities + ajoined data.
+	 * @param in integral to Scanner
 	 * @param str a string read in from file
 	 */
 	public void readEntity(String str) {
@@ -194,9 +196,9 @@ public class Level {
 	}
 
 	/**
-	 * 
-	 * @param str
-	 * @param in
+	 * reading in token doors.
+	 * @param str needed for reading in from file
+	 * @param in integral to Scanner
 	 */
 	public void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
@@ -223,45 +225,46 @@ public class Level {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
-		case '#':
-			return new Wall(position);
-		case '_':
-			return new Ground(position);
-		case 'X':
-			return new Goal(position);
-		case 'T':
-			return new Teleporter(position);
-		case 'F':
-			return new Fire(position);
-		case 'W':
-			return new Water(position);
-		case 'R':
-			return new ColourDoor(position);
-		case 'B':
-			return new ColourDoor(position);
-		case 'G':
-			return new ColourDoor(position);
-		case 'w':
-			return new FlippersCell(position);
-		case 'f':
-			return new FireBootsCell(position);
-		case 'r':
-			return new KeyCell(position, Player.Item.RED_KEY);
-		case 'b':
-			return new KeyCell(position, Player.Item.BLUE_KEY);
-		case 'g':
-			return new KeyCell(position, Player.Item.GREEN_KEY);
-		case 'D':
-			return new TokenDoor(position);
-		case 'd':
-			return new TokenCell(position);
-		default:
-			return new Wall(position);
+			case '#':
+				return new Wall(position);
+			case '_':
+				return new Ground(position);
+			case 'X':
+				return new Goal(position);
+			case 'T':
+				return new Teleporter(position);
+			case 'F':
+				return new Fire(position);
+			case 'W':
+				return new Water(position);
+			case 'R':
+				return new ColourDoor(position);
+			case 'B':
+				return new ColourDoor(position);
+			case 'G':
+				return new ColourDoor(position);
+			case 'w':
+				return new FlippersCell(position);
+			case 'f':
+				return new FireBootsCell(position);
+			case 'r':
+				return new KeyCell(position, Player.Item.RED_KEY);
+			case 'b':
+				return new KeyCell(position, Player.Item.BLUE_KEY);
+			case 'g':
+				return new KeyCell(position, Player.Item.GREEN_KEY);
+			case 'D':
+				return new TokenDoor(position);
+			case 'd':
+				return new TokenCell(position);
+			default:
+				return new Wall(position);
 		}
 	}
 
 	/**
-	 * @return
+	 * gives the level number.
+	 * @return returns the level number
 	 */
 	public int getLevelNo() {
 		return levelNo;

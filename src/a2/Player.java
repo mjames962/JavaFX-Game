@@ -14,18 +14,6 @@ import javafx.scene.control.Alert.AlertType;
 public class Player extends Entity {
 	
 	/**
-	 * Set of collectible.
-	 * @author 	George Williams-Walton
-	 */
-	public enum Item {
-		RED_KEY,
-		BLUE_KEY,
-		GREEN_KEY,
-		FLIPPERS,
-		FIRE_BOOTS,
-	}
-	
-	/**
 	 * Sets of directions the player can move.
 	 * @author Darius Thomas
 	 */
@@ -100,7 +88,9 @@ public class Player extends Entity {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
 		String cellType = (Level.getCellAt(cX, cY).cellName());
-		
+		Cell cell = Level.getCellAt(cX, cY);
+	//	Class<?> typ = cell.getClass();
+	//	Class<Ground> = Ground.class;   
 		switch (cellType) {
 		
 			case "Ground": //Ground
@@ -110,15 +100,46 @@ public class Player extends Entity {
 				return false;
 				break;
 			case "TokenDoor": //Token Door
-				if (TokenDoor.meetsRequirement(tokenCount)) {
+				TokenDoor td = (TokenDoor) cell;
+				if (td.meetsRequirement(tokenCount)) {
+					//call turnToGround()
 					return true;
-				}
+				} 
 				else {
 					return false;						
 				}
-
+			case "Token":
+				tokenCount = tokenCount++;
+				//call turnToGround()
+				return true;
 				break;
-			case "Door": //doors of various kinds
+			case "BlueDoor": //Door of Blue
+				//call turnToGround()
+				return true;
+				return false;
+				break;
+			case "BlueKeyCell": //Door of Blue
+				//call turnToGround()
+				return true;
+				return false;
+				break;
+			case "GreenDoor": //Door of Blue
+				//call turnToGround()
+				return true;
+				return false;
+				break;
+			case "GreenKeyCell": //Door of Blue
+				//call turnToGround()
+				return true;
+				return false;
+				break;
+			case "RedDoor": //Door of Blue
+				//call turnToGround()
+				return true;
+				return false;
+				break;
+			case "RedKeyCell": //Door of Blue
+				//call turnToGround()
 				return true;
 				return false;
 				break;
@@ -151,10 +172,6 @@ public class Player extends Entity {
 			case "Goal":
 				return true;
 				break;
-			
-			
-			
-			
 			default:
 				return false;
 				break;
