@@ -1,5 +1,10 @@
-package a2;
+package cell;
 
+import a2.Level;
+import a2.Player;
+import a2.Profile;
+import a2.Timer;
+import a2.Vector2D;
 
 /**
  * Goal cell that will end the level when walked on

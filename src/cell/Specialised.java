@@ -1,4 +1,6 @@
-package a2;
+package cell;
+
+import a2.Vector2D;
 
 /**
  * A cell that has an action to be performed when the player moves onto it.

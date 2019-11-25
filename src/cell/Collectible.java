@@ -1,6 +1,6 @@
-package a2;
+package cell;
 
-
+import a2.Vector2D;
 
 /**
  * A ground cell that has an item that can be picked up on it.

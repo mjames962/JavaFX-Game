@@ -1,5 +1,7 @@
-package a2;
+package cell;
 
+import a2.Player;
+import a2.Vector2D;
 import a2.Player.Item;
 
 /**

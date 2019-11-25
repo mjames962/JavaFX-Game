@@ -1,24 +1,28 @@
-package a2;
+package cell;
+
+import a2.BlueKey;
+import a2.Vector2D;
 /**
- * ground cell with a collectible red key on it.
+ * ground cell with a collectible blue key on it.
  * @author George, Tom
  */
-public class RedKeyCell extends Collectible {
+public class BlueKeyCell extends Collectible {
 	/**
 	 * creates the cell at the location.
 	 * @param pos holds the Vector2D of the cell
 	 */
-	public RedKeyCell(Vector2D pos) {
+	public BlueKeyCell(Vector2D pos) {
 		super(pos);
 		// TODO Auto-generated constructor stub
 	}
+
 	/**
 	 * creates the collectible item.
 	 * @return returns the newly made item
 	 */
 	public Item createItem() {
 		// TODO Auto-generated method stub
-		return new RedKey();
+		return new BlueKey();
 	}
 
 }

@@ -1,4 +1,6 @@
-package a2;
+package cell;
+
+import a2.Vector2D;
 
 /**
  * the ground cell that the player and enemies can walk on with no other effect.

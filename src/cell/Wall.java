@@ -1,5 +1,6 @@
-package a2;
+package cell;
 
+import a2.Vector2D;
 
 //TODO are these needed?
 

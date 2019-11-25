@@ -1,4 +1,7 @@
-package a2;
+package cell;
+
+import a2.Player;
+import a2.Vector2D;
 /**
  * Class for a type of coloured key door.
  * @author George, Tom
@@ -11,9 +14,8 @@ public class RedDoor extends Door {
 	public RedDoor(Vector2D pos) {
 		super(pos);
 	}
-	@Override
+	
 	public boolean meetsRequirement(Player ply) {
-		// TODO Auto-generated method stub
 		return ply.hasItem(p);
 		
 	}

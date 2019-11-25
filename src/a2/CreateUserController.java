@@ -38,7 +38,7 @@ public class CreateUserController {
 			
 			try {
 				System.out.println(newUser);
-				Files.write(Paths.get("src/a2/resources/Users.txt"), 
+				Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
 						("\n" + newUser).getBytes(), StandardOpenOption.APPEND);
 				Stage stage = (Stage) btn_CreateUser.getScene().getWindow();
 			    stage.close();
