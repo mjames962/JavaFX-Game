@@ -75,7 +75,7 @@ public class MainMenuController {
 			try {
 				// Create a FXML loader for loading the Edit Country FXML file.
 				FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-						getResource("resources/LevelSelection.fxml"));     
+						getResource("resources/fxml docs/LevelSelection.fxml"));     
 
 				// Run the loader
 				AnchorPane editRoot = (AnchorPane) fxmlLoader.load();          

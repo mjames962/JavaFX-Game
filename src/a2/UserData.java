@@ -14,7 +14,7 @@ public class UserData {
 	//Users.txt file reader
 	//check if username exists in Users.txt
 	public static boolean doesExist(String username) {
-		File inputFile = new File("src/a2/resources/Users.txt");
+		File inputFile = new File("src/a2/resources/User files/Users.txt");
 
 		Scanner in = null;
 		try {

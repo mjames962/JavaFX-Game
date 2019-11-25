@@ -39,7 +39,7 @@ public class Main extends Application {
 		try {
 			// Load the main scene.
 			BorderPane root = (BorderPane) FXMLLoader.load(getClass()
-					.getResource("resources/MainMenu.fxml"));
+					.getResource("resources/fxml docs/MainMenu.fxml"));
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
 			// Place the main scene on stage and show it.
