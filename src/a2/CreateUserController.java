@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 
@@ -46,6 +48,10 @@ public class CreateUserController {
 				e.printStackTrace();
 				System.exit(-1);
 			}
+			
+			File userFile = new File("src/a2/resources/User files/" + newUser + ".txt");
+			Profile profile = new Profile(userFile);
+			profile.updateFile();
 		}
 	}
 }

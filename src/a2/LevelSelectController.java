@@ -40,43 +40,16 @@ public class LevelSelectController {
 	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) {
+		Stage s = new Stage();
+		//s.setTitle("Drawing Operations Test");
+        Group root = new Group();
+        Canvas canvas = new Canvas(300, 250);
+     
+        root.getChildren().add(canvas);
+        s.setScene(new Scene(root));
+        s.show();
+        
 		
-		try {
-			// Create a FXML loader for loading the Edit Country FXML file.
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-					getResource("resources/Canvas.fxml"));     
-
-			// Run the loader
-			AnchorPane editRoot = (AnchorPane) fxmlLoader.load();          
-			
-			
-			// Create a scene based on the loaded FXML scene graph
-			Scene editScene = new Scene(editRoot, 
-					Main.CREATE_PROFILE_WINDOW_WIDTH, 
-					Main.CREATE_PROFILE_WINDOW_HEIGHT);
-		    
-			// Create a new stage (i.e., window) based on the edit scene
-			Stage editStage = new Stage();
-			editStage.setScene(editScene);
-			editStage.setTitle(Main.CREATE_PROFILE_WINDOW_TITLE);
-			Canvas canvas1 = new Canvas(300, 250);
-	        GraphicsContext gc = canvas1.getGraphicsContext2D();
-	        drawShapes(gc);
-			
-			// Make the stage a modal window.
-			// This means that it must be closed before you can interact 
-			// with any other window from this application.
-			editStage.initModality(Modality.APPLICATION_MODAL);
-			
-			// Show the edit scene and wait for it to be closed
-			editStage.showAndWait();
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-			// Quit the program (with an error code)
-			System.exit(-1);
-			
-		}
 
 	}	
 	public void drawShapes(GraphicsContext gc) {

@@ -2,8 +2,11 @@ package a2;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,6 +30,11 @@ public class Profile {
 	
 	public Profile(File f) {
 		this.pfile = f;
+		this.highestLevel = 0;
+		
+		String filePath = this.pfile.getPath();
+		filePath = filePath.substring(28, filePath.length());
+		this.name = filePath.replaceFirst(".txt", "");
 	}
 	
 	/**
@@ -85,22 +93,35 @@ public class Profile {
 	 * @param file The location of the users file.
 	 */
 	
-	public void updateFile(String file) {
+	public void updateFile() {
+		
+		String filePath = this.pfile.getPath();
+		this.pfile.delete();
+		this.pfile = new File(filePath);
+		
 		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(file));
-			out.write(name);
-			out.newLine();
-			out.write(highestLevel);
-			out.newLine();
-			for (int i = 0; i < bestTimes.size(); i++) {
-				out.write(Long.toString(bestTimes.get(i)));
-				out.newLine();
-			}
-			out.flush();
-			out.close();
-		} catch (IOException e) {
-			System.out.println("Failed to load file");
+			pfile.createNewFile();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
+		
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(filePath, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		writer.println(this.name);
+		writer.println(this.highestLevel);
+		for (int i = 0; i < bestTimes.size(); i++) {
+			writer.println(Long.toString(bestTimes.get(i)));
+		}
+		writer.close();
 		
 	}
 	
