@@ -83,6 +83,10 @@ public class Teleporter extends Specialised {
 		link.setLinkedTP(this.getPos());
 	}
 	
+	public String cellName() {
+		return "Teleporter";
+	}
+	
 	
 	
 	

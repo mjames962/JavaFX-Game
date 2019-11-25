@@ -18,5 +18,9 @@ public class Token extends Collectible {
 	public Token(Vector2D pos) {
 		super(pos);
 	}
+	
+	public String cellName() {
+		return "Token";
+	}
 
 }

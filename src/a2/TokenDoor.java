@@ -41,6 +41,10 @@ public class TokenDoor extends Door {
 		this.requiredTokens = requiredTokens;
 	}
 	
+	public String cellName() {
+		return "TokenDoor";
+	}
+	
 	
 	
 	

@@ -23,4 +23,8 @@ public class Flippers extends Collectible {
 	public Flippers(Vector2D pos) {
 		super(pos);
 	}
+	
+	public String cellName() {
+		return "Flippers";
+	}
 }
