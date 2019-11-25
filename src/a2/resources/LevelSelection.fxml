@@ -15,13 +15,13 @@
       <bottom>
         <AnchorPane prefHeight="100.0" prefWidth="307.0">
           <children>
-            <Button fx:id="btn_LoadLevel" layoutX="16.0" layoutY="48.0" mnemonicParsing="false" text="Load Level" />
+            <Button fx:id="btn_LoadLevel" layoutX="16.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleLoadLevelBtn" text="Load Level" />
             <ComboBox fx:id="cmb_LevelSelect" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="129.0" promptText="Select Level" visibleRowCount="3">
               <items>
                 <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="Item 1" />
-                  <String fx:value="Item 2" />
-                  <String fx:value="Item 3" />
+                  <String fx:value="Level 1" />
+                  <String fx:value="Level 2" />
+                  <String fx:value="Level 3" />
                 </FXCollections>
               </items>
             </ComboBox>
