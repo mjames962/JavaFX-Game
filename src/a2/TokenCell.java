@@ -7,7 +7,7 @@ package a2;
  *
  */
 
-public class Token extends Collectible {
+public class TokenCell extends Cell {
 
 	
 	/**
@@ -15,12 +15,10 @@ public class Token extends Collectible {
 	 * 
 	 * @param pos Holds the position of the Cell 
 	 */
-	public Token(Vector2D pos) {
+	public TokenCell(Vector2D pos) {
 		super(pos);
 	}
 	
-	public String cellName() {
-		return "Token";
-	}
+	
 
 }

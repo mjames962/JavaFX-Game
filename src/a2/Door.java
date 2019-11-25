@@ -10,7 +10,7 @@ import a2.Player.Item;
 
 public abstract class Door extends Replaceable {
 	
-	private Item requires;
+	
 	
 	/**
 	 * Send the position to the cell superclass.
@@ -37,8 +37,6 @@ public abstract class Door extends Replaceable {
 	 * @return if the player has the item needed.
 	 */
 	
-	public boolean meetsRequirement(Player ply) {
-		return ply.hasItem(requires);
-	}
+	public abstract boolean meetsRequirement(Player ply);
 	
 }
