@@ -26,4 +26,8 @@ public class FlippersCell extends Collectible {
 	public Item createItem() {
 		return new Flippers();
 	}
+	
+	public String cellName() {
+		return "FlippersCell";
+	}
 }

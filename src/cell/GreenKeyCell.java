@@ -22,5 +22,9 @@ public class GreenKeyCell extends Collectible {
 	public Item createItem() {
 		return new GreenKey();
 	}
+	
+	public String cellName() {
+		return "GreenKeyCell";
+	}
 
 }

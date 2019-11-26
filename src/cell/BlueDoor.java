@@ -21,5 +21,9 @@ public class BlueDoor extends Door {
 		// TODO Auto-generated method stub
 		return ply.hasItem(p);
 	}
+	
+	public String cellName() {
+		return "BlueDoor";
+	}
 
 }

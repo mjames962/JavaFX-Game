@@ -21,4 +21,8 @@ public class RedDoor extends Door {
 		return ply.hasItem(p);
 		
 	}
+	
+	public String cellName() {
+		return "RedDoor";
+	}
 }
