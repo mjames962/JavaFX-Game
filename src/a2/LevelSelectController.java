@@ -16,13 +16,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
-<<<<<<< HEAD
- * .
- * @author 
- *
-=======
  * Displays the current level.
- * @author Jensen Beard, George Williams-Walton, and Darius Thomas
+ * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
 public class LevelSelectController {
@@ -72,7 +67,7 @@ public class LevelSelectController {
 
 	private void createLevelStage(Level level) {
 		Stage newStage = new Stage();
-		//newStage.setTitle("Drawing Operations Test");
+		final int CELL_SIZE = 50;
 		Group root = new Group();
 		Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
 		root.getChildren().add(canvas);
@@ -86,7 +81,8 @@ public class LevelSelectController {
 			for (int y = 0; y < 7;y++) {
 				Cell currentCell = level.getCellAt(x, y);
 				Image cellImage = new Image(currentCell.getSprite());
-				gc.drawImage(cellImage, currentCell.getX() * 50, currentCell.getY() * 50);
+				gc.drawImage(cellImage, currentCell.getX() * CELL_SIZE,
+						currentCell.getY() * CELL_SIZE);
 			}
 		}      
 	}
