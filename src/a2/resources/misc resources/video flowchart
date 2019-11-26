@@ -1,0 +1,21 @@
+must demo implementation of every feature
+
+
+
+open game
+create user (fred)
+log in with newly created details (fred)
+dont select lvl and try to load it
+select level 1
+play lvl 1 
+quit
+open game
+log in with (fred)
+select lvl2
+play lvl2
+proceed to lvl3
+die in lvl3 to respawn
+finish lvl3
+-cut-
+open game
+log in premade details

@@ -72,7 +72,7 @@ public class LevelSelectController {
 
 	private void createLevelStage(Level level) {
 		Stage newStage = new Stage();
-		//s.setTitle("Drawing Operations Test");
+		//newStage.setTitle("Drawing Operations Test");
 		Group root = new Group();
 		Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
 		root.getChildren().add(canvas);
