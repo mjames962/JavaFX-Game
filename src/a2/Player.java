@@ -98,17 +98,17 @@ public class Player extends Entity {
 	 * @return returns a boolean for if the requested move is valid
 	 */
 	public boolean isValidMove(Vector2D nextVector, Level Level) {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
+		int cX = nextVector.getX();
+		int cY = nextVector.getY();
 		Cell cell = Level.getCellAt(cX, cY);
 		String cellType = cell.cellName();
 		// Class<?> typ = cell.getClass();
 		// Class<Ground> = Ground.class;
 
-		return isValidMove(cellType);
+		return isValidMove(cellType, nextVector);
 	}
 
-	public Boolean isValidMove(String cellType) {
+	public Boolean isValidMove(String cellType, Vector2D cellPos) {
 		switch (cellType) {
 		case "Ground":
 			return true;
