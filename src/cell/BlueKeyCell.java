@@ -25,7 +25,7 @@ public class BlueKeyCell extends Collectible {
 		return new BlueKey();
 	}
 	
-	public cellName() {
+	public String cellName() {
 		return "BlueKeyCell";
 	}
 
