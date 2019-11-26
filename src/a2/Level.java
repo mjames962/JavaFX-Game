@@ -70,9 +70,19 @@ public class Level {
 	 * @return level[x][y] cell at coords
 	 */
 	public Cell getCellAt(int x, int y) {
+
 		return this.level[x][y];
 	}
 
+	/**
+	 * Converts the requested cell into a ground cell.
+	 * @param x cell x coordinate
+	 * @param y cell y coordinate
+	 */
+	public void setCellAt(int x, int y) {
+		this.level[x][y] = readChar('_', x, y);
+	}
+	
 	/**
 	 * placing cells in the level.
 	 * 
@@ -86,15 +96,24 @@ public class Level {
 	public void setLevel(Cell cell, int x, int y) {
 		this.level[x][y] = cell;
 	}
-	
+	/**
+	 * returns the length of the level in # of cells.
+	 * @return the length of the level
+	 */
 	public int levelXLength() {
 		return this.xLength;
 	}
-	
+	/**
+	 * returns the height of the level in # of cells.
+	 * @return the height of the level
+	 */
 	public int levelYLength() {
 		return this.yLength;
 	}
-	
+	/**
+	 * returns the current player.
+	 * @return e , the player
+	 */
 	public Entity getPlayer() {
 		for (Entity e : this.entityList) { 
 		    if (e.getEntityID() == 0) {

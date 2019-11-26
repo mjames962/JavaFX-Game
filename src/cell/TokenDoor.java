@@ -11,6 +11,8 @@ import a2.Vector2D;
 
 public class TokenDoor extends Door {
 	
+	protected static final String SPRITE = "a2/resources/stock photos/TokenDoor.png";
+	
 	private int requiredTokens;
 	
 	/**

@@ -2,6 +2,7 @@ package a2;
 
 
 import cell.Cell;
+import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -16,20 +17,17 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
-<<<<<<< HEAD
- * .
- * @author 
- *
-=======
  * Displays the current level.
- * @author Jensen Beard, George Williams-Walton, and Darius Thomas
+ * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
 public class LevelSelectController {
 
 	private static final int CANVAS_WIDTH = 350;
 	private static final int CANVAS_LENGTH = 350;
-
+	private static final int MIN_DRAW = 3;
+	private static final int MAX_DRAW = 4;
+	private static final int CELL_DIMENSION = 50;
 
 	@FXML
 	private Button btn_LoadLevel;
@@ -42,6 +40,7 @@ public class LevelSelectController {
 
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) {
+
 		String currentLevel = cmb_LevelSelect.getValue();
 		Level level = null;
 		
@@ -71,23 +70,34 @@ public class LevelSelectController {
 	}	
 
 	private void createLevelStage(Level level) {
-		Stage newStage = new Stage();
-		//newStage.setTitle("Drawing Operations Test");
-		Group root = new Group();
-		Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
-		root.getChildren().add(canvas);
-		newStage.setScene(new Scene(root));
-		newStage.show();
-		int playerX = level.getPlayer().getVector().getX();
-		int playerY = level.getPlayer().getVector().getY();
-		GraphicsContext gc = canvas.getGraphicsContext2D();
+		Stage s = new Stage();
+		//s.setTitle("Drawing Operations Test");
+        Group root = new Group();
+        Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
+        root.getChildren().add(canvas);
+        s.setScene(new Scene(root));
+        s.show();
+        int playerX = level.getPlayer().getVector().getX();
+        int playerY = level.getPlayer().getVector().getY();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        
+        for (int x = playerX - MIN_DRAW; x < playerX + MAX_DRAW; x++) {
+        	
+        	for (int y = playerY - MIN_DRAW; y < playerY + MAX_DRAW; y++) {
+        		int drawX = playerX - x + MIN_DRAW;
+        		int drawY = y - playerY + MIN_DRAW;
+        		boolean xValid = !(x < 0 || x > level.levelXLength() - 1);
+        		boolean yValid = !(y < 0 || y > level.levelYLength() - 1);
+        		if (!xValid || !yValid) {
+            		Image wallImage = new Image(Cell.getDefaultSprite());
+            		gc.drawImage(wallImage, drawX * CELL_DIMENSION, drawY * CELL_DIMENSION);
+            	} else {
+            		Cell currentCell = level.getCellAt(x, y);
+            		Image cellImage = new Image(currentCell.getSprite());
+            		gc.drawImage(cellImage, drawX * CELL_DIMENSION, drawY * CELL_DIMENSION);
+            	}
+        	}
+        }  
 
-		for (int x = 0; x < 7; x++) {
-			for (int y = 0; y < 7;y++) {
-				Cell currentCell = level.getCellAt(x, y);
-				Image cellImage = new Image(currentCell.getSprite());
-				gc.drawImage(cellImage, currentCell.getX() * 50, currentCell.getY() * 50);
-			}
-		}      
 	}
 }
