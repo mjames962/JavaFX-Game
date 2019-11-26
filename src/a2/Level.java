@@ -73,6 +73,13 @@ public class Level {
 
 		return this.level[x][y];
 	}
+	
+	public Cell getCellAt(Vector2D vector) {
+		int xCoord = vector.getX();
+		int yCoord = vector.getY();
+		
+		return getCellAt(xCoord, yCoord);
+	}
 
 	/**
 	 * Converts the requested cell into a ground cell.

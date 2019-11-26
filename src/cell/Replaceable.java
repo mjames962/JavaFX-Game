@@ -26,11 +26,11 @@ public abstract class Replaceable extends Cell {
 	 * @param level 
 	 * @param cell 
 	 */
-	public void turnToGround(Cell cell, Level level) {
-		int xCoord = cell.getX();
-		int yCoord = cell.getY();
+	public void turnToGround(Level level) {
+		int xCoord = this.getX();
+		int yCoord = this.getY();
 		
-		level.setLevel(new Wall(cell.getPos()), xCoord, yCoord);
+		level.setLevel(new Wall(this.getPos()), xCoord, yCoord);
 	}
 	
 
