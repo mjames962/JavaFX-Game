@@ -22,6 +22,10 @@ public class TokenCell extends Cell {
 		super(pos);
 	}
 	
+	public String cellName() {
+		return "TokenCell";
+	}
+	
 	
 
 }

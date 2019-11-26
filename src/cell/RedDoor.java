@@ -21,5 +21,7 @@ public class RedDoor extends Door {
 		
 	}
 	
-	
+	public String cellName() {
+		return "RedDoor";
+	}
 }

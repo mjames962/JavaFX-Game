@@ -15,7 +15,7 @@ import java.nio.file.*;
 
 /**
  * Controls the CreateUser window.
- * @author Jensen
+ * @author Jensen & Jamie
  *
  */
 public class CreateUserController {
@@ -28,6 +28,12 @@ public class CreateUserController {
 	private void handleCreateBtn(ActionEvent event) {
 		String newUser = tbox_NewUsername.getText();
 		
+		Alert news = new Alert(AlertType.INFORMATION);
+		news.setTitle("Success");
+		news.setHeaderText("User Created");
+		news.setContentText(null);
+		news.showAndWait();
+		
 		if (UserData.doesExist(newUser)) {
 			
 			Alert alert = new Alert(AlertType.ERROR);
@@ -39,7 +45,6 @@ public class CreateUserController {
 		} else {
 			
 			try {
-				System.out.println(newUser);
 				Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
 						("\n" + newUser).getBytes(), StandardOpenOption.APPEND);
 				Stage stage = (Stage) btn_CreateUser.getScene().getWindow();

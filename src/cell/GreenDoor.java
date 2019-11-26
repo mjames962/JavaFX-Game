@@ -23,5 +23,9 @@ public class GreenDoor extends Door {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public String cellName() {
+		return "GreenDoor";
+	}
 
 }

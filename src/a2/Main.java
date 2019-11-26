@@ -19,7 +19,7 @@ public class Main extends Application {
 
 	public static final int LEVEL_LOADER_WINDOW_WIDTH = 600;
 	public static final int LEVEL_LOADER_WINDOW_HEIGHT = 400;
-	public static final String LEVEL_LOADER_WINDOW_TITLE = "Pac-man";
+	public static final String LEVEL_LOADER_WINDOW_TITLE = "Placeholder";
 	
 	public static final int CREATE_PROFILE_WINDOW_WIDTH = 600;
 	public static final int CREATE_PROFILE_WINDOW_HEIGHT = 400;
@@ -27,7 +27,7 @@ public class Main extends Application {
 	
 	private static final int MAIN_WINDOW_WIDTH = 600;
 	private static final int MAIN_WINDOW_HEIGHT = 400;
-	private static final String WINDOW_TITLE = "Pac-man";
+	private static final String WINDOW_TITLE = "Placeholder";
 
 	
 	

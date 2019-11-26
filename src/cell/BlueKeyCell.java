@@ -26,5 +26,9 @@ public class BlueKeyCell extends Collectible {
 		// TODO Auto-generated method stub
 		return new BlueKey();
 	}
+	
+	public String cellName() {
+		return "BlueKeyCell";
+	}
 
 }

@@ -25,5 +25,9 @@ public class RedKeyCell extends Collectible {
 	public Item createItem() {
 		return new RedKey();
 	}
+	
+	public String cellName() {
+		return "RedKeyCell";
+	}
 
 }

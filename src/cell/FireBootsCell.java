@@ -27,4 +27,8 @@ public class FireBootsCell extends Collectible {
 	public Item createItem() {
 		return new FireBoots();
 	}
+	
+	public String cellName() {
+		return "FireBootsCell";
+	}
 }

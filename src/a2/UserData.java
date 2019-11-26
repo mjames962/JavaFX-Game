@@ -2,6 +2,7 @@ package a2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -15,6 +16,12 @@ public class UserData {
 	//check if username exists in Users.txt
 	public static boolean doesExist(String username) {
 		File inputFile = new File("src/a2/resources/User files/Users.txt");
+		try {
+			inputFile.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		Scanner in = null;
 		try {
