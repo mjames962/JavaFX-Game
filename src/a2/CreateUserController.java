@@ -15,7 +15,7 @@ import java.nio.file.*;
 
 /**
  * Controls the CreateUser window.
- * @author Jensen
+ * @author Jensen & Jamie
  *
  */
 public class CreateUserController {
@@ -27,6 +27,12 @@ public class CreateUserController {
 	@FXML
 	private void handleCreateBtn(ActionEvent event) {
 		String newUser = tbox_NewUsername.getText();
+		
+		Alert news = new Alert(AlertType.INFORMATION);
+		news.setTitle("Success");
+		news.setHeaderText("User Created");
+		news.setContentText(null);
+		news.showAndWait();
 		
 		if (UserData.doesExist(newUser)) {
 			

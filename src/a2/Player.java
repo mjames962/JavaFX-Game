@@ -107,6 +107,7 @@ public class Player extends Entity {
 	}
 
 	public Boolean isValidMove(String cellType, Vector2D cellPos, Level level) {
+
 		switch (cellType) {
 		case "Ground":
 			return true;
@@ -166,16 +167,17 @@ public class Player extends Entity {
 	/**
 	 * Puts an item into the player's inventory.
 	 * 
-	 * @param collectible
+	 * @param item
+	 *            the thing being picked up
 	 */
 
 	public void pickupItem(Item item, Vector2D itemPos, Level level) {
 		int xCoord = itemPos.getX();
 		int yCoord = itemPos.getY();
 		Cell cell = level.getCellAt(xCoord, yCoord);
-		
+
 		inventory.add(item);
-	    ((Replaceable) cell).turnToGround(cell, level);
+		((Replaceable) cell).turnToGround(cell, level);
 	}
 
 	/**
@@ -191,7 +193,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * This removes the item from the inventory
+	 * This removes the item from the inventory.
 	 * 
 	 * @param item
 	 *            the current item being removed
@@ -201,7 +203,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * Gets the number of tokens
+	 * Gets the number of tokens.
 	 * 
 	 * @return tokenCount
 	 */
