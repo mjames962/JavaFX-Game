@@ -24,6 +24,10 @@ public class CreateUserController {
 	@FXML
 	private TextField tbox_NewUsername;
 	
+	/**
+	 * 
+	 * @param event
+	 */
 	@FXML
 	private void handleCreateBtn(ActionEvent event) {
 		String newUser = tbox_NewUsername.getText();
