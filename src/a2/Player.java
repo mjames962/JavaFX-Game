@@ -1,8 +1,6 @@
 package a2;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-
 import cell.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -97,18 +95,18 @@ public class Player extends Entity {
 	 *            the requested cell to move to
 	 * @return returns a boolean for if the requested move is valid
 	 */
-	public boolean isValidMove(Vector2D nextVector, Level Level) {
+	public boolean isValidMove(Vector2D nextVector, Level level) {
 		int cX = nextVector.getX();
 		int cY = nextVector.getY();
-		Cell cell = Level.getCellAt(cX, cY);
+		Cell cell = level.getCellAt(cX, cY);
 		String cellType = cell.cellName();
 		// Class<?> typ = cell.getClass();
 		// Class<Ground> = Ground.class;
 
-		return isValidMove(cellType, nextVector);
+		return isValidMove(cellType, nextVector, level);
 	}
 
-	public Boolean isValidMove(String cellType, Vector2D cellPos) {
+	public Boolean isValidMove(String cellType, Vector2D cellPos, Level level) {
 		switch (cellType) {
 		case "Ground":
 			return true;
@@ -123,27 +121,27 @@ public class Player extends Entity {
 		case "RedDoor":
 			// inventory check, call relevant methods
 		case "RedDoorKey":
-			// pickup and conversion
+			this.pickupItem(new RedKey(), cellPos, level);
 			return true;
 		case "GreenDoor":
 			// method calls
 		case "GreenDoorKey":
-			// method calls
+			this.pickupItem(new GreenKey(), cellPos, level);
 			return true;
 		case "BlueDoor":
 			// call methods
 		case "BlueDoorKey":
-			// methods
+			this.pickupItem(new BlueKey(), cellPos, level);
 			return true;
 		case "Fire":
 			// method checks
 		case "Water":
 			// method checks
 		case "FireBootsCell":
-			// pickup
+			this.pickupItem(new FireBoots(), cellPos, level);
 			return true;
 		case "FlippersCell":
-			// pickup
+			this.pickupItem(new Flippers(), cellPos, level);
 			return true;
 		case "Goal":
 			return true;
@@ -171,8 +169,13 @@ public class Player extends Entity {
 	 * @param collectible
 	 */
 
-	public void pickupItem(Item item) {
+	public void pickupItem(Item item, Vector2D itemPos, Level level) {
+		int xCoord = itemPos.getX();
+		int yCoord = itemPos.getY();
+		Cell cell = level.getCellAt(xCoord, yCoord);
+		
 		inventory.add(item);
+	    ((Replaceable) cell).turnToGround(cell, level);
 	}
 
 	/**
@@ -184,11 +187,7 @@ public class Player extends Entity {
 	 *         present
 	 */
 	public boolean hasItem(Item item) {
-		boolean status = inventory.contains(item);
-		if (status)
-			return true;
-		else
-			return false;
+		return this.inventory.contains(item);
 	}
 
 	/**
@@ -198,7 +197,7 @@ public class Player extends Entity {
 	 *            the current item being removed
 	 */
 	public void removeItem(Item item) {
-		inventory.remove(item);
+		this.inventory.remove(item);
 	}
 
 	/**

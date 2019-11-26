@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Level;
 import a2.Vector2D;
 
 //TODO is this needed? just one method
@@ -22,9 +23,14 @@ public abstract class Replaceable extends Cell {
 	
 	/**
 	 * Turns a cell into a ground cell.
+	 * @param level 
+	 * @param cell 
 	 */
-	public void turnToGround() {
-		//TODO make cell ground
+	public void turnToGround(Cell cell, Level level) {
+		int xCoord = cell.getX();
+		int yCoord = cell.getY();
+		
+		level.setLevel(new Wall(cell.getPos()), xCoord, yCoord);
 	}
 	
 

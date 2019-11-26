@@ -39,27 +39,24 @@ public class Teleporter extends Specialised {
 	 * @param player represents the player that will be moved to the new space
 	 */
 	
-	public void doActionTP(String direction, Player player) {
+	public void doActionTP(Player.Direction direction, Player player) {
 		Vector2D pos = player.getVector();
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());
 	    switch (direction) {	    
-	    	case "LEFT":
+	    	case LEFT:
 	    		pos.setX(pos.getX() - 1);
 	    		break;
-	    	case "RIGHT":
+	    	case RIGHT:
 	    		pos.setX(pos.getX() + 1);
 	    		break;
-	    	case "UP":
+	    	case UP:
 	    		pos.setY(pos.getY() + 1);
 	    		break;
-	    	case "DOWN":
+	    	case DOWN:
 	    		pos.setX(pos.getY() - 1);
 	    		break;
-	    	
 	    }
-	    	
-
 	}
 	
 	/**
