@@ -70,6 +70,7 @@ public class Level {
 	 * @return level[x][y] cell at coords
 	 */
 	public Cell getCellAt(int x, int y) {
+
 		return this.level[x][y];
 	}
 

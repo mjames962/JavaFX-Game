@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 
 import cell.Cell;
+import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -69,18 +70,23 @@ public class LevelSelectController {
         int playerY = level.getPlayer().getVector().getY();
         GraphicsContext gc = canvas.getGraphicsContext2D();
         
-        for (int x = 0; x < 7; x++) {
-        	for (int y = 0; y < 7;y++) {
-        		Cell currentCell = level.getCellAt(x, y);
-        		Image cellImage = new Image(currentCell.getSprite());
-        		gc.drawImage(cellImage, currentCell.getX() * 50, currentCell.getY() * 50);
+        for (int x = playerX - 3; x < playerX + 4; x++) {
+        	
+        	for (int y = playerY - 3; y < playerY + 4; y++) {
+        		int drawX = playerX - x + 3;
+        		int drawY = y - playerY + 3;
+        		boolean xValid = !(x < 0 || x > level.levelXLength() - 1);
+        		boolean yValid = !(y < 0 || y > level.levelYLength() - 1);
+        		if (!xValid || !yValid) {
+            		Image wallImage = new Image(Cell.getDefaultSprite());
+            		gc.drawImage(wallImage, drawX * 50, drawY * 50);
+            	} else {
+            		Cell currentCell = level.getCellAt(x, y);
+            		Image cellImage = new Image(currentCell.getSprite());
+            		gc.drawImage(cellImage, drawX * 50, drawY * 50);
+            	}
         	}
         }
-       
-        
-        
-        
-        
 	}
 	
 	

@@ -9,8 +9,13 @@ import a2.Vector2D;
  */
 public abstract class Cell {
 	private Vector2D pos;
-	private String sprite = "a2/resources/stock photos/Ground_Cell.png"; //placeholder
 	
+	private final static String DEFAULT_SPRITE = "a2/resources/stock photos/Wall.png";
+	protected final String sprite = DEFAULT_SPRITE;
+	
+	public static String getDefaultSprite() {
+		return DEFAULT_SPRITE;
+	}
 	/**
 	 * Creates a new cell.
 	 * @param vec The initial position of the cell
@@ -47,13 +52,15 @@ public abstract class Cell {
 	 * Get the sprite (placeholder).
 	 * @return the sprite being used
 	 */
-	public String getSprite() {
-		return sprite;
-	}
 	
 	public String cellName() {
 		return "";
 	}
+	
+	public String getSprite() {
+		return sprite;
+	}
+	
 	
 //	public void draw() {
 //		

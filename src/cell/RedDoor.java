@@ -7,8 +7,7 @@ import a2.Vector2D;
  * @author George, Tom
  */
 public class RedDoor extends Door {
-	
-	private String sprite = "a2/resources/stock photos/RedDoor.png";
+	protected static final String SPRITE = "a2/resources/stock photos/RedDoor.png";
 	/**
 	 * creates a door at the position.
 	 * @param pos holds current Vector2D of the door
@@ -21,4 +20,6 @@ public class RedDoor extends Door {
 		return ply.hasItem(p);
 		
 	}
+	
+	
 }

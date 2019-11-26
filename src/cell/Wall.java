@@ -11,7 +11,8 @@ import a2.Vector2D;
  */
 public class Wall extends Cell {
 	
-	private String sprite = "a2/resources/stock photos/Wall.png";
+	protected final static String sprite = "a2/resources/stock photos/Wall.png";
+	
 	
 	/**
 	 * Send the position to the cell superclass.

@@ -9,6 +9,7 @@ import a2.Vector2D;
  *
  */
 public class Teleporter extends Specialised {
+	protected static final String SPRITE = "a2/resources/stock photos/Teleporter_Cell.png";
 	
 	private Vector2D linkedTP;
 

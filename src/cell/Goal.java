@@ -14,6 +14,7 @@ import a2.Vector2D;
  */
 
 public class Goal extends Specialised {
+	protected static final String SPRITE = "a2/resources/stock photos/Goal_Cell.png";
 	
 	/**
 	 * Send the position to the cell superclass.
@@ -48,5 +49,9 @@ public class Goal extends Specialised {
 	
 	public String cellName() {
 		return "Goal";
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 }

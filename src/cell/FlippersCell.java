@@ -13,6 +13,8 @@ import a2.Vector2D;
 
 public class FlippersCell extends Collectible {
 	
+	protected static final String SPRITE = "a2/resources/stock photos/flippers.png";
+	
     /**
 	 * Send the position to the cell superclass.
 	 * 
