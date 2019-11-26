@@ -26,7 +26,7 @@ public class CreateUserController {
 	
 	/**
 	 * Handles click event for create button
-	 * @param event
+	 * @param event Checks for the event occurring.
 	 */
 	@FXML
 	private void handleCreateBtn(ActionEvent event) {
