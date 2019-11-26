@@ -15,7 +15,7 @@ import java.nio.file.*;
 
 /**
  * Controls the CreateUser window.
- * @author Jensen
+ * @author Jensen & Jamie
  *
  */
 public class CreateUserController {
