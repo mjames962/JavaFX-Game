@@ -72,6 +72,13 @@ public class Level {
 	public Cell getCellAt(int x, int y) {
 		return this.level[x][y];
 	}
+	
+	public Cell getCellAt(Vector2D vector) {
+		int xCoord = vector.getX();
+		int yCoord = vector.getY();
+		
+		return getCellAt(xCoord, yCoord);
+	}
 
 	/**
 	 * placing cells in the level.
