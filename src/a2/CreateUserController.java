@@ -28,6 +28,12 @@ public class CreateUserController {
 	private void handleCreateBtn(ActionEvent event) {
 		String newUser = tbox_NewUsername.getText();
 		
+		Alert news = new Alert(AlertType.INFORMATION);
+		news.setTitle("Success");
+		news.setHeaderText("User Created");
+		news.setContentText(null);
+		news.showAndWait();
+		
 		if (UserData.doesExist(newUser)) {
 			
 			Alert alert = new Alert(AlertType.ERROR);
