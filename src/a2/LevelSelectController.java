@@ -17,13 +17,8 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
-<<<<<<< HEAD
- * .
- * @author 
- *
-=======
  * Displays the current level.
- * @author Jensen Beard, George Williams-Walton, and Darius Thomas
+ * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
 public class LevelSelectController {
@@ -103,5 +98,6 @@ public class LevelSelectController {
             	}
         	}
         }  
+
 	}
 }
