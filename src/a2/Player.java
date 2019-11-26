@@ -43,7 +43,8 @@ public class Player extends Entity {
 	 * @param currentVector
 	 *            the current location of the player
 	 */
-	public Player(Vector2D currentVector, int entityID, boolean alive, LinkedList<Item> inventory) {
+	public Player(Vector2D currentVector, int entityID, boolean alive, 
+			LinkedList<Item> inventory) {
 		super(currentVector, entityID);
 		this.alive = alive;
 		this.inventory = inventory;
@@ -65,20 +66,20 @@ public class Player extends Entity {
 		int cY = currentVector.getY();
 		Vector2D nextVector = null;
 		switch (input) {
-		case UP:
-			nextVector = new Vector2D(cX, cY++);
-			break;
-		case DOWN:
-			nextVector = new Vector2D(cX, cY--);
-			break;
-		case LEFT:
-			nextVector = new Vector2D(cX--, cY);
-			break;
-		case RIGHT:
-			nextVector = new Vector2D(cX++, cY);
-			break;
-		default:
-			input = null;
+			case UP:
+				nextVector = new Vector2D(cX, cY++);
+				break;
+			case DOWN:
+				nextVector = new Vector2D(cX, cY--);
+				break;
+			case LEFT:
+				nextVector = new Vector2D(cX--, cY);
+				break;
+			case RIGHT:
+				nextVector = new Vector2D(cX++, cY);
+				break;
+			default:
+				input = null;
 		}
 		isValidMove(0, nextVector);
 		return null; // needs changing from null to something else to
@@ -108,47 +109,53 @@ public class Player extends Entity {
 		return isValidMove(cellType, nextVector);
 	}
 
+	/**
+	 * 
+	 * @param cellType
+	 * @param cellPos
+	 * @return
+	 */
 	public Boolean isValidMove(String cellType, Vector2D cellPos) {
 		switch (cellType) {
-		case "Ground":
-			return true;
-		case "Wall":
-			return false;
-		case "TokenDoor":
-			// call token door methods
-		case "TokenCell":
-			this.tokenCount++;
-			// convert to ground
-			return true;
-		case "RedDoor":
-			// inventory check, call relevant methods
-		case "RedDoorKey":
-			// pickup and conversion
-			return true;
-		case "GreenDoor":
-			// method calls
-		case "GreenDoorKey":
-			// method calls
-			return true;
-		case "BlueDoor":
-			// call methods
-		case "BlueDoorKey":
-			// methods
-			return true;
-		case "Fire":
-			// method checks
-		case "Water":
-			// method checks
-		case "FireBootsCell":
-			// pickup
-			return true;
-		case "FlippersCell":
-			// pickup
-			return true;
-		case "Goal":
-			return true;
-		default:
-			return false;
+			case "Ground":
+				return true;
+			case "Wall":
+				return false;
+			case "TokenDoor":
+				// call token door methods
+			case "TokenCell":
+				this.tokenCount++;
+				// convert to ground
+				return true;
+			case "RedDoor":
+				// inventory check, call relevant methods
+			case "RedDoorKey":
+				// pickup and conversion
+				return true;
+			case "GreenDoor":
+				// method calls
+			case "GreenDoorKey":
+				// method calls
+				return true;
+			case "BlueDoor":
+				// call methods
+			case "BlueDoorKey":
+				// methods
+				return true;
+			case "Fire":
+				// method checks
+			case "Water":
+				// method checks
+			case "FireBootsCell":
+				// pickup
+				return true;
+			case "FlippersCell":
+				// pickup
+				return true;
+			case "Goal":
+				return true;
+			default:
+				return false;
 		}
 	}
 
@@ -168,7 +175,7 @@ public class Player extends Entity {
 	/**
 	 * Puts an item into the player's inventory.
 	 * 
-	 * @param collectible
+	 * @param item the thing being picked up
 	 */
 
 	public void pickupItem(Item item) {
@@ -192,7 +199,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * This removes the item from the inventory
+	 * This removes the item from the inventory.
 	 * 
 	 * @param item
 	 *            the current item being removed
@@ -202,7 +209,7 @@ public class Player extends Entity {
 	}
 
 	/**
-	 * Gets the number of tokens
+	 * Gets the number of tokens.
 	 * 
 	 * @return tokenCount
 	 */
