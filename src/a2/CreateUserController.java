@@ -25,7 +25,7 @@ public class CreateUserController {
 	private TextField tbox_NewUsername;
 	
 	/**
-	 * 
+	 * Handles click event for create button
 	 * @param event
 	 */
 	@FXML
