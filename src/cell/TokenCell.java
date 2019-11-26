@@ -10,6 +10,7 @@ import a2.Vector2D;
  */
 
 public class TokenCell extends Cell {
+	protected static final String SPRITE = "a2/resources/stock photos/Token.png";
 
 	
 	/**

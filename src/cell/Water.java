@@ -11,6 +11,8 @@ import a2.Vector2D;
 
 public class Water extends Cell {
 	
+	protected static final String SPRITE = "a2/resources/stock photos/Water.png";
+	
 	/**
 	 * Send the position to the cell superclass.
 	 * 
@@ -24,5 +26,9 @@ public class Water extends Cell {
 	
 	public String cellName() {
 		return "Water";
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 }

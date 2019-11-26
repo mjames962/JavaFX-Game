@@ -7,6 +7,8 @@ import a2.Vector2D;
  * @author George, Tom
  */
 public class BlueDoor extends Door {
+	
+	protected static final String SPRITE = "a2/resources/stock photos/BlueDoor.png";
 	/**
 	 * creates a door at the position.
 	 * @param pos holds current Vector2D of the door
