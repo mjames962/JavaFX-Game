@@ -59,7 +59,7 @@ public class Player extends Entity {
 	 * @return returns an updated position for the player
 	 */
 
-	public Vector2D move(Vector2D currentVector, Direction input) {
+	public Vector2D move(Direction input) {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
 		Vector2D nextVector = null;

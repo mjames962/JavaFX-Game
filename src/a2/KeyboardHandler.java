@@ -15,21 +15,26 @@ public class KeyboardHandler implements EventHandler {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void nextTick(Direction playerMove) {
+		
+		level.getPlayer().move(playerMove);
+	}
+	
 	public void handle(Event e) {
 		KeyEvent ke = (KeyEvent) e;
 		
 		switch (ke.getCode()) {
 			case W:
-				level.getPlayer().move(Direction.UP);
+				nextTick(Direction.UP);
 				break;
 			case A:
-				level.getPlayer().move(Direction.LEFT);
+				nextTick(Direction.LEFT);
 				break;
 			case S:
-				level.getPlayer().move(Direction.DOWN);
+				nextTick(Direction.DOWN);
 				break;
 			case D:
-				level.getPlayer().move(Direction.RIGHT);
+				nextTick(Direction.RIGHT);
 				break;
 			default:
 				break;
