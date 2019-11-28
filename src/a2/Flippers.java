@@ -7,5 +7,9 @@ public class Flippers extends Item {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public int getItemID() {
+		return 5;
+	}
 
 }

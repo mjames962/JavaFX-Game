@@ -37,6 +37,10 @@ public class TokenDoor extends Door {
 		return requiredTokens <= tokenCount;
 	}
 	
+	public int getRequiredTokens() {
+		return this.requiredTokens;
+	}
+	
 	/**
 	 * Sets the number of tokens required by the door.
 	 * @param requiredTokens # of tokens needed to open the door
