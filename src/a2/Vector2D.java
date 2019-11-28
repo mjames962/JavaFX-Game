@@ -20,6 +20,10 @@ public class Vector2D {
 		this.y = y;
 	}
 	
+	public Vector2D() {
+		
+	}
+	
 	/**
 	 * Gets the x coordinate.
 	 * @return x coordinate
@@ -60,6 +64,20 @@ public class Vector2D {
 		this.y = y;
 	}
 	
+	public Vector2D takeAway(Vector2D otherVec) {
+		Vector2D result = new Vector2D();
+		result.setX(this.x - otherVec.getX());
+		result.setY(this.y - otherVec.getY());
+		return result;
+	}
+	
+	public Vector2D add(Vector2D otherVec) {
+		Vector2D result = new Vector2D();
+		result.setX(this.x + otherVec.getX());
+		result.setY(this.y + otherVec.getY());
+		return result;
+	}
+	
 	/**
 	 * Sets the x and y coordinates of the vector.
 	 * @param x x coordinate
@@ -70,5 +88,10 @@ public class Vector2D {
 		this.y = y;
 	}
 	
+	public boolean equals(Vector2D otherVec) {
+		boolean xEqual = this.x == otherVec.x;
+		boolean yEqual = this.y == otherVec.y;
+		return xEqual && yEqual;
+	}
 
 }

@@ -11,7 +11,7 @@ import a2.Vector2D;
  */
 public class Wall extends Cell {
 	
-	protected final static String sprite = "a2/resources/stock photos/Wall.png";
+	public final static String SPRITE = "a2/resources/stock photos/Wall.png";
 	
 	
 	/**
@@ -30,6 +30,6 @@ public class Wall extends Cell {
 	}
 	@Override
 	public String getSprite() {
-		return sprite;
+		return SPRITE;
 	}
 }

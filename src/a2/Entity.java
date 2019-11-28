@@ -6,12 +6,18 @@ package a2;
  * @version 1.0
  */
 
-public class Entity {
+public class Entity implements Sprite {
 	
 	private Vector2D vector;
 	private int entityID;
 	protected Vector2D currentVector;
 	protected Vector2D nextVector;
+	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
+	
+	
+	public String getSprite() {
+		return SPRITE;
+	}
 	
 	/**
 	 * Constructor for the Entity superclass.

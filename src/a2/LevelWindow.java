@@ -1,6 +1,7 @@
 package a2;
 
 import cell.Cell;
+import cell.Wall;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -49,25 +50,40 @@ public class LevelWindow {
         		int drawY = y - playerY + MIN_DRAW;
         		boolean xValid = !(x < 0 || x > level.levelXLength() - 1);
         		boolean yValid = !(y < 0 || y > level.levelYLength() - 1);
+        		
         		if (!xValid || !yValid) {
-            		Image wallImage = new Image(Cell.getDefaultSprite());
+            		Image wallImage = new Image(Wall.SPRITE);
             		gc.drawImage(wallImage, drawX * CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
             	} else {
             		Cell currentCell = level.getCellAt(x, y);
             		Image cellImage = new Image(currentCell.getSprite());
             		gc.drawImage(cellImage, drawX * CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
             	}
+        		drawEntities(new Vector2D(x,y),new Vector2D(drawX,drawY));
+        		
         	}
         }
 	}
 	
-	public void drawEntities() {
+
+	public void drawEntity(Entity ent, Vector2D drawPos) {
+		Image entImage = new Image(ent.getSprite());
+		gc.drawImage(entImage, drawPos.getX() * CELL_DIMENSIONS, drawPos.getY() * CELL_DIMENSIONS);
 		
+	}
+	
+	public void drawEntities(Vector2D cellPos,Vector2D drawPos) {
+	
+        for (Entity ent : level.getEntityList()) {
+        	if (cellPos.equals(ent.getVector())) {
+        		drawEntity(ent,drawPos);
+        	}
+        }
+        
 	}
 	
 	public void drawAll() {
 		drawCells();
-		drawEntities();
  
         
 	}
