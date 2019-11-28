@@ -22,11 +22,10 @@ public class StraightLine extends Entity {
 	}
 	
 	/**
-	 * .
-	 * @return nextVector
+	 * establishes the next move for the enemy.
+	 * @return nextVector the requested next cell to move to
 	 */
 	public Vector2D nextMove() {
-
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
 		int nX;
@@ -34,9 +33,9 @@ public class StraightLine extends Entity {
 		Vector2D nextVector = null;
 		nextVector.set(cX, cY);
 		if (direction == "v") { // entity is moving vertically
+			cX = currentVector.getX();
+			cY = currentVector.getY();
 			if (increaseDirection == true) {
-				cX = currentVector.getX();
-				cY = currentVector.getY();
 				nY = cY++;
 				nextVector.set(cX, nY);
 			} else {
@@ -44,9 +43,9 @@ public class StraightLine extends Entity {
 				nextVector.set(cX, nY);
 			}
 		} else {					//entity is moving horizontally
+			cX = currentVector.getX();
+			cY = currentVector.getY();
 			if (increaseDirection == true) {
-				cX = currentVector.getX();
-				cY = currentVector.getY();
 				nX = cX++;
 				nextVector.set(nX, cY);
 			} else {
