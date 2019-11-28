@@ -9,15 +9,19 @@ import javafx.scene.input.KeyEvent;
 public class KeyboardHandler implements EventHandler {
 
 	private Level level;
+	private LevelWindow lw;
 	
-	public KeyboardHandler(Level lvl) {
+	public KeyboardHandler(LevelWindow lw,Level lvl) {
 		this.level = lvl;
+		this.lw = lw;
 		// TODO Auto-generated constructor stub
 	}
 	
 	public void nextTick(Direction playerMove) {
 		
 		level.getPlayer().move(playerMove);
+		lw.drawAll();
+		System.out.println("NEXT TICK");
 	}
 	
 	public void handle(Event e) {
@@ -39,6 +43,8 @@ public class KeyboardHandler implements EventHandler {
 			default:
 				break;
 		}
+		
+		
 	}
 
 }

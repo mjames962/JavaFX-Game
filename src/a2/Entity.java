@@ -29,7 +29,7 @@ public class Entity implements Sprite {
 	 * @param nextVector requested next position
 	 */
 	public Entity(Vector2D vector, int entityID, Level level) {
-		this.vector = vector;
+		this.currentVector = vector;
 		this.entityID = entityID;
 		this.level = level;
 	}
@@ -40,7 +40,7 @@ public class Entity implements Sprite {
 	 */
 	
 	public Vector2D getVector() {
-		return vector;
+		return currentVector;
 	}
 	
 	/**

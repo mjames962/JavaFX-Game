@@ -26,7 +26,6 @@ public class Player extends Entity {
 	private boolean alive;
 	private LinkedList<Item> inventory;
 	private Vector2D nextVector;
-	private Vector2D currentVector;
 	private int tokenCount;
 
 	/**

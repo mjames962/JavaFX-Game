@@ -62,7 +62,6 @@ public class Profile {
 		highestLevel = newHigh;
 	}
 	
-	
 	/**
 	 * Checks if the new time is higher than the old highest time for
 	 * a specified level.

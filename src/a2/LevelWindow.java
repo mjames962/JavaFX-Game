@@ -35,7 +35,7 @@ public class LevelWindow {
         levelStage.show();
         this.gc = canvas.getGraphicsContext2D();
         this.level = level;
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(level));
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(this,level));
         drawAll();
 		
 		// TODO Auto-generated constructor stub
