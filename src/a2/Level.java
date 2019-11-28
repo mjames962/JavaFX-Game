@@ -253,16 +253,16 @@ public class Level {
 
 		switch (entityID) {
 		case 0:
-			entity = new Player(vector, entityID, false, null);
+			entity = new Player(vector, entityID, this);
 			break;
 		case 1:
-			entity = new StraightLine(vector, entityID);
+			entity = new StraightLine(vector, entityID, this);
 			break;
 		case 2:
-			entity = new WallFollowing(vector, entityID);
+			entity = new WallFollowing(vector, entityID); // change this 
 			break;
 		case 3:
-			entity = new DumbTargeting(vector, entityID);
+			entity = new DumbTargeting(vector, entityID, this);
 			break;
 		case 4:
 			// entity = new SmartTargeting();

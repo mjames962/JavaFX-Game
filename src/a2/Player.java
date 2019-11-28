@@ -41,11 +41,10 @@ public class Player extends Entity {
 	 * @param currentVector
 	 *            the current location of the player
 	 */
-	public Player(Vector2D currentVector, int entityID, boolean alive,
-			LinkedList<Item> inventory) {
-		super(currentVector, entityID);
-		this.alive = alive;
-		this.inventory = inventory;
+	public Player(Vector2D currentVector, int entityID, Level level) {
+		super(currentVector, entityID, level);
+		this.alive = true;
+		this.inventory = new LinkedList<Item>();
 		this.tokenCount = 0;
 	}
 
