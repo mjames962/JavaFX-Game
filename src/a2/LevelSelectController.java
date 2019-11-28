@@ -52,15 +52,15 @@ public class LevelSelectController {
 		if (currentLevel.equals("Level 1")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat1.txt");
-			createLevelStage(level);
+			new LevelWindow(level);
 		} else if (currentLevel.equals("Level 2")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat2.txt");
-			createLevelStage(level);
+			new LevelWindow(level);
 		} else if (currentLevel.equals("Level 3")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat3.txt");
-			createLevelStage(level);
+			new LevelWindow(level);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
@@ -70,37 +70,4 @@ public class LevelSelectController {
 		}	 
 	}	
 
-	private void createLevelStage(Level level) {
-		Stage s = new Stage();
-		//s.setTitle("Drawing Operations Test");
-        Group root = new Group();
-        Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
-        root.getChildren().add(canvas);
-        Scene scene = new Scene(root);
-        s.setScene(scene);
-        s.show();
-        int playerX = level.getPlayer().getVector().getX();
-        int playerY = level.getPlayer().getVector().getY();
-        GraphicsContext gc = canvas.getGraphicsContext2D();
-        
-        for (int x = playerX - MIN_DRAW; x < playerX + MAX_DRAW; x++) {
-        	
-        	for (int y = playerY - MIN_DRAW; y < playerY + MAX_DRAW; y++) {
-        		int drawX = playerX - x + MIN_DRAW;
-        		int drawY = y - playerY + MIN_DRAW;
-        		boolean xValid = !(x < 0 || x > level.levelXLength() - 1);
-        		boolean yValid = !(y < 0 || y > level.levelYLength() - 1);
-        		if (!xValid || !yValid) {
-            		Image wallImage = new Image(Cell.getDefaultSprite());
-            		gc.drawImage(wallImage, drawX * CELL_DIMENSION, drawY * CELL_DIMENSION);
-            	} else {
-            		Cell currentCell = level.getCellAt(x, y);
-            		Image cellImage = new Image(currentCell.getSprite());
-            		gc.drawImage(cellImage, drawX * CELL_DIMENSION, drawY * CELL_DIMENSION);
-            	}
-        	}
-        } 
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(level));
-
-	}
 }
