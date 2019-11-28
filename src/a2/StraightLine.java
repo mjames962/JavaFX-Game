@@ -29,19 +29,66 @@ public class StraightLine extends Entity {
 
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
-		final int X;
-		final int Y;
-		int nX = 0;
-		int nY = 0;
+		int nX;
+		int nY;
 		Vector2D nextVector = null;
 		nextVector.set(cX, cY);
-
-		if (direction == "v") {
+		if (direction == "v") { // entity is moving vertically
+			if (increaseDirection == true) {
+				cX = currentVector.getX();
+				cY = currentVector.getY();
+				nY = cY++;
+				nextVector.set(cX, nY);
+			} else {
+				nY = cY--;
+				nextVector.set(cX, nY);
+			}
+		} else {					//entity is moving horizontally
+			if (increaseDirection == true) {
+				cX = currentVector.getX();
+				cY = currentVector.getY();
+				nX = cX++;
+				nextVector.set(nX, cY);
+			} else {
+				nX = cX--;
+				nextVector.set(nX, cY); 
+			} 
+		}
+		if (this.isValidMove(1, nextVector, level) == false) {
+			if (increaseDirection == false) {
+				increaseDirection = true;
+				nextMove();
+			} else {
+				increaseDirection = false;
+				nextMove();
+			}
+		}
+		return nextVector;
+	}		
+}
+			
+			
+			
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	/*	if (direction == "v") {		//entity is moving vertically
 			X = cX;
 			if (increaseDirection == true) {
 				cX = currentVector.getX();
 				cY = currentVector.getY();
-				if (direction == "V") {
+				if (direction == "v") {
 					X = cX;
 					if (increaseDirection == true) {
 						nY = cY++;
@@ -58,7 +105,11 @@ public class StraightLine extends Entity {
 					nY = cY--;
 					nextVector.set(nX, nY);
 				}
-			} else { // direction == H
+			
+			
+			
+			
+			} else { 				// entity is moving horizontally
 				Y = cY;
 				if (increaseDirection == true) {
 					nX = cX++;
@@ -77,7 +128,4 @@ public class StraightLine extends Entity {
 					nextMove();
 				}
 			}
-		}
-		return nextVector;
-	}		
-}
+		}*/
