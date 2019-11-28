@@ -6,6 +6,7 @@ open game
 create user (fred)
 log in with newly created details (fred)
 dont select lvl and try to load it
+attempt to play lvl 5
 select level 1
 play lvl 1 
 quit
@@ -18,4 +19,8 @@ die in lvl3 to respawn
 finish lvl3
 -cut-
 open game
-log in premade details
+log in premade details (john) which has completed lvl3
+play lvl4 
+play lvl5
+check the leaderboard for lvl 1,3 and 5
+

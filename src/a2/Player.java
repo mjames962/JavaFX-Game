@@ -107,7 +107,9 @@ public class Player extends Entity {
 	}
 
 	public Boolean isValidMove(String cellType, Vector2D cellPos, Level level) {
-
+		
+		Cell cell = level.getCellAt(cellPos);
+		
 		switch (cellType) {
 		case "Ground":
 			return true;
@@ -117,27 +119,27 @@ public class Player extends Entity {
 			// call token door methods
 		case "TokenCell":
 			this.tokenCount++;
-			// convert to ground
+			((Replaceable) cell).turnToGround(level);
 			return true;
 		case "RedDoor":
-			// inventory check, call relevant methods
+			return this.canOpen(cell, level);
 		case "RedDoorKey":
 			this.pickupItem(new RedKey(), cellPos, level);
 			return true;
 		case "GreenDoor":
-			// method calls
+			return this.canOpen(cell, level);
 		case "GreenDoorKey":
 			this.pickupItem(new GreenKey(), cellPos, level);
 			return true;
 		case "BlueDoor":
-			// call methods
+			return this.canOpen(cell, level);
 		case "BlueDoorKey":
 			this.pickupItem(new BlueKey(), cellPos, level);
 			return true;
 		case "Fire":
-			// method checks
+			return this.hasItem(/*fireboots*/);
 		case "Water":
-			// method checks
+			return this.hasItem(/*flippers*/);
 		case "FireBootsCell":
 			this.pickupItem(new FireBoots(), cellPos, level);
 			return true;
@@ -177,7 +179,7 @@ public class Player extends Entity {
 		Cell cell = level.getCellAt(xCoord, yCoord);
 
 		inventory.add(item);
-		((Replaceable) cell).turnToGround(cell, level);
+		((Replaceable) cell).turnToGround(level);
 	}
 
 	/**
@@ -209,6 +211,16 @@ public class Player extends Entity {
 	 */
 	public int getTokens() {
 		return tokenCount;
+	}
+	
+	public boolean canOpen(Door door, Level level) {
+		
+		if (this.hasItem(/*bluekey*/) {
+			((Replaceable) cell).turnToGround(level);
+			this.removeItem(/*bluekey*/);
+			return true;
+		}
+		return false;
 	}
 
 }
