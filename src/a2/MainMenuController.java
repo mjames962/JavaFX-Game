@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
@@ -27,6 +28,8 @@ public class MainMenuController {
 	private Button btn_Create;
 	@FXML 
 	private TextField tbox_Username;
+	@FXML 
+	private AnchorPane root;
 	
 	/**
 	 * Performs action when Create button is clicked.
@@ -58,30 +61,16 @@ public class MainMenuController {
 	}
 	
 	/**
+	 * .
 	 * Creates new window of format file
 	 * @param file Holds the file path of the FXML file.
 	 */
 	private void initialiseWindow(String file) {
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().
-					getResource(file));     
 
-			AnchorPane windowRoot = (AnchorPane) fxmlLoader.load();          
-									
-			Scene windowScene = new Scene(windowRoot, 
-					Main.CREATE_PROFILE_WINDOW_WIDTH, 
-					Main.CREATE_PROFILE_WINDOW_HEIGHT);
-		    
-			Stage windowStage = new Stage();
-			windowStage.setScene(windowScene);
-			windowStage.setTitle(Main.CREATE_PROFILE_WINDOW_TITLE);
-			
-
-			// This is a modal window meaning that it must be closed before you 
-			// can interact with any other window.
-			windowStage.initModality(Modality.APPLICATION_MODAL);
-
-			windowStage.showAndWait();
+			AnchorPane window = FXMLLoader.load(getClass().
+					getResource(file));  
+			root.getChildren().setAll(window);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

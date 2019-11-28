@@ -24,12 +24,6 @@ import javafx.stage.Stage;
  */
 public class LevelSelectController {
 
-	private static final int CANVAS_WIDTH = 350;
-	private static final int CANVAS_LENGTH = 350;
-	private static final int MIN_DRAW = 3;
-	private static final int MAX_DRAW = 4;
-	private static final int CELL_DIMENSION = 50;
-
 	@FXML
 	private Button btn_LoadLevel;
 

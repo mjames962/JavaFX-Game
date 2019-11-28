@@ -53,25 +53,37 @@ public class LevelWindow {
         		
         		if (!xValid || !yValid) {
             		Image wallImage = new Image(Wall.SPRITE);
-            		gc.drawImage(wallImage, drawX * CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
+            		gc.drawImage(wallImage, drawX * CELL_DIMENSIONS, 
+            				drawY * CELL_DIMENSIONS);
             	} else {
             		Cell currentCell = level.getCellAt(x, y);
             		Image cellImage = new Image(currentCell.getSprite());
-            		gc.drawImage(cellImage, drawX * CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
+            		gc.drawImage(cellImage, drawX * CELL_DIMENSIONS, 
+            				drawY * CELL_DIMENSIONS);
             	}
-        		drawEntities(new Vector2D(x,y),new Vector2D(drawX,drawY));
+        		drawEntities(new Vector2D(x,y), new Vector2D(drawX,drawY));
         		
         	}
         }
 	}
 	
 
+	/**
+	 * .
+	 * @param ent
+	 * @param drawPos
+	 */
 	public void drawEntity(Entity ent, Vector2D drawPos) {
 		Image entImage = new Image(ent.getSprite());
 		gc.drawImage(entImage, drawPos.getX() * CELL_DIMENSIONS, drawPos.getY() * CELL_DIMENSIONS);
 		
 	}
 	
+	/**
+	 * .
+	 * @param cellPos
+	 * @param drawPos
+	 */
 	public void drawEntities(Vector2D cellPos,Vector2D drawPos) {
 	
         for (Entity ent : level.getEntityList()) {
@@ -82,6 +94,9 @@ public class LevelWindow {
         
 	}
 	
+	/**
+	 * 
+	 */
 	public void drawAll() {
 		drawCells();
  

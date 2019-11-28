@@ -2,11 +2,12 @@ package a2;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,20 +24,20 @@ public class CreateUserController {
 	private Button btn_CreateUser;
 	@FXML
 	private TextField tbox_NewUsername;
-	
+	@FXML
+	private AnchorPane createScene;
+	@FXML
+	private AnchorPane window;
+
 	/**
-	 * Handles click event for create button
-	 * @param event Checks for the event occurring.
+	 * Handles click event for create button.
+	 * @param event Checks for an event occurring.
+	 * @throws IOException .
 	 */
 	@FXML
-	private void handleCreateBtn(ActionEvent event) {
+	private void handleCreateBtn(ActionEvent event) throws IOException {
 		String newUser = tbox_NewUsername.getText();
 		
-		Alert news = new Alert(AlertType.INFORMATION);
-		news.setTitle("Success");
-		news.setHeaderText("User Created");
-		news.setContentText(null);
-		news.showAndWait();
 		
 		if (UserData.doesExist(newUser)) {
 			
@@ -48,20 +49,43 @@ public class CreateUserController {
 			
 		} else {
 			
+			
 			try {
 				Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
 						("\n" + newUser).getBytes(), StandardOpenOption.APPEND);
-				Stage stage = (Stage) btn_CreateUser.getScene().getWindow();
-			    stage.close();
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 				System.exit(-1);
 			}
+			Alert news = new Alert(AlertType.INFORMATION);
+			news.setTitle("Success");
+			news.setHeaderText("User Created");
+			news.setContentText(null);
+			news.showAndWait();
 			
-			File userFile = new File("src/a2/resources/User files/" + newUser + ".txt");
+			AnchorPane window = FXMLLoader.load(getClass().
+					getResource("resources/fxml docs/MainMenu.fxml"));  
+			createScene.getChildren().setAll(window);
+			
+			File userFile = new File("src/a2/resources/User files/" 
+						+ newUser + ".txt");
 			Profile profile = new Profile(userFile);
 			profile.updateFile();
-		}
+			
+		}	
+	}
+	
+	/**
+	 * Handles back button event.
+	 * @param event Checks for an event occurring.
+	 * @throws IOException .
+	 */
+	@FXML
+	private void handleBackBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/MainMenu.fxml"));  
+		createScene.getChildren().setAll(window);
 	}
 }
 

@@ -4,6 +4,7 @@ package a2;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
@@ -38,7 +39,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			// Load the main scene.
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass()
+			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass()
 					.getResource("resources/fxml docs/MainMenu.fxml"));
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
@@ -46,6 +47,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle(WINDOW_TITLE);
 			primaryStage.show();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
