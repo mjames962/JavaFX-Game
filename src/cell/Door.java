@@ -23,6 +23,15 @@ public abstract class Door extends Replaceable {
 		super(pos);
 	}
 
+	public boolean isWalkable() {
+		return true;
+	}
+	
+	public void doAction(Player ply) {
+		if (meetsRequirement(ply)) {
+			this.turnToGround(ply.);
+		}
+	}
 	
 	/**
 	 * Returns the item the door Needs to open.

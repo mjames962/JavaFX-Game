@@ -34,6 +34,10 @@ public class Entity implements Sprite {
 		this.level = level;
 	}
 
+	public Level getLevel() {
+		return this.level;
+	}
+	
 	/**
 	 * gets the coordinates of the entity. 
 	 * @return vector 

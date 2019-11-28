@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Player;
 import a2.Sprite;
 import a2.Vector2D;
 
@@ -27,6 +28,12 @@ public abstract class Cell implements Sprite {
 	public int getX() {
 		return pos.getX();
 	}
+	
+	public boolean isWalkable() {
+		return true;
+	}
+	
+	abstract public void doAction(Player ply);
 	
 	/**
 	 * Get the y coordinate of the cell.
