@@ -78,7 +78,7 @@ public class Player extends Entity {
 			default:
 				input = null;
 		}
-		isValidMove(0, nextVector);
+		isValidMove(nextVector);
 		return null; // needs changing from null to something else to
 						// change the players location and update the map
 		/*
@@ -109,9 +109,9 @@ public class Player extends Entity {
 	 * @param level the level currently being completed
 	 * @return a boolean to show whether the cell can be moved onto
 	 */
-	public Boolean isValidMove(Vector2D cellPos, Level level) {
+	public Boolean isValidMove(Vector2D cellPos) {
 
-		Cell cell = level.getCellAt(cellPos);
+		Cell cell = this.level.getCellAt(cellPos);
 		String cellType = cell.cellName();
 		
 		switch (cellType) {
@@ -120,35 +120,35 @@ public class Player extends Entity {
 			case "Wall":
 				return false;
 			case "TokenDoor":
-				return this.openDoor((Door) cell, level);
+				return this.openDoor((Door) cell);
 			case "TokenCell":
 				this.tokenCount++;
-				// convert to ground
+				((Replaceable) cell).turnToGround(this.level);
 				return true;
 			case "RedDoor":
-				return this.openDoor((Door) cell, level);
+				return this.openDoor((Door) cell);
 			case "RedDoorKey":
-				this.pickupItem(new RedKey(), cellPos, level);
+				this.pickupItem(new RedKey(), cellPos);
 				return true;
 			case "GreenDoor":
-				return this.openDoor((Door) cell, level);
+				return this.openDoor((Door) cell);
 			case "GreenDoorKey":
-				this.pickupItem(new GreenKey(), cellPos, level);
+				this.pickupItem(new GreenKey(), cellPos);
 				return true;
 			case "BlueDoor":
-				return this.openDoor((Door) cell, level);
+				return this.openDoor((Door) cell);
 			case "BlueDoorKey":
-				this.pickupItem(new BlueKey(), cellPos, level);
+				this.pickupItem(new BlueKey(), cellPos);
 				return true;
 			case "Fire":
-				// method checks
+				this.crepCheck(cell);
 			case "Water":
-				// method checks
+				this.crepCheck(cell);
 			case "FireBootsCell":
-				this.pickupItem(new FireBoots(), cellPos, level);
+				this.pickupItem(new FireBoots(), cellPos);
 				return true;
 			case "FlippersCell":
-				this.pickupItem(new Flippers(), cellPos, level);
+				this.pickupItem(new Flippers(), cellPos);
 				return true;
 			case "Goal":
 				return true;
@@ -157,36 +157,56 @@ public class Player extends Entity {
 		}
 	}
 	
-	public boolean openDoor(Door door, Level level) {
+	public boolean crepCheck(Cell cell) {
+		if (cell.cellName().equals("Fire")) {
+			for (Item item : this.inventory) {
+				if (item.getItemID() == 4) { // if player has at least one pair
+												// of fireboots
+					return true;
+				}
+			}
+		} else if (cell.cellName().equals("Water")) {
+			for (Item item : this.inventory) {
+				if (item.getItemID() == 5) { // if player has at least one pair
+												// of flippers
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+	public boolean openDoor(Door door) {
 		String doorType = door.cellName();
 
 		switch (doorType) {
 		case "TokenDoor":
-			return this.openTokenDoor(door, level);
+			return this.openTokenDoor(door);
 		case "RedDoor":
-			return this.hasKey(door,'r', level);
+			return this.hasKey(door,'r');
 		case "BlueDoor":
-			return this.hasKey(door, 'b', level);
+			return this.hasKey(door, 'b');
 		case "GreenDoor":
-			return this.hasKey(door,'g', level);
+			return this.hasKey(door,'g');
 		default:
 		}
 		
 		return false;
 	}
 	
-	public boolean openTokenDoor(Door door, Level level) {
+	public boolean openTokenDoor(Door door) {
 		int requiredTokens = ((TokenDoor) door).getRequiredTokens();
 		
 		if (this.tokenCount >= requiredTokens) {
 			this.tokenCount = this.tokenCount - requiredTokens;
-			door.turnToGround(level);
+			door.turnToGround(this.level);
 			return true;
 		}
 		return false;
 	}
 
-	public boolean hasKey(Door door, char keyType, Level level) {
+	public boolean hasKey(Door door, char keyType) {
 		int keyID;
 
 		switch (keyType) {
@@ -206,7 +226,7 @@ public class Player extends Entity {
 		for (int i = 0; i < this.inventory.size(); i++) {
 			if (this.inventory.get(i).getItemID() == keyID) {
 				this.inventory.remove(i);
-				door.turnToGround(level);
+				door.turnToGround(this.level);
 				return true;
 			}
 		}
@@ -235,11 +255,11 @@ public class Player extends Entity {
 	 * @param itemPos the position of the item being picked up           
 	 */
 
-	public void pickupItem(Item item, Vector2D itemPos, Level level) {
-		Cell cell = level.getCellAt(itemPos);
+	public void pickupItem(Item item, Vector2D itemPos) {
+		Cell cell = this.level.getCellAt(itemPos);
 
 		inventory.add(item);
-		((Replaceable) cell).turnToGround(level);
+		((Replaceable) cell).turnToGround(this.level);
 	}
 
 	/**
