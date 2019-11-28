@@ -25,8 +25,6 @@ public class Player extends Entity {
 
 	private boolean alive;
 	private LinkedList<Item> inventory;
-	private Vector2D nextVector;
-	private Vector2D currentVector;
 	private int tokenCount;
 
 	/**
@@ -58,7 +56,7 @@ public class Player extends Entity {
 	 * @return returns an updated position for the player
 	 */
 
-	public Vector2D move(Direction input) {
+	public void move(Direction input) {
 		int cX = this.currentVector.getX();
 		int cY = this.currentVector.getY();
 		Vector2D nextVector = null;
@@ -80,10 +78,9 @@ public class Player extends Entity {
 		}
 		
 		if(isValidMove(nextVector)) {
-			return nextVector;
+			this.currentVector = nextVector;
 		}
 		
-		return this.currentVector;
 	}
 
 	/**
