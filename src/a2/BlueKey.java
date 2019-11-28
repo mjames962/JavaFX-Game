@@ -10,5 +10,9 @@ public class BlueKey extends Key {
 	public BlueKey() {
 		super();
 	}
+	
+	public int getItemID() {
+		return 3;
+	}
 
 }
