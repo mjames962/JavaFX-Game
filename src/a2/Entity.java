@@ -19,14 +19,19 @@ public class Entity implements Sprite {
 		return SPRITE;
 	}
 	
+
+	protected Level level;
 	/**
 	 * Constructor for the Entity superclass.
 	 * @param vector the entity coordinates
 	 * @param entityID the ID of the entity
+	 * @param currentVector current location
+	 * @param nextVector requested next position
 	 */
-	public Entity(Vector2D vector, int entityID) {
+	public Entity(Vector2D vector, int entityID, Level level) {
 		this.vector = vector;
 		this.entityID = entityID;
+		this.level = level;
 	}
 
 	/**
@@ -61,17 +66,15 @@ public class Entity implements Sprite {
 	 * @param nextVector the intended next location for the entity
 	 */
 	
-	public boolean isValidMove(int entityID, Vector2D nextVector) {
+	public boolean isValidMove(int entityID, Vector2D nextVector, Level level) {
 		if (entityID != 0) { // Enemies
 
-			if (getCellAt(nextVector) == ground) { 	//getCellAt from level
+			if (level.getCellAt(nextVector) == Ground) { //getCellAt from level
 				return true;						//Ground Cell class
-			}
-			else {
+			} else {
 				return false;
 			}
-		}
-		else { //player class will override with access restraints.
+		} else { //player class will override with access restraints.
 			return false;
 		}
 	}

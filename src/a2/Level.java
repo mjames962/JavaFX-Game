@@ -73,7 +73,11 @@ public class Level {
 
 		return this.level[x][y];
 	}
-	
+	/**
+	 * gives the type of cell at the requested location.
+	 * @param vector the location to look at the cell type
+	 * @return the type of cell  at the location
+	 */
 	public Cell getCellAt(Vector2D vector) {
 		int xCoord = vector.getX();
 		int yCoord = vector.getY();

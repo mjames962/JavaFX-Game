@@ -10,5 +10,9 @@ public class GreenKey extends Key {
 	public GreenKey() {
 		super();
 	}
-
+	
+	public int getItemID() {
+		return 2;
+	}
+	
 }
