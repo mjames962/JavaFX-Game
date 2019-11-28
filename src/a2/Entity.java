@@ -17,6 +17,8 @@ public class Entity {
 	 * Constructor for the Entity superclass.
 	 * @param vector the entity coordinates
 	 * @param entityID the ID of the entity
+	 * @param currentVector current location
+	 * @param nextVector requested next position
 	 */
 	public Entity(Vector2D vector, int entityID, Level level) {
 		this.vector = vector;
