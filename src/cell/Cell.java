@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Sprite;
 import a2.Vector2D;
 
 /**
@@ -7,15 +8,10 @@ import a2.Vector2D;
  * @author jensen
  *
  */
-public abstract class Cell {
+public abstract class Cell implements Sprite {
 	private Vector2D pos;
 	
-	private final static String DEFAULT_SPRITE = "a2/resources/stock photos/Wall.png";
-	protected final String sprite = DEFAULT_SPRITE;
 	
-	public static String getDefaultSprite() {
-		return DEFAULT_SPRITE;
-	}
 	/**
 	 * Creates a new cell.
 	 * @param vec The initial position of the cell
@@ -58,7 +54,7 @@ public abstract class Cell {
 	}
 	
 	public String getSprite() {
-		return sprite;
+		return DEFAULT_SPRITE;
 	}
 	
 	
