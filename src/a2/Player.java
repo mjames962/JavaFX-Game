@@ -59,8 +59,8 @@ public class Player extends Entity {
 	 */
 
 	public Vector2D move(Direction input) {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
+		int cX = this.currentVector.getX();
+		int cY = this.currentVector.getY();
 		Vector2D nextVector = null;
 		switch (input) {
 			case UP:
@@ -78,12 +78,12 @@ public class Player extends Entity {
 			default:
 				input = null;
 		}
-		isValidMove(nextVector);
-		return null; // needs changing from null to something else to
-						// change the players location and update the map
-		/*
-		 * if (nextVector == Goal) { //end level }
-		 */
+		
+		if(isValidMove(nextVector)) {
+			return nextVector;
+		}
+		
+		return this.currentVector;
 	}
 
 	/**
