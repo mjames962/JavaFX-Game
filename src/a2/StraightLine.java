@@ -15,6 +15,7 @@ public class StraightLine extends Entity {
 	 * Constructs the StraightLine class.
 	 * @param enemyID the ID of the enemy
 	 * @param currentVector the position of the enemy
+	 * @param level the current level in progress
 	 * 	 
 	 */
 	public StraightLine(Vector2D currentVector, int enemyID, Level level) {
