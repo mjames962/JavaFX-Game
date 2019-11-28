@@ -18,9 +18,10 @@ public class KeyboardHandler implements EventHandler {
 	}
 	
 	public void nextTick(Direction playerMove) {
-		
+		System.out.println("Inital: " + level.getPlayer().getVector());
 		level.getPlayer().move(playerMove);
 		lw.drawAll();
+		System.out.println("Final: " + level.getPlayer().getVector());
 		System.out.println("NEXT TICK");
 	}
 	

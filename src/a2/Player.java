@@ -62,16 +62,16 @@ public class Player extends Entity {
 		Vector2D nextVector = null;
 		switch (input) {
 			case UP:
-				nextVector = new Vector2D(cX, cY++);
+				nextVector = new Vector2D(cX, ++cY);
 				break;
 			case DOWN:
-				nextVector = new Vector2D(cX, cY--);
+				nextVector = new Vector2D(cX, --cY);
 				break;
 			case LEFT:
-				nextVector = new Vector2D(cX--, cY);
+				nextVector = new Vector2D(--cX, cY);
 				break;
 			case RIGHT:
-				nextVector = new Vector2D(cX++, cY);
+				nextVector = new Vector2D(++cX, cY);
 				break;
 			default:
 				input = null;
@@ -109,6 +109,7 @@ public class Player extends Entity {
 	public Boolean isValidMove(Vector2D cellPos) {
 
 		Cell cell = this.level.getCellAt(cellPos);
+		
 		String cellType = cell.cellName();
 		
 		switch (cellType) {
@@ -138,10 +139,12 @@ public class Player extends Entity {
 				this.pickupItem(new BlueKey(), cellPos);
 				return true;
 			case "Fire":
-				this.crepCheck(cell);
+				return this.crepCheck(cell);
+				
 			case "Water":
-				this.crepCheck(cell);
+				return this.crepCheck(cell);
 			case "FireBootsCell":
+				System.out.println("jadasd");
 				this.pickupItem(new FireBoots(), cellPos);
 				return true;
 			case "FlippersCell":

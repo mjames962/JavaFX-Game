@@ -42,6 +42,7 @@ public class Entity implements Sprite {
 	public Vector2D getVector() {
 		return currentVector;
 	}
+
 	
 	/**
 	 * Retrieves the entity ID.
