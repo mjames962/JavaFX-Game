@@ -15,8 +15,8 @@ public class SmartTargetEnemy extends Entity {
 	 * @param currentVector holds a Vector2D for current position
 	 * @param enemyID holds the id for the enemy on the level
 	 */
-	public SmartTargetEnemy(Vector2D currentVector, int enemyID) {
-		super(currentVector, enemyID);
+	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
+		super(currentVector, enemyID, level);
 	}
 	
 //	private Queue<Vector2D> curShortestPath = new LinkedList<>();
