@@ -26,6 +26,7 @@ public class Player extends Entity {
 	private boolean alive;
 	private LinkedList<Item> inventory;
 	private int tokenCount;
+	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
 	
 
 	/**
@@ -257,6 +258,10 @@ public class Player extends Entity {
 	
 	public LinkedList<Item> getInventory() {
 		return this.inventory;
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 
 }

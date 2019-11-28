@@ -31,5 +31,9 @@ public class BlueKeyCell extends Collectible {
 	public String cellName() {
 		return "BlueKeyCell";
 	}
+	
+	public String getSprite() {
+		return SPRITE;
+	}
 
 }

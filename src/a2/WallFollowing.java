@@ -7,10 +7,13 @@ package a2;
  * @version 1.0
  */
 public class WallFollowing extends Entity {
+	
+	private static final String SPRITE = "a2/resources/stock photos/Wall_Following_Enemy.png";
 	private Vector2D currentVector;
 	private boolean increaseVDirection = true;
 	private boolean increaseHDirection = true;
 	private String direction;
+	
 	/**
 	 * Constructs the Wall Following Enemy.
 	 * @param currentVector the position of the enemy
@@ -22,6 +25,10 @@ public class WallFollowing extends Entity {
 		currentVector = this.currentVector;
 		this.direction = direction;
 		
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 	
 	/**

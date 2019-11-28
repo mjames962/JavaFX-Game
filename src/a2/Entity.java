@@ -92,4 +92,6 @@ public class Entity implements Sprite {
 	public void move() {
 		
 	}
+	
+	
 }

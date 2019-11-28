@@ -1,6 +1,8 @@
 package a2;
 
-abstract public class Item {
+abstract public class Item implements Sprite {
+	
+	public final static String SPRITE = "a2/resources/stock photos/Wall.png";
 
 	
 	public Item() {
@@ -12,5 +14,9 @@ abstract public class Item {
 	}
 
 	private String sprite;
+	
+	public String getSprite() {
+		return SPRITE;
+	}
 	
 }
