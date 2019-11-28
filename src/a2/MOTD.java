@@ -83,7 +83,4 @@ public class MOTD {
     	return submitSolvedPuzzle(solve);
     }
     
-    public static void main(String[] args) throws IOException {
-    	System.out.println(getMOTD());
-    }
 }

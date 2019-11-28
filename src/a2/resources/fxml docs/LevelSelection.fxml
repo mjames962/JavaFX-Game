@@ -9,11 +9,24 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="levelScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.LevelSelectController">
+<AnchorPane id="AnchorPane" fx:id="levelScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="479.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.LevelSelectController">
   <children>
-    <BorderPane layoutX="0.0" layoutY="14.0" prefHeight="165.0" prefWidth="307.0">
+    <BorderPane fx:id="levelBorderPane" layoutX="0.0" layoutY="14.0" prefHeight="310.0" prefWidth="479.0">
       <bottom>
-        <AnchorPane prefHeight="100.0" prefWidth="307.0">
+        <AnchorPane fx:id="levelBottom" maxHeight="300.0" maxWidth="300.0" prefHeight="76.0" prefWidth="490.0" BorderPane.alignment="BASELINE_LEFT">
+          <padding>
+            <Insets />
+          </padding>
+          <BorderPane.margin>
+            <Insets />
+          </BorderPane.margin>
+        </AnchorPane>
+      </bottom>
+      <center>
+        <Pane fx:id="canvasPane" prefHeight="-1.0" prefWidth="-1.0" />
+      </center>
+      <left>
+        <AnchorPane prefHeight="115.0" prefWidth="150.0">
           <children>
             <Button fx:id="btn_LoadLevel" layoutX="16.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleLoadLevelBtn" text="Load Level" />
             <ComboBox fx:id="cmb_LevelSelect" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="129.0" promptText="Select Level" visibleRowCount="3">
@@ -27,9 +40,9 @@
             </ComboBox>
           </children>
         </AnchorPane>
-      </bottom>
+      </left>
       <top>
-        <HBox prefHeight="50.0" prefWidth="307.0">
+        <HBox prefHeight="50.0" prefWidth="210.0">
           <children>
             <Label text="Level Selection">
               <font>
