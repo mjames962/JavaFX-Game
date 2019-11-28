@@ -41,7 +41,8 @@ public class Player extends Entity {
 	 * @param currentVector
 	 *            the current location of the player
 	 */
-	public Player(Vector2D currentVector, int entityID, boolean alive, LinkedList<Item> inventory) {
+	public Player(Vector2D currentVector, int entityID, boolean alive,
+			LinkedList<Item> inventory) {
 		super(currentVector, entityID);
 		this.alive = alive;
 		this.inventory = inventory;
@@ -58,25 +59,25 @@ public class Player extends Entity {
 	 * @return returns an updated position for the player
 	 */
 
-	public Vector2D move( Direction input) {
-		int cX = getVector().getX();
-		int cY = getVector().getY();
+	public Vector2D move(Vector2D currentVector, Direction input) {
+		int cX = currentVector.getX();
+		int cY = currentVector.getY();
 		Vector2D nextVector = null;
 		switch (input) {
-		case UP:
-			nextVector = new Vector2D(cX, cY++);
-			break;
-		case DOWN:
-			nextVector = new Vector2D(cX, cY--);
-			break;
-		case LEFT:
-			nextVector = new Vector2D(cX--, cY);
-			break;
-		case RIGHT:
-			nextVector = new Vector2D(cX++, cY);
-			break;
-		default:
-			input = null;
+			case UP:
+				nextVector = new Vector2D(cX, cY++);
+				break;
+			case DOWN:
+				nextVector = new Vector2D(cX, cY--);
+				break;
+			case LEFT:
+				nextVector = new Vector2D(cX--, cY);
+				break;
+			case RIGHT:
+				nextVector = new Vector2D(cX++, cY);
+				break;
+			default:
+				input = null;
 		}
 		isValidMove(0, nextVector);
 		return null; // needs changing from null to something else to
@@ -88,11 +89,8 @@ public class Player extends Entity {
 
 	/**
 	 * Overrides the isValidMove method in Entity for player entities.
-	 * 
-	 * @param Level
-	 *            the given level currently loaded
-	 * @param nextVector
-	 *            the requested cell to move to
+	 * @param level the given level currently loaded          
+	 * @param nextVector the requested cell to move to
 	 * @return returns a boolean for if the requested move is valid
 	 */
 	public boolean isValidMove(Vector2D nextVector, Level level) {
@@ -105,51 +103,55 @@ public class Player extends Entity {
 
 		return isValidMove(cellType, nextVector, level);
 	}
-
+	/**
+	 * Determines whether the requested move is valid.
+	 * @param cellType the type of cell the player wants to move onto
+	 * @param cellPos the position of the cell on the map
+	 * @param level the level currently being completed
+	 * @return a boolean to show whether the cell can be moved onto
+	 */
 	public Boolean isValidMove(String cellType, Vector2D cellPos, Level level) {
-		
-		Cell cell = level.getCellAt(cellPos);
-		
+
 		switch (cellType) {
-		case "Ground":
-			return true;
-		case "Wall":
-			return false;
-		case "TokenDoor":
-			// call token door methods
-		case "TokenCell":
-			this.tokenCount++;
-			((Replaceable) cell).turnToGround(level);
-			return true;
-		case "RedDoor":
-			return this.canOpen(cell, level);
-		case "RedDoorKey":
-			this.pickupItem(new RedKey(), cellPos, level);
-			return true;
-		case "GreenDoor":
-			return this.canOpen(cell, level);
-		case "GreenDoorKey":
-			this.pickupItem(new GreenKey(), cellPos, level);
-			return true;
-		case "BlueDoor":
-			return this.canOpen(cell, level);
-		case "BlueDoorKey":
-			this.pickupItem(new BlueKey(), cellPos, level);
-			return true;
-		case "Fire":
-			return this.hasItem(/*fireboots*/);
-		case "Water":
-			return this.hasItem(/*flippers*/);
-		case "FireBootsCell":
-			this.pickupItem(new FireBoots(), cellPos, level);
-			return true;
-		case "FlippersCell":
-			this.pickupItem(new Flippers(), cellPos, level);
-			return true;
-		case "Goal":
-			return true;
-		default:
-			return false;
+			case "Ground":
+				return true;
+			case "Wall":
+				return false;
+			case "TokenDoor":
+				// call token door methods
+			case "TokenCell":
+				this.tokenCount++;
+				// convert to ground
+				return true;
+			case "RedDoor":
+				// inventory check, call relevant methods
+			case "RedDoorKey":
+				this.pickupItem(new RedKey(), cellPos, level);
+				return true;
+			case "GreenDoor":
+				// method calls
+			case "GreenDoorKey":
+				this.pickupItem(new GreenKey(), cellPos, level);
+				return true;
+			case "BlueDoor":
+				// call methods
+			case "BlueDoorKey":
+				this.pickupItem(new BlueKey(), cellPos, level);
+				return true;
+			case "Fire":
+				// method checks
+			case "Water":
+				// method checks
+			case "FireBootsCell":
+				this.pickupItem(new FireBoots(), cellPos, level);
+				return true;
+			case "FlippersCell":
+				this.pickupItem(new Flippers(), cellPos, level);
+				return true;
+			case "Goal":
+				return true;
+			default:
+				return false;
 		}
 	}
 
@@ -168,9 +170,9 @@ public class Player extends Entity {
 
 	/**
 	 * Puts an item into the player's inventory.
-	 * 
-	 * @param item
-	 *            the thing being picked up
+	 * @param level the current level being completed
+	 * @param item the thing being picked up
+	 * @param itemPos the position of the item being picked up           
 	 */
 
 	public void pickupItem(Item item, Vector2D itemPos, Level level) {
@@ -179,7 +181,7 @@ public class Player extends Entity {
 		Cell cell = level.getCellAt(xCoord, yCoord);
 
 		inventory.add(item);
-		((Replaceable) cell).turnToGround(level);
+		((Replaceable) cell).turnToGround(cell, level);
 	}
 
 	/**
@@ -211,16 +213,6 @@ public class Player extends Entity {
 	 */
 	public int getTokens() {
 		return tokenCount;
-	}
-	
-	public boolean canOpen(Door door, Level level) {
-		
-		if (this.hasItem(/*bluekey*/) {
-			((Replaceable) cell).turnToGround(level);
-			this.removeItem(/*bluekey*/);
-			return true;
-		}
-		return false;
 	}
 
 }
