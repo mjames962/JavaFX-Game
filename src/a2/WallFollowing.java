@@ -16,8 +16,8 @@ public class WallFollowing extends Entity {
 	 * @param currentVector the position of the enemy
 	 * @param enemyID the ID of the enemy
 	 */
-	public WallFollowing(Vector2D currentVector, int enemyID) {
-		super(currentVector, enemyID);
+	public WallFollowing(Vector2D currentVector, int enemyID, String direction, Level level) {
+		super(currentVector, enemyID, level);
 		enemyID = 2;
 		currentVector = this.currentVector;
 		this.direction = direction;

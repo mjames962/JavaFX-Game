@@ -259,7 +259,7 @@ public class Level {
 			entity = new StraightLine(vector, entityID, this);
 			break;
 		case 2:
-			entity = new WallFollowing(vector, entityID); // change this 
+			entity = new WallFollowing(vector, entityID, direction, this);
 			break;
 		case 3:
 			entity = new DumbTargeting(vector, entityID, this);
