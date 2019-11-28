@@ -114,10 +114,10 @@ public class Level {
 	 * returns the current player.
 	 * @return e , the player
 	 */
-	public Entity getPlayer() {
+	public Player getPlayer() {
 		for (Entity e : this.entityList) { 
 		    if (e.getEntityID() == 0) {
-		    	return e;
+		    	return (Player) e;
 		    }
 		}
 		

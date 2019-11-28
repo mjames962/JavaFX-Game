@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -75,7 +76,8 @@ public class LevelSelectController {
         Group root = new Group();
         Canvas canvas = new Canvas(CANVAS_WIDTH, CANVAS_LENGTH);
         root.getChildren().add(canvas);
-        s.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        s.setScene(scene);
         s.show();
         int playerX = level.getPlayer().getVector().getX();
         int playerY = level.getPlayer().getVector().getY();
@@ -97,7 +99,8 @@ public class LevelSelectController {
             		gc.drawImage(cellImage, drawX * CELL_DIMENSION, drawY * CELL_DIMENSION);
             	}
         	}
-        }  
+        } 
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(level));
 
 	}
 }
