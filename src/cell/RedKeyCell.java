@@ -9,7 +9,7 @@ import a2.Vector2D;
  */
 public class RedKeyCell extends Collectible {
 	
-	protected static final String SPRITE = "a2/resources/stock photos/KeySprite.png";
+	protected static final String SPRITE = "a2/resources/stock photos/RedKeySprite.png";
 	/**
 	 * creates the cell at the location.
 	 * @param pos holds the Vector2D of the cell
@@ -28,6 +28,10 @@ public class RedKeyCell extends Collectible {
 	
 	public String cellName() {
 		return "RedKeyCell";
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 
 }

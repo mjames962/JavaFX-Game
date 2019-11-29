@@ -26,6 +26,10 @@ public class TokenCell extends Cell {
 		return "TokenCell";
 	}
 	
+	public String getSprite() {
+		return SPRITE;
+	}
+	
 	
 
 }

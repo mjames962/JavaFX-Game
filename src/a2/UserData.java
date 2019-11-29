@@ -3,6 +3,9 @@ package a2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
 
@@ -45,8 +48,16 @@ public class UserData {
 	}
 	
 	
-	//user file writer
-	public void createUser(String username) {
+	// user file writer
+	public static void createUser(String username) throws IOException {
+		if (!doesExist(username)) {
+			Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
+					("\n" + username).getBytes(), StandardOpenOption.APPEND);
+
+			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
+			Profile profile = new Profile(userFile);
+			profile.updateFile();
+		}
 	}
 	
 	//create user individual file
@@ -54,4 +65,10 @@ public class UserData {
 	//update users individual file.
 	
 	//read users individual file
+	public static void deleteUser(String username) {
+		if (doesExist(username)) {
+			
+		}
+	}
+	
 }
