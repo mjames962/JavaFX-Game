@@ -41,9 +41,11 @@ public class UserData {
 		while (in.hasNextLine()) {
 			String fileUser = in.nextLine();
 			if (fileUser.equals(username)) {
+				in.close();
 				return true;
 			}
 		}
+		in.close();
 		return false;
 	}
 	
@@ -52,7 +54,7 @@ public class UserData {
 	public static void createUser(String username) throws IOException {
 		if (!doesExist(username)) {
 			Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
-					("\n" + username).getBytes(), StandardOpenOption.APPEND);
+					(username + "\n").getBytes(), StandardOpenOption.APPEND);
 
 			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
 			Profile profile = new Profile(userFile);
@@ -60,13 +62,32 @@ public class UserData {
 		}
 	}
 	
-	//create user individual file
-	
-	//update users individual file.
-	
-	//read users individual file
-	public static void deleteUser(String username) {
+	public static void deleteUser(String username) throws IOException {
 		if (doesExist(username)) {
+			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
+			userFile.delete();
+
+			File oldUsersFile = new File("src/a2/resources/User files/Users.txt");
+
+			File newUsersFile = new File("src/a2/resources/User files/newUsers.txt");
+			newUsersFile.createNewFile();
+
+			Scanner in = new Scanner(oldUsersFile);
+
+			while (in.hasNextLine()) {
+				String currentUser = in.nextLine();
+				if (!currentUser.equals(username)) {
+					Files.write(Paths.get("src/a2/resources/User files/newUsers.txt"), (currentUser + "\n").getBytes(),
+							StandardOpenOption.APPEND);
+				}
+				
+			}
+			
+			in.close();
+			
+			
+			Files.delete(Paths.get("src/a2/resources/User files/Users.txt"));
+			newUsersFile.renameTo(new File("src/a2/resources/User files/Users.txt"));
 			
 		}
 	}
