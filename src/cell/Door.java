@@ -24,12 +24,13 @@ public abstract class Door extends Replaceable {
 	}
 
 	public boolean isWalkable() {
-		return true;
+		return false;
 	}
 	
 	public void doAction(Player ply) {
 		if (meetsRequirement(ply)) {
-			this.turnToGround(ply.);
+			System.out.println("wwoooasdas");
+			this.turnToGround();
 		}
 	}
 	

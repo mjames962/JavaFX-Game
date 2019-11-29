@@ -213,11 +213,11 @@ public class Player extends Entity {
 	 * @param itemPos the position of the item being picked up           
 	 */
 
-	public void pickupItem(Item item, Vector2D itemPos) {
-		Cell cell = this.level.getCellAt(itemPos);
+	public void pickupItem(Item item) {
+	
 
 		inventory.add(item);
-		((Replaceable) cell).turnToGround(this.level);
+		
 	}
 
 	/**
@@ -231,6 +231,7 @@ public class Player extends Entity {
 	public boolean hasItem(Class<?> itemCheck) {
 		for (Item item : this.inventory) {
 			if (item.getClass() == itemCheck) {
+				System.out.println("returned true");
 				return true;
 			}
 		}

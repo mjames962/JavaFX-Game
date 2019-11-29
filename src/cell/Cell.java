@@ -33,7 +33,9 @@ public abstract class Cell implements Sprite {
 		return true;
 	}
 	
-	abstract public void doAction(Player ply);
+	public void doAction(Player ply) {
+		
+	}
 	
 	/**
 	 * Get the y coordinate of the cell.
