@@ -1,6 +1,9 @@
 package a2;
 
 import java.util.LinkedList;
+
+import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
+
 import cell.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -26,20 +29,18 @@ public class Player extends Entity {
 	private boolean alive;
 	private LinkedList<Item> inventory;
 	private int tokenCount;
-	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
+	private final String SPRITE 
+		= "a2/resources/stock photos/Straight_Line_Enemy.png";
 	
 
 	/**
 	 * Constructs the player object.
 	 * 
-	 * @param entityID
-	 *            = 0, defines the entity as a player type
-	 * @param alive
-	 *            Determines if the player can continue
-	 * @param inventory
-	 *            the collection of collectible(s) the player has
-	 * @param currentVector
-	 *            the current location of the player
+	 * @param entityID = 0, defines the entity as a player type
+	 * @param alive Determines if the player can continue       
+	 * @param inventory the collection of collectible(s) the player has
+	 * @param currentVector the current location of the player    
+	 * @param level stores the current level 
 	 */
 	public Player(Vector2D currentVector, int entityID, Level level) {
 		super(currentVector, entityID, level);
@@ -50,12 +51,7 @@ public class Player extends Entity {
 
 	/**
 	 * the method for enacting a movement specified by the player.
-	 * 
-	 * @param currentVector
-	 *            is the current position of the player
-	 * @param input
-	 *            is the intended movement direction of the player
-	 * @return returns an updated position for the player
+	 * @param input is the intended movement direction of the player           
 	 */
 
 	public void move(Direction input) {
@@ -79,7 +75,7 @@ public class Player extends Entity {
 				input = null;
 		}
 		
-		if(isValidMove(nextVector)) {
+		if (isValidMove(nextVector)) {
 			this.currentVector = nextVector;
 		}
 		
@@ -103,9 +99,7 @@ public class Player extends Entity {
 	}*/
 	/**
 	 * Determines whether the requested move is valid.
-	 * @param cellType the type of cell the player wants to move onto
 	 * @param cellPos the position of the cell on the map
-	 * @param level the level currently being completed
 	 * @return a boolean to show whether the cell can be moved onto
 	 */
 	public Boolean isValidMove(Vector2D cellPos) {
@@ -119,7 +113,11 @@ public class Player extends Entity {
 		return cell.isWalkable();
 	}
 	
-	
+	/**
+	 * Checks for Flippers/FireBoots on Water/Fire cells.
+	 * @param cell the cell being walked on
+	 * @return boolean for if the player has needed item
+	 */
 	public boolean crepCheck(Cell cell) {
 		
 		if (cell.cellName().equals("Fire")) {
@@ -143,25 +141,33 @@ public class Player extends Entity {
 
 		return true;
 	}
-	
+	/**
+	 * The function to open a door.
+	 * @param door the door being opened
+	 * @return boolean for if possible
+	 */
 	public boolean openDoor(Door door) {
 		String doorType = door.cellName();
 
 		switch (doorType) {
-		case "TokenDoor":
-			return this.openTokenDoor(door);
-		case "RedDoor":
-			return this.hasKey(door,'r');
-		case "BlueDoor":
-			return this.hasKey(door, 'b');
-		case "GreenDoor":
-			return this.hasKey(door,'g');
-		default:
+			case "TokenDoor":
+				return this.openTokenDoor(door);
+			case "RedDoor":
+				return this.hasKey(door, 'r');
+			case "BlueDoor":
+				return this.hasKey(door, 'b');
+			case "GreenDoor":
+				return this.hasKey(door, 'g');
+			default:
 		}
 		
 		return false;
 	}
-	
+	/**
+	 * Checks token door vs number of held tokens.
+	 * @param door the door being checked for.
+	 * @return boolean for if the door can be opened
+	 */
 	public boolean openTokenDoor(Door door) {
 		int requiredTokens = ((TokenDoor) door).getRequiredTokens();
 		
@@ -172,22 +178,27 @@ public class Player extends Entity {
 		}
 		return false;
 	}
-
+	/**
+	 * Checking for keys before opening doors.
+	 * @param door the door being checked
+	 * @param keyType the required item to open the door
+	 * @return returns boolean for if door can be opened
+	 */
 	public boolean hasKey(Door door, char keyType) {
 		int keyID;
 
 		switch (keyType) {
-		case 'r':
-			keyID = new RedKey().getItemID();
-			break;
-		case 'g':
-			keyID = new GreenKey().getItemID();
-			break;
-		case 'b':
-			keyID = new BlueKey().getItemID();
-			break;
-		default:
-			keyID = -1;
+			case 'r':
+				keyID = new RedKey().getItemID();
+				break;
+			case 'g':
+				keyID = new GreenKey().getItemID();
+				break;
+			case 'b':
+				keyID = new BlueKey().getItemID();
+				break;
+			default:
+				keyID = -1;
 		}
 
 		for (int i = 0; i < this.inventory.size(); i++) {
@@ -217,23 +228,15 @@ public class Player extends Entity {
 
 	/**
 	 * Puts an item into the player's inventory.
-	 * @param level the current level being completed
 	 * @param item the thing being picked up
-	 * @param itemPos the position of the item being picked up           
 	 */
-
 	public void pickupItem(Item item) {
-	
-
-		inventory.add(item);
-		
+		inventory.add(item);	
 	}
 
 	/**
 	 * Ensures the player has the correct collectible.
-	 * 
-	 * @param item
-	 *            the collectible being picked up
+	 * @param itemCheck the collectible being picked up
 	 * @return true If the item is in the inventory or false if the item isn't
 	 *         present
 	 */
@@ -265,13 +268,28 @@ public class Player extends Entity {
 	public int getTokens() {
 		return tokenCount;
 	}
-	
+	/**
+	 * The inventory for the player.
+	 * @return 's the inventory
+	 */
 	public LinkedList<Item> getInventory() {
 		return this.inventory;
 	}
 	
+	/**
+	 * Returns the sprite for the player.
+	 * @return gives the player sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
-
+	
+	/**
+	 * Returns the players position as a Vector2D.
+	 * @return players position
+	 */
+	public Vector2D getPlayerVector() {
+		return currentVector;
+		
+	}
 }
