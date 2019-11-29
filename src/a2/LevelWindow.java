@@ -12,11 +12,11 @@ import javafx.stage.Stage;
 
 public class LevelWindow {
 
-	public static final int LEVEL_WIDTH = 300;
-	public static final int LEVEL_LENGTH = 300;
+	public static final int LEVEL_WIDTH = 350;
+	public static final int LEVEL_LENGTH = 350;
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
-	public static final int MAX_DRAW = 4;
+	public static final int MAX_DRAW = 5;
 	
 	private Stage levelStage;
 	private Group root;

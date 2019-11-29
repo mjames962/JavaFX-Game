@@ -13,7 +13,7 @@ import a2.Vector2D;
  *
  */
 
-public class Goal extends Specialised {
+public class Goal extends Cell {
 	protected static final String SPRITE = "a2/resources/stock photos/Goal_Cell.png";
 	
 	/**
@@ -37,14 +37,18 @@ public class Goal extends Specialised {
 	 */
 	
 	public void doAction(Player ply, Profile user, Level lv) {
-		Level.readFile("level2.txt");
+		lv.readFile("src/a2/resources/file formats/testFileFormat2.txt");
 		long finishTime = Timer.checkTimeElapsed();
 		if (user.isBestTime(lv.getLevelNo(), finishTime)) {
 			user.setBestTime(lv.getLevelNo(), finishTime);
 		}
 		
-		//Level call for method to create a new level.
+		
 		Timer.stop();
+	}
+	@Override
+	public void doAction(Player ply) {
+		Level.getCurrentLevel().loadNextLevel();
 	}
 	
 	public String cellName() {

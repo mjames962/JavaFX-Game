@@ -1,14 +1,16 @@
 package cell;
 
 import a2.Player;
+import a2.Player.Direction;
 import a2.Vector2D;
+
 
 /**
  * A cell that teleports the player from one teleporter to another.
  * @author george and Tom Wood
  *
  */
-public class Teleporter extends Specialised {
+public class Teleporter extends Cell {
 	protected static final String SPRITE = "a2/resources/stock photos/Teleporter_Cell.png";
 	
 	private Vector2D linkedTP;
@@ -39,9 +41,11 @@ public class Teleporter extends Specialised {
 	 * @param direction represents the direction the player is moving in.
 	 * @param player represents the player that will be moved to the new space
 	 */
-	
-	public void doActionTP(Player.Direction direction, Player player) {
+	@Override
+	public void doAction(Player player) {
+		System.out.println(linkedTP);
 		Vector2D pos = player.getVector();
+		Direction direction = player.getCurrentDirection();
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());
 	    switch (direction) {	    

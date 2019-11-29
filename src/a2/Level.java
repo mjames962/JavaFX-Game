@@ -16,16 +16,23 @@ import cell.*;
 public class Level {
 
 	private Cell[][] level;
+	private String fileName;
 	private ArrayList<Entity> entityList = new ArrayList<>();
 	private int xLength;
 	private int yLength;
 	private static Level currentLevel = null;
+	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 	private int levelNo;
 
 	public static Level getCurrentLevel() {
 		return currentLevel;
 	}
+	
+	public static void restartLevel() {
+		currentLevel = new Level(currentLevel.fileName);
+	}
+	
 	
 	/**
 	 * .
@@ -34,8 +41,11 @@ public class Level {
 	 *            name of the file
 	 */
 	public Level(String fileName) {
+		
 		this.readFile(fileName);
 		currentLevel = this;
+		this.fileName = fileName;
+		new LevelWindow(this);
 	}
 
 	/**
@@ -46,6 +56,8 @@ public class Level {
 	public ArrayList<Entity> getEntityList() {
 		return entityList;
 	}
+	
+	
 
 	/**
 	 * .
@@ -140,6 +152,41 @@ public class Level {
 		
 		return null;
 	}
+	
+	public int getLevelNumber() {
+		String filename = fileName;
+		String numStr = filename.replaceFirst("[^\\/]*[\\/]", "");
+		return Integer.parseInt(numStr);
+	}
+	
+	public String getLevelIdentifier() {
+		String filename = fileName;
+		return filename.replaceFirst("[0-9].txt", "");
+	}
+	
+	public String getNextLevelFileName() {
+		int nextLevelNo = getLevelNumber() + 1;
+		return String.format("%s%d", getLevelIdentifier(),nextLevelNo);
+	}
+	
+	public String getNextLevelIfExists() {
+		String filename = getNextLevelFileName();
+		File nextLevelFile = new File(filename);
+		if (nextLevelFile.exists()) {
+			return filename;
+		} else {
+			return null;
+		}
+	}
+	
+	public void loadNextLevel() {
+		String nextLevelFileName = getNextLevelIfExists();
+		if (nextLevelFileName != null) {
+			currentLevel = new Level(nextLevelFileName);
+		} else {
+			System.out.println("congrats");
+		}
+	}
 
 	/**
 	 * reads the file for level data.
@@ -151,6 +198,7 @@ public class Level {
 	public void readFile(String fileName) {
 		File inputFile = new File(fileName);
 		System.out.println(inputFile.exists());
+		
 		Scanner in = null;
 		try {
 			in = new Scanner(inputFile);
@@ -161,6 +209,8 @@ public class Level {
 
 		this.readFile(in);
 	}
+	
+	
 
 	/**
 	 * reads files.

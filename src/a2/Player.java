@@ -27,6 +27,7 @@ public class Player extends Entity {
 	private LinkedList<Item> inventory;
 	private int tokenCount;
 	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
+	private Direction curDirection;
 	
 
 	/**
@@ -42,12 +43,23 @@ public class Player extends Entity {
 	 *            the current location of the player
 	 */
 	public Player(Vector2D currentVector, int entityID, Level level) {
+		
 		super(currentVector, entityID, level);
+		System.out.println("CURRENTVECTOR2" + currentVector + this.currentVector);
 		this.alive = true;
 		this.inventory = new LinkedList<Item>();
 		this.tokenCount = 0;
+		
 	}
 
+	public void useTeleporter(Teleporter tele) {
+		
+	}
+	
+	public Direction getCurrentDirection() {
+		return curDirection;
+	}
+	
 	/**
 	 * the method for enacting a movement specified by the player.
 	 * 
@@ -57,32 +69,35 @@ public class Player extends Entity {
 	 *            is the intended movement direction of the player
 	 * @return returns an updated position for the player
 	 */
-
-	public void move(Direction input) {
-		int cX = this.currentVector.getX();
-		int cY = this.currentVector.getY();
-		Vector2D nextVector = null;
-		switch (input) {
+	
+	public void move(Direction dir) {
+		int cX = currentVector.getX();
+		int cY = currentVector.getY();
+		
+		switch (dir) {
 			case UP:
-				nextVector = new Vector2D(cX, ++cY);
+				currentVector.set(cX, ++cY);
 				break;
 			case DOWN:
-				nextVector = new Vector2D(cX, --cY);
+				currentVector.set(cX, --cY);
 				break;
 			case LEFT:
-				nextVector = new Vector2D(--cX, cY);
+				currentVector.set(--cX, cY);
 				break;
 			case RIGHT:
-				nextVector = new Vector2D(++cX, cY);
+				currentVector.set(++cX, cY);
 				break;
-			default:
-				input = null;
 		}
-		
-		if(isValidMove(nextVector)) {
-			this.currentVector = nextVector;
+	}
+
+	
+	public void handleInput(Direction input) {
+		curDirection = input;
+		System.out.println("CURRENT VECTOR" + currentVector);
+		doMoveAction(currentVector);
+		if(isValidMove(currentVector)) {
+			move(input);
 		}
-		
 	}
 
 	/**
@@ -109,14 +124,22 @@ public class Player extends Entity {
 	 * @return a boolean to show whether the cell can be moved onto
 	 */
 	public Boolean isValidMove(Vector2D cellPos) {
-
 		Cell cell = this.level.getCellAt(cellPos);
-		cell.doAction(this);
+		
+		
 		if (!crepCheck(cell)) { //TODO improve, instanceof
 			
 			playerDeath();
 		}
 		return cell.isWalkable();
+	}
+	
+	public void doMoveAction(Vector2D cellPos) {
+		Cell cell = this.level.getCellAt(cellPos);
+		cell.doAction(this);
+		if (cell instanceof Teleporter ) {
+			System.out.println("stuff");
+		}
 	}
 	
 	
@@ -213,6 +236,7 @@ public class Player extends Entity {
 		alert.setHeaderText("You died.");
 		alert.setContentText(null);
 		alert.showAndWait();
+		Level.restartLevel();
 	}
 
 	/**

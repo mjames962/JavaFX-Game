@@ -58,15 +58,15 @@ public class LevelSelectController implements Initializable {
 		if (currentLevel.equals("Level 1")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat1.txt");
-			new LevelWindow(level);
+			//new LevelWindow(level);
 		} else if (currentLevel.equals("Level 2")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat2.txt");
-			new LevelWindow(level);
+			//new LevelWindow(level);
 		} else if (currentLevel.equals("Level 3")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat3.txt");
-			new LevelWindow(level);
+			//new LevelWindow(level);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");
