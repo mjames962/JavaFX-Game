@@ -9,6 +9,7 @@ import cell.Cell;
 import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -41,15 +42,18 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private AnchorPane levelBottom;
 	
+	@FXML
+	private AnchorPane levelScene;
+	
 	public void initialise() {
 		
 	}
 	
 	@FXML
-	private void handleLoadLevelBtn(ActionEvent event) {
+	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
 
 		String currentLevel = cmb_LevelSelect.getValue();
-		Level level = null;
+		Level level;
 		
 		if (currentLevel == null) {
 			currentLevel = "";
@@ -58,15 +62,21 @@ public class LevelSelectController implements Initializable {
 		if (currentLevel.equals("Level 1")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat1.txt");
-			//new LevelWindow(level);
+			AnchorPane window = FXMLLoader.load(getClass().
+					getResource("resources/fxml docs/GameWindow.fxml"));  
+			levelScene.getChildren().setAll(window);
 		} else if (currentLevel.equals("Level 2")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat2.txt");
-			//new LevelWindow(level);
+			AnchorPane window = FXMLLoader.load(getClass().
+					getResource("resources/fxml docs/GameWindow.fxml"));  
+			levelScene.getChildren().setAll(window);
 		} else if (currentLevel.equals("Level 3")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat3.txt");
-			//new LevelWindow(level);
+			AnchorPane window = FXMLLoader.load(getClass().
+					getResource("resources/fxml docs/GameWindow.fxml"));  
+			levelScene.getChildren().setAll(window);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");

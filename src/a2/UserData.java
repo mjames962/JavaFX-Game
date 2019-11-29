@@ -3,6 +3,9 @@ package a2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
 
@@ -38,20 +41,55 @@ public class UserData {
 		while (in.hasNextLine()) {
 			String fileUser = in.nextLine();
 			if (fileUser.equals(username)) {
+				in.close();
 				return true;
 			}
 		}
+		in.close();
 		return false;
 	}
 	
 	
-	//user file writer
-	public void createUser(String username) {
+	// user file writer
+	public static void createUser(String username) throws IOException {
+		if (!doesExist(username)) {
+			Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
+					(username + "\n").getBytes(), StandardOpenOption.APPEND);
+
+			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
+			Profile profile = new Profile(userFile);
+			profile.updateFile();
+		}
 	}
 	
-	//create user individual file
+	public static void deleteUser(String username) throws IOException {
+		if (doesExist(username)) {
+			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
+			userFile.delete();
+
+			File oldUsersFile = new File("src/a2/resources/User files/Users.txt");
+
+			File newUsersFile = new File("src/a2/resources/User files/newUsers.txt");
+			newUsersFile.createNewFile();
+
+			Scanner in = new Scanner(oldUsersFile);
+
+			while (in.hasNextLine()) {
+				String currentUser = in.nextLine();
+				if (!currentUser.equals(username)) {
+					Files.write(Paths.get("src/a2/resources/User files/newUsers.txt"), (currentUser + "\n").getBytes(),
+							StandardOpenOption.APPEND);
+				}
+				
+			}
+			
+			in.close();
+			
+			
+			Files.delete(Paths.get("src/a2/resources/User files/Users.txt"));
+			newUsersFile.renameTo(new File("src/a2/resources/User files/Users.txt"));
+			
+		}
+	}
 	
-	//update users individual file.
-	
-	//read users individual file
 }

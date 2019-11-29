@@ -22,9 +22,6 @@
           </BorderPane.margin>
         </AnchorPane>
       </bottom>
-      <center>
-        <Pane fx:id="canvasPane" prefHeight="-1.0" prefWidth="-1.0" />
-      </center>
       <left>
         <AnchorPane prefHeight="115.0" prefWidth="150.0">
           <children>

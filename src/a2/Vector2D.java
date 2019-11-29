@@ -2,7 +2,7 @@ package a2;
 
 /**
  * A class that represents a coordinate in 2d.
- * @author george
+ * @author George
  *
  */
 public class Vector2D {
@@ -19,13 +19,18 @@ public class Vector2D {
 		this.x = x;
 		this.y = y;
 	}
-	
+	/**
+	 * Empty Constructor.
+	 */
 	public Vector2D() {
 		
 	}
-	
+	/**
+	 * returns a string for referencing purposes.
+	 * @return 's a string for the reference
+	 */
 	public String toString() {
-		return String.format("%d, %d", this.x,this.y);
+		return String.format("%d, %d", this.x, this.y);
 	}
 	
 	/**
@@ -67,14 +72,22 @@ public class Vector2D {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
+	/**
+	 * Subtraction for computation of vectors.
+	 * @param otherVec the vector being subtracted
+	 * @return gives the resultant Vector2D
+	 */
 	public Vector2D takeAway(Vector2D otherVec) {
 		Vector2D result = new Vector2D();
 		result.setX(this.x - otherVec.getX());
 		result.setY(this.y - otherVec.getY());
 		return result;
 	}
-	
+	/**
+	 * Addition for computation of vectors.
+	 * @param otherVec the vector being added
+	 * @return gives the resultant Vector2D
+	 */
 	public Vector2D add(Vector2D otherVec) {
 		Vector2D result = new Vector2D();
 		result.setX(this.x + otherVec.getX());
@@ -91,7 +104,11 @@ public class Vector2D {
 		this.x = x;
 		this.y = y;
 	}
-	
+	/**
+	 * Compares two vectors.
+	 * @param otherVec the vector being compared to
+	 * @return gives the resultant Vector2D
+	 */
 	public boolean equals(Vector2D otherVec) {
 		boolean xEqual = this.x == otherVec.x;
 		boolean yEqual = this.y == otherVec.y;

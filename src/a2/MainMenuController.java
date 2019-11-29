@@ -22,6 +22,8 @@ public class MainMenuController {
 	private Button btn_LogIn;
 	@FXML 
 	private Button btn_Create;
+	@FXML
+	private Button btn_Delete;
 	@FXML 
 	private TextField tbox_Username;
 	@FXML 
@@ -53,10 +55,13 @@ public class MainMenuController {
 			alert.setContentText(null);
 
 			alert.showAndWait();
-		}	
+		}
 	}
 	
-	//TODO add delete user.
+	@FXML
+	private void handleDeleteBtn(ActionEvent event) {
+		initialiseWindow("resources/fxml docs/DeleteUser.fxml");
+	}
 	
 	/**
 	 * .

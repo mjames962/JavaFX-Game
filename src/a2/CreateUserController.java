@@ -28,7 +28,7 @@ public class CreateUserController {
 	private AnchorPane createScene;
 	@FXML
 	private AnchorPane window;
-
+	
 	/**
 	 * Handles click event for create button.
 	 * @param event Checks for an event occurring.
@@ -51,8 +51,7 @@ public class CreateUserController {
 			
 			
 			try {
-				Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
-						("\n" + newUser).getBytes(), StandardOpenOption.APPEND);
+				UserData.createUser(newUser);
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -67,11 +66,7 @@ public class CreateUserController {
 			AnchorPane window = FXMLLoader.load(getClass().
 					getResource("resources/fxml docs/MainMenu.fxml"));  
 			createScene.getChildren().setAll(window);
-			
-			File userFile = new File("src/a2/resources/User files/" 
-						+ newUser + ".txt");
-			Profile profile = new Profile(userFile);
-			profile.updateFile();
+
 			
 		}	
 	}

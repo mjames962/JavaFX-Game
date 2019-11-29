@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.gameWindowController">
+  <children>
+    <BorderPane fx:id="gameBorderPane" layoutX="14.0" layoutY="14.0" prefHeight="556.0" prefWidth="572.0">
+      <top>
+        <Pane fx:id="topPane" prefHeight="80.0" prefWidth="572.0">
+          <children>
+            <Label fx:id="lbl_GameName" layoutX="209.0" layoutY="20.0" text="Placeholder">
+              <font>
+                <Font size="30.0" />
+              </font>
+            </Label>
+          </children>
+        </Pane>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
