@@ -26,6 +26,8 @@ public class Player extends Entity {
 	private boolean alive;
 	private LinkedList<Item> inventory;
 	private int tokenCount;
+	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
+	
 
 	/**
 	 * Constructs the player object.
@@ -109,62 +111,26 @@ public class Player extends Entity {
 	public Boolean isValidMove(Vector2D cellPos) {
 
 		Cell cell = this.level.getCellAt(cellPos);
-		
-		String cellType = cell.cellName();
-		
-		switch (cellType) {
-			case "Ground":
-				return true;
-			case "Wall":
-				return false;
-			case "TokenDoor":
-				return this.openDoor((Door) cell);
-			case "TokenCell":
-				this.tokenCount++;
-				((Replaceable) cell).turnToGround(this.level);
-				return true;
-			case "RedDoor":
-				return this.openDoor((Door) cell);
-			case "RedDoorKey":
-				this.pickupItem(new RedKey(), cellPos);
-				return true;
-			case "GreenDoor":
-				return this.openDoor((Door) cell);
-			case "GreenDoorKey":
-				this.pickupItem(new GreenKey(), cellPos);
-				return true;
-			case "BlueDoor":
-				return this.openDoor((Door) cell);
-			case "BlueDoorKey":
-				this.pickupItem(new BlueKey(), cellPos);
-				return true;
-			case "Fire":
-				return this.crepCheck(cell);
-				
-			case "Water":
-				return this.crepCheck(cell);
-			case "FireBootsCell":
-				System.out.println("jadasd");
-				this.pickupItem(new FireBoots(), cellPos);
-				return true;
-			case "FlippersCell":
-				this.pickupItem(new Flippers(), cellPos);
-				return true;
-			case "Goal":
-				return true;
-			default:
-				return false;
+		cell.doAction(this);
+		if (!crepCheck(cell)) { //TODO improve, instanceof
+			
+			playerDeath();
 		}
+		return cell.isWalkable();
 	}
 	
+	
 	public boolean crepCheck(Cell cell) {
+		
 		if (cell.cellName().equals("Fire")) {
 			for (Item item : this.inventory) {
+				System.out.println("item" + item.getItemID());
 				if (item.getItemID() == 4) { // if player has at least one pair
 												// of fireboots
 					return true;
 				}
 			}
+			return false;
 		} else if (cell.cellName().equals("Water")) {
 			for (Item item : this.inventory) {
 				if (item.getItemID() == 5) { // if player has at least one pair
@@ -172,9 +138,10 @@ public class Player extends Entity {
 					return true;
 				}
 			}
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 	
 	public boolean openDoor(Door door) {
@@ -255,11 +222,11 @@ public class Player extends Entity {
 	 * @param itemPos the position of the item being picked up           
 	 */
 
-	public void pickupItem(Item item, Vector2D itemPos) {
-		Cell cell = this.level.getCellAt(itemPos);
+	public void pickupItem(Item item) {
+	
 
 		inventory.add(item);
-		((Replaceable) cell).turnToGround(this.level);
+		
 	}
 
 	/**
@@ -270,8 +237,14 @@ public class Player extends Entity {
 	 * @return true If the item is in the inventory or false if the item isn't
 	 *         present
 	 */
-	public boolean hasItem(Item item) {
-		return this.inventory.contains(item);
+	public boolean hasItem(Class<?> itemCheck) {
+		for (Item item : this.inventory) {
+			if (item.getClass() == itemCheck) {
+				System.out.println("returned true");
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -295,6 +268,10 @@ public class Player extends Entity {
 	
 	public LinkedList<Item> getInventory() {
 		return this.inventory;
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 
 }

@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Item;
 import a2.FireBoots;
 import a2.Player;
 import a2.Vector2D;
@@ -13,7 +14,7 @@ import a2.Player.Item;
  */
 
 public class FireBootsCell extends Collectible {
-	protected static final String SPRITE = "a2/resources/stock photos/fireboots.png";
+	private static final String SPRITE = "a2/resources/stock photos/fireboots.png";
 	
 	/**
 	 * Send the position to the cell superclass.
@@ -26,6 +27,10 @@ public class FireBootsCell extends Collectible {
 	
 	public Item createItem() {
 		return new FireBoots();
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 	
 	public String cellName() {

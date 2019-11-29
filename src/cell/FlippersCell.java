@@ -32,4 +32,8 @@ public class FlippersCell extends Collectible {
 	public String cellName() {
 		return "FlippersCell";
 	}
+	
+	public String getSprite() {
+		return SPRITE;
+	}
 }

@@ -36,4 +36,5 @@ public abstract class PlayerTarget extends Entity {
 		return playerVector;
 	}
 	
+	
 }

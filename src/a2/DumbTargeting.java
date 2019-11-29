@@ -7,6 +7,8 @@ package a2;
  * */
 public class DumbTargeting extends Entity {
 	
+	private static final String SPRITE = "a2/resources/stock photos/Dumb_Target_Enemy.png";
+	
 	/**
 	 * Constructs the WallFollowing class.
 	 * @param currentVector the position of the enemy
@@ -57,4 +59,10 @@ public class DumbTargeting extends Entity {
 		return nextVector;                       //returns vector of chosen move
 	
 	}
+	
+	public String getSprite() {
+		return SPRITE;
+	}
+	
+	
 }
