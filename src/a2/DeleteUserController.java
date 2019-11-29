@@ -4,8 +4,10 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
 public class DeleteUserController {
@@ -21,14 +23,24 @@ public class DeleteUserController {
 	/**
 	 * Deletes the selected user.
 	 * @param event button press
+	 * @throws IOException 
 	 */
 	@FXML
-	private void HandleDelete(ActionEvent event) {
+	private void handleDelete(ActionEvent event) throws IOException {
 		String name = txt_User.getText();
 		if (UserData.doesExist(name)) {
-			System.out.print("True");
+			UserData.deleteUser(name);
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText("User Deleted");
+			alert.setContentText(null);
+			alert.showAndWait();
 		} else {
-			System.out.print("False");
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("User Not Found");
+			alert.setContentText(null);
+			alert.showAndWait();
 		}
 	}
 	/**
