@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="DeleteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="247.0" prefWidth="323.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.DeleteUserController">
+  <children>
+    <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="247.0" prefWidth="323.0">
+      <bottom>
+        <Button fx:id="btn_Delete" mnemonicParsing="false" onAction="#HandleDelete" text="Delete User" BorderPane.alignment="BASELINE_CENTER" />
+      </bottom>
+      <center>
+        <TextField fx:id="txt_User" maxWidth="200.0" prefWidth="200.0" promptText="Name" text="" BorderPane.alignment="CENTER" />
+      </center>
+      <top>
+        <Label alignment="CENTER" contentDisplay="CENTER" text="Placeholder" BorderPane.alignment="CENTER">
+          <font>
+            <Font size="30.0" />
+          </font>
+        </Label>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>

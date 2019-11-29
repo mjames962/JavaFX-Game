@@ -28,7 +28,7 @@ public class CreateUserController {
 	private AnchorPane createScene;
 	@FXML
 	private AnchorPane window;
-
+	
 	/**
 	 * Handles click event for create button.
 	 * @param event Checks for an event occurring.
