@@ -1,6 +1,7 @@
 package cell;
 
 import a2.Item;
+import a2.Player;
 import a2.Vector2D;
 
 /**
@@ -16,6 +17,11 @@ public abstract class Collectible extends Replaceable {
 	 */
 	public Collectible(Vector2D pos) {
 		super(pos);
+	}
+	@Override
+	public void doAction(Player p) {
+		p.pickupItem(createItem());
+		turnToGround();
 	}
 	
 	public abstract Item createItem();

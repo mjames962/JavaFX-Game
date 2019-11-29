@@ -46,8 +46,8 @@ public class LevelWindow {
         int playerY = level.getPlayer().getVector().getY();
 		for (int x = playerX - MIN_DRAW; x < playerX + MAX_DRAW; x++) {
         	for (int y = playerY - MIN_DRAW; y < playerY + MAX_DRAW; y++) {
-        		int drawX = playerX - x + MIN_DRAW;
-        		int drawY = y - playerY + MIN_DRAW;
+        		int drawX = x - playerX + MIN_DRAW;
+        		int drawY = playerY - y + MIN_DRAW;
         		boolean xValid = !(x < 0 || x > level.levelXLength() - 1);
         		boolean yValid = !(y < 0 || y > level.levelYLength() - 1);
         		

@@ -56,6 +56,9 @@ public class TokenDoor extends Door {
 		return "TokenDoor";
 	}
 	
+	public String getSprite() {
+		return SPRITE;
+	}
 	
 	
 	

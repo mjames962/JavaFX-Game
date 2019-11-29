@@ -10,6 +10,7 @@ public class StraightLine extends Entity {
 	private Vector2D currentVector;
 	private boolean increaseDirection = true;
 	private String direction;
+	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
 	
 	/**
 	 * Constructs the StraightLine class.
@@ -20,6 +21,10 @@ public class StraightLine extends Entity {
 	 */
 	public StraightLine(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector, enemyID, level);
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 	
 	/**

@@ -27,5 +27,9 @@ public class GreenDoor extends Door {
 	public String cellName() {
 		return "GreenDoor";
 	}
+	
+	public String getSprite() {
+		return SPRITE;
+	}
 
 }

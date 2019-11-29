@@ -7,6 +7,8 @@ package a2;
  * @version 1.0
  */
 public class SmartTargetEnemy extends Entity {
+	
+	private static final String SPRITE = "a2/resources/stock photos/Smart_Target_Enemy.png";
 
 //	private Vector2D currentVector = null;
 // 	 * @param curShortestPath holds a queue of vectors for next moves	
@@ -17,6 +19,10 @@ public class SmartTargetEnemy extends Entity {
 	 */
 	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector, enemyID, level);
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 	
 //	private Queue<Vector2D> curShortestPath = new LinkedList<>();

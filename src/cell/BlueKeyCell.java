@@ -1,6 +1,7 @@
 package cell;
 
 import a2.BlueKey;
+import a2.Item;
 import a2.Vector2D;
 /**
  * ground cell with a collectible blue key on it.
@@ -29,6 +30,10 @@ public class BlueKeyCell extends Collectible {
 	
 	public String cellName() {
 		return "BlueKeyCell";
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 
 }
