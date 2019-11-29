@@ -56,6 +56,8 @@ public class MainMenuController {
 		}	
 	}
 	
+	//TODO add delete user.
+	
 	/**
 	 * .
 	 * Creates new window of format file
