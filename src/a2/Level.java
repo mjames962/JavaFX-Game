@@ -200,7 +200,7 @@ public class Level {
 
 		// token doors
 		while (!line.equals("*")) {
-			// readTokenDoor(line);
+			readTokenDoor(line);
 			line = in.nextLine();
 		}
 		line = in.nextLine();
@@ -265,7 +265,7 @@ public class Level {
 			entity = new DumbTargeting(vector, entityID, this);
 			break;
 		case 4:
-			// entity = new SmartTargeting();
+			entity = new SmartTargetEnemy(vector, entityID, this);
 			break;
 		default:
 			entity = null;
