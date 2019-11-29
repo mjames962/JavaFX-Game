@@ -9,11 +9,11 @@ import javafx.scene.input.KeyEvent;
 public class KeyboardHandler implements EventHandler {
 
 	private Level level;
-	private LevelWindow lw;
+	private gameWindowController lw;
 	
-	public KeyboardHandler(LevelWindow lw,Level lvl) {
+	public KeyboardHandler(gameWindowController gameWindowController,Level lvl) {
 		this.level = lvl;
-		this.lw = lw;
+		this.lw = gameWindowController;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -26,6 +26,7 @@ public class KeyboardHandler implements EventHandler {
 	}
 	
 	public void handle(Event e) {
+		System.out.println("keeeyd pressed");
 		KeyEvent ke = (KeyEvent) e;
 		
 		switch (ke.getCode()) {

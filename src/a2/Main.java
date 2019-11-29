@@ -30,7 +30,11 @@ public class Main extends Application {
 	private static final int MAIN_WINDOW_HEIGHT = 400;
 	private static final String WINDOW_TITLE = "Placeholder";
 
+	private static Stage curStage;
 	
+	public static Stage getCurrentStage() {
+		return curStage;
+	}
 	
 	/**
 	 * Loads the main window of the game.
@@ -44,6 +48,7 @@ public class Main extends Application {
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
 			// Place the main scene on stage and show it.
+			curStage = primaryStage;
 			primaryStage.setScene(scene);
 			primaryStage.setTitle(WINDOW_TITLE);
 			primaryStage.show();

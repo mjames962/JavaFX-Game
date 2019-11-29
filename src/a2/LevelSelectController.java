@@ -53,7 +53,7 @@ public class LevelSelectController implements Initializable {
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
 
 		String currentLevel = cmb_LevelSelect.getValue();
-		Level level = null;
+		Level level;
 		
 		if (currentLevel == null) {
 			currentLevel = "";
