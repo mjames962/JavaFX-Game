@@ -23,6 +23,8 @@ public class Fire extends Cell {
 		
 	}
 	
+	
+	
 	public String cellName() {
 		return "Fire";
 	}

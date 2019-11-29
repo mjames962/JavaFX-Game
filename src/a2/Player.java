@@ -112,17 +112,25 @@ public class Player extends Entity {
 
 		Cell cell = this.level.getCellAt(cellPos);
 		cell.doAction(this);
+		if (!crepCheck(cell)) { //TODO improve, instanceof
+			
+			playerDeath();
+		}
 		return cell.isWalkable();
 	}
 	
+	
 	public boolean crepCheck(Cell cell) {
+		
 		if (cell.cellName().equals("Fire")) {
 			for (Item item : this.inventory) {
+				System.out.println("item" + item.getItemID());
 				if (item.getItemID() == 4) { // if player has at least one pair
 												// of fireboots
 					return true;
 				}
 			}
+			return false;
 		} else if (cell.cellName().equals("Water")) {
 			for (Item item : this.inventory) {
 				if (item.getItemID() == 5) { // if player has at least one pair
@@ -130,9 +138,10 @@ public class Player extends Entity {
 					return true;
 				}
 			}
+			return false;
 		}
 
-		return false;
+		return true;
 	}
 	
 	public boolean openDoor(Door door) {
