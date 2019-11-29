@@ -8,7 +8,8 @@ package a2;
  */
 public class SmartTargetEnemy extends Entity {
 	
-	private static final String SPRITE = "a2/resources/stock photos/Smart_Target_Enemy.png";
+	private static final String SPRITE 
+		= "a2/resources/stock photos/Smart_Target_Enemy.png";
 
 //	private Vector2D currentVector = null;
 // 	 * @param curShortestPath holds a queue of vectors for next moves	
@@ -16,11 +17,15 @@ public class SmartTargetEnemy extends Entity {
 	 * Required parameters for a Smart Targeting Enemy.
 	 * @param currentVector holds a Vector2D for current position
 	 * @param enemyID holds the id for the enemy on the level
+	 * @param level holds the current level
 	 */
 	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector, enemyID, level);
 	}
-	
+	/**
+	 * returns the sprite for the entity.
+	 * @return gives the sprite for the entity
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
@@ -37,9 +42,6 @@ public class SmartTargetEnemy extends Entity {
 	
 	
 	
-	
-//	private void loadSprite() {
-		
-//	}
+
 
 }
