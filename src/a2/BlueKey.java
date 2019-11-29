@@ -4,6 +4,8 @@ package a2;
  * @author George, Tom
  */
 public class BlueKey extends Key {
+	
+	private static final String SPRITE = "a2/resources/stock photos/BlueKeySprite.png";
 	/**
 	 * An item of type blue key.
 	 */
@@ -13,6 +15,10 @@ public class BlueKey extends Key {
 	
 	public int getItemID() {
 		return 3;
+	}
+	
+	public String getSprite() {
+		return SPRITE;
 	}
 
 }

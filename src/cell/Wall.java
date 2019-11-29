@@ -25,6 +25,11 @@ public class Wall extends Cell {
 		
 	}
 	
+	@Override
+	public boolean isWalkable() {
+		return false;
+	}
+	
 	public String cellName() {
 		return "Wall";
 	}

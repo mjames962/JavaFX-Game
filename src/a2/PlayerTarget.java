@@ -7,33 +7,26 @@ package a2;
  */
 
 public abstract class PlayerTarget extends Entity {
-	
-/*
- * @param playerX holds the player's current Horizontal position
- * @param playerY holds the player's current Vertical position	
- */
-	
-	public PlayerTarget(Vector2D vector, int entityID) {
-		super(vector, entityID);
-	}
-
-	private Object playerVector;
-	
 	/**
-	 * See below method tag.
-	 * @method getPlayerVector aquires the players current location
+	 * Shared data constructor for the enemy types that need player location.
+	 * @param currentVector the current location of the entity
+	 * @param entityID holds what type of entity is it
+	 * @param level stores the current level
 	 */
-	public void gerPlayerVector() {
-		this.playerVector = playerVector;
+	public PlayerTarget(Vector2D currentVector, int entityID, Level level) {
+		super(currentVector, entityID, level);
 	}
+	
 	
 	/**
 	 * Getter for seeing the player's location.
 	 * @method returns the current location of the player as requested
 	 * @return returns a type Vector2D
 	 */
-	public Object getPlayerVector() {
+	public Vector2D getPlayerVector() {
+		Vector2D playerVector = Player.getVector(this.Player);
 		return playerVector;
 	}
+	
 	
 }

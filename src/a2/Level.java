@@ -19,9 +19,14 @@ public class Level {
 	private ArrayList<Entity> entityList = new ArrayList<>();
 	private int xLength;
 	private int yLength;
+	private static Level currentLevel = null;
 
 	private int levelNo;
 
+	public static Level getCurrentLevel() {
+		return currentLevel;
+	}
+	
 	/**
 	 * .
 	 * 
@@ -30,6 +35,7 @@ public class Level {
 	 */
 	public Level(String fileName) {
 		this.readFile(fileName);
+		currentLevel = this;
 	}
 
 	/**
@@ -200,7 +206,7 @@ public class Level {
 
 		// token doors
 		while (!line.equals("*")) {
-			// readTokenDoor(line);
+			readTokenDoor(line);
 			line = in.nextLine();
 		}
 		line = in.nextLine();
@@ -265,7 +271,7 @@ public class Level {
 			entity = new DumbTargeting(vector, entityID, this);
 			break;
 		case 4:
-			// entity = new SmartTargeting();
+			entity = new SmartTargetEnemy(vector, entityID, this);
 			break;
 		default:
 			entity = null;

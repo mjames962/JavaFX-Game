@@ -89,6 +89,10 @@ public class Teleporter extends Specialised {
 		return "Teleporter";
 	}
 	
+	public String getSprite() {
+		return SPRITE;
+	}
+	
 	
 	
 	

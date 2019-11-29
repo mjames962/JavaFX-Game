@@ -7,10 +7,14 @@ package a2;
  * */
 public class DumbTargeting extends Entity {
 	
+	private static final String SPRITE 
+		= "a2/resources/stock photos/Dumb_Target_Enemy.png";
+	
 	/**
 	 * Constructs the WallFollowing class.
 	 * @param currentVector the position of the enemy
 	 * @param enemyID the ID of the enemy
+	 * @param level stores the current level
 	 */
 	public DumbTargeting(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector, enemyID, level);
@@ -22,8 +26,9 @@ public class DumbTargeting extends Entity {
 	 * @param playerVector the position of the player
 	 * @param currentVector the position of the enemy
 	 * @return returns nextVector, a Vector2D for the next 
-	 * location the enemy should move to
+	 *                               location the enemy should move to
 	 */
+	@SuppressWarnings("unused")
 	private Vector2D comparePositions(Vector2D playerVector,
 			Vector2D currentVector) {
 		/**
@@ -57,4 +62,13 @@ public class DumbTargeting extends Entity {
 		return nextVector;                       //returns vector of chosen move
 	
 	}
+	/**
+	 * Returns the sprite for the entity.
+	 * @return gives the entity sprite
+	 */
+	public String getSprite() {
+		return SPRITE;
+	}
+	
+	
 }
