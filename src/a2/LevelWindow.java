@@ -1,11 +1,14 @@
 package a2;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import cell.Cell;
 import cell.Wall;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -17,7 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class LevelWindow {
+public class LevelWindow implements Initializable {
 
 	public static final int LEVEL_WIDTH = 300;
 	public static final int LEVEL_LENGTH = 300;
@@ -32,22 +35,26 @@ public class LevelWindow {
 	private GraphicsContext gc;
 	private Level level; 
 
-	@FXML
-	private BorderPane  levelBorderPane;
-	@FXML
-	private AnchorPane levelScene;
 	
-	public LevelWindow(Level level) throws IOException {
-		
-		
-		
-		//this.root = new Group();
-        //this.canvas = new Canvas(LEVEL_WIDTH, LEVEL_LENGTH);
-        //root.getChildren().add(canvas);
-        //levelBorderPane.setCenter(root);
+	@FXML 
+	private AnchorPane gamePane;
+	
+	@FXML
+	private BorderPane gameBorderPane;
+	
+	public void initialise() {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		this.root = new Group();
+        this.canvas = new Canvas(LEVEL_WIDTH, LEVEL_LENGTH);
+        root.getChildren().add(canvas);
+        gameBorderPane.setCenter(root);
 		
         this.gc = canvas.getGraphicsContext2D();
-        this.level = level;
+      
         
         scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(this,level));
         drawAll();
@@ -113,7 +120,7 @@ public class LevelWindow {
 	 */
 	public void drawAll() {
 		drawCells();
- 
+		
         
 	}
 
