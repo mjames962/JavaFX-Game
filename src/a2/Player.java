@@ -88,7 +88,13 @@ public class Player extends Entity {
 		System.out.println("CURRENT VECTOR" + currentVector);
 		doMoveAction(move(input));
 		if (isValidMove(move(input))) {
-			currentVector = move(input);
+			for (Entity ent : Level.getCurrentLevel().getEntityList()) {
+				if (ent == this) { 
+					currentVector = move(input);
+				} else {
+					ent.move();
+				}
+			}
 		}
 	}
 

@@ -15,10 +15,6 @@ public class Entity implements Sprite {
 	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
 	
 	
-	public String getSprite() {
-		return SPRITE;
-	}
-	
 
 	protected Level level;
 	/**
@@ -33,6 +29,11 @@ public class Entity implements Sprite {
 		this.entityID = entityID;
 		this.level = level;
 	}
+	
+	public String getSprite() {
+		return SPRITE;
+	}
+	
 
 	public Level getLevel() {
 		return this.level;
@@ -71,10 +72,10 @@ public class Entity implements Sprite {
 	 * @param nextVector the intended next location for the entity
 	 */
 	
-	public boolean isValidMove(int entityID, Vector2D nextVector, Level level) {
+	public boolean isValidMove(int entityID, Vector2D nextVector) {
 		if (entityID != 0) { // Enemies
 
-			if (level.getCellAt(nextVector) == Ground) { //getCellAt from level
+			if (Level.getCurrentLevel().getCellAt(nextVector).cellName() == "Ground") {
 				return true;						//Ground Cell class
 			} else {
 				return false;

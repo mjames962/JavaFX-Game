@@ -7,9 +7,8 @@ package a2;
  * */
 public class StraightLine extends Entity {
 	
-	private Vector2D currentVector;
 	private boolean increaseDirection = true;
-	private String direction;
+	private String direction = "v";
 	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
 	
 	/**
@@ -34,42 +33,34 @@ public class StraightLine extends Entity {
 	public Vector2D nextMove() {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
-		int nX;
-		int nY;
-		Vector2D nextVector = null;
-		nextVector.set(cX, cY);
-		if (direction == "v") { // entity is moving vertically
-			cX = currentVector.getX();
-			cY = currentVector.getY();
+		Vector2D nextVector = new Vector2D(cX, cY);;
+		if (direction .equals("v")) { // entity is moving vertically
 			if (increaseDirection == true) {
-				nY = cY++;
-				nextVector.set(cX, nY);
+				nextVector.set(cX, ++cY);
 			} else {
-				nY = cY--;
-				nextVector.set(cX, nY);
+				nextVector.set(cX, --cY);
 			}
 		} else {					//entity is moving horizontally
-			cX = currentVector.getX();
-			cY = currentVector.getY();
 			if (increaseDirection == true) {
-				nX = cX++;
-				nextVector.set(nX, cY);
+				nextVector.set(++cX, cY);
 			} else {
-				nX = cX--;
-				nextVector.set(nX, cY); 
+				nextVector.set(--cX, cY); 
 			} 
 		}
-		if (this.isValidMove(1, nextVector, level) == false) {
+		if (this.isValidMove(1, nextVector) == false) {
 			if (increaseDirection == false) {
 				increaseDirection = true;
-				nextMove();
 			} else {
 				increaseDirection = false;
-				nextMove();
 			}
+			return nextMove();
 		}
 		return nextVector;
 	}		
+	
+	public void move() {
+		this.currentVector = nextMove();
+	}
 }
 			
 			

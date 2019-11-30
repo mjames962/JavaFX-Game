@@ -1,5 +1,8 @@
 package a2;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * This enemy follows the wall to its left
  * placed on the lower and right side of the wall.
@@ -10,10 +13,11 @@ public class WallFollowing extends Entity {
 	
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Wall_Following_Enemy.png";
-	private Vector2D currentVector;
 	private boolean increaseVDirection = true;
 	private boolean increaseHDirection = true;
-	private String direction;
+	private String direction = "v";
+	private boolean escapeMove = false;
+	
 	
 	/**
 	 * Constructs the Wall Following Enemy.
@@ -27,7 +31,7 @@ public class WallFollowing extends Entity {
 		super(currentVector, enemyID, level);
 		enemyID = 2;
 		currentVector = this.currentVector;
-		this.direction = direction;
+
 		
 	}
 	/**
@@ -42,20 +46,17 @@ public class WallFollowing extends Entity {
 	 * establishes the next move for the enemy.
 	 * @return nextVector the requested next cell to move to
 	 */
-	@SuppressWarnings("null")
 	public Vector2D nextMove() {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
-		Vector2D tempVector = null;
-		Vector2D nextVector = null;
-		cX = currentVector.getX();
-		cY = currentVector.getY();
+		Vector2D tempVector = new Vector2D(cX, cY);
+		Vector2D nextVector = new Vector2D(cX, cY);
 		if (direction == "v") { 					//direction is Vertical
 			if (increaseVDirection == true) {
 				tempVector.set(cX--, cY);
-				if (this.isValidMove(2, tempVector, level) == false) {
+				if (this.isValidMove(2, tempVector) == false) {
 					tempVector.set(cX, cY++);
-					if (this.isValidMove(2, tempVector, level) == true) {
+					if (this.isValidMove(2, tempVector) == true) {
 						nextVector.set(cX, cY++);
 					} else {
 						increaseVDirection = false;	//dead end, entity direction
@@ -68,9 +69,9 @@ public class WallFollowing extends Entity {
 				}
 			} else { //increase v direction false
 				tempVector.set(cX++, cY);
-				if (this.isValidMove(2, tempVector, level) == false) {
+				if (this.isValidMove(2, tempVector) == false) {
 					tempVector.set(cX, cY--);
-					if (this.isValidMove(2, tempVector, level) == true) {
+					if (this.isValidMove(2, tempVector) == true) {
 						nextVector.set(cX, cY--);
 					} else {
 						increaseVDirection = true;	//dead end, entity direction
@@ -85,9 +86,9 @@ public class WallFollowing extends Entity {
 		} else { 									// direction is Horizontal
 			if (increaseHDirection == true) {		//increaseHDirection true
 				tempVector.set(cX, cY++);
-				if (this.isValidMove(2, tempVector, level) == false) {
+				if (this.isValidMove(2, tempVector) == false) {
 					tempVector.set(cX++, cY);
-					if (this.isValidMove(2, tempVector, level) == true) {
+					if (this.isValidMove(2, tempVector) == true) {
 						nextVector.set(cX++, cY);
 					} else {
 						increaseHDirection = false;	//dead end, entity direction
@@ -100,9 +101,9 @@ public class WallFollowing extends Entity {
 				}
 			} else { 								//increaseHDirection false
 				tempVector.set(cX, cY--);
-				if (this.isValidMove(2, tempVector, level) == false) {
+				if (this.isValidMove(2, tempVector) == false) {
 					tempVector.set(cX--, cY);
-					if (this.isValidMove(2, tempVector, level) == true) {
+					if (this.isValidMove(2, tempVector) == true) {
 						nextVector.set(cX--, cY);
 					} else {
 						increaseHDirection = true;	//dead end, entity direction
@@ -116,6 +117,11 @@ public class WallFollowing extends Entity {
 			}
 		}	
 		return nextVector;
+	}
+	
+	
+	public void move() {
+		currentVector = nextMove();
 	}
 	
 }

@@ -28,38 +28,44 @@ public class DumbTargeting extends Entity {
 	 * @return returns nextVector, a Vector2D for the next 
 	 *                               location the enemy should move to
 	 */
-	@SuppressWarnings("unused")
-	private Vector2D comparePositions(Vector2D playerVector,
-			Vector2D currentVector) {
+	private Vector2D nextMove() {
 		/**
 		 * pX the extracted x coordinate from the player's current vector
 		 * pY the extracted y coordinate from the player's current vector
 		 * cX the extracted x coordinate from the enemy's current vector
 		 * cY the extracted y coordinate from the enemy's current vector
 		 */
-		int pX = playerVector.getX();
-		int pY = playerVector.getY();
+		Vector2D playerPos = Level.getCurrentLevel().getPlayer().getVector();
+		int pX = playerPos.getX();
+		int pY = playerPos.getY();
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
-		Vector2D nextVector;
-		if ((pX - cX) > (pY - cY)) {
-			if (pX > cX) { 
-				cX = cX++;                              //enemy moves right
-				nextVector = new Vector2D(cX, cY); 
-			} else {
-				cX = cX--;                              //enemy moves left
-				nextVector = new Vector2D(cX, cY); 
+		if (Math.abs((pX - cX)) > Math.abs((pY - cY))) {
+			if (pX > cX) {      
+				++cX;
+				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+					return new Vector2D(cX, cY); //enemy moves right
+				}
+			} else {        
+				--cX;//enemy moves left
+				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+					return new Vector2D(cX, cY); 
+				} 
 			}
 		} else {
-			if (pY > cY) {
-				cY = cY++;                              //enemy moves up
-				nextVector = new Vector2D(cX, cY); 
-			} else {
-				cY = cY--;                              //enemy moves down
-				nextVector = new Vector2D(cX, cY);
+			if (pY > cY) {      
+				++cY; //enemy moves up
+				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+					return new Vector2D(cX, cY); 
+				} 
+			} else {         
+				--cY; //enemy moves down
+				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+					return new Vector2D(cX, cY); 
+				} 
 			}
 		}
-		return nextVector;                       //returns vector of chosen move
+		return currentVector;             //returns vector of chosen move
 	
 	}
 	/**
@@ -70,5 +76,11 @@ public class DumbTargeting extends Entity {
 		return SPRITE;
 	}
 	
+	public void move() {
+		currentVector = nextMove();
+	}
+	
+	
+
 	
 }
