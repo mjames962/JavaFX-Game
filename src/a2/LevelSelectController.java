@@ -49,6 +49,7 @@ public class LevelSelectController implements Initializable {
 		
 	}
 	
+	
 	private void displayNewLevel(Level lvl) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/GameWindow.fxml"));  
