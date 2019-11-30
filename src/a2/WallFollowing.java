@@ -119,7 +119,7 @@ public class WallFollowing extends Entity {
 		return nextVector;
 	}
 	
-	
+		
 	public void move() {
 		currentVector = nextMove();
 	}

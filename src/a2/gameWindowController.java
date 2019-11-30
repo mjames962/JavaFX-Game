@@ -2,6 +2,7 @@ package a2;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import cell.Cell;
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
 
 public class gameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 350;
-	public static final int LEVEL_LENGTH = 350;
+	public static final int LEVEL_LENGTH = 400;
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
@@ -115,11 +116,27 @@ public class gameWindowController implements Initializable {
         
 	}
 	
+	public void drawInventory() {
+		LinkedList<Item> inventory = 
+				Level.getCurrentLevel().getPlayer().getInventory();
+        int imageNum = 0;
+        for (Item item : inventory) {
+        	Image itemImage = new Image(item.getSprite());
+    		gc.drawImage(itemImage, imageNum * CELL_DIMENSIONS, 
+    				LEVEL_LENGTH - CELL_DIMENSIONS);
+    		++imageNum;
+        }
+
+            
+       
+	}
+	
 	/**
 	 * 
 	 */
 	public void drawAll() {
 		drawCells();
+		drawInventory();
 		
         
 	}
