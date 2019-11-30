@@ -17,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class gameWindowController implements Initializable {
@@ -26,11 +27,11 @@ public class gameWindowController implements Initializable {
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
 	
-	private Stage levelStage;
 	private Group root;
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private Level level; 
+	private Scene scene;
 	
 	@FXML 
 	private AnchorPane gamePane;
@@ -38,30 +39,36 @@ public class gameWindowController implements Initializable {
 	@FXML
 	private BorderPane gameBorderPane;
 	
-	public void initialise() {
-		// TODO Auto-generated method stub
-	}
+	@FXML
+	private Canvas gameCanvas;
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Level level = Level.getCurrentLevel();
-		this.level = level;
-		this.root = new Group();
-        this.canvas = new Canvas(LEVEL_WIDTH, LEVEL_LENGTH);
-        root.getChildren().add(canvas);
-        Scene scene = new Scene(root);
-        Main.getCurrentStage().setScene(scene);
-        Main.getCurrentStage().show();
-        
-        
-        gc = canvas.getGraphicsContext2D();
-       
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(this,level));
-       
-        drawAll();
-     
-		// TODO Auto-generated method stub
+		displayCurrentLevel();
 		
-	}	
+	}
+	
+	public void displayCurrentLevel() {
+		
+		
+		this.level = Level.getCurrentLevel();
+        this.gc = gameCanvas.getGraphicsContext2D();
+        //Scene sc = new Scene(gamePane);
+        //gamePane.getScene();
+        
+        
+        
+        
+        //Main.getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(this,level));
+        
+        
+        
+        
+        drawAll();
+		
+	}
+	
 	public void drawCells() {
 		int playerX = level.getPlayer().getVector().getX();
         int playerY = level.getPlayer().getVector().getY();
@@ -100,6 +107,15 @@ public class gameWindowController implements Initializable {
 		
 	}
 	
+	
+	public void keyPressed(KeyEvent e) {
+		System.out.println("key pressed 1");
+	}
+	
+	public void keyPressed2(KeyEvent e) {
+		System.out.println("key pressed 2!!");
+	}
+	
 	/**
 	 * .
 	 * @param cellPos
@@ -114,6 +130,8 @@ public class gameWindowController implements Initializable {
         }
         
 	}
+	
+	
 	
 	/**
 	 * 

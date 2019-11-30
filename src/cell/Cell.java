@@ -29,13 +29,20 @@ public abstract class Cell implements Sprite {
 		return pos.getX();
 	}
 	
+	/**
+	 * Used in player to determine whether the player can walk onto this cell or not.
+	 * @return true if the player can walk on cell
+	 */
 	public boolean isWalkable() {
 		return true;
 	}
 	
-	public void doAction(Player ply) {
-		
-	}
+	/**
+	 * Overrideable action method called before the player moves onto the cell.
+	 * If not overriden, the cell will do nothing.
+	 * @param ply
+	 */
+	public void doAction(Player ply) {};
 	
 	/**
 	 * Get the y coordinate of the cell.

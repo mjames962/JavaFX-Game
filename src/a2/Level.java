@@ -32,7 +32,7 @@ public class Level {
 	}
 	
 	public static void restartLevel() {
-		currentLevel = new Level(currentLevel.fileName);
+		currentLevel = new Level(currentLevel.levelFile);
 	}
 	
 	

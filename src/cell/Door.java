@@ -29,7 +29,6 @@ public abstract class Door extends Replaceable {
 	
 	public void doAction(Player ply) {
 		if (meetsRequirement(ply)) {
-			System.out.println("wwoooasdas");
 			this.turnToGround();
 		}
 	}
