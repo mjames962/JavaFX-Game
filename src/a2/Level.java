@@ -47,7 +47,6 @@ public class Level {
 		this.readFile(fileName);
 		currentLevel = this;
 		this.fileName = fileName;
-	
 	}
 
 	/**

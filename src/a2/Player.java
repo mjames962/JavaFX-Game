@@ -65,13 +65,9 @@ public class Player extends Entity {
 	 * @param input is the intended movement direction of the player           
 	 */
 	
-	public void move(Direction dir) {
-		
-		
-	}
-	
-	public Vector2D getNextMoveVector(Direction dir) {
+	public Vector2D move(Direction dir) {
 		Vector2D nextVector = new Vector2D(currentVector);
+		
 		switch (dir) {
 			case UP:
 				nextVector.add(new Vector2D(0, 1));
@@ -92,11 +88,13 @@ public class Player extends Entity {
 	
 	public void handleInput(Direction input) {
 		curDirection = input;
+		System.out.println("CURRENT VECTOR" + currentVector);
+		Vector2D nextMove = move(input);
+		doMoveAction(nextMove);
+		if (isValidMove(nextMove)) {
+			currentVector = nextMove;
 		//System.out.println("CURRENT VECTOR" + currentVector);
-		Vector2D nextVector = getNextMoveVector(input);
-		doMoveAction(nextVector);
-		if (isValidMove(nextVector)) {
-			currentVector = nextVector;
+		
 		}
 	}
 
@@ -133,7 +131,7 @@ public class Player extends Entity {
 	public void doMoveAction(Vector2D cellPos) {
 		Cell cell = this.level.getCellAt(cellPos);
 		cell.doAction(this);
-		if (cell instanceof Teleporter ) {
+		if (cell instanceof Teleporter) {
 			System.out.println("stuff");
 		}
 	}
@@ -200,7 +198,7 @@ public class Player extends Entity {
 		
 		if (this.tokenCount >= requiredTokens) {
 			this.tokenCount = this.tokenCount - requiredTokens;
-			door.turnToGround(this.level);
+			door.turnToGround();
 			return true;
 		}
 		return false;
@@ -231,7 +229,7 @@ public class Player extends Entity {
 		for (int i = 0; i < this.inventory.size(); i++) {
 			if (this.inventory.get(i).getItemID() == keyID) {
 				this.inventory.remove(i);
-				door.turnToGround(this.level);
+				door.turnToGround();
 				return true;
 			}
 		}

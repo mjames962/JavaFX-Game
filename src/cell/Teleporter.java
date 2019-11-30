@@ -48,20 +48,6 @@ public class Teleporter extends Cell {
 		Direction direction = player.getCurrentDirection();
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());
-	    switch (direction) {	    
-	    	case LEFT:
-	    		pos.setX(pos.getX() - 1);
-	    		break;
-	    	case RIGHT:
-	    		pos.setX(pos.getX() + 1);
-	    		break;
-	    	case UP:
-	    		pos.setY(pos.getY() + 1);
-	    		break;
-	    	case DOWN:
-	    		pos.setX(pos.getY() - 1);
-	    		break;
-	    }
 	}
 	
 	/**

@@ -14,7 +14,7 @@ import a2.Vector2D;
  */
 
 public class Goal extends Cell {
-	protected static final String SPRITE = "a2/resources/stock photos/Token.png"; //FIXME missing a sprite
+	protected static final String SPRITE = "a2/resources/stock photos/BlueDoor.png";
 	
 	/**
 	 * Send the position to the cell superclass.

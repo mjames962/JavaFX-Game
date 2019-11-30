@@ -24,7 +24,7 @@ public class gameWindowController implements Initializable {
 	public static final int LEVEL_LENGTH = 300;
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
-	public static final int MAX_DRAW = 4;
+	public static final int MAX_DRAW = 5;
 	
 	private Stage levelStage;
 	private Group root;
