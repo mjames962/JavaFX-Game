@@ -66,20 +66,23 @@ public class Player extends Entity {
 	 */
 	
 	public Vector2D move(Direction dir) {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
+		Vector2D nextVector = new Vector2D(currentVector);
 		
 		switch (dir) {
 			case UP:
-				return new Vector2D(cX, ++cY);
+				nextVector.add(new Vector2D(0, 1));
+				break;
 			case DOWN:
-				return  new Vector2D(cX, --cY);	
+				nextVector.add(new Vector2D(0, -1));
+				break;
 			case LEFT:
-				return  new Vector2D(--cX, cY);	
+				nextVector.add(new Vector2D(-1, 0));
+				break;
 			case RIGHT:
-				return  new Vector2D(++cX, cY);	
+				nextVector.add(new Vector2D(1, 0));
+				break;
 		}
-		return new Vector2D(cX, cY);
+		return nextVector;
 	}
 
 	

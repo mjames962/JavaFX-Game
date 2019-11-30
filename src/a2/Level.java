@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import cell.*;
 
@@ -16,7 +18,7 @@ import cell.*;
 public class Level {
 
 	private Cell[][] level;
-	private String fileName;
+	private File levelFile;
 	private ArrayList<Entity> entityList = new ArrayList<>();
 	private int xLength;
 	private int yLength;
@@ -41,10 +43,16 @@ public class Level {
 	 *            name of the file
 	 */
 	public Level(String fileName) {
-		
-		this.readFile(fileName);
+		levelFile = new File(fileName);
+		this.readFile();
 		currentLevel = this;
-		this.fileName = fileName;
+		
+	}
+	
+	public Level(File levelFile) {
+		this.levelFile = levelFile;
+		this.readFile();
+		currentLevel = this;
 	}
 
 	/**
@@ -153,35 +161,30 @@ public class Level {
 	}
 	
 	public int getLevelNumber() {
-		String filename = fileName;
-		String numStr = filename.replaceFirst("[^\\/]*[\\/]", "");
-		return Integer.parseInt(numStr);
-	}
-	
-	public String getLevelIdentifier() {
-		String filename = fileName;
-		return filename.replaceFirst("[0-9].txt", "");
-	}
-	
-	public String getNextLevelFileName() {
-		int nextLevelNo = getLevelNumber() + 1;
-		return String.format("%s%d", getLevelIdentifier(),nextLevelNo);
-	}
-	
-	public String getNextLevelIfExists() {
-		String filename = getNextLevelFileName();
-		File nextLevelFile = new File(filename);
-		if (nextLevelFile.exists()) {
-			return filename;
+		String fileName = levelFile.getName();
+		Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group(1));
 		} else {
-			return null;
+			return -1;
 		}
 	}
 	
+	public String getLevelIdentifier() {
+		String filename = levelFile.getName();
+		return filename.replaceFirst("[0-9]+\\.txt", "");
+	}
+	
+	public File getNextLevelFile() {
+		int nextLevelNo = getLevelNumber() + 1;
+		System.out.println(levelFile.getParent() + "/" + getLevelIdentifier() + nextLevelNo);
+		return new File(levelFile.getParent() + "/" + getLevelIdentifier() + nextLevelNo + ".txt");
+	}
+	
 	public void loadNextLevel() {
-		String nextLevelFileName = getNextLevelIfExists();
-		if (nextLevelFileName != null) {
-			currentLevel = new Level(nextLevelFileName);
+		File nextLevel = getNextLevelFile();
+		if (nextLevel.exists()) {
+			currentLevel = new Level(nextLevel);
 		} else {
 			System.out.println("congrats");
 		}
@@ -194,15 +197,15 @@ public class Level {
 	 *            the name and file extension of the level file
 	 * @return Level[][] level layout array
 	 */
-	public void readFile(String fileName) {
-		File inputFile = new File(fileName);
-		System.out.println(inputFile.exists());
+	public void readFile() {
+		
+		System.out.println(levelFile.exists());
 		
 		Scanner in = null;
 		try {
-			in = new Scanner(inputFile);
+			in = new Scanner(levelFile);
 		} catch (FileNotFoundException e) {
-			System.out.println("Cannot open '" + fileName + "'");
+			System.out.println("Cannot open '" + levelFile.toString() + "'");
 			System.exit(0);
 		}
 

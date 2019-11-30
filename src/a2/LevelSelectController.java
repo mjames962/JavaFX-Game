@@ -49,6 +49,14 @@ public class LevelSelectController implements Initializable {
 		
 	}
 	
+	
+	private void displayNewLevel(Level lvl) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/GameWindow.fxml"));  
+		levelScene.getChildren().setAll(window); //TODO possible refactor, so we can display new levels outside
+		
+	}
+	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
 
@@ -62,21 +70,15 @@ public class LevelSelectController implements Initializable {
 		if (currentLevel.equals("Level 1")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat1.txt");
-			AnchorPane window = FXMLLoader.load(getClass().
-					getResource("resources/fxml docs/GameWindow.fxml"));  
-			levelScene.getChildren().setAll(window);
+			displayNewLevel(level);
 		} else if (currentLevel.equals("Level 2")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat2.txt");
-			AnchorPane window = FXMLLoader.load(getClass().
-					getResource("resources/fxml docs/GameWindow.fxml"));  
-			levelScene.getChildren().setAll(window);
+			displayNewLevel(level);
 		} else if (currentLevel.equals("Level 3")) {
 			level = new Level(
 					"src/a2/resources/file formats/testFileFormat3.txt");
-			AnchorPane window = FXMLLoader.load(getClass().
-					getResource("resources/fxml docs/GameWindow.fxml"));  
-			levelScene.getChildren().setAll(window);
+			displayNewLevel(level);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error");

@@ -25,6 +25,10 @@ public class Vector2D {
 	public Vector2D() {
 		
 	}
+	
+	public Vector2D(Vector2D othervec) {
+		copy(othervec);
+	}
 	/**
 	 * returns a string for referencing purposes.
 	 * @return 's a string for the reference
@@ -75,25 +79,18 @@ public class Vector2D {
 	/**
 	 * Subtraction for computation of vectors.
 	 * @param otherVec the vector being subtracted
-	 * @return gives the resultant Vector2D
 	 */
-	public Vector2D takeAway(Vector2D otherVec) {
-		Vector2D result = new Vector2D();
-		result.setX(this.x - otherVec.getX());
-		result.setY(this.y - otherVec.getY());
-		return result;
+	public void takeAway(Vector2D otherVec) {
+		set(this.x - otherVec.getX(),this.y - otherVec.getY());
 	}
 	/**
 	 * Addition for computation of vectors.
 	 * @param otherVec the vector being added
-	 * @return gives the resultant Vector2D
 	 */
-	public Vector2D add(Vector2D otherVec) {
-		Vector2D result = new Vector2D();
-		result.setX(this.x + otherVec.getX());
-		result.setY(this.y + otherVec.getY());
-		return result;
+	public void add(Vector2D otherVec) {
+		set(this.x + otherVec.getX(),this.y + otherVec.getY());
 	}
+	
 	
 	/**
 	 * Sets the x and y coordinates of the vector.
