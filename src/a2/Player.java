@@ -66,32 +66,37 @@ public class Player extends Entity {
 	 */
 	
 	public void move(Direction dir) {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
 		
+		
+	}
+	
+	public Vector2D getNextMoveVector(Direction dir) {
+		Vector2D nextVector = new Vector2D(currentVector);
 		switch (dir) {
 			case UP:
-				currentVector.set(cX, ++cY);
+				nextVector.add(new Vector2D(0, 1));
 				break;
 			case DOWN:
-				currentVector.set(cX, --cY);
+				nextVector.add(new Vector2D(0, -1));
 				break;
 			case LEFT:
-				currentVector.set(--cX, cY);
+				nextVector.add(new Vector2D(-1, 0));
 				break;
 			case RIGHT:
-				currentVector.set(++cX, cY);
+				nextVector.add(new Vector2D(1, 0));
 				break;
 		}
+		return nextVector;
 	}
 
 	
 	public void handleInput(Direction input) {
 		curDirection = input;
-		System.out.println("CURRENT VECTOR" + currentVector);
-		doMoveAction(currentVector);
-		if(isValidMove(currentVector)) {
-			move(input);
+		//System.out.println("CURRENT VECTOR" + currentVector);
+		Vector2D nextVector = getNextMoveVector(input);
+		doMoveAction(nextVector);
+		if (isValidMove(nextVector)) {
+			currentVector = nextVector;
 		}
 	}
 
@@ -118,8 +123,6 @@ public class Player extends Entity {
 	 */
 	public Boolean isValidMove(Vector2D cellPos) {
 		Cell cell = this.level.getCellAt(cellPos);
-		
-		
 		if (!crepCheck(cell)) { //TODO improve, instanceof
 			
 			playerDeath();

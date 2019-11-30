@@ -22,7 +22,7 @@ public class MOTD {
         } else {
             shiftNum = -1;
         }
-        int newchr = chr + shiftNum; //possible improvement to algo involving mods
+        int newchr = chr + shiftNum; 
         if (newchr > MAX_CHAR) {
             return MIN_CHAR;
         } else if (newchr < MIN_CHAR) {

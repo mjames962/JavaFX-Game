@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import cell.*;
 
@@ -45,7 +47,7 @@ public class Level {
 		this.readFile(fileName);
 		currentLevel = this;
 		this.fileName = fileName;
-		new LevelWindow(this);
+	
 	}
 
 	/**
@@ -154,9 +156,17 @@ public class Level {
 	}
 	
 	public int getLevelNumber() {
-		String filename = fileName;
-		String numStr = filename.replaceFirst("[^\\/]*[\\/]", "");
-		return Integer.parseInt(numStr);
+		File f = new File(fileName);
+		System.out.println(fileName);
+		String filename = f.getName();
+		
+		Matcher matcher = Pattern.compile("[0-9]+").matcher(filename);
+		if (matcher.find())
+		{
+			return Integer.parseInt(matcher.group());
+		} else {
+			return -1;
+		}
 	}
 	
 	public String getLevelIdentifier() {
