@@ -1,6 +1,6 @@
 package a2;
 
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -13,21 +13,26 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
+
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
-public class gameWindowController implements Initializable {
-	public static final int LEVEL_WIDTH = 350;
+
+/**
+ * Draws the canvas and allows the user to interact.
+ * @author Jensen, George
+ * 
+ */
+public class GameWindowController implements Initializable {
+	public static final int LEVEL_WIDTH = 500;
 	public static final int LEVEL_LENGTH = 400;
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
 	
-	private Stage levelStage;
+
 	private Group root;
 	private Canvas canvas;
 	private GraphicsContext gc;
@@ -39,9 +44,12 @@ public class gameWindowController implements Initializable {
 	@FXML
 	private BorderPane gameBorderPane;
 	
-	public void initialise() {
-		// TODO Auto-generated method stub
-	}
+	
+	
+	/**
+	 * Creates and displays canvas in the window.
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Level level = Level.getCurrentLevel();
@@ -52,17 +60,22 @@ public class gameWindowController implements Initializable {
         Scene scene = new Scene(root);
         Main.getCurrentStage().setScene(scene);
         Main.getCurrentStage().show();
-        
-        
+        /* Create group, add canvas to group, add group to scene, 
+         * add scene to the current stage*/
         gc = canvas.getGraphicsContext2D();
        
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(this,level));
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, 
+        		new KeyboardHandler(this, level));
        
         drawAll();
      
 		// TODO Auto-generated method stub
 		
 	}	
+	
+	/**
+	 * draws cell images to the canvas.
+	 */
 	public void drawCells() {
 		int playerX = level.getPlayer().getVector().getX();
         int playerY = level.getPlayer().getVector().getY();
@@ -83,7 +96,7 @@ public class gameWindowController implements Initializable {
             		gc.drawImage(cellImage, drawX * CELL_DIMENSIONS, 
             				drawY * CELL_DIMENSIONS);
             	}
-        		drawEntities(new Vector2D(x,y), new Vector2D(drawX,drawY));
+        		drawEntities(new Vector2D(x, y), new Vector2D(drawX, drawY));
         		
         	}
         }
@@ -91,13 +104,14 @@ public class gameWindowController implements Initializable {
 	
 
 	/**
-	 * .
+	 * Draws all entities to the canvas
 	 * @param ent
 	 * @param drawPos
 	 */
 	public void drawEntity(Entity ent, Vector2D drawPos) {
 		Image entImage = new Image(ent.getSprite());
-		gc.drawImage(entImage, drawPos.getX() * CELL_DIMENSIONS, drawPos.getY() * CELL_DIMENSIONS);
+		gc.drawImage(entImage, drawPos.getX() * CELL_DIMENSIONS, 
+				drawPos.getY() * CELL_DIMENSIONS);
 		
 	}
 	
@@ -110,12 +124,15 @@ public class gameWindowController implements Initializable {
 	
         for (Entity ent : level.getEntityList()) {
         	if (cellPos.equals(ent.getVector())) {
-        		drawEntity(ent,drawPos);
+        		drawEntity(ent, drawPos);
         	}
         }
         
 	}
 	
+	/**
+	 * draws inventory window to canvas.
+	 */
 	public void drawInventory() {
 		LinkedList<Item> inventory = 
 				Level.getCurrentLevel().getPlayer().getInventory();
@@ -132,7 +149,7 @@ public class gameWindowController implements Initializable {
 	}
 	
 	/**
-	 * 
+	 * Collectively calls all draw methods.
 	 */
 	public void drawAll() {
 		drawCells();

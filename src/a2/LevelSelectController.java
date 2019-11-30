@@ -31,6 +31,7 @@ import javafx.stage.Stage;
  * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
+
 public class LevelSelectController implements Initializable {
 
 	@FXML
@@ -45,6 +46,10 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private AnchorPane levelScene;
 	
+	/**
+	 * initialises the window
+	 * later overrided
+	 */
 	public void initialise() {
 		
 	}
@@ -53,7 +58,8 @@ public class LevelSelectController implements Initializable {
 	private void displayNewLevel(Level lvl) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/GameWindow.fxml"));  
-		levelScene.getChildren().setAll(window); //TODO possible refactor, so we can display new levels outside
+		levelScene.getChildren().setAll(window); 
+		//TODO possible refactor, so we can display new levels outside
 		
 	}
 	
@@ -88,6 +94,10 @@ public class LevelSelectController implements Initializable {
 		}	 
 	}
 
+	
+	/**
+	 * displays MOTD as label on the level select window. 
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		Label motd;
