@@ -48,7 +48,7 @@ public class Main extends Application {
 			root.setId("pane");
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
-			scene.getStylesheets().addAll(this.getClass().getResource("style.css").toExternalForm());
+			scene.getStylesheets().addAll(this.getClass().getResource("resources/style.css").toExternalForm());
 			// Place the main scene on stage and show it.
 			curStage = primaryStage;
 			primaryStage.setScene(scene);
