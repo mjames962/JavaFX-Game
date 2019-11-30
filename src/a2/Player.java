@@ -92,7 +92,7 @@ public class Player extends Entity {
 		Vector2D nextMove = move(input);
 		doMoveAction(nextMove);
 		if (isValidMove(nextMove)) {
-			currentVector = nextMove;
+			currentVector = move(input);
 		//System.out.println("CURRENT VECTOR" + currentVector);
 		
 		}
