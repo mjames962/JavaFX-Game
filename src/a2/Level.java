@@ -26,6 +26,15 @@ public class Level {
 	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 	private int levelNo;
+
+	public static Level getCurrentLevel() {
+		return currentLevel;
+	}
+	
+	public static void restartLevel() {
+		currentLevel = new Level(currentLevel.levelFile);
+	}
+	
 	
 	/**
 	 * .

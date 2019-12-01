@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
  * @author George, Tom
  *
  */
-public class KeyboardHandler implements EventHandler {
+public class KeyboardHandler implements EventHandler<KeyEvent> {
 
 	private Level level;
 	private GameWindowController lw;
@@ -42,7 +42,7 @@ public class KeyboardHandler implements EventHandler {
 	/**
 	 * Checks user input
 	 */
-	public void handle(Event e) {
+	public void handle(KeyEvent e) {
 		System.out.println("keeeyd pressed");
 		KeyEvent ke = (KeyEvent) e;
 		

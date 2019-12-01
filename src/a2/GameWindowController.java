@@ -20,6 +20,8 @@ import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 
 /**
@@ -41,6 +43,7 @@ public class GameWindowController implements Initializable {
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private Level level; 
+
 	
 	@FXML 
 	private AnchorPane gamePane;
@@ -48,7 +51,8 @@ public class GameWindowController implements Initializable {
 	@FXML
 	private BorderPane gameBorderPane;
 	
-	
+	@FXML
+	private Canvas gameCanvas;
 	
 	/**
 	 * Creates and displays canvas in the window.
@@ -56,30 +60,25 @@ public class GameWindowController implements Initializable {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		Level level = Level.getCurrentLevel();
-		this.level = level;
-		this.root = new Group();
-        this.canvas = new Canvas(LEVEL_WIDTH, LEVEL_LENGTH);
-        root.getChildren().add(canvas);
-        Scene scene = new Scene(root);
-        Main.getCurrentStage().setScene(scene);
-        Main.getCurrentStage().show();
-        /* Create group, add canvas to group, add group to scene, 
-         * add scene to the current stage*/
-        gc = canvas.getGraphicsContext2D();
-       
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, 
-        		new KeyboardHandler(this, level));
-       
-        drawAll();
-     
-		// TODO Auto-generated method stub
+		displayCurrentLevel();
 		
-	}	
+	}
 	
-	/**
-	 * draws cell images to the canvas.
-	 */
+	public void hookInput(Scene sc) {
+		sc.addEventFilter(KeyEvent.KEY_PRESSED,new KeyboardHandler(this,Level.getCurrentLevel()));
+	}
+	
+	public void displayCurrentLevel() {
+		
+		
+		this.level = Level.getCurrentLevel();
+        this.gc = gameCanvas.getGraphicsContext2D();
+        
+        
+        drawAll();
+		
+	}
+	
 	public void drawCells() {
 		Image inventImage = new Image("a2/resources/stock photos/Inventory.png");
     	gc.drawImage(inventImage,0 ,GAME_HEIGHT);
@@ -120,7 +119,6 @@ public class GameWindowController implements Initializable {
 				drawPos.getY() * CELL_DIMENSIONS);
 		
 	}
-	
 	/**
 	 * .
 	 * @param cellPos
@@ -135,6 +133,8 @@ public class GameWindowController implements Initializable {
         }
         
 	}
+	
+	
 	
 	/**
 	 * draws inventory window to canvas.

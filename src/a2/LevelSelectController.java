@@ -31,7 +31,6 @@ import javafx.stage.Stage;
  * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
-
 public class LevelSelectController implements Initializable {
 
 	@FXML
@@ -46,26 +45,28 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private AnchorPane levelScene;
 	
-	/**
-	 * initialises the window
-	 * later overrided
-	 */
 	public void initialise() {
 		
 	}
 	
 	
 	private void displayNewLevel(Level lvl) throws IOException {
-		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/GameWindow.fxml"));  
-		levelScene.getChildren().setAll(window); 
-		//TODO possible refactor, so we can display new levels outside
+		FXMLLoader fx = new FXMLLoader(getClass().
+				getResource("resources/fxml docs/GameWindow.fxml"));
+		AnchorPane window = fx.load();
+		
+		Stage stage = (Stage) levelScene.getScene().getWindow();
+		Scene scene = new Scene(window);
+		stage.setScene(scene);
+		((gameWindowController) fx.getController()).hookInput(scene);
+		
+		//levelScene.getChildren().setAll(window);
+
 		
 	}
 	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
-
 		String currentLevel = cmb_LevelSelect.getValue();
 		Level level;
 		

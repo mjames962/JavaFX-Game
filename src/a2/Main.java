@@ -3,6 +3,7 @@ package a2;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -32,7 +33,17 @@ public class Main extends Application {
 
 	private static Stage curStage;
 	
-	public static Stage getCurrentStage() {
+	
+	public static void switchScene(Scene s) {
+		curStage.show();
+		curStage.setScene(s);
+	}
+	
+	public static void switchRoot(Parent p) {
+		
+	}
+	
+	public static Stage getStage() {
 		return curStage;
 	}
 	
