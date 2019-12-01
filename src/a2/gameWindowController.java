@@ -27,11 +27,9 @@ public class gameWindowController implements Initializable {
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
 	
-	private Group root;
-	private Canvas canvas;
 	private GraphicsContext gc;
 	private Level level; 
-	private Scene scene;
+
 	
 	@FXML 
 	private AnchorPane gamePane;
@@ -49,20 +47,15 @@ public class gameWindowController implements Initializable {
 		
 	}
 	
+	public void hookInput(Scene sc) {
+		sc.addEventFilter(KeyEvent.KEY_PRESSED,new KeyboardHandler(this,Level.getCurrentLevel()));
+	}
+	
 	public void displayCurrentLevel() {
 		
 		
 		this.level = Level.getCurrentLevel();
         this.gc = gameCanvas.getGraphicsContext2D();
-        //Scene sc = new Scene(gamePane);
-        //gamePane.getScene();
-        
-        
-        
-        
-        //Main.getStage().getScene().addEventFilter(KeyEvent.KEY_PRESSED, new KeyboardHandler(this,level));
-        
-        
         
         
         drawAll();
@@ -106,16 +99,6 @@ public class gameWindowController implements Initializable {
 		gc.drawImage(entImage, drawPos.getX() * CELL_DIMENSIONS, drawPos.getY() * CELL_DIMENSIONS);
 		
 	}
-	
-	
-	public void keyPressed(KeyEvent e) {
-		System.out.println("key pressed 1");
-	}
-	
-	public void keyPressed2(KeyEvent e) {
-		System.out.println("key pressed 2!!");
-	}
-	
 	/**
 	 * .
 	 * @param cellPos
