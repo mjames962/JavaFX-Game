@@ -51,12 +51,19 @@ public class LevelSelectController implements Initializable {
 	
 	
 	private void displayNewLevel(Level lvl) throws IOException {
-		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/GameWindow.fxml"));  
-		Main.getStage().setScene(window.getScene());
-		window.getScene().addEventFilter(KeyEvent.KEY_PRESSED,new KeyboardHandler(this,lvl));
+		FXMLLoader fx = new FXMLLoader(getClass().
+				getResource("resources/fxml docs/GameWindow.fxml"));
+		AnchorPane window = fx.load();
 		
-		(KeyEvent.KEY_PRESSED, );
+		//AnchorPane window = FXMLLoader.load(getClass().
+		//		getResource("resources/fxml docs/GameWindow.fxml"));
+	
+		
+		Stage stage = (Stage) levelScene.getScene().getWindow();
+		Scene scene = new Scene(window);
+		stage.setScene(scene);
+		
+		scene.addEventFilter(KeyEvent.KEY_PRESSED,new KeyboardHandler(fx.getController(),lvl));
 		//levelScene.getChildren().setAll(window);
 
 		

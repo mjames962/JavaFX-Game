@@ -6,7 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-public class KeyboardHandler implements EventHandler {
+public class KeyboardHandler implements EventHandler<KeyEvent> {
 
 	private Level level;
 	private gameWindowController lw;
@@ -25,7 +25,7 @@ public class KeyboardHandler implements EventHandler {
 		System.out.println("NEXT TICK");
 	}
 	
-	public void handle(Event e) {
+	public void handle(KeyEvent e) {
 		System.out.println("keeeyd pressed");
 		KeyEvent ke = (KeyEvent) e;
 		
