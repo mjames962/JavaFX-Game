@@ -19,7 +19,7 @@ public class RedDoor extends Door {
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		System.out.println("askdopaskdopka");
-		return ply.hasItem(RedKey.class);
+		return ply.hasKey('r');
 		
 	}
 	

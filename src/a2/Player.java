@@ -214,7 +214,7 @@ public class Player extends Entity {
 	 * @param keyType the required item to open the door
 	 * @return returns boolean for if door can be opened
 	 */
-	public boolean hasKey(Door door, char keyType) {
+	public boolean hasKey(char keyType) {
 		int keyID;
 
 		switch (keyType) {
@@ -231,10 +231,10 @@ public class Player extends Entity {
 				keyID = -1;
 		}
 
-		for (int i = 0; i < this.inventory.size(); i++) {
-			if (this.inventory.get(i).getItemID() == keyID) {
-				this.inventory.remove(i);
-				door.turnToGround();
+		for (Item item : this.inventory) {
+			if (item.getItemID() == keyID) {
+				this.inventory.remove(item);
+				//door.turnToGround();
 				return true;
 			}
 		}
