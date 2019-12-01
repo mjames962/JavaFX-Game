@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import a2.Player.Direction;
 import cell.*;
 
 /**
@@ -23,7 +24,7 @@ public class Level {
 	private int xLength;
 	private int yLength;
 	private static Level currentLevel = null;
-	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
+	//public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 	private int levelNo;
 
@@ -33,6 +34,7 @@ public class Level {
 	
 	public static void restartLevel() {
 		currentLevel = new Level(currentLevel.levelFile);
+		GameWindowController.getCurrentController().refreshLevel();
 	}
 	
 	
@@ -53,10 +55,6 @@ public class Level {
 		this.levelFile = levelFile;
 		this.readFile();
 		currentLevel = this;
-	}
-	
-	public static Level getCurrentLevel() {
-		return currentLevel;
 	}
 	
 	public File getLevelFile() {
@@ -93,7 +91,7 @@ public class Level {
 	public Cell[][] getLevel() {
 		return this.level;
 	}
-
+	
 	/**
 	 * .
 	 * 
@@ -194,6 +192,7 @@ public class Level {
 		File nextLevel = getNextLevelFile();
 		if (nextLevel.exists()) {
 			currentLevel = new Level(nextLevel);
+			GameWindowController.getCurrentController().refreshLevel();
 		} else {
 			System.out.println("congrats");
 		}

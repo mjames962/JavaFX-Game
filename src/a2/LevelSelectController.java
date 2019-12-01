@@ -55,10 +55,8 @@ public class LevelSelectController implements Initializable {
 				getResource("resources/fxml docs/GameWindow.fxml"));
 		AnchorPane window = fx.load();
 		
-		Stage stage = (Stage) levelScene.getScene().getWindow();
-		Scene scene = new Scene(window);
-		stage.setScene(scene);
-		((gameWindowController) fx.getController()).hookInput(scene);
+		//Stage stage = (Stage) levelScene.getScene().getWindow();
+		
 		
 		//levelScene.getChildren().setAll(window);
 

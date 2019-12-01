@@ -6,8 +6,10 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import a2.Player.Direction;
 import cell.Cell;
 import cell.Wall;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -39,8 +41,6 @@ public class GameWindowController implements Initializable {
 	public static final int MAX_DRAW = 5;
 	
 
-	private Group root;
-	private Canvas canvas;
 	private GraphicsContext gc;
 	private Level level; 
 
@@ -54,27 +54,62 @@ public class GameWindowController implements Initializable {
 	@FXML
 	private Canvas gameCanvas;
 	
+	private static GameWindowController currentController;
+	
+	public static GameWindowController getCurrentController() {
+		return currentController;
+	}
+	
 	/**
 	 * Creates and displays canvas in the window.
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		displayCurrentLevel();
-		
+		show();
+		refreshLevel();
+		currentController = this;
 	}
 	
+	public void nextTick(Direction playerMove) {
+		level.getPlayer().handleInput(playerMove); //maybe can give responsibility to Level instead
+		this.drawAll();
+	}	
+	/**
+	 * Checks user input
+	 */
 	public void hookInput(Scene sc) {
-		sc.addEventFilter(KeyEvent.KEY_PRESSED,new KeyboardHandler(this,Level.getCurrentLevel()));
+		sc.addEventFilter(KeyEvent.KEY_PRESSED,new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent ke) { 
+        		switch (ke.getCode()) {
+        			case W:
+        				nextTick(Direction.UP);
+        				break;
+        			case A:
+        				nextTick(Direction.LEFT);
+        				break;
+        			case S:
+        				nextTick(Direction.DOWN);
+        				break;
+        			case D:
+        				nextTick(Direction.RIGHT);
+        				break;
+        			default:
+        				break;
+        		}
+            }
+        });
 	}
 	
-	public void displayCurrentLevel() {
-		
-		
+	public void show() {
+		Scene scene = new Scene(gamePane);
+		Main.switchScene(scene);
+		hookInput(scene);
+	}
+	
+	public void refreshLevel() {
 		this.level = Level.getCurrentLevel();
         this.gc = gameCanvas.getGraphicsContext2D();
-        
-        
         drawAll();
 		
 	}
@@ -105,6 +140,10 @@ public class GameWindowController implements Initializable {
         		
         	}
         }
+	}
+	
+	public void handleInput(KeyEvent e) {
+		
 	}
 	
 
@@ -171,8 +210,4 @@ public class GameWindowController implements Initializable {
 		drawExtras();
         
 	}
-
-	
-	
-	
 }

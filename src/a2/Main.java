@@ -35,12 +35,7 @@ public class Main extends Application {
 	
 	
 	public static void switchScene(Scene s) {
-		curStage.show();
 		curStage.setScene(s);
-	}
-	
-	public static void switchRoot(Parent p) {
-		
 	}
 	
 	public static Stage getStage() {

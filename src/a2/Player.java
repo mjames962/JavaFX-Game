@@ -254,8 +254,7 @@ public class Player extends Entity {
 		alert.setHeaderText("You died.");
 		alert.setContentText(null);
 		alert.showAndWait();
-		//Load This into Window
-		level = new Level(Level.getCurrentLevel().getLevelFile());
+		Level.restartLevel();
 	}
 
 	/**
