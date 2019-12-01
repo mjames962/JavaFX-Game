@@ -15,7 +15,7 @@ public class WallFollowing extends Entity {
 		= "a2/resources/stock photos/Wall_Following_Enemy.png";
 	private boolean increaseVDirection = true;
 	private boolean increaseHDirection = true;
-	private String direction = "v";
+	private int direction = 0; //0=left,1=up,2=right,3=down
 	private boolean escapeMove = false;
 	
 	
@@ -46,77 +46,108 @@ public class WallFollowing extends Entity {
 	 * establishes the next move for the enemy.
 	 * @return nextVector the requested next cell to move to
 	 */
+	
 	public Vector2D nextMove() {
 		int cX = currentVector.getX();
 		int cY = currentVector.getY();
-		Vector2D tempVector = new Vector2D(cX, cY);
-		Vector2D nextVector = new Vector2D(cX, cY);
-		if (direction == "v") { 					//direction is Vertical
-			if (increaseVDirection == true) {
-				tempVector.set(cX--, cY);
-				if (this.isValidMove(2, tempVector) == false) {
-					tempVector.set(cX, cY++);
-					if (this.isValidMove(2, tempVector) == true) {
-						nextVector.set(cX, cY++);
-					} else {
-						increaseVDirection = false;	//dead end, entity direction
-						nextMove();					//flips+recalls nextMove
-					}
+		Vector2D nextVector = new Vector2D(cX + modifier(true),
+				cY + modifier(false));
+		Vector2D leftWall = new Vector2D(cX + findLeft(true),
+				cY + findLeft(false));
+		
+		
+		
+		
+		if (isValidMove(2, leftWall)) {
+			decreaseDircetion();
+			return leftWall;
+		} else if (isValidMove(2, nextVector)) {
+			return nextVector;
+		} else {
+			increaseDirection();
+			return nextMove();
+		}
+	}
+	
+	public int modifier(boolean isX) {
+		switch (direction) {
+			case 0:
+				if (isX) {
+					return -1;
 				} else {
-					nextVector.set(cX--, cY);
-					increaseVDirection = false;		//turns corner+edits values
-					direction = "h";				//new direction of travel
+					return 0;
 				}
-			} else { //increase v direction false
-				tempVector.set(cX++, cY);
-				if (this.isValidMove(2, tempVector) == false) {
-					tempVector.set(cX, cY--);
-					if (this.isValidMove(2, tempVector) == true) {
-						nextVector.set(cX, cY--);
-					} else {
-						increaseVDirection = true;	//dead end, entity direction
-						nextMove();					//flips+recalls nextMove
-					}
+			case 1:
+				if (isX) {
+					return 0;
 				} else {
-					nextVector.set(cX++, cY);
-					increaseVDirection = true;		//turns corner+edits values
-					direction = "h";				//new direction of travel
+					return 1;
 				}
-			}
-		} else { 									// direction is Horizontal
-			if (increaseHDirection == true) {		//increaseHDirection true
-				tempVector.set(cX, cY++);
-				if (this.isValidMove(2, tempVector) == false) {
-					tempVector.set(cX++, cY);
-					if (this.isValidMove(2, tempVector) == true) {
-						nextVector.set(cX++, cY);
-					} else {
-						increaseHDirection = false;	//dead end, entity direction
-						nextMove();					//flips+recalls nextMove
-					}
+			case 2:
+				if (isX) {
+					return 1;
 				} else {
-					nextVector.set(cX, cY++);
-					increaseHDirection = false;		//turns corner+edits values
-					direction = "v";				//new direction of travel
+					return 0;
 				}
-			} else { 								//increaseHDirection false
-				tempVector.set(cX, cY--);
-				if (this.isValidMove(2, tempVector) == false) {
-					tempVector.set(cX--, cY);
-					if (this.isValidMove(2, tempVector) == true) {
-						nextVector.set(cX--, cY);
-					} else {
-						increaseHDirection = true;	//dead end, entity direction
-						nextMove();					//flips+recalls nextMove-
-					}
+			case 3:
+				if (isX) {
+					return 0;
 				} else {
-					nextVector.set(cX, cY--);
-					increaseHDirection = true;		//turns corner+edits values
-					direction = "v";				//new direction of travel
+					return -1;
 				}
-			}
-		}	
-		return nextVector;
+			default:
+				return 0;
+				
+		}
+	}
+	
+	
+	public int findLeft(boolean isX) {
+		switch (direction) {
+			case 0:
+				if (isX) {
+					return 0;
+				} else {
+					return -1;
+				}
+			case 1:
+				if (isX) {
+					return -1;
+				} else {
+					return 0;
+				}
+			case 2:
+				if (isX) {
+					return 0;
+				} else {
+					return 1;
+				}
+			case 3:
+				if (isX) {
+					return 1;
+				} else {
+					return 0;
+				}
+			default:
+				return 0;
+				
+		}
+	}
+	
+	public void increaseDirection() {
+		if (direction == 3) {
+			direction = 0;
+		} else {
+			++direction;
+		}
+	}
+	
+	public void decreaseDircetion() {
+		if (direction == 0) {
+			direction = 3;
+		} else {
+			--direction;
+		}
 	}
 	
 		
