@@ -1,6 +1,7 @@
 package a2;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -9,11 +10,12 @@ import cell.Cell;
 import cell.Wall;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -27,6 +29,7 @@ import javafx.scene.layout.BorderPane;
  */
 public class GameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 500;
+	public static final int GAME_WIDTH = 350;
 	public static final int LEVEL_LENGTH = 400;
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
@@ -144,8 +147,15 @@ public class GameWindowController implements Initializable {
     		++imageNum;
         }
 
-            
-       
+	}   
+	
+	
+    public void drawExtras() {
+    	Image sideBarImage = new Image("a2/resources/stock photos/sideBar.png");
+    	gc.drawImage(sideBarImage, GAME_WIDTH, 0);
+    	
+    	//gc.strokeText(MOTD.getMOTD(), 375, 0, 50);
+    	 
 	}
 	
 	/**
@@ -154,7 +164,7 @@ public class GameWindowController implements Initializable {
 	public void drawAll() {
 		drawCells();
 		drawInventory();
-		
+		drawExtras();
         
 	}
 

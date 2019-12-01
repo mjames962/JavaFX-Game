@@ -6,17 +6,31 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+/**
+ * ¯\_(o_o)_/¯
+ * @author George, Tom
+ *
+ */
 public class KeyboardHandler implements EventHandler {
 
 	private Level level;
 	private GameWindowController lw;
 	
+	/**
+	 * ¯\_(o_o)_/¯
+	 * @param GameWindowController
+	 * @param lvl
+	 */
 	public KeyboardHandler(GameWindowController GameWindowController,Level lvl) {
 		this.level = lvl;
 		this.lw = GameWindowController;
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Updates game state.
+	 * @param playerMove ¯\_(o_o)_/¯
+	 */
 	public void nextTick(Direction playerMove) {
 		System.out.println("Inital: " + level.getPlayer().getVector());
 		level.getPlayer().handleInput(playerMove);
@@ -25,7 +39,11 @@ public class KeyboardHandler implements EventHandler {
 		System.out.println("NEXT TICK");
 	}
 	
+	/**
+	 * Checks user input
+	 */
 	public void handle(Event e) {
+		System.out.println("keeeyd pressed");
 		KeyEvent ke = (KeyEvent) e;
 		
 		switch (ke.getCode()) {
