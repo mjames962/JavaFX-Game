@@ -26,15 +26,6 @@ public class Level {
 	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 	private int levelNo;
-
-	public static Level getCurrentLevel() {
-		return currentLevel;
-	}
-	
-	public static void restartLevel() {
-		currentLevel = new Level(currentLevel.fileName);
-	}
-	
 	
 	/**
 	 * .
@@ -54,6 +45,15 @@ public class Level {
 		this.readFile();
 		currentLevel = this;
 	}
+	
+	public static Level getCurrentLevel() {
+		return currentLevel;
+	}
+	
+	public File getLevelFile() {
+		return levelFile;
+	}
+	
 
 	/**
 	 * .
@@ -372,40 +372,40 @@ public class Level {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
-		case '#':
-			return new Wall(position);
-		case '_':
-			return new Ground(position);
-		case 'X':
-			return new Goal(position);
-		case 'T':
-			return new Teleporter(position);
-		case 'F':
-			return new Fire(position);
-		case 'W':
-			return new Water(position);
-		case 'R':
-			return new RedDoor(position);
-		case 'B':
-			return new BlueDoor(position);
-		case 'G':
-			return new GreenDoor(position);
-		case 'w':
-			return new FlippersCell(position);
-		case 'f':
-			return new FireBootsCell(position);
-		case 'r':
-			return new RedKeyCell(position);
-		case 'b':
-			return new BlueKeyCell(position);
-		case 'g':
-			return new GreenKeyCell(position);
-		case 'D':
-			return new TokenDoor(position);
-		case 'd':
-			return new TokenCell(position);
-		default:
-			return new Wall(position);
+			case '#':
+				return new Wall(position);
+			case '_':
+				return new Ground(position);
+			case 'X':
+				return new Goal(position);
+			case 'T':
+				return new Teleporter(position);
+			case 'F':
+				return new Fire(position);
+			case 'W':
+				return new Water(position);
+			case 'R':
+				return new RedDoor(position);
+			case 'B':
+				return new BlueDoor(position);
+			case 'G':
+				return new GreenDoor(position);
+			case 'w':
+				return new FlippersCell(position);
+			case 'f':
+				return new FireBootsCell(position);
+			case 'r':
+				return new RedKeyCell(position);
+			case 'b':
+				return new BlueKeyCell(position);
+			case 'g':
+				return new GreenKeyCell(position);
+			case 'D':
+				return new TokenDoor(position);
+			case 'd':
+				return new TokenCell(position);
+			default:
+				return new Wall(position);
 		}
 	}
 

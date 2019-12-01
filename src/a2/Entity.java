@@ -72,10 +72,10 @@ public class Entity implements Sprite {
 	 * @param nextVector the intended next location for the entity
 	 */
 	
-	public boolean isValidMove(int entityID, Vector2D nextVector) {
-		if (entityID != 0) { // Enemies
-
-			if (Level.getCurrentLevel().getCellAt(nextVector).cellName() == "Ground") {
+	public boolean isValidMove(Vector2D nextVector) {
+		if (this.entityID != 0) { // Enemies
+			if (Level.getCurrentLevel().getCellAt(nextVector).cellName()
+					== "Ground") {
 				return true;						//Ground Cell class
 			} else {
 				return false;

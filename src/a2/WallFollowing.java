@@ -54,10 +54,10 @@ public class WallFollowing extends Entity {
 				cY + modifier(false));
 		Vector2D leftWall = new Vector2D(cX + findLeft(true),
 				cY + findLeft(false));
-		if (isValidMove(2, leftWall)) {
+		if (isValidMove(leftWall)) {
 			decreaseDircetion();
 			return leftWall;
-		} else if (isValidMove(2, nextVector)) {
+		} else if (isValidMove(nextVector)) {
 			return nextVector;
 		} else {
 			increaseDirection();

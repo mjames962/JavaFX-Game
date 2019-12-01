@@ -122,7 +122,7 @@ public class Player extends Entity {
 	 * @param cellPos the position of the cell on the map
 	 * @return a boolean to show whether the cell can be moved onto
 	 */
-	public Boolean isValidMove(Vector2D cellPos) {
+	public boolean isValidMove(Vector2D cellPos) {
 		Cell cell = this.level.getCellAt(cellPos);
 		
 		
@@ -254,7 +254,8 @@ public class Player extends Entity {
 		alert.setHeaderText("You died.");
 		alert.setContentText(null);
 		alert.showAndWait();
-		Level.restartLevel();
+		//Load This into Window
+		level = new Level(Level.getCurrentLevel().getLevelFile());
 	}
 
 	/**

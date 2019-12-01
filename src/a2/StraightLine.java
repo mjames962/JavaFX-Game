@@ -47,7 +47,7 @@ public class StraightLine extends Entity {
 				nextVector.set(--cX, cY); 
 			} 
 		}
-		if (this.isValidMove(1, nextVector) == false) {
+		if (this.isValidMove(nextVector) == false) {
 			if (increaseDirection == false) {
 				increaseDirection = true;
 			} else {

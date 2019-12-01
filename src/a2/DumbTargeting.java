@@ -43,24 +43,24 @@ public class DumbTargeting extends Entity {
 		if (Math.abs((pX - cX)) > Math.abs((pY - cY))) {
 			if (pX > cX) {      
 				++cX;
-				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+				if (isValidMove(new Vector2D(cX, cY))) {	
 					return new Vector2D(cX, cY); //enemy moves right
 				}
 			} else {        
-				--cX;//enemy moves left
-				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+				--cX; //enemy moves left
+				if (isValidMove(new Vector2D(cX, cY))) {	
 					return new Vector2D(cX, cY); 
 				} 
 			}
 		} else {
 			if (pY > cY) {      
 				++cY; //enemy moves up
-				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+				if (isValidMove(new Vector2D(cX, cY))) {	
 					return new Vector2D(cX, cY); 
 				} 
 			} else {         
 				--cY; //enemy moves down
-				if (isValidMove(this.getEntityID(), new Vector2D(cX, cY))) {	
+				if (isValidMove(new Vector2D(cX, cY))) {	
 					return new Vector2D(cX, cY); 
 				} 
 			}
