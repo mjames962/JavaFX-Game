@@ -155,6 +155,7 @@ public class GameWindowController implements Initializable {
 	
     public void drawExtras() {
     	Image sideBarImage = new Image("a2/resources/stock photos/sideBar.png");
+    	
     	gc.drawImage(sideBarImage, GAME_WIDTH, 0);
     	
     	//gc.strokeText(MOTD.getMOTD(), 375, 0, 50);

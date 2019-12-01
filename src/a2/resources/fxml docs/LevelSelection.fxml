@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="levelScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="479.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.LevelSelectController">
   <children>
-    <BorderPane fx:id="levelBorderPane" layoutX="0.0" layoutY="14.0" prefHeight="310.0" prefWidth="479.0">
+    <BorderPane fx:id="levelBorderPane" layoutX="98.0" layoutY="79.0" prefHeight="310.0" prefWidth="479.0">
       <bottom>
         <AnchorPane fx:id="levelBottom" maxHeight="300.0" maxWidth="300.0" prefHeight="76.0" prefWidth="490.0" BorderPane.alignment="BASELINE_LEFT">
           <padding>
@@ -25,8 +25,8 @@
       <left>
         <AnchorPane prefHeight="115.0" prefWidth="150.0">
           <children>
-            <Button fx:id="btn_LoadLevel" layoutX="16.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleLoadLevelBtn" text="Load Level" />
-            <ComboBox fx:id="cmb_LevelSelect" layoutX="14.0" layoutY="14.0" prefHeight="21.0" prefWidth="129.0" promptText="Select Level" visibleRowCount="3">
+            <Button fx:id="btn_LoadLevel" layoutX="50.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleLoadLevelBtn" text="Load Level" />
+            <ComboBox fx:id="cmb_LevelSelect" layoutX="50.0" layoutY="65.0" prefHeight="21.0" prefWidth="129.0" promptText="Select Level" visibleRowCount="3">
               <items>
                 <FXCollections fx:factory="observableArrayList">
                   <String fx:value="Level 1" />
