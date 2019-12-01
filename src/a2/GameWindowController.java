@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 public class GameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 500;
 	public static final int GAME_WIDTH = 350;
+	public static final int GAME_HEIGHT = 350;
 	public static final int LEVEL_LENGTH = 400;
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
@@ -80,6 +81,8 @@ public class GameWindowController implements Initializable {
 	 * draws cell images to the canvas.
 	 */
 	public void drawCells() {
+		Image inventImage = new Image("a2/resources/stock photos/Inventory.png");
+    	gc.drawImage(inventImage,0 ,GAME_HEIGHT);
 		int playerX = level.getPlayer().getVector().getX();
         int playerY = level.getPlayer().getVector().getY();
 		for (int x = playerX - MIN_DRAW; x < playerX + MAX_DRAW; x++) {
