@@ -54,10 +54,6 @@ public class WallFollowing extends Entity {
 				cY + modifier(false));
 		Vector2D leftWall = new Vector2D(cX + findLeft(true),
 				cY + findLeft(false));
-		
-		
-		
-		
 		if (isValidMove(2, leftWall)) {
 			decreaseDircetion();
 			return leftWall;
@@ -69,6 +65,12 @@ public class WallFollowing extends Entity {
 		}
 	}
 	
+	
+	/**
+	 * Finds the change in position after the next movement. 	
+	 * @param isX Stores if the coordinate being sent is x or y.
+	 * @return the change in position of the coordinate after the next move.
+	 */
 	public int modifier(boolean isX) {
 		switch (direction) {
 			case 0:
@@ -102,6 +104,13 @@ public class WallFollowing extends Entity {
 	}
 	
 	
+	/**
+	 * Finds the difference in coordinate with the cell to
+	 * the left of the Enemy. 
+	 * @param isX Stores if the coordinate being sent is x or y.
+	 * @return the difference in position between the coordinate sent and the 
+	 * enemy.
+	 */
 	public int findLeft(boolean isX) {
 		switch (direction) {
 			case 0:
@@ -134,6 +143,10 @@ public class WallFollowing extends Entity {
 		}
 	}
 	
+	/**
+	 * Rotates the enemy 90 degrees clockwise.
+	 */
+	
 	public void increaseDirection() {
 		if (direction == 3) {
 			direction = 0;
@@ -141,6 +154,10 @@ public class WallFollowing extends Entity {
 			++direction;
 		}
 	}
+	
+	/**
+	 * Rotates the enemy 90 degrees anti clockwise.
+	 */
 	
 	public void decreaseDircetion() {
 		if (direction == 0) {
@@ -150,6 +167,11 @@ public class WallFollowing extends Entity {
 		}
 	}
 	
+	
+	/**
+	 * Changes the current position to the next position the
+	 * enemy will move to.
+	 */
 		
 	public void move() {
 		currentVector = nextMove();
