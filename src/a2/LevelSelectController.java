@@ -31,7 +31,7 @@ import javafx.stage.Stage;
  * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
-public class LevelSelectController implements Initializable {
+public class LevelSelectController {
 
 	@FXML
 	private Button btn_LoadLevel;
@@ -45,9 +45,7 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private AnchorPane levelScene;
 	
-	public void initialise() {
-		
-	}
+	
 	
 	
 	private void displayNewLevel(Level lvl) throws IOException {
@@ -92,24 +90,4 @@ public class LevelSelectController implements Initializable {
 			alert.showAndWait();
 		}	 
 	}
-
-	
-	/**
-	 * displays MOTD as label on the level select window. 
-	 */
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		Label motd;
-		try {
-			motd = new Label(MOTD.getMOTD());
-			levelBottom.getChildren().add(motd);
-			motd.setWrapText(true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		// TODO Auto-generated method stub
-		
-	}	
 }

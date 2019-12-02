@@ -32,7 +32,7 @@ import javafx.stage.Stage;
  * 
  */
 public class GameWindowController implements Initializable {
-	public static final int LEVEL_WIDTH = 500;
+	public static final int LEVEL_WIDTH = 350;
 	public static final int GAME_WIDTH = 350;
 	public static final int GAME_HEIGHT = 350;
 	public static final int LEVEL_LENGTH = 400;
@@ -53,6 +53,9 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private Canvas gameCanvas;
+	
+	@FXML
+	private Label lbl_MOTD;
 	
 	private static GameWindowController currentController;
 	
@@ -192,17 +195,25 @@ public class GameWindowController implements Initializable {
 	}   
 	
 	
-    public void drawExtras() {
-    	Image sideBarImage = new Image("a2/resources/stock photos/sideBar.png");
+    public void updateExtras() {
+    	//Image sideBarImage = new Image("a2/resources/stock photos/sideBar.png");
+    	//gc.drawImage(sideBarImage, GAME_WIDTH, 0);
+    	//try {
+    	//	gc.strokeText(MOTD.getMOTD(), 5, 15, 500);
+    	//}
+    	//catch(Exception e){
+    	//	System.out.println ("MOTD failed to load");
+    	//}
     	
-    	gc.drawImage(sideBarImage, GAME_WIDTH, 0);
-    	try {
-    		gc.strokeText(MOTD.getMOTD(), 5, 15, 500);
-    	}
-    	catch(Exception e){
-    		System.out.println ("MOTD failed to load");
-    	}
+		try {
+			lbl_MOTD.setText(MOTD.getMOTD());
+			lbl_MOTD.setWrapText(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
+		
     	 
 	}
 	
@@ -212,7 +223,7 @@ public class GameWindowController implements Initializable {
 	public void drawAll() {
 		drawCells();
 		drawInventory();
-		drawExtras();
+		updateExtras();
         
 	}
 }
