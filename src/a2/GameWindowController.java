@@ -196,8 +196,13 @@ public class GameWindowController implements Initializable {
     	Image sideBarImage = new Image("a2/resources/stock photos/sideBar.png");
     	
     	gc.drawImage(sideBarImage, GAME_WIDTH, 0);
+    	try {
+    		gc.strokeText(MOTD.getMOTD(), 5, 15, 500);
+    	}
+    	catch(Exception e){
+    		System.out.println ("MOTD failed to load");
+    	}
     	
-    	//gc.strokeText(MOTD.getMOTD(), 375, 0, 50);
     	 
 	}
 	
