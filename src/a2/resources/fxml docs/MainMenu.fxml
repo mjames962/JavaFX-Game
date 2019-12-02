@@ -8,20 +8,29 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.MainMenuController">
+<AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.MainMenuController">
   <children>
-    <BorderPane id="root" layoutX="98.0" layoutY="50.0">
+    <BorderPane id="root" layoutX="60.0" layoutY="40.0" prefHeight="384.0" prefWidth="443.0">
       <center>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <AnchorPane prefHeight="310.0" prefWidth="180.0">
           <children>
-            <Button fx:id="btn_LogIn" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleLogInBtn" text="Log In" />
-            <TextField fx:id="tbox_Username" layoutX="14.0" layoutY="44.0" prefWidth="200.0" promptText="Enter Username" />
-            <Button fx:id="btn_Create" layoutX="15.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleCreateBtn" text="Create" />
-            <Label layoutX="16.0" layoutY="22.0" text="Username" textFill="WHITE" />
-            <Label layoutX="14.0" layoutY="117.0" text="Create New User" textFill="WHITE" />
+            <ListView prefHeight="284.0" prefWidth="180.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
           </children>
         </AnchorPane>
       </center>
+      <left>
+        <AnchorPane prefHeight="253.0" prefWidth="235.0">
+          <children>
+            <Button fx:id="btn_LogIn" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleLogInBtn" prefWidth="87.0" text="Log In" />
+            <TextField fx:id="tbox_Username" layoutX="14.0" layoutY="44.0" prefWidth="200.0" promptText="Enter Username" />
+            <Button fx:id="btn_Create" layoutX="14.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleCreateBtn" prefWidth="87.0" text="Create" />
+            <Label layoutX="16.0" layoutY="22.0" text="Username" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="117.0" text="Create New User" textFill="WHITE" />
+            <Button layoutX="16.0" layoutY="198.0" mnemonicParsing="false" prefWidth="87.0" text="Delete" />
+            <Button fx:id="btn_ShowUsers" layoutX="16.0" layoutY="249.0" mnemonicParsing="false" prefWidth="87.0" text="Show Users" />
+          </children>
+        </AnchorPane>
+      </left>
       <top>
         <HBox prefHeight="100.0" prefWidth="305.0">
           <children>
