@@ -14,18 +14,18 @@
       <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
           <children>
-            <Button fx:id="btn_LogIn" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleLogInBtn" text="Log In"  />
+            <Button fx:id="btn_LogIn" layoutX="15.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleLogInBtn" text="Log In" />
             <TextField fx:id="tbox_Username" layoutX="14.0" layoutY="44.0" prefWidth="200.0" promptText="Enter Username" />
             <Button fx:id="btn_Create" layoutX="15.0" layoutY="143.0" mnemonicParsing="false" onAction="#handleCreateBtn" text="Create" />
-            <Label layoutX="15.0" layoutY="22.0" text="Username" />
-            <Label layoutX="14.0" layoutY="117.0" text="Create New User" />
+            <Label layoutX="16.0" layoutY="22.0" text="Username" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="117.0" text="Create New User" textFill="WHITE" />
           </children>
         </AnchorPane>
       </center>
       <top>
         <HBox prefHeight="100.0" prefWidth="305.0">
           <children>
-            <Label prefHeight="100.0" prefWidth="305.0" text="Place" >
+            <Label prefHeight="100.0" prefWidth="305.0" text="Placeholder" textFill="WHITE">
               <font>
                 <Font name="System Bold" size="50.0" />
               </font>

@@ -32,6 +32,7 @@ public class Player extends Entity {
 	private static final String SPRITE = "a2/resources/stock photos/Player1.png";
 	private Direction curDirection;
 	
+	
 
 	/**
 	 * Constructs the player object.
@@ -323,4 +324,7 @@ public class Player extends Entity {
 		return currentVector;
 		
 	}
+	
+	
+	
 }

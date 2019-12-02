@@ -46,6 +46,7 @@ public class MainMenuController {
 	private void handleLogInBtn(ActionEvent event) {
 		//Checks if user already exists.
 		if (UserData.doesExist(tbox_Username.getText())) {
+			Profile.setCurUser(tbox_Username.getText());
 			initialiseWindow("resources/fxml docs/LevelSelection.fxml");
 		} else {
 			//Displays alert pop-up box. 
@@ -53,7 +54,6 @@ public class MainMenuController {
 			alert.setTitle("Error");
 			alert.setHeaderText("User doesn't exist");
 			alert.setContentText(null);
-
 			alert.showAndWait();
 		}
 	}

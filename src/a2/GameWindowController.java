@@ -19,6 +19,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -56,6 +57,9 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private Label lbl_MOTD;
+	
+	@FXML
+	private Label lbl_User;
 	
 	private static GameWindowController currentController;
 	
@@ -212,6 +216,10 @@ public class GameWindowController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	Image image = new Image("a2/resources/stock photos/Player1.png");
+    	ImageView imageView = new ImageView(image);
+    	lbl_User.setText(Profile.getCurUser());
+    	lbl_User.setGraphic(imageView);
     	
 		
     	 
