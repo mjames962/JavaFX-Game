@@ -25,19 +25,17 @@
         </AnchorPane>
       </bottom>
       <left>
-        <AnchorPane prefHeight="115.0" prefWidth="150.0">
+        <AnchorPane prefHeight="184.0" prefWidth="354.0">
           <children>
-            <Button fx:id="btn_LoadLevel" layoutX="50.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleLoadLevelBtn" text="Load Level" />
-            <ComboBox fx:id="cmb_LevelSelect" layoutX="50.0" layoutY="65.0" prefHeight="21.0" prefWidth="129.0" promptText="Select Level" visibleRowCount="3">
+            <Button fx:id="btn_LoadLevel" layoutX="50.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleLoadLevelBtn" prefWidth="163.0" text="Load Level" />
+            <ComboBox fx:id="cmb_LevelSelect" layoutX="50.0" layoutY="65.0" prefHeight="25.0" prefWidth="163.0" promptText="Select Level" visibleRowCount="4">
               <items>
                 <FXCollections fx:factory="observableArrayList">
-                  <String fx:value="Level 1" />
-                  <String fx:value="Level 2" />
-                  <String fx:value="Level 3" />
                 </FXCollections>
               </items>
             </ComboBox>
                   <Button fx:id="LeaderboardBtn" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleLeaderboard" text="Leaderboard" />
+            <Button fx:id="btn_Log_Out" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleLogOutBtn" text="Log Out" />
           </children>
         </AnchorPane>
       </left>

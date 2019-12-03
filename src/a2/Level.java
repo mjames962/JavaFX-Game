@@ -177,10 +177,6 @@ public class Level {
 		}
 	}
 	
-	public String getLevelIdentifier() {
-		String filename = levelFile.getName();
-		return filename.replaceFirst("[0-9]+\\.txt", "");
-	}
 	
 	public File getNextLevelFile() {
 		int nextLevelNo = getLevelNumber() + 1;
