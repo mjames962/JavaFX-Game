@@ -1,6 +1,7 @@
 package a2;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,7 +56,16 @@ public class MainMenuController implements Initializable{
 	private void handleLogInBtn(ActionEvent event) {
 		//Checks if user already exists.
 		if (UserData.doesExist(tbox_Username.getText())) {
-			new Profile(UserData.getUserFile(tbox_Username.getText()));
+			try {
+				UserData.setCurrentUser(tbox_Username.getText());
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			initialiseWindow("resources/fxml docs/LevelSelection.fxml");
 		} else {
 			//Displays alert pop-up box. 
