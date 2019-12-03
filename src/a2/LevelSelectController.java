@@ -98,4 +98,8 @@ public class LevelSelectController implements Initializable {
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		levelScene.getChildren().setAll(window);
 	}
+	@FXML
+	private void handleLeaderboard() {
+		
+	}
 }

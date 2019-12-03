@@ -20,8 +20,7 @@ public class GreenDoor extends Door {
 
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		// TODO Auto-generated method stub
-		return false;
+		return ply.hasKey('g');
 	}
 	
 	public String cellName() {

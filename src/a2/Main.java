@@ -13,7 +13,7 @@ import javafx.fxml.FXMLLoader;
 /**
  * The main class for this program.
  * 
- * @author Jensen Mitch
+ * @author Jensen Mitch Jamie
  *
  */
 

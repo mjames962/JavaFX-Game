@@ -9,7 +9,7 @@ import a2.Vector2D;
  */
 public class BlueKeyCell extends Collectible {
 	
-	protected static final String SPRITE = "a2/resources/stock photos/BlueKeyCell.png";
+	protected static final String SPRITE = "a2/resources/stock photos/BlueKeySprite.png";
 	/**
 	 * creates the cell at the location.
 	 * @param pos holds the Vector2D of the cell

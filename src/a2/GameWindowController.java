@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import a2.Player.Direction;
 import cell.Cell;
+import cell.Collectible;
 import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -80,6 +81,13 @@ public class GameWindowController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		show();
 		refreshLevel();
+		try {
+			lbl_MOTD.setText(MOTD.getMOTD());
+			lbl_MOTD.setWrapText(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		currentController = this;
 		MusicPlayer.playMusic("resources/sound bytes/Background music.mp3");
 	}
@@ -135,6 +143,7 @@ public class GameWindowController implements Initializable {
 	public void refreshLevel() {
 		this.level = Level.getCurrentLevel();
         this.gc = gameCanvas.getGraphicsContext2D();
+        
         drawAll();
 		
 	}
@@ -154,15 +163,17 @@ public class GameWindowController implements Initializable {
         		boolean xValid = !(x < 0 || x > level.levelXLength() - 1);
         		boolean yValid = !(y < 0 || y > level.levelYLength() - 1);
         		
+        		
+        		
         		if (!xValid || !yValid) {
             		Image wallImage = new Image(Wall.SPRITE);
             		gc.drawImage(wallImage, drawX * CELL_DIMENSIONS, 
             				drawY * CELL_DIMENSIONS);
             	} else {
             		Cell currentCell = level.getCellAt(x, y);
-            		Image cellImage = new Image(currentCell.getSprite());
-            		gc.drawImage(cellImage, drawX * CELL_DIMENSIONS, 
-            				drawY * CELL_DIMENSIONS);
+            		currentCell.draw(gc, drawX * CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
+            		
+            			
             	}
         		drawEntities(new Vector2D(x, y), new Vector2D(drawX, drawY));
         		
@@ -220,13 +231,7 @@ public class GameWindowController implements Initializable {
      */
     public void updateExtras() {
     	
-		try {
-			lbl_MOTD.setText(MOTD.getMOTD());
-			lbl_MOTD.setWrapText(true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
     	Image image = new Image("a2/resources/stock photos/Player1.png");
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(Profile.getCurUser());

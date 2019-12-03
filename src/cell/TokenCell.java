@@ -1,6 +1,9 @@
 package cell;
 
+import a2.Player;
 import a2.Vector2D;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * The token cell that the will add to the users
@@ -9,7 +12,7 @@ import a2.Vector2D;
  *
  */
 
-public class TokenCell extends Cell {
+public class TokenCell extends Replaceable {
 	protected static final String SPRITE = "a2/resources/stock photos/Token.png";
 
 	
@@ -28,6 +31,19 @@ public class TokenCell extends Cell {
 	
 	public String getSprite() {
 		return SPRITE;
+	}
+	
+	@Override
+	public void doAction(Player p) {
+		p.giveToken();
+		turnToGround();
+	}
+	
+	public void draw(GraphicsContext gc,int drawPosX,int drawPosY) {
+		Image ground = new Image(Ground.SPRITE);
+		gc.drawImage(ground, drawPosX,drawPosY);
+		Image collectible = new Image(getSprite());
+		gc.drawImage(collectible, drawPosX,drawPosY);
 	}
 	
 	

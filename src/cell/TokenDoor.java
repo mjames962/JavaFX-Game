@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Player;
 import a2.Vector2D;
 
 /**
@@ -33,8 +34,8 @@ public class TokenDoor extends Door {
 	 * tokens.
 	 */
 	
-	public boolean meetsRequirement(int tokenCount) {
-		return requiredTokens <= tokenCount;
+	public boolean meetsRequirement(Player p) {
+		return p.hasTokens(requiredTokens);
 	}
 	
 	public int getRequiredTokens() {
