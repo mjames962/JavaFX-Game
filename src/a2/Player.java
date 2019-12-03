@@ -115,11 +115,23 @@ public class Player extends Entity {
 				if (ent == this) { 
 					currentVector = move(input);
 				} else {
+					checkPlayerIntersectEnemy(ent);
 					ent.move();
+					checkPlayerIntersectEnemy(ent);
 				}
 			}
 		}
+		
+		
 	}
+	
+	public void checkPlayerIntersectEnemy(Entity e) {
+		if (currentVector.equals(e.getVector())) {
+			playerDeath();
+		}
+	}
+	
+	
 
 	/**
 	 * Overrides the isValidMove method in Entity for player entities.

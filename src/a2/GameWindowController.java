@@ -81,6 +81,13 @@ public class GameWindowController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		show();
 		refreshLevel();
+		try {
+			lbl_MOTD.setText(MOTD.getMOTD());
+			lbl_MOTD.setWrapText(true);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		currentController = this;
 	}
 	
@@ -223,13 +230,7 @@ public class GameWindowController implements Initializable {
      */
     public void updateExtras() {
     	
-		try {
-			lbl_MOTD.setText(MOTD.getMOTD());
-			lbl_MOTD.setWrapText(true);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
     	Image image = new Image("a2/resources/stock photos/Player1.png");
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(Profile.getCurUser());

@@ -106,11 +106,13 @@ public class SmartTargetEnemy extends Entity {
 	 */
 	public void move() {
 		moveList = new ArrayList<>();
-		System.out.println(shortPathFind(currentVector.getX(), 
-				currentVector.getY(), 
-				  maxViewDistance, 0));
+			if (!currentVector.equals(Level.getCurrentLevel().getPlayer().getVector())) {
+				System.out.println(shortPathFind(currentVector.getX(), 
+						currentVector.getY(), 
+						maxViewDistance, 0));
 
-		this.currentVector = nextMove;
+				this.currentVector = nextMove;
+		}
 	}
 
 	
