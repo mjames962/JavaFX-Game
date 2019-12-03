@@ -1,6 +1,7 @@
 package a2;
 
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -31,7 +32,7 @@ import javafx.stage.Stage;
  * @author Jensen Beard, George Williams-Walton and Darius Thomas
  * @version 1.0
  */
-public class LevelSelectController {
+public class LevelSelectController implements Initializable {
 
 	@FXML
 	private Button btn_LoadLevel;
@@ -48,7 +49,18 @@ public class LevelSelectController {
 	@FXML
 	private Button btn_Log_Out;
 	
-	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		File folder = new File("src/a2/resources/file formats");
+		File[] listOfFiles = folder.listFiles();
+		System.out.println("file testing");
+		for (File file : listOfFiles) {
+		    if (file.isFile()) {
+		        String fileName = file.getName();
+		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
+		    }
+		}
+	}
 	
 	
 	private void displayNewLevel(Level lvl) throws IOException {
@@ -66,32 +78,19 @@ public class LevelSelectController {
 	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
+		displayNewLevel(formatLevel());
+	}
+	
+	private Level formatLevel() throws IOException{
 		String currentLevel = cmb_LevelSelect.getValue();
-		Level level;
+		//Add while to loop through file formats folder to check number of files 
+			return new Level(
+					"src/a2/resources/file formats/"+ currentLevel + ".txt");
+		 
+	}
+	public String getLevelIdentifier(String fileName) {
 		
-		if (currentLevel == null) {
-			currentLevel = "";
-		}
-		
-		if (currentLevel.equals("Level 1")) {
-			level = new Level(
-					"src/a2/resources/file formats/testFileFormat1.txt");
-			displayNewLevel(level);
-		} else if (currentLevel.equals("Level 2")) {
-			level = new Level(
-					"src/a2/resources/file formats/testFileFormat2.txt");
-			displayNewLevel(level);
-		} else if (currentLevel.equals("Level 3")) {
-			level = new Level(
-					"src/a2/resources/file formats/testFileFormat3.txt");
-			displayNewLevel(level);
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
-			alert.setHeaderText("Please select a level");
-			alert.setContentText(null);
-			alert.showAndWait();
-		}	 
+		return fileName.replaceFirst("\\.txt", "");
 	}
 	@FXML
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
