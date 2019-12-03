@@ -38,6 +38,10 @@ public class UserData {
 		return doesExist(username, in);
 	}
 	
+	public static File getUserFile(String userName) {
+		return new File("src/a2/resources/User files/" + userName + ".txt");
+	}
+	
 	public static ArrayList<String> readUsers() {
 		File inputFile = new File("src/a2/resources/User files/Users.txt");
 		try {

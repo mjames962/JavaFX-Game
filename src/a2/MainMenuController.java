@@ -55,7 +55,7 @@ public class MainMenuController implements Initializable{
 	private void handleLogInBtn(ActionEvent event) {
 		//Checks if user already exists.
 		if (UserData.doesExist(tbox_Username.getText())) {
-			Profile.setCurUser(tbox_Username.getText());
+			new Profile(UserData.getUserFile(tbox_Username.getText()));
 			initialiseWindow("resources/fxml docs/LevelSelection.fxml");
 		} else {
 			//Displays alert pop-up box. 

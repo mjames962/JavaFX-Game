@@ -99,7 +99,11 @@ public class LevelSelectController implements Initializable {
 		levelScene.getChildren().setAll(window);
 	}
 	@FXML
-	private void handleLeaderboard() {
-		
+	private void handleLeaderboard() throws IOException {
+		FXMLLoader fx = new FXMLLoader(getClass().
+				getResource("resources/fxml docs/Leaderboard.fxml"));
+		AnchorPane window = fx.load();  
+		levelScene.getChildren().setAll(window);
+		((LeaderboardController) fx.getController()).display();
 	}
 }

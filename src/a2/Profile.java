@@ -23,6 +23,8 @@ public class Profile {
 	private int highestLevel;
 	private ArrayList<Long> bestTimes = new ArrayList<>();
 	private static String currentUser;
+	private static Profile currentProfile;
+	
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -36,6 +38,16 @@ public class Profile {
 		String filePath = this.pfile.getPath();
 		filePath = filePath.substring(28, filePath.length());
 		this.name = filePath.replaceFirst(".txt", "");
+		currentProfile = this;
+		Scanner in = null;
+		try {
+			in = new Scanner(f);
+			readFile(in);
+		} catch (FileNotFoundException e) {
+			System.out.println("Cannot open Users.txt");
+			System.exit(0);
+		}
+		System.out.println(currentProfile);
 	}
 	
 	/**
@@ -95,6 +107,10 @@ public class Profile {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public static Profile getCurrentProfile() {
+		return currentProfile;
 	}
 	
 	/**
