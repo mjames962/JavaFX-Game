@@ -233,7 +233,7 @@ public class GameWindowController implements Initializable {
 		
     	Image image = new Image("a2/resources/stock photos/Player1.png");
     	ImageView imageView = new ImageView(image);
-    	lbl_User.setText(Profile.getCurUser());
+    	lbl_User.setText(UserData.getCurrentUser().getName());
     	lbl_User.setGraphic(imageView);
     	
 		
