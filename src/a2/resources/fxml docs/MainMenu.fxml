@@ -14,7 +14,7 @@
       <center>
         <AnchorPane prefHeight="310.0" prefWidth="180.0">
           <children>
-            <ListView prefHeight="284.0" prefWidth="180.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ListView fx:id="lstView_Users" prefHeight="240.0" prefWidth="208.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="44.0" />
           </children>
         </AnchorPane>
       </center>
@@ -27,7 +27,7 @@
             <Label layoutX="16.0" layoutY="22.0" text="Username" textFill="WHITE" />
             <Label layoutX="14.0" layoutY="117.0" text="Create New User" textFill="WHITE" />
             <Button layoutX="16.0" layoutY="198.0" mnemonicParsing="false" prefWidth="87.0" text="Delete" />
-            <Button fx:id="btn_ShowUsers" layoutX="16.0" layoutY="249.0" mnemonicParsing="false" prefWidth="87.0" text="Show Users" />
+            <CheckBox fx:id="cb_ShowUser" layoutX="16.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleCBShowUsers" text="Show Users" textFill="WHITE" />
           </children>
         </AnchorPane>
       </left>

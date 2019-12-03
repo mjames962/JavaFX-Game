@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 /**
@@ -28,6 +30,10 @@ public class MainMenuController {
 	private TextField tbox_Username;
 	@FXML 
 	private AnchorPane root;
+	@FXML
+	private ListView lstView_Users;
+	@FXML
+	private CheckBox cb_ShowUsers;
 	
 	/**
 	 * Performs action when Create button is clicked.
@@ -61,6 +67,17 @@ public class MainMenuController {
 	@FXML
 	private void handleDeleteBtn(ActionEvent event) {
 		initialiseWindow("resources/fxml docs/DeleteUser.fxml");
+	}
+	
+	@FXML
+	private void handleCBShowUsers(ActionEvent event) {
+		if (lstView_Users.isVisible()) {
+			lstView_Users.setVisible(false);
+		} else {
+			lstView_Users.setVisible(true);
+		}
+			
+		
 	}
 	
 	/**
