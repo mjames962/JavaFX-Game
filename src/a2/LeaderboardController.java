@@ -27,6 +27,7 @@ public class LeaderboardController {
 	@FXML 
 	TableView leaderTable;
 
+
 	
 	public void display() {
 		
@@ -40,15 +41,8 @@ public class LeaderboardController {
             }
          });
         leaderTable.getColumns().add(column1);
-        leaderTable.getItems().add(Profile.getCurrentProfile());
+        leaderTable.getItems().add(UserData.getCurrentUser());
         
-        
-
-//        TableColumn<String, Person> column2 = new TableColumn<>("Last Name");
-//        column2.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//		columnName.setCellValueFactory(new PropertyValueFactory<>("Name"));
-//		columnTime.setCellValueFactory(new PropertyValueFactory<>("Time"));
-		//leaderTable.getItems().a
 	}
 	
 	public void leadBut1Press() {

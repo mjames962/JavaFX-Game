@@ -29,6 +29,8 @@ public class UserData {
 		return currentUser;
 	}
 	
+	
+	
 	private static void setCurrentUser(Profile profile) {
 		currentUser = profile;
 	}

@@ -35,16 +35,6 @@ public class Profile {
 		String filePath = this.pfile.getPath();
 		filePath = filePath.substring(28, filePath.length());
 		this.name = filePath.replaceFirst(".txt", "");
-		currentProfile = this;
-		Scanner in = null;
-		try {
-			in = new Scanner(f);
-			readFile(in);
-		} catch (FileNotFoundException e) {
-			System.out.println("Cannot open Users.txt");
-			System.exit(0);
-		}
-		System.out.println(currentProfile);
 	}
 	
 	/**
