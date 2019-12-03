@@ -16,6 +16,8 @@ import javafx.scene.layout.AnchorPane;
 public class DeleteUserController {
 	@FXML
 	private Button btn_Delete;
+	@FXML
+	private Button btn_Back;
 	@FXML 
 	private TextField txt_User;
 	@FXML

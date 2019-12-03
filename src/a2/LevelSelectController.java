@@ -45,6 +45,9 @@ public class LevelSelectController {
 	@FXML
 	private AnchorPane levelScene;
 	
+	@FXML
+	private Button btn_Log_Out;
+	
 	
 	
 	
@@ -89,5 +92,11 @@ public class LevelSelectController {
 			alert.setContentText(null);
 			alert.showAndWait();
 		}	 
+	}
+	@FXML
+	private void handleLogOutBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/MainMenu.fxml"));  
+		levelScene.getChildren().setAll(window);
 	}
 }
