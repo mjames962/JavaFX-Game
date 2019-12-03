@@ -55,8 +55,12 @@ public class LevelSelectController implements Initializable {
 		File[] listOfFiles = folder.listFiles();
 		System.out.println("file testing");
 		for (File file : listOfFiles) {
-		    if (file.isFile()) {
-		        String fileName = file.getName();
+			String fileName = file.getName();
+			String levelString = fileName.substring(0, fileName.length() - 4); //gets level number
+			levelString = levelString.substring(5);
+			int levelNo = Integer.parseInt(levelString);
+			
+			if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNo) {
 		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 		    }
 		}

@@ -30,11 +30,15 @@ public class Profile {
 	
 	public Profile(File f) {
 		this.pfile = f;
-		this.highestLevel = 0;
+		this.highestLevel = 1;
 		
 		String filePath = this.pfile.getPath();
 		filePath = filePath.substring(28, filePath.length());
 		this.name = filePath.replaceFirst(".txt", "");
+	}
+	
+	public int getHighestLevel() {
+		return this.highestLevel;
 	}
 	
 	/**
