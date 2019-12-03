@@ -19,7 +19,7 @@
         <Pane prefHeight="98.5" prefWidth="572.0">
           <children>
             <Label fx:id="lbl_MOTD" layoutX="14.0" layoutY="14.0" text="MOTD" />
-            <Button layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="Quit" />
+            <Button fx:id="btnQuit" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
           </children>
         </Pane>
       </bottom>
