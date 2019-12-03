@@ -89,7 +89,7 @@ public class GameWindowController implements Initializable {
 			e.printStackTrace();
 		}
 		currentController = this;
-		MusicPlayer.playMusic("resources/sound bytes/Background music.mp3");
+		MusicPlayer.playMusic("src/resources/sound bytes/Background music.mp3");
 	}
 	
 	/**
