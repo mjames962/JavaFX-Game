@@ -21,7 +21,7 @@ public class BlueDoor extends Door {
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		// TODO Auto-generated method stub
-		return ply.hasItem(p);
+		return ply.hasKey('b');
 	}
 	
 	public String cellName() {

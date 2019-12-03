@@ -3,6 +3,8 @@ package cell;
 import a2.Player;
 import a2.Sprite;
 import a2.Vector2D;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * Holds the Cell Superclass.
@@ -74,8 +76,11 @@ public abstract class Cell implements Sprite {
 	}
 	
 	
-//	public void draw() {
-//		
-//	}
+	
+	public void draw(GraphicsContext gc,int drawPosX,int drawPosY) {
+		Image cellImage = new Image(getSprite());
+		gc.drawImage(cellImage, drawPosX,drawPosY);
+		
+	}
 
 }
