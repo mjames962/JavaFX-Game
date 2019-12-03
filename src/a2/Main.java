@@ -33,11 +33,17 @@ public class Main extends Application {
 
 	private static Stage curStage;
 	
-	
+	/**
+	 * Changes the scene on the current stage to the scene specified.
+	 * @param s the scene being switched to.
+	 */
 	public static void switchScene(Scene s) {
 		curStage.setScene(s);
 	}
-	
+	/**
+	 * Returns the current Stage.
+	 * @return gives the current stage
+	 */
 	public static Stage getStage() {
 		return curStage;
 	}
@@ -54,7 +60,8 @@ public class Main extends Application {
 			root.setId("pane");
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
-			scene.getStylesheets().addAll(this.getClass().getResource("resources/style.css").toExternalForm());
+			scene.getStylesheets().addAll(this.getClass()
+					.getResource("resources/style.css").toExternalForm());
 			// Place the main scene on stage and show it.
 			curStage = primaryStage;
 			primaryStage.setScene(scene);
