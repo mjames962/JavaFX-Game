@@ -49,10 +49,10 @@ public class Goal extends Cell {
 	}
 	@Override
 	public void doAction(Player ply) {
-		Level.getCurrentLevel().loadNextLevel();
 		long finishTime = Timer.checkTimeElapsed();
-		int levelNum = Level.getCurrentLevel().getLevelNo();
+		int levelNum = Level.getCurrentLevel().getLevelNumber();
 		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
+		Level.getCurrentLevel().loadNextLevel();
 
 	}
 	

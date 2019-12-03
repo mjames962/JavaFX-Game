@@ -82,7 +82,7 @@ public class Profile {
 	 * @return if the new time is higher than the old highest time.
 	 */
 	public boolean isBestTime(int level, long time) {
-		if (bestTimes.size() >= level) {
+		if (bestTimes.size() <= level) {
 			return true;
 		} else {
 			return bestTimes.get(level - 1) > time; 
@@ -98,9 +98,9 @@ public class Profile {
 	
 	public void setBestTime(int level, long time) {
 		String filePath = "src/a2/resources/file formats/LBLevel"
-				+ Integer.toString(level + 1) + ".txt";
+				+ Integer.toString(level) + ".txt";
 		if (isBestTime(level, time)) {
-			if (bestTimes.size() == level) {
+			if (bestTimes.size() == level - 1) {
 				bestTimes.add(time);
 			} else {
 				bestTimes.remove(level - 1);
