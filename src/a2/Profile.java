@@ -82,7 +82,11 @@ public class Profile {
 	 * @return if the new time is higher than the old highest time.
 	 */
 	public boolean isBestTime(int level, long time) {
-		return bestTimes.get(level) > time;
+		if (bestTimes.size() >= level) {
+			return true;
+		} else {
+			return bestTimes.get(level - 1) > time; 
+		}
 	}
 	
 	
@@ -93,11 +97,11 @@ public class Profile {
 	 */
 	
 	public void setBestTime(int level, long time) {
-		String filePath = "src/a2/resources/file formats/LevelLB"
-				+ Integer.toString(level) + ".txt";
+		String filePath = "src/a2/resources/file formats/LBLevel"
+				+ Integer.toString(level + 1) + ".txt";
 		if (isBestTime(level, time)) {
 			if (bestTimes.size() == level) {
-				bestTimes.add(level, time);
+				bestTimes.add(time);
 			} else {
 				bestTimes.remove(level - 1);
 				bestTimes.add(level - 1, time);
@@ -126,6 +130,8 @@ public class Profile {
 			
 			leaderboardFile.close();
 			
+			
+			updateFile();
 			//Write To file
 			writeLeaderboardFile(filePath);
 		}
