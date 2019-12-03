@@ -171,6 +171,7 @@ public class Profile {
 			writer.println(eName + " " + Long.toString(timesLB.get(loopPos)));
 			loopPos++;
 		}
+		writer.close();
 	}
 	
 	
