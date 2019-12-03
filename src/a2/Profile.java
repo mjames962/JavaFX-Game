@@ -99,6 +99,10 @@ public class Profile {
 		return name;
 	}
 	
+	public static Profile getCurrentProfile() {
+		return currentProfile;
+	}
+	
 	/**
 	 * Updates user file with changes made since reading
 	 * from file.

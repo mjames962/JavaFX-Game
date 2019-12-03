@@ -29,6 +29,8 @@ public class UserData {
 		return currentUser;
 	}
 	
+	
+	
 	private static void setCurrentUser(Profile profile) {
 		currentUser = profile;
 	}
@@ -51,6 +53,10 @@ public class UserData {
 		}
 
 		return doesExist(username, in);
+	}
+	
+	public static File getUserFile(String userName) {
+		return new File("src/a2/resources/User files/" + userName + ".txt");
 	}
 	
 	public static ArrayList<String> readUsers() {
