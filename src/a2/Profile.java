@@ -43,14 +43,20 @@ public class Profile {
 	 * the appropriate variables are set to the corresponding
 	 * values.
 	 * @param in the scanner that will read the file
+	 * @throws FileNotFoundException 
 	 */
-	private void readFile(Scanner in) {
-		name = in.nextLine();
-		highestLevel = in.nextInt();
+	public void readFile() throws FileNotFoundException {
+		Scanner in = new Scanner(new File(UserData.USER_FOLDER_LOCATION + "/" + this.name + ".txt"));
+		
+		this.name = in.next();
+		this.highestLevel = in.nextInt();
+		
 		while (in.hasNext()) {
 			long time = in.nextLong();
-			bestTimes.add(time);
+			this.bestTimes.add(time);
 		}
+		
+		in.close();
 	}
 	
 	/**

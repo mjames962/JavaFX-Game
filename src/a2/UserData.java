@@ -16,10 +16,22 @@ import java.util.Scanner;
  *
  */
 public class UserData {
-	//Users.txt file reader
-	//check if username exists in Users.txt
-	public static boolean doesExist(String username) {
-		File inputFile = new File("src/a2/resources/User files/Users.txt");
+	
+	final public static String USERS_FILE_LOCATION = "src/a2/resources/User files/Users.txt";
+	final public static String USER_FOLDER_LOCATION = "src/a2/resources/User files";
+	
+	 private static Profile currentUser; 
+	
+	public static Profile getCurrentUser() {
+		return currentUser;
+	}
+	
+	private static void setCurrentUser(Profile profile) {
+		currentUser = profile;
+	}
+	 
+	 public static boolean doesExist(String username) {
+		File inputFile = new File(USERS_FILE_LOCATION);
 		try {
 			inputFile.createNewFile();
 		} catch (IOException e1) {
@@ -39,7 +51,7 @@ public class UserData {
 	}
 	
 	public static ArrayList<String> readUsers() {
-		File inputFile = new File("src/a2/resources/User files/Users.txt");
+		File inputFile = new File(USERS_FILE_LOCATION);
 		try {
 			inputFile.createNewFile();
 		} catch (IOException e1) {
@@ -85,10 +97,10 @@ public class UserData {
 	// user file writer
 	public static void createUser(String username) throws IOException {
 		if (!doesExist(username)) {
-			Files.write(Paths.get("src/a2/resources/User files/Users.txt"), 
+			Files.write(Paths.get(USERS_FILE_LOCATION), 
 					(username + "\n").getBytes(), StandardOpenOption.APPEND);
 
-			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
+			File userFile = new File(USER_FOLDER_LOCATION + "/" + username + ".txt");
 			Profile profile = new Profile(userFile);
 			profile.updateFile();
 		}
@@ -96,12 +108,12 @@ public class UserData {
 	
 	public static void deleteUser(String username) throws IOException {
 		if (doesExist(username)) {
-			File userFile = new File("src/a2/resources/User files/" + username + ".txt");
+			File userFile = new File(USER_FOLDER_LOCATION + "/" + username + ".txt");
 			userFile.delete();
 
-			File oldUsersFile = new File("src/a2/resources/User files/Users.txt");
+			File oldUsersFile = new File(USERS_FILE_LOCATION);
 
-			File newUsersFile = new File("src/a2/resources/User files/newUsers.txt");
+			File newUsersFile = new File(USER_FOLDER_LOCATION + "/" + "newUsers.txt");
 			newUsersFile.createNewFile();
 
 			Scanner in = new Scanner(oldUsersFile);
@@ -109,7 +121,7 @@ public class UserData {
 			while (in.hasNextLine()) {
 				String currentUser = in.nextLine();
 				if (!currentUser.equals(username)) {
-					Files.write(Paths.get("src/a2/resources/User files/newUsers.txt"), (currentUser + "\n").getBytes(),
+					Files.write(Paths.get(USER_FOLDER_LOCATION + "/" + "newUsers.txt"), (currentUser + "\n").getBytes(),
 							StandardOpenOption.APPEND);
 				}
 				
@@ -118,9 +130,20 @@ public class UserData {
 			in.close();
 			
 			
-			Files.delete(Paths.get("src/a2/resources/User files/Users.txt"));
-			newUsersFile.renameTo(new File("src/a2/resources/User files/Users.txt"));
+			Files.delete(Paths.get(USERS_FILE_LOCATION));
+			newUsersFile.renameTo(new File(USERS_FILE_LOCATION));
 			
+		}
+	}
+	
+	public static void setCurrentUser(String username) throws IllegalStateException, FileNotFoundException {
+		if (doesExist(username)) {
+			File userFile = new File(USER_FOLDER_LOCATION + "/" + username + ".txt");
+			Profile user = new Profile(userFile);
+			user.readFile();
+			UserData.setCurrentUser(user);
+		} else {
+			throw new IllegalStateException();
 		}
 	}
 	
