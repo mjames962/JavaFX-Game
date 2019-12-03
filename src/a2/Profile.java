@@ -22,6 +22,9 @@ public class Profile {
 	private String name;
 	private int highestLevel;
 	private ArrayList<Long> bestTimes = new ArrayList<>();
+    private int leaderboardMaxLength = 3;
+	private ArrayList<String> usersLB = new ArrayList<>();
+	private ArrayList<Long> timesLB = new ArrayList<>();
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -79,8 +82,13 @@ public class Profile {
 	 * @return if the new time is higher than the old highest time.
 	 */
 	public boolean isBestTime(int level, long time) {
-		return bestTimes.get(level) > time;
+		if (bestTimes.size() <= level) {
+			return true;
+		} else {
+			return bestTimes.get(level - 1) > time; 
+		}
 	}
+	
 	
 	/**
 	 * Sets a new best time for a specified level.
@@ -89,8 +97,76 @@ public class Profile {
 	 */
 	
 	public void setBestTime(int level, long time) {
+		String filePath = "src/a2/resources/file formats/LBLevel"
+				+ Integer.toString(level) + ".txt";
 		if (isBestTime(level, time)) {
-			bestTimes.add(level, time);
+			if (bestTimes.size() == level - 1) {
+				bestTimes.add(time);
+			} else {
+				bestTimes.remove(level - 1);
+				bestTimes.add(level - 1, time);
+			}
+			Scanner leaderboardFile = null;
+			try {
+				leaderboardFile = new Scanner(new File(filePath));
+			} catch  (IOException e) {
+				System.out.println("Failed to load file");
+			}
+			//Populate Leaderboard Prev Values
+
+			while (leaderboardFile.hasNext()) {
+				usersLB.add(leaderboardFile.next());
+				timesLB.add(leaderboardFile.nextLong());
+			}
+			
+			
+			//Add if applicable
+			if (usersLB.size() < leaderboardMaxLength) {
+				usersLB.add(name);
+				timesLB.add(time);
+			} else {
+				findLowestTimes(name, time);
+			}
+			
+			leaderboardFile.close();
+			
+			
+			updateFile();
+			//Write To file
+			writeLeaderboardFile(filePath);
+		}
+	}
+	
+	public void findLowestTimes(String curName, long time) {
+		for (Long entry : timesLB) {
+			if (time < entry) {
+				int pos = timesLB.indexOf(entry);
+				String tempUser = usersLB.get(pos);
+				usersLB.remove(pos);
+				long tempTime = entry; 
+				timesLB.remove(entry);
+				usersLB.add(curName);
+				timesLB.add(time);
+				findLowestTimes(tempUser, tempTime);
+			}
+		}
+	}
+	
+	public void writeLeaderboardFile(String filePath) {
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(filePath, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		int loopPos = 0;
+		for (String eName : usersLB) {
+			writer.println(eName + " " + Long.toString(timesLB.get(loopPos)));
+			loopPos++;
 		}
 	}
 	
@@ -99,9 +175,6 @@ public class Profile {
 		return name;
 	}
 	
-	public static Profile getCurrentProfile() {
-		return currentProfile;
-	}
 	
 	/**
 	 * Updates user file with changes made since reading
