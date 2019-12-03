@@ -15,7 +15,7 @@ public class LeaderboardEntry {
 	
 	public void addData(String name, Object data) throws InvalidParameterException {
 		//Class<?> dataClass = data.getClass();
-		LeaderboardColumn column = leader.getColumns().get(name);
+		LeaderboardColumn<?> column = leader.getColumns().get(name);
 		if (column == null) {
 			throw new NullPointerException("Column does not exist!");
 		}
@@ -29,6 +29,10 @@ public class LeaderboardEntry {
 		}
 	}
 	
+	public boolean hasColumn(LeaderboardColumn<?> column ) {
+		return entryData.containsKey(column.getName());
+	}
+	
 	public void addDatas(HashMap<String,Object> data) {
 		for (String name : data.keySet()) {
 			addData(name,data.get(name));
@@ -40,7 +44,7 @@ public class LeaderboardEntry {
 			return entryData.get(name);
 		} else {
 			throw new InvalidParameterException(""
-					+ "Attempt to a non existent column! " + name);
+					+ "Attempt to find a non existent column! " + name);
 		}
 		
 	}

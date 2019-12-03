@@ -25,23 +25,27 @@ public class LeaderboardController {
 	@FXML 
 	ChoiceBox levelSelector;
 	@FXML 
-	TableView leaderTable;
+	TableView<LeaderboardEntry> leaderTable;
 
 
 	
 	public void display() {
 		
-		TableColumn<Profile, String> column1 = new TableColumn<>("Name");
-        column1.setCellValueFactory(
-        		new Callback<CellDataFeatures<Profile, String>, ObservableValue<String>>() {
-            public ObservableValue<String> call(CellDataFeatures<Profile, String> p) {
-                // p.getValue() returns the Person instance for a particular TableView row
-                Profile profile = (Profile) p.getValue();
-                return new SimpleStringProperty(profile.getName());
-            }
-         });
-        leaderTable.getColumns().add(column1);
-        leaderTable.getItems().add(UserData.getCurrentUser());
+		Leaderboard lead = new Leaderboard();
+		LeaderboardColumn<String> nucolumn = new LeaderboardColumn<>(String.class,"Name");
+		LeaderboardColumn<Integer> nucolumn2 = new LeaderboardColumn<>(Integer.class,"Score");
+		lead.addColumn(nucolumn);
+		lead.addColumn(nucolumn2);
+		LeaderboardEntry nuentry = new LeaderboardEntry(lead);
+		nuentry.addData("Name", "Me");
+		nuentry.addData("Score", -9999);
+		LeaderboardEntry nuentry2 = new LeaderboardEntry(lead);
+		nuentry2.addData("Name", "You");
+		nuentry2.addData("Score", 1000);
+		lead.addEntry(nuentry);
+		lead.addEntry(nuentry2);
+		//System.out.println(lead.getEntry(0).getData("Score"));
+		lead.display(leaderTable);
         
 	}
 	

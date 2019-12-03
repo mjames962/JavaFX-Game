@@ -68,8 +68,7 @@ public class LevelSelectController implements Initializable {
 				levelNum =  Integer.parseInt(matcher.group(1));
 			} else {
 				levelNum = -1;
-			}
-			
+			}		
 			if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNum) {
 		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 		    }
