@@ -44,7 +44,6 @@ public class Profile {
 	 * values.
 	 * @param in the scanner that will read the file
 	 */
-	
 	private void readFile(Scanner in) {
 		name = in.nextLine();
 		highestLevel = in.nextInt();
@@ -92,6 +91,10 @@ public class Profile {
 	
 	public static String getCurUser() {
 		return currentUser;
+	}
+	
+	public String getName() {
+		return name;
 	}
 	
 	/**

@@ -86,6 +86,25 @@ public class Player extends Entity {
 		return nextVector;
 	}
 
+	public void setTokenCount(int tokenCount) {
+		this.tokenCount = tokenCount;
+	}
+	
+	public void giveToken() {
+		this.tokenCount += 1;
+	}
+	
+	public int getTokenCount() {
+		return tokenCount;
+	}
+	
+	public boolean hasTokens(int tokenCount) {
+		return this.tokenCount >= tokenCount;
+	}
+	
+	public void takeTokens(int tokenCount) {
+		this.tokenCount -= tokenCount;
+	}
 	
 	public void handleInput(Direction input) {
 		curDirection = input;

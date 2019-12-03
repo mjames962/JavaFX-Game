@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Player;
 import a2.Vector2D;
 
 /**
@@ -9,7 +10,7 @@ import a2.Vector2D;
  *
  */
 
-public class TokenCell extends Cell {
+public class TokenCell extends Replaceable {
 	protected static final String SPRITE = "a2/resources/stock photos/Token.png";
 
 	
@@ -28,6 +29,12 @@ public class TokenCell extends Cell {
 	
 	public String getSprite() {
 		return SPRITE;
+	}
+	
+	@Override
+	public void doAction(Player p) {
+		p.giveToken();
+		turnToGround();
 	}
 	
 	

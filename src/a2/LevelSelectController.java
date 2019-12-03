@@ -90,4 +90,8 @@ public class LevelSelectController {
 			alert.showAndWait();
 		}	 
 	}
+	@FXML
+	private void handleLeaderboard() {
+		
+	}
 }
