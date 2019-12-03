@@ -19,8 +19,11 @@ public class UserData {
 	
 	final public static String USERS_FILE_LOCATION = "src/a2/resources/User files/Users.txt";
 	final public static String USER_FOLDER_LOCATION = "src/a2/resources/User files";
+	final public static String LEVEL_FOLDER_LOCATION = "src/a2/resources/file formats";
+	final public static String IMAGE_FOLDER_LOCATION = "src/a2/resources/stock photos";
+	final public static String FXML_FOLDER_LOCATION = "src/a2/resources/fxml docs";
 	
-	 private static Profile currentUser; 
+	private static Profile currentUser; 
 	
 	public static Profile getCurrentUser() {
 		return currentUser;
@@ -124,15 +127,12 @@ public class UserData {
 					Files.write(Paths.get(USER_FOLDER_LOCATION + "/" + "newUsers.txt"), (currentUser + "\n").getBytes(),
 							StandardOpenOption.APPEND);
 				}
-				
 			}
-			
+
 			in.close();
-			
-			
+
 			Files.delete(Paths.get(USERS_FILE_LOCATION));
 			newUsersFile.renameTo(new File(USERS_FILE_LOCATION));
-			
 		}
 	}
 	
