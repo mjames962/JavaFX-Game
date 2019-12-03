@@ -51,12 +51,14 @@ public class LevelSelectController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		File folder = new File("src/a2/resources/file formats");
+		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
 		System.out.println("file testing");
 		for (File file : listOfFiles) {
 			String fileName = file.getName();
-			String levelString = fileName.substring(0, fileName.length() - 4); //gets level number
+			
+			//gets level number from file name
+			String levelString = fileName.substring(0, fileName.length() - 4); 
 			levelString = levelString.substring(5);
 			int levelNo = Integer.parseInt(levelString);
 			
