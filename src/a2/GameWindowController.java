@@ -14,8 +14,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -26,8 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 
 /**
@@ -43,6 +39,7 @@ public class GameWindowController implements Initializable {
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
+	private static GameWindowController currentController;
 	
 
 	private GraphicsContext gc;
@@ -67,8 +64,10 @@ public class GameWindowController implements Initializable {
 	@FXML
 	private Label lbl_User;
 	
-	private static GameWindowController currentController;
-	
+	/**
+	 * Gets the current controller.
+	 * @return currentController
+	 */
 	public static GameWindowController getCurrentController() {
 		return currentController;
 	}
@@ -84,27 +83,32 @@ public class GameWindowController implements Initializable {
 		currentController = this;
 	}
 	
+	/**
+	 * Moves the map and redraws the cells.
+	 * @param playerMove the direction the player has chose to move
+	 */
 	public void nextTick(Direction playerMove) {
-		level.getPlayer().handleInput(playerMove); //maybe can give responsibility to Level instead
+		level.getPlayer().handleInput(playerMove); 
+		//maybe can give responsibility to Level instead
 		this.drawAll();
 	}	
 	/**
-	 * Checks user input
+	 * Checks user input.
 	 */
 	public void hookInput(Scene sc) {
 		sc.addEventFilter(KeyEvent.KEY_PRESSED,new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) { 
         		switch (ke.getCode()) {
-        			case W:
+        			case UP:
         				nextTick(Direction.UP);
         				break;
-        			case A:
+        			case LEFT:
         				nextTick(Direction.LEFT);
         				break;
-        			case S:
+        			case DOWN:
         				nextTick(Direction.DOWN);
         				break;
-        			case D:
+        			case RIGHT:
         				nextTick(Direction.RIGHT);
         				break;
         			default:
@@ -114,12 +118,19 @@ public class GameWindowController implements Initializable {
         });
 	}
 	
+	//TODO
+	/**
+	 * no idea.
+	 */
 	public void show() {
 		Scene scene = new Scene(gamePane);
 		Main.switchScene(scene);
 		hookInput(scene);
 	}
 	
+	/**
+	 * Updates the current level.
+	 */
 	public void refreshLevel() {
 		this.level = Level.getCurrentLevel();
         this.gc = gameCanvas.getGraphicsContext2D();
@@ -127,6 +138,9 @@ public class GameWindowController implements Initializable {
 		
 	}
 	
+	/**
+	 * Draws the cells.
+	 */
 	public void drawCells() {
 		Image inventImage = new Image("a2/resources/stock photos/Inventory.png");
     	gc.drawImage(inventImage,0 ,GAME_HEIGHT);
@@ -154,16 +168,11 @@ public class GameWindowController implements Initializable {
         	}
         }
 	}
-	
-	public void handleInput(KeyEvent e) {
-		
-	}
-	
 
 	/**
-	 * Draws all entities to the canvas
-	 * @param ent
-	 * @param drawPos
+	 * Draws the entity to the canvas.
+	 * @param ent the current entity
+	 * @param drawPos the position of the entity
 	 */
 	public void drawEntity(Entity ent, Vector2D drawPos) {
 		Image entImage = new Image(ent.getSprite());
@@ -172,7 +181,7 @@ public class GameWindowController implements Initializable {
 		
 	}
 	/**
-	 * .
+	 * Draws all entities on the file.
 	 * @param cellPos
 	 * @param drawPos
 	 */
