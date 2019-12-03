@@ -22,7 +22,6 @@ public class Profile {
 	private String name;
 	private int highestLevel;
 	private ArrayList<Long> bestTimes = new ArrayList<>();
-	private static String currentUser;
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -91,13 +90,6 @@ public class Profile {
 		}
 	}
 	
-	public static void setCurUser(String user) {
-		currentUser = user;
-	}
-	
-	public static String getCurUser() {
-		return currentUser;
-	}
 	
 	public String getName() {
 		return name;
