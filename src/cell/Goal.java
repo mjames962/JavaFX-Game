@@ -4,6 +4,7 @@ import a2.Level;
 import a2.Player;
 import a2.Profile;
 import a2.Timer;
+import a2.UserData;
 import a2.Vector2D;
 
 /**
@@ -49,6 +50,10 @@ public class Goal extends Cell {
 	@Override
 	public void doAction(Player ply) {
 		Level.getCurrentLevel().loadNextLevel();
+		long finishTime = Timer.checkTimeElapsed();
+		int levelNum = Level.getCurrentLevel().getLevelNo();
+		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
+
 	}
 	
 	public String cellName() {

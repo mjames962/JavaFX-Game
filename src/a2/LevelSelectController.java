@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import cell.Cell;
 import cell.Wall;
@@ -59,10 +61,16 @@ public class LevelSelectController implements Initializable {
 			
 			//gets level number from file name
 			String levelString = fileName.substring(0, fileName.length() - 4); 
-			levelString = levelString.substring(5);
-			int levelNo = Integer.parseInt(levelString);
+			//String levelNumString = fileName.replaceFirst("([0-9]+)\\.txt", "");
+			int levelNum;
+			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+			if (matcher.find()) {
+				levelNum =  Integer.parseInt(matcher.group(1));
+			} else {
+				levelNum = -1;
+			}
 			
-			if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNo) {
+			if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNum) {
 		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 		    }
 		}
@@ -90,6 +98,9 @@ public class LevelSelectController implements Initializable {
 	private Level formatLevel() throws IOException{
 		String currentLevel = cmb_LevelSelect.getValue();
 		//Add while to loop through file formats folder to check number of files 
+		File levelLeaderboard = new File("src/a2/resources/file formats/LB"
+				 + currentLevel + ".txt");
+		levelLeaderboard.createNewFile();
 			return new Level(
 					"src/a2/resources/file formats/"+ currentLevel + ".txt");
 		 

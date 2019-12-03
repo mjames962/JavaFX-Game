@@ -203,28 +203,7 @@ public class Player extends Entity {
 
 		return true;
 	}
-	/**
-	 * The function to open a door.
-	 * @param door the door being opened
-	 * @return boolean for if possible
-	 */
-	public boolean openDoor(Door door) {
-		String doorType = door.cellName();
 
-		switch (doorType) {
-			case "TokenDoor":
-				return this.openTokenDoor(door);
-			case "RedDoor":
-				return this.hasKey(door, 'r');
-			case "BlueDoor":
-				return this.hasKey(door, 'b');
-			case "GreenDoor":
-				return this.hasKey(door, 'g');
-			default:
-		}
-		
-		return false;
-	}
 	/**
 	 * Checks token door vs number of held tokens.
 	 * @param door the door being checked for.
@@ -242,7 +221,6 @@ public class Player extends Entity {
 	}
 	/**
 	 * Checking for keys before opening doors.
-	 * @param door the door being checked
 	 * @param keyType the required item to open the door
 	 * @return returns boolean for if door can be opened
 	 */
