@@ -94,7 +94,7 @@ public class LevelSelectController {
 		}	 
 	}
 	@FXML
-	private void handleLogOutBtn (ActionEvent event) throws IOException {
+	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		levelScene.getChildren().setAll(window);
