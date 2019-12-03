@@ -70,8 +70,11 @@ public class Profile {
 	 * @param newHigh the new highest level the user has reached
 	 */
 	
-	public void setHighestLevel(int newHigh) {
-		highestLevel = newHigh;
+	public void setHighestLevel(int level) {
+		if (level == highestLevel) {
+			highestLevel++;
+		}
+		updateFile();
 	}
 	
 	/**
