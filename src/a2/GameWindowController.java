@@ -81,6 +81,7 @@ public class GameWindowController implements Initializable {
 		show();
 		refreshLevel();
 		currentController = this;
+		MusicPlayer.playMusic("resources/sound bytes/Background music.mp3");
 	}
 	
 	/**
