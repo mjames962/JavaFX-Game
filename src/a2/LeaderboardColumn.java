@@ -19,6 +19,7 @@ public class LeaderboardColumn<T> {
 		this.name = name;
 		this.tcolumn = new TableColumn<>(name);
 		setupFactory();
+		setSortable(false);
 		
 	}
 	public void setupFactory() {
@@ -31,6 +32,22 @@ public class LeaderboardColumn<T> {
 	        }
 	     });
 	}
+	
+	public void setSortable(boolean sort) {
+		this.tcolumn.setSortable(sort);
+	}
+	
+	public void setSortOrder(TableColumn.SortType sort) {
+		this.tcolumn.setSortType(sort);
+	}
+	
+	
+	
+	public boolean getSortable() {
+		return this.tcolumn.isSortable();
+	}
+	
+	
 	
 	public TableColumn<LeaderboardEntry,T> getTableColumn() {
 		return tcolumn;

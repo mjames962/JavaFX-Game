@@ -15,10 +15,7 @@ public class LeaderboardEntry {
 	
 	public void addData(String name, Object data) throws InvalidParameterException {
 		//Class<?> dataClass = data.getClass();
-		LeaderboardColumn<?> column = leader.getColumns().get(name);
-		if (column == null) {
-			throw new NullPointerException("Column does not exist!");
-		}
+		LeaderboardColumn<?> column = leader.getColumn(name);
 		Class<?> columnClass = column.getMyType();
 		if (columnClass.isInstance(data)) {
 			entryData.put(column.getName(), data);
