@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -37,6 +38,37 @@ public class UserData {
 		return doesExist(username, in);
 	}
 	
+	public static ArrayList<String> readUsers() {
+		File inputFile = new File("src/a2/resources/User files/Users.txt");
+		try {
+			inputFile.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		Scanner in = null;
+		try {
+			in = new Scanner(inputFile);
+		} catch (FileNotFoundException e) {
+			System.out.println("Cannot open Users.txt");
+			System.exit(0);
+		}
+
+		return readUsers(in);
+	}
+	
+	private static ArrayList<String> readUsers(Scanner in) {
+		ArrayList<String> userList = new ArrayList<String>();
+		
+		while (in.hasNextLine()) {
+			String fileUser = in.nextLine();
+			userList.add(fileUser);
+		}
+		in.close();
+		return userList;
+	}
+
 	private static boolean doesExist(String username, Scanner in) {
 		while (in.hasNextLine()) {
 			String fileUser = in.nextLine();

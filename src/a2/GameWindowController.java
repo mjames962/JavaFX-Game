@@ -199,15 +199,10 @@ public class GameWindowController implements Initializable {
 	}   
 	
 	
+    /**
+     * .
+     */
     public void updateExtras() {
-    	//Image sideBarImage = new Image("a2/resources/stock photos/sideBar.png");
-    	//gc.drawImage(sideBarImage, GAME_WIDTH, 0);
-    	//try {
-    	//	gc.strokeText(MOTD.getMOTD(), 5, 15, 500);
-    	//}
-    	//catch(Exception e){
-    	//	System.out.println ("MOTD failed to load");
-    	//}
     	
 		try {
 			lbl_MOTD.setText(MOTD.getMOTD());
