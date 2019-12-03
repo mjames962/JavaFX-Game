@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -25,6 +26,7 @@ public class Profile {
     private int leaderboardMaxLength = 3;
 	private ArrayList<String> usersLB = new ArrayList<>();
 	private ArrayList<Long> timesLB = new ArrayList<>();
+	private ArrayList<Long> addItems = new ArrayList<>();
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -130,7 +132,7 @@ public class Profile {
 			} else {
 				findLowestTimes(name, time);
 			}
-			
+			timesLB.addAll(addItems);
 			leaderboardFile.close();
 			
 			
@@ -141,15 +143,20 @@ public class Profile {
 	}
 	
 	public void findLowestTimes(String curName, long time) {
-		for (Long entry : timesLB) {
+//		for (long entry : addItems) {
+//			timesLB.add(entry);
+//		}
+		for (Iterator<Long> iterator = timesLB.iterator(); 
+				iterator.hasNext();) {
+			Long entry = iterator.next();
 			if (time < entry) {
 				int pos = timesLB.indexOf(entry);
 				String tempUser = usersLB.get(pos);
 				usersLB.remove(pos);
-				long tempTime = entry; 
-				timesLB.remove(entry);
+				iterator.remove();
+				long tempTime = entry;
 				usersLB.add(curName);
-				timesLB.add(time);
+				addItems.add(time);
 				findLowestTimes(tempUser, tempTime);
 			}
 		}
