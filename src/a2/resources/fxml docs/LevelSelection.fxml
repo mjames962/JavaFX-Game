@@ -34,7 +34,7 @@
                 </FXCollections>
               </items>
             </ComboBox>
-                  <Button fx:id="LeaderboardBtn" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleLeaderboard" text="Leaderboard" />
+                  <Button fx:id="LeaderboardBtn" layoutX="50.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleLeaderboard" text="Leaderboard" />
             <Button fx:id="btn_Log_Out" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleLogOutBtn" text="Log Out" />
           </children>
         </AnchorPane>
@@ -42,7 +42,7 @@
       <top>
         <HBox prefHeight="50.0" prefWidth="210.0">
           <children>
-            <Label text="Level Selection">
+            <Label text="Level Selection" textFill="WHITE">
               <font>
                 <Font size="30.0" />
               </font>
