@@ -9,14 +9,17 @@ import java.util.ResourceBundle;
 import a2.Player.Direction;
 import cell.Cell;
 import cell.Wall;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,6 +59,9 @@ public class GameWindowController implements Initializable {
 	private Canvas gameCanvas;
 	
 	@FXML
+	private Button btnQuit;
+	
+	@FXML
 	private Label lbl_MOTD;
 	
 	@FXML
@@ -70,7 +76,7 @@ public class GameWindowController implements Initializable {
 	/**
 	 * Creates and displays canvas in the window.
 	 */
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		show();
@@ -229,4 +235,12 @@ public class GameWindowController implements Initializable {
 		updateExtras();
         
 	}
+	
+	@FXML
+	private void handleQuitBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/LevelSelection.fxml"));  
+		gamePane.getChildren().setAll(window);
+	}
 }
+

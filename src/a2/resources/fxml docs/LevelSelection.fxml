@@ -32,6 +32,7 @@
                 </FXCollections>
               </items>
             </ComboBox>
+            <Button fx:id="btn_Log_Out" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleLogOutBtn" text="Log Out" />
           </children>
         </AnchorPane>
       </left>

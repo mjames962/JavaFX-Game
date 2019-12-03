@@ -46,6 +46,9 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private AnchorPane levelScene;
 	
+	@FXML
+	private Button btn_Log_Out;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File folder = new File("src/a2/resources/file formats");
@@ -88,5 +91,11 @@ public class LevelSelectController implements Initializable {
 	public String getLevelIdentifier(String fileName) {
 		
 		return fileName.replaceFirst("\\.txt", "");
+	}
+	@FXML
+	private void handleLogOutBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/MainMenu.fxml"));  
+		levelScene.getChildren().setAll(window);
 	}
 }

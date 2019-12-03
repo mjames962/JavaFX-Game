@@ -11,11 +11,14 @@
   <children>
     <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="247.0" prefWidth="323.0">
       <bottom>
-        <Button fx:id="btn_Delete" mnemonicParsing="false" onAction="#handleDelete" text="Delete User" BorderPane.alignment="BASELINE_CENTER" />
+        <Button id="btn_Delete" fx:id="btnBack" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" BorderPane.alignment="BASELINE_CENTER" />
       </bottom>
       <center>
         <TextField fx:id="txt_User" maxWidth="200.0" prefWidth="200.0" promptText="Name" text="" BorderPane.alignment="CENTER" />
       </center>
+      <right>
+        <Button fx:id="btn_Delete" mnemonicParsing="false" onAction="#handleDelete" text="Delete User" BorderPane.alignment="CENTER" />
+      </right>
       <top>
         <Label alignment="CENTER" contentDisplay="CENTER" text="Placeholder" BorderPane.alignment="CENTER">
           <font>
