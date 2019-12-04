@@ -25,8 +25,8 @@ import javafx.scene.layout.AnchorPane;
  * @version 1.4
  */
 public class LevelSelectController implements Initializable {
+	private static final int IV = 4;
 	private Level selectedLevel;
-	
 	@FXML
 	private Button btn_LoadLevel;
 	@FXML
@@ -38,7 +38,7 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private Button btn_Log_Out;
 	
-	
+
 	
 	@Override
 	/**
@@ -55,7 +55,7 @@ public class LevelSelectController implements Initializable {
 		for (File file : listOfFiles) {
 			String fileName = file.getName();
 			//gets level number from file name
-			String levelString = fileName.substring(0, fileName.length() - 4); 
+			String levelString = fileName.substring(0, fileName.length() - IV); 
 			//String levelNumString = 
 			fileName.replaceFirst("([0-9]+)\\.txt", "");
 			int levelNum;
