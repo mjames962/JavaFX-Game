@@ -27,6 +27,7 @@ public class Profile {
 	private ArrayList<String> usersLB = new ArrayList<>();
 	private ArrayList<Long> timesLB = new ArrayList<>();
 	private ArrayList<Long> addItems = new ArrayList<>();
+	private ArrayList<Long> removeTimes = new ArrayList<>();
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -132,6 +133,7 @@ public class Profile {
 			} else {
 				findLowestTimes(name, time);
 			}
+			timesLB.removeAll(removeTimes);
 			timesLB.addAll(addItems);
 			leaderboardFile.close();
 			
@@ -143,22 +145,23 @@ public class Profile {
 	}
 	
 	public void findLowestTimes(String curName, long time) {
-//		for (long entry : addItems) {
-//			timesLB.add(entry);
-//		}
-		for (Iterator<Long> iterator = timesLB.iterator(); 
-				iterator.hasNext();) {
-			Long entry = iterator.next();
-			if (time < entry) {
+		boolean swapped = false;
+		String tempUser = null;
+		long tempTime = 0;
+		for (Long entry : timesLB) {
+			if (time < entry && !swapped) {
 				int pos = timesLB.indexOf(entry);
-				String tempUser = usersLB.get(pos);
+			    tempUser = usersLB.get(pos);
 				usersLB.remove(pos);
-				iterator.remove();
-				long tempTime = entry;
+				removeTimes.add(entry);
+				tempTime = entry;
 				usersLB.add(curName);
 				addItems.add(time);
-				findLowestTimes(tempUser, tempTime);
+				swapped = true;
 			}
+		}
+		if (swapped) {
+			findLowestTimes(tempUser, tempTime);
 		}
 	}
 	

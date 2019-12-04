@@ -65,6 +65,9 @@ public class GameWindowController implements Initializable {
 	@FXML
 	private Label lbl_User;
 	
+	@FXML
+	private Label lbl_TokenCount;
+	
 	/**
 	 * Gets the current controller.
 	 * @return currentController
@@ -239,6 +242,7 @@ public class GameWindowController implements Initializable {
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(UserData.getCurrentUser().getName());
     	lbl_User.setGraphic(imageView);
+    	lbl_TokenCount.setText("Token Count: " + Level.getCurrentLevel().getPlayer().getTokens());
     	
 		
     	 

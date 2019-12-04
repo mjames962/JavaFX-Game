@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 
 import a2.Player.Direction;
 import cell.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * Class for the creation of the level.
@@ -230,7 +232,11 @@ public class Level {
 			currentLevel = new Level(nextLevel);
 			GameWindowController.getCurrentController().refreshLevel();
 		} else {
-			System.out.println("congrats");
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("All levels completed!");
+			alert.setHeaderText("Congratulations!!!");
+			//alert.setContentText("Your time was: " + new TimeValue(finishTime).toString());
+			alert.showAndWait();
 		}
 	}
 

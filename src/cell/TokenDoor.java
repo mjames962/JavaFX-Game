@@ -2,6 +2,8 @@ package cell;
 
 import a2.Player;
 import a2.Vector2D;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  * the door that will open when the user has
@@ -40,6 +42,22 @@ public class TokenDoor extends Door {
 	
 	public int getRequiredTokens() {
 		return this.requiredTokens;
+	}
+	
+	public void doAction(Player ply) {
+		
+		super.doAction(ply);
+		if (!meetsRequirement(ply)) {
+			displayTokensRequired();
+		}
+	}
+	
+	public void displayTokensRequired() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Token Door");
+		alert.setHeaderText("Tokens required: " + getRequiredTokens());
+		alert.setContentText(null);
+		alert.showAndWait();
 	}
 	
 	/**
