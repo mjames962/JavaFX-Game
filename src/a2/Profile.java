@@ -125,6 +125,9 @@ public class Profile {
 				timesLB.add(leaderboardFile.nextLong());
 			}
 			
+			addItems = new ArrayList<>();
+			removeTimes = new ArrayList<>();
+			
 			
 			//Add if applicable
 			if (usersLB.size() < leaderboardMaxLength) {
