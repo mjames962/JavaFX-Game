@@ -56,7 +56,6 @@ public class Main extends Application {
 			// Load the main scene.
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass()
 					.getResource("resources/fxml docs/MainMenu.fxml"));
-			//root.setId("pane");
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
 			// Place the main scene on stage and show it.
