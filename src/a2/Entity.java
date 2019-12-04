@@ -8,33 +8,40 @@ package a2;
 
 public class Entity implements Sprite {
 	
+
+
+	private static final String SPRITE = 
+			"a2/resources/stock photos/Straight_Line_Enemy.png";
+	private Vector2D currentVector;
+	private Vector2D nextVector;
+	private Level level;	
 	private Vector2D vector;
 	private int entityID;
-	protected Vector2D currentVector;
-	protected Vector2D nextVector;
-	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
-	
-	
 
-	protected Level level;
+
 	/**
 	 * Constructor for the Entity superclass.
 	 * @param vector the entity coordinates
 	 * @param entityID the ID of the entity
-	 * @param currentVector current location
-	 * @param nextVector requested next position
+	 * @param level is the currently loaded level
 	 */
 	public Entity(Vector2D vector, int entityID, Level level) {
-		this.currentVector = vector;
+		this.setCurrentVector(vector);
 		this.entityID = entityID;
 		this.level = level;
 	}
-	
+	/**
+	 * Method to be overwritten for getting the sprite of an entity.
+	 * @return gives the Sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
 	
-
+	/**
+	 * Returns the current level.
+	 * @return gives the current level
+	 */
 	public Level getLevel() {
 		return this.level;
 	}
@@ -45,7 +52,7 @@ public class Entity implements Sprite {
 	 */
 	
 	public Vector2D getVector() {
-		return currentVector;
+		return getCurrentVector();
 	}
 
 	
@@ -68,7 +75,6 @@ public class Entity implements Sprite {
 	/**
 	 * determines validity of moving onto the requested cell.
 	 * @return returns a boolean for if the requested move is legal
-	 * @param entityID the unique identifier for an entity type
 	 * @param nextVector the intended next location for the entity
 	 */
 	
@@ -88,10 +94,23 @@ public class Entity implements Sprite {
 	
 	
 	/**
-	 * This is responsible for handling moves. 
+	 * This is responsible for handling movement of entities. 
+	 * 											Will be overwritten.
 	 */
 	public void move() {
 		
+	}
+	/**
+	 * @return the currentVector
+	 */
+	public Vector2D getCurrentVector() {
+		return currentVector;
+	}
+	/**
+	 * @param currentVector the currentVector to set
+	 */
+	public void setCurrentVector(Vector2D currentVector) {
+		this.currentVector = currentVector;
 	}
 	
 	

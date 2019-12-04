@@ -14,21 +14,28 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
+/**
+ * Controller for the leaderboards window.
+ * @author George Williams Walton, Tom Wood
+ * @version 1.8
+ */
 public class LeaderboardController {
 	
 	@FXML 
-	Button leadBut1;
+	private Button leadBut1;
 	@FXML 
-	Button leadBut2;
+	private Button leadBut2;
 	@FXML 
-	Button leadBut3;
+	private Button leadBut3;
 	@FXML 
-	ChoiceBox levelSelector;
+	private ChoiceBox levelSelector;
 	@FXML 
-	TableView<LeaderboardEntry> leaderTable;
+	private TableView<LeaderboardEntry> leaderTable;
 
 	
-	
+	/**
+	 * Displays the leaderboard.
+	 */
 	public void display() {
 		
 		Leaderboard lead = UserData.readLeaderboard(1);
@@ -37,13 +44,21 @@ public class LeaderboardController {
 		}
         
 	}
-	
+	/**
+	 * Allows for pressing buttons.
+	 */
 	public void leadBut1Press() {
 		
 	}
+	/**
+	 * Allows for pressing buttons.
+	 */
 	public void leadBut2Press() {
 			
 	}
+	/**
+	 * Allows for pressing buttons.
+	 */
 	public void leadBut3Press() {
 		
 	}

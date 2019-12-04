@@ -46,7 +46,7 @@ public class Player extends Entity {
 	public Player(Vector2D currentVector, int entityID, Level level) {
 		
 		super(currentVector, entityID, level);
-		System.out.println("CURRENTVECTOR2" + currentVector + this.currentVector);
+		System.out.println("CURRENTVECTOR2" + currentVector + this.getCurrentVector());
 		this.alive = true;
 		this.inventory = new LinkedList<Item>();
 		this.tokenCount = 0;
@@ -67,7 +67,7 @@ public class Player extends Entity {
 	 */
 	
 	public Vector2D move(Direction dir) {
-		Vector2D nextVector = new Vector2D(currentVector);
+		Vector2D nextVector = new Vector2D(getCurrentVector());
 		
 		switch (dir) {
 			case UP:
@@ -108,12 +108,12 @@ public class Player extends Entity {
 	
 	public void handleInput(Direction input) {
 		curDirection = input;
-		System.out.println("CURRENT VECTOR" + currentVector);
+		System.out.println("CURRENT VECTOR" + getCurrentVector());
 		doMoveAction(move(input));
 		if (isValidMove(move(input))) {
 			for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 				if (ent == this) { 
-					currentVector = move(input);
+					setCurrentVector(move(input));
 				} else {
 					checkPlayerIntersectEnemy(ent);
 					ent.move();
@@ -126,7 +126,7 @@ public class Player extends Entity {
 	}
 	
 	public void checkPlayerIntersectEnemy(Entity e) {
-		if (currentVector.equals(e.getVector())) {
+		if (getCurrentVector().equals(e.getVector())) {
 			playerDeath();
 		}
 	}
@@ -330,7 +330,7 @@ public class Player extends Entity {
 	 * @return players position
 	 */
 	public Vector2D getPlayerVector() {
-		return currentVector;
+		return getCurrentVector();
 		
 	}
 	
