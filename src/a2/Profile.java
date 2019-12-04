@@ -119,6 +119,8 @@ public class Profile {
 				System.out.println("Failed to load file");
 			}
 			//Populate Leaderboard Prev Values
+			timesLB = new ArrayList<>();
+			usersLB = new ArrayList<>();
 
 			while (leaderboardFile.hasNext()) {
 				usersLB.add(leaderboardFile.next());
@@ -135,9 +137,10 @@ public class Profile {
 				timesLB.add(time);
 			} else {
 				findLowestTimes(name, time);
+				timesLB.removeAll(removeTimes);
+				timesLB.addAll(addItems);
 			}
-			timesLB.removeAll(removeTimes);
-			timesLB.addAll(addItems);
+			
 			leaderboardFile.close();
 			
 			
