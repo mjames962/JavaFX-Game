@@ -56,7 +56,7 @@ public class UserData {
 	}
 	
 	public static File getUserFile(String userName) {
-		return new File("src/a2/resources/User files/" + userName + ".txt");
+		return new File(USER_FOLDER_LOCATION + userName + ".txt");
 	}
 	
 	public static ArrayList<String> readUsers() {

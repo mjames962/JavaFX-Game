@@ -27,14 +27,17 @@ public class LeaderboardController {
 	@FXML 
 	TableView<LeaderboardEntry> leaderTable;
 
-
+	
 	
 	public void display() {
 		
 		Leaderboard lead = new Leaderboard();
-		LeaderboardColumn<String> nucolumn = new LeaderboardColumn<>(String.class,"Name");
-		LeaderboardColumn<Integer> nucolumn2 = new LeaderboardColumn<>(Integer.class,"Score");
-		LeaderboardColumn<Integer> nucolumn3 = new LeaderboardColumn<>(Integer.class,"Third");
+		LeaderboardColumn<String> nucolumn = 
+				new LeaderboardColumn<>(String.class,"Name");
+		LeaderboardColumn<Integer> nucolumn2 = 
+				new LeaderboardColumn<>(Integer.class,"Score");
+		LeaderboardColumn<Integer> nucolumn3 = 
+				new LeaderboardColumn<>(Integer.class,"Third");
 		
 		lead.addColumn(nucolumn);
 		lead.addColumn(nucolumn2);

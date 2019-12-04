@@ -15,7 +15,7 @@ import javafx.scene.control.TableView;
 public class Leaderboard {
 
 	private ArrayList<LeaderboardEntry> entries = new ArrayList<>();
-	private HashMap<String,LeaderboardColumn<?>> columns = new HashMap<>();
+	private HashMap<String, LeaderboardColumn<?>> columns = new HashMap<>();
 	private ArrayList<LeaderboardColumn<?>> orderedColumns = new ArrayList<>();
 	private TableColumn.SortType sortType = TableColumn.SortType.DESCENDING;
 	private LeaderboardColumn<?> sortedColumn;
@@ -30,10 +30,10 @@ public class Leaderboard {
 	}
 	
 	/**
-	 * Gets columns as a name,column hashmap
+	 * Gets columns as a name,column hashmap.
 	 * @return columns
 	 */
-	public HashMap<String,LeaderboardColumn<?>> getColumns() {
+	public HashMap<String, LeaderboardColumn<?>> getColumns() {
 		return columns;
 	}
 	
@@ -71,7 +71,7 @@ public class Leaderboard {
 	}
 	
 	/**
-	 * Gets the column with given column name
+	 * Gets the column with given column name.
 	 * @param columnName Name of column
 	 * @return The requested LeaderboardColumn
 	 * @throws InvalidParameterException If a column with the given name does not exist
@@ -130,10 +130,5 @@ public class Leaderboard {
 		}
 		tv.sort();
 	}
-	
-	public static void main(String[] args) {
-		
-		
-		
-	}
+
 }
