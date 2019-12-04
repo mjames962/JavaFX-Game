@@ -27,15 +27,6 @@ public class Level {
 	//public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 	private int levelNo;
-
-	public static Level getCurrentLevel() {
-		return currentLevel;
-	}
-	
-	public static void restartLevel() {
-		currentLevel = new Level(currentLevel.levelFile);
-		GameWindowController.getCurrentController().refreshLevel();
-	}
 	
 	
 	/**
@@ -48,6 +39,7 @@ public class Level {
 		levelFile = new File(fileName);
 		this.readFile();
 		currentLevel = this;
+		Timer.start();
 		
 	}
 	
@@ -55,7 +47,20 @@ public class Level {
 		this.levelFile = levelFile;
 		this.readFile();
 		currentLevel = this;
+		Timer.start();
 	}
+
+	public static Level getCurrentLevel() {
+		return currentLevel;
+	}
+	
+	public static void restartLevel() {
+		currentLevel = new Level(currentLevel.levelFile);
+		GameWindowController.getCurrentController().refreshLevel();
+	}
+	
+	
+
 	
 	public File getLevelFile() {
 		return levelFile;

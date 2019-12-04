@@ -52,6 +52,7 @@ public class Goal extends Cell {
 		long finishTime = Timer.checkTimeElapsed();
 		int levelNum = Level.getCurrentLevel().getLevelNumber();
 		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
+		UserData.getCurrentUser().setHighestLevel(levelNum);
 		Level.getCurrentLevel().loadNextLevel();
 
 	}

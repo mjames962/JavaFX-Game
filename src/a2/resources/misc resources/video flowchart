@@ -1,24 +1,25 @@
 must demo implementation of every feature
 
 open game
-create user (fred)
-log in with newly created details (fred)
+create user (user1)
+log in with newly created details (user1)
 dont select lvl and try to load it
 attempt to play lvl 5
 select level 1
 play lvl 1 
-quit
-open game
-log in with (fred)
 select lvl2
 play lvl2
 proceed to lvl3
 die in lvl3 to respawn
 finish lvl3
--cut-
-open game
-log in premade details (john) which has completed lvl3
+quit to main menu
+log in with (user1)
+toggle show users
+delete user (user1)
+toggle show users
+
+log in premade details (user2) which has completed lvl3
 play lvl4 
 play lvl5
-check the leaderboard for lvl 1,3 and 5
+check the leaderboard 
 
