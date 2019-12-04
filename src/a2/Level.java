@@ -14,7 +14,7 @@ import cell.*;
 /**
  * Class for the creation of the level.
  * @author Jensen Beard, Mitch James
- *
+ * @version 2.5
  */
 public class Level {
 
@@ -31,10 +31,9 @@ public class Level {
 	
 	
 	/**
-	 * .
-	 * 
-	 * @param fileName
-	 *            name of the file
+	 * Reads in the level and starts the timer assuming filename is known.
+	 * 			Overloading for different parameters. Used when makign the level
+	 * @param fileName name of the file    
 	 */
 	public Level(String fileName) {
 		levelFile = new File(fileName);
@@ -50,7 +49,11 @@ public class Level {
 		Timer.start();
 		
 	}
-	
+	/**
+	 * Reads in the level and starts the timer when the file is already made.
+	 * 			Overloading for different parameters. Used when the player dies.
+	 * @param levelFile the file being reloaded for the level layout
+	 */
 	public Level(File levelFile) {
 		this.levelFile = levelFile;
 		this.readFile();
@@ -66,11 +69,16 @@ public class Level {
 		}
 		Timer.start();
 	}
-
+	/**
+	 * Returns the current level
+	 * @return gives the currently instantiated level
+	 */
 	public static Level getCurrentLevel() {
 		return currentLevel;
 	}
-	
+	/**
+	 * Calls the level to be reloaded in the event of player death.
+	 */
 	public static void restartLevel() {
 		currentLevel = new Level(currentLevel.levelFile);
 		GameWindowController.getCurrentController().refreshLevel();
@@ -78,15 +86,17 @@ public class Level {
 	
 	
 
-	
+	/**
+	 * Returns the LevelFile.
+	 * @return gives the file storing the level being handled.
+	 */
 	public File getLevelFile() {
 		return levelFile;
 	}
 	
 
 	/**
-	 * .
-	 * 
+	 * Method for .
 	 * @return entityList list of entities
 	 */
 	public ArrayList<Entity> getEntityList() {
@@ -96,18 +106,15 @@ public class Level {
 	
 
 	/**
-	 * .
-	 * 
-	 * @param entity
-	 *            entity to be added to level
+	 * Method for instantiating entities onto the level.
+	 * @param entity is the entity to be added to level       
 	 */
 	public void addEntity(Entity entity) {
 		this.entityList.add(entity);
 	}
 
 	/**
-	 * .
-	 * 
+	 * Returns the Level being queried.
 	 * @return level layout of level
 	 */
 	public Cell[][] getLevel() {
@@ -115,13 +122,10 @@ public class Level {
 	}
 	
 	/**
-	 * .
-	 * 
-	 * @param x
-	 *            coordinate
-	 * @param y
-	 *            coordinate
-	 * @return level[x][y] cell at coords
+	 * Returns the cell type at a requested position.
+	 * @param x cell coordinate
+	 * @param y cell coordinate
+	 * @return level[x][y] cell at (x,y)
 	 */
 	public Cell getCellAt(int x, int y) {
 
@@ -149,35 +153,32 @@ public class Level {
 	}
 	
 	/**
-	 * placing cells in the level.
-	 * 
-	 * @param cell
-	 *            cell to be input
-	 * @param x
-	 *            x-coord
-	 * @param y
-	 *            y-coord
+	 * Method for placing cells in the level.
+	 * @param cell the cell to be in-putted
+	 * @param x coordinate where the cell is going
+	 * @param y coordinate where the cell is going
+	 *            
 	 */
 	public void setLevel(Cell cell, int x, int y) {
 		this.level[x][y] = cell;
 	}
 	/**
 	 * returns the length of the level in # of cells.
-	 * @return the length of the level
+	 * @return gives the length of the level (x axis)
 	 */
 	public int levelXLength() {
 		return this.xLength;
 	}
 	/**
 	 * returns the height of the level in # of cells.
-	 * @return the height of the level
+	 * @return gives the height of the level (y axis)
 	 */
 	public int levelYLength() {
 		return this.yLength;
 	}
 	/**
-	 * returns the current player.
-	 * @return e , the player
+	 * returns the current entity for player.
+	 * @return e , returns the entity (a player) 
 	 */
 	public Player getPlayer() {
 		for (Entity e : this.entityList) { 
@@ -188,7 +189,10 @@ public class Level {
 		
 		return null;
 	}
-	
+	/**
+	 * Returns the unique identifier in level names.
+	 * @return gives an int to be searched for in level files.
+	 */
 	public int getLevelNumber() {
 		String fileName = levelFile.getName();
 		Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
@@ -198,18 +202,26 @@ public class Level {
 			return -1;
 		}
 	}
-	
+	/**
+	 * Returns the unique identifier for a level.
+	 * @return gives the int level identifier
+	 */
 	public String getLevelIdentifier() {
 		String fileName = levelFile.getName();
 		return fileName.replaceFirst("[0-9]+\\.txt", "");
 	}
-	
+	/**
+	 * Returns the unique identifier for the next level.
+	 * @return gives the next level identifier to look for
+	 */
 	public File getNextLevelFile() {
 		int nextLevelNo = getLevelNumber() + 1;
 		System.out.println(levelFile.getParent() + "/" + getLevelIdentifier() + nextLevelNo);
 		return new File(levelFile.getParent() + "/" + getLevelIdentifier() + nextLevelNo + ".txt");
 	}
-	
+	/**
+	 * Loads the next Level.
+	 */
 	public void loadNextLevel() {
 		File nextLevel = getNextLevelFile();
 		if (nextLevel.exists()) {
@@ -221,11 +233,9 @@ public class Level {
 	}
 
 	/**
-	 * reads the file for level data.
-	 * 
-	 * @param fileName
-	 *            the name and file extension of the level file
-	 * @return Level[][] level layout array
+	 * Reads the file for level data.
+	 * @param fileName identifies the file extension of the level file
+	 * @return Level[][] gives the level layout array
 	 */
 	public void readFile() {
 		
@@ -236,7 +246,6 @@ public class Level {
 			in = new Scanner(levelFile);
 		} catch (FileNotFoundException e) {
 			System.out.println("Cannot open '" + levelFile.toString() + "'");
-			System.exit(0);
 		}
 
 		this.readFile(in);
@@ -245,13 +254,11 @@ public class Level {
 	
 
 	/**
-	 * reads files.
-	 * 
-	 * @param in
-	 *            scanner
+	 * Reads files to allow for data permanence.
+	 * @param in needed for scanner
 	 * @return 2D array of Cell type
 	 */
-	public void readFile(Scanner in) {
+	private void readFile(Scanner in) {
 
 		int x = in.nextInt();
 		this.xLength = x;
@@ -301,7 +308,11 @@ public class Level {
 		
 		in.close();
 	}
-
+	/**
+	 * Reads in data for Teleporter Cells.
+	 * @param str is the string being read in for the 
+	 * 						location of both TP cells in a linked
+	 */
 	private void readTeleporter(String str) {
 		Scanner in = new Scanner(str);
 
@@ -319,12 +330,9 @@ public class Level {
 	}
 
 	/**
-	 * reads in Entities + ajoined data.
-	 * 
-	 * @param in
-	 *            integral to Scanner
-	 * @param str
-	 *            a string read in from file
+	 * reads in Entities and their data.
+	 * @param in needed for Scanner
+	 * @param str is the string read in from file
 	 */
 	public void readEntity(String str) {
 		Scanner in = new Scanner(str);
@@ -366,12 +374,9 @@ public class Level {
 	}
 
 	/**
-	 * reading in token doors.
-	 * 
-	 * @param str
-	 *            needed for reading in from file
-	 * @param in
-	 *            integral to Scanner
+	 * Reading in data for location and required tokens of token doors.
+	 * @param str is the string containing relevant data in the file
+	 * @param in needed for Scanner
 	 */
 	public void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
@@ -389,14 +394,10 @@ public class Level {
 
 	/**
 	 * Checks cell type and creates corresponding cell.
-	 * 
-	 * @param c
-	 *            cell type
-	 * @param x
-	 *            x coordinate
-	 * @param y
-	 *            y coordinate
-	 * @return cell newly created cell
+	 * @param c the type of cell
+	 * @param x coordinate
+	 * @param y coordinate         
+	 * @return cell gives the newly created cell
 	 */
 	public Cell readChar(char c, int x, int y) {
 		Vector2D position = new Vector2D(x, y);
@@ -440,9 +441,8 @@ public class Level {
 	}
 
 	/**
-	 * gives the level number.
-	 * 
-	 * @return returns the level number
+	 * Returns the level number.
+	 * @return gives the level number
 	 */
 	public int getLevelNo() {
 		return levelNo;

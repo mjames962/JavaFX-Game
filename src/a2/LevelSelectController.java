@@ -1,33 +1,21 @@
 package a2;
 
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cell.Cell;
-import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+
 
 /**
  * Displays the current level.
@@ -35,24 +23,28 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class LevelSelectController implements Initializable {
-
+	private Level selectedLevel;
+	
 	@FXML
 	private Button btn_LoadLevel;
-
 	@FXML
 	private ComboBox<String> cmb_LevelSelect;
-
 	@FXML
 	private AnchorPane levelBottom;
-	
 	@FXML
 	private AnchorPane levelScene;
-	
 	@FXML
 	private Button btn_Log_Out;
 	
+	
+	
 	@Override
+	/**
+	 * @param arg0
+	 * @param arg1
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
 		System.out.println("file testing");
@@ -74,6 +66,7 @@ public class LevelSelectController implements Initializable {
 		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 		    }
 		}
+		
 	}
 	
 	
@@ -92,16 +85,34 @@ public class LevelSelectController implements Initializable {
 	
 	@FXML
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
-		displayNewLevel(formatLevel());
+		formatLevel();
+		if (selectedLevel == null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Please Select a Level");
+			alert.setContentText(null);
+			alert.showAndWait();
+		} else {
+			displayNewLevel(selectedLevel);
+		}
+			
+			
+	}
+
+	private void formatLevel() throws FileNotFoundException{
+		
+		String currentLevel;
+		currentLevel = cmb_LevelSelect.getValue();
+		
+		//File levelLeaderboard = new File("src/a2/resources/file formats/LB"
+		//		 + currentLevel + ".txt");
+		if(currentLevel != null) {
+			selectedLevel = new Level(
+					"src/a2/resources/file formats/"+ currentLevel + ".txt");	
+		}
+		
 	}
 	
-	private Level formatLevel() throws IOException{
-		String currentLevel = cmb_LevelSelect.getValue();
-		//Add while to loop through file formats folder to check number of files 
-			return new Level(
-					"src/a2/resources/file formats/"+ currentLevel + ".txt");
-		 
-	}
 	public String getLevelIdentifier(String fileName) {
 		
 		return fileName.replaceFirst("\\.txt", "");
