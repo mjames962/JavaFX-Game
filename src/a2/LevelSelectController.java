@@ -98,9 +98,6 @@ public class LevelSelectController implements Initializable {
 	private Level formatLevel() throws IOException{
 		String currentLevel = cmb_LevelSelect.getValue();
 		//Add while to loop through file formats folder to check number of files 
-		File levelLeaderboard = new File("src/a2/resources/file formats/LB"
-				 + currentLevel + ".txt");
-		levelLeaderboard.createNewFile();
 			return new Level(
 					"src/a2/resources/file formats/"+ currentLevel + ".txt");
 		 
