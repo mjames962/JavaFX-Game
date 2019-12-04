@@ -25,7 +25,9 @@ public class Level {
 	private int yLength;
 	private static Level currentLevel = null;
 	//public static final String 
+
 	//	LEVEL_STORAGE = "src/a2/resources/file formats";
+
 
 	private int levelNo;
 	

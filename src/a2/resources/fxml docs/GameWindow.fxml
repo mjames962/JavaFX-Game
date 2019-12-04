@@ -13,13 +13,13 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.GameWindowController">
+<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="653.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.GameWindowController">
   <children>
     <BorderPane fx:id="gameBorderPane" layoutX="14.0" layoutY="14.0" prefHeight="556.0" prefWidth="572.0">
       <bottom>
         <Pane prefHeight="98.5" prefWidth="572.0">
           <children>
-            <Label fx:id="lbl_MOTD" layoutX="14.0" layoutY="14.0" text="MOTD" />
+            <Label fx:id="lbl_MOTD" layoutX="14.0" layoutY="14.0" text="MOTD" textFill="WHITE" />
             <Button fx:id="btnQuit" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
           </children>
         </Pane>
@@ -30,15 +30,15 @@
       <right>
         <Pane prefHeight="377.0" prefWidth="129.5576171875">
           <children>
-            <Label id="lbl" fx:id="lbl_Timer" layoutX="14.0" layoutY="101.0" text="Timer" />
-            <Label fx:id="lbl_User" layoutX="14.0" layoutY="33.0" text="User" />
+            <Label id="lbl" fx:id="lbl_Timer" layoutX="14.0" layoutY="101.0" text="Timer" textFill="WHITE" />
+            <Label fx:id="lbl_User" layoutX="14.0" layoutY="33.0" text="User" textFill="WHITE" />
           </children>
         </Pane>
       </right>
       <top>
         <Pane fx:id="topPane" prefHeight="80.0" prefWidth="572.0">
           <children>
-            <Label fx:id="lbl_GameName" layoutX="209.0" layoutY="20.0" text="Placeholder">
+            <Label fx:id="lbl_GameName" layoutX="209.0" layoutY="20.0" text="Placeholder" textFill="WHITE">
               <font>
                 <Font size="30.0" />
               </font>
@@ -48,4 +48,7 @@
       </top>
     </BorderPane>
   </children>
+  <stylesheets>
+    <URL value="@../GameStyle.css" />
+  </stylesheets>
 </AnchorPane>
