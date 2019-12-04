@@ -38,20 +38,20 @@ public class LevelSelectController implements Initializable {
 
 	@FXML
 	private Button btn_LoadLevel;
-
 	@FXML
 	private ComboBox<String> cmb_LevelSelect;
-
 	@FXML
 	private AnchorPane levelBottom;
-	
 	@FXML
 	private AnchorPane levelScene;
-	
 	@FXML
 	private Button btn_Log_Out;
 	
 	@Override
+	/**
+	 * @param arg0
+	 * @param arg1
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
