@@ -44,6 +44,7 @@ public class Goal extends Cell {
 	public void doAction(Player ply) {
 		long finishTime = Timer.checkTimeElapsed();
 		int levelNum = Level.getCurrentLevel().getLevelNumber();
+		Timer.stop();
 		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
 		UserData.getCurrentUser().setHighestLevel(levelNum);
 		Level.getCurrentLevel().loadNextLevel();

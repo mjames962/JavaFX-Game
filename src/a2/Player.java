@@ -126,15 +126,18 @@ public class Player extends Entity {
 	public void handleInput(Direction input) {
 		curDirection = input;
 		System.out.println("CURRENT VECTOR" + getCurrentVector());
+		Cell cell = Level.getCurrentLevel().getCellAt(move(input));
 		doMoveAction(move(input));
-		if (isValidMove(move(input))) {
-			for (Entity ent : Level.getCurrentLevel().getEntityList()) {
-				if (ent == this) { 
-					setCurrentVector(move(input));
-				} else {
-					checkPlayerIntersectEnemy(ent);
-					ent.move();
-					checkPlayerIntersectEnemy(ent);
+		if (cell.cellName() != "Goal") {
+			if (isValidMove(move(input))) {
+				for (Entity ent : Level.getCurrentLevel().getEntityList()) {
+					if (ent == this) { 
+						setCurrentVector(move(input));
+					} else {
+						checkPlayerIntersectEnemy(ent);
+						ent.move();
+						checkPlayerIntersectEnemy(ent);
+					}
 				}
 			}
 		}

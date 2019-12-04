@@ -134,6 +134,9 @@ public class Level {
 	 * @return level[x][y] cell at (x,y)
 	 */
 	public Cell getCellAt(int x, int y) {
+		if (x == 18 || y == 18) {
+			System.out.println("");
+		}
 
 		return this.level[x][y];
 	}
