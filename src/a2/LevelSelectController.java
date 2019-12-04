@@ -42,6 +42,8 @@ public class LevelSelectController implements Initializable {
 	
 	@Override
 	/**
+	 * Identifies levels the user is allowed to play and 
+	 * 									adds it to the drop down box .
 	 * @param arg0 for JFX
 	 * @param arg1 for JFX
 	 */
@@ -52,19 +54,21 @@ public class LevelSelectController implements Initializable {
 		System.out.println("file testing");
 		for (File file : listOfFiles) {
 			String fileName = file.getName();
-			
 			//gets level number from file name
 			String levelString = fileName.substring(0, fileName.length() - 4); 
-			//String levelNumString = fileName.replaceFirst("([0-9]+)\\.txt", "");
+			//String levelNumString = 
+			fileName.replaceFirst("([0-9]+)\\.txt", "");
 			int levelNum;
-			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+			Matcher matcher = Pattern.compile("([0-9]+)\\.txt")
+					.matcher(fileName);
 			if (matcher.find()) {
 				levelNum =  Integer.parseInt(matcher.group(1));
 				System.out.println(levelNum);
 			} else {
 				levelNum = -1;
 			}		
-			if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNum) {
+			if (file.isFile() && UserData.getCurrentUser().
+					getHighestLevel() >= levelNum) {
 		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 		    }
 		}
@@ -131,9 +135,9 @@ public class LevelSelectController implements Initializable {
 	}
 	@FXML
 	/**
-	 * 
-	 * @param event
-	 * @throws IOException thrown when 
+	 * Handles the log out button.
+	 * @param event for logging out
+	 * @throws IOException thrown in the event of invalid inputs 
 	 */
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
@@ -141,6 +145,10 @@ public class LevelSelectController implements Initializable {
 		levelScene.getChildren().setAll(window);
 	}
 	@FXML
+	/**
+	 * Handles Leaderboard Window IO.
+	 * @throws IOException thrown in the event of invalid inputs 
+	 */
 	private void handleLeaderboard() throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
 				getResource("resources/fxml docs/Leaderboard.fxml"));
