@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -102,6 +104,11 @@ public class UserData {
 		return false;
 	}
 	
+	public static String getLevelIdentifier(File fle) {
+		String fileName = fle.getName();
+		return fileName.replaceFirst("\\.txt", "");
+	}
+	
 	
 	// user file writer
 	public static void createUser(String username) throws IOException {
@@ -158,13 +165,20 @@ public class UserData {
 				+ Integer.toString(levelNo) + ".txt");
 	}
 	
-	public static Leaderboard readLeaderboard(int levelNo) {
-		Scanner leaderboardFile = null;
-		try {
-			leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
-		} catch  (IOException e) {
-			System.out.println("Failed to load file");
+	public static int getLevelNumber(String fileName) {
+		
+		Matcher matcher = Pattern.compile("([0-9]+)").matcher(fileName);
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group(1));
+		} else {
+			return -1;
 		}
+	}
+	
+	public static Leaderboard readLeaderboard(int levelNo) throws IOException {
+		Scanner leaderboardFile = null;
+		leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
+		
 		Leaderboard leader = new Leaderboard();
 		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
 		leader.addColumn(new LeaderboardColumn<TimeValue>(TimeValue.class, "Time"));
@@ -178,6 +192,7 @@ public class UserData {
 			leader.setSortedColumn("Time");
 			leader.addEntry(le);
 		}
+		leaderboardFile.close();
 		return leader;
 		
 	}

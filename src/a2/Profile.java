@@ -102,9 +102,10 @@ public class Profile {
 	 */
 	
 	public void setBestTime(int level, long time) {
-		
+		String filePath = "src/a2/resources/Leaderboards/LBLevel"
+				+ Integer.toString(level) + ".txt";
 		if (isBestTime(level, time)) {
-			if (bestTimes.size() == level - 1) {
+			if (bestTimes.size() <= level - 1) {
 				bestTimes.add(time);
 			} else {
 				bestTimes.remove(level - 1);

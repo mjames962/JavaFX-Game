@@ -11,7 +11,7 @@ import javafx.scene.control.Alert.AlertType;
 /**
  * This hold the player class.
  * 
- * @author Darius Thomas and James Colebourn
+ * @author James Colebourn, Darius Thomas
  * @version 1.0
  */
 
@@ -19,17 +19,18 @@ public class Player extends Entity {
 
 	/**
 	 * Sets of directions the player can move.
-	 * 
-	 * @author Darius Thomas
-	 */
+	*/
 	public enum Direction {
 		UP, DOWN, LEFT, RIGHT,
 	}
-
+	private static final int IV = 4;
+	private static final int V = 5;
+	private static final String SPRITE = 
+			"a2/resources/stock photos/Player1.png";
 	private boolean alive;
 	private LinkedList<Item> inventory;
 	private int tokenCount;
-	private static final String SPRITE = "a2/resources/stock photos/Player1.png";
+
 	private Direction curDirection;
 	
 	
@@ -38,34 +39,39 @@ public class Player extends Entity {
 	 * Constructs the player object.
 	 * 
 	 * @param entityID = 0, defines the entity as a player type
-	 * @param alive Determines if the player can continue       
-	 * @param inventory the collection of collectible(s) the player has
 	 * @param currentVector the current location of the player    
 	 * @param level stores the current level 
 	 */
 	public Player(Vector2D currentVector, int entityID, Level level) {
 		
 		super(currentVector, entityID, level);
-		System.out.println("CURRENTVECTOR2" + currentVector + this.getCurrentVector());
+		System.out.println("CURRENTVECTOR2" + currentVector + 
+				this.getCurrentVector());
 		this.alive = true;
 		this.inventory = new LinkedList<Item>();
 		this.tokenCount = 0;
 		
 	}
-
+	/**
+	 * Performs the Teleport Function.
+	 * @param tele the teleporter in question
+	 */
 	public void useTeleporter(Teleporter tele) {
 		
 	}
-	
+	/**
+	 * Returns the direction the player is/has moving/moved.
+	 * @return gives the current Direction of travel
+	 */
 	public Direction getCurrentDirection() {
 		return curDirection;
 	}
 	
 	/**
-	 * the method for enacting a movement specified by the player.
-	 * @param input is the intended movement direction of the player           
+	 * The method for enacting a moving the player.
+	 * @param dir gives the direction the player has chosen to move
+	 * @return nextVector gives the location the player is moving to
 	 */
-	
 	public Vector2D move(Direction dir) {
 		Vector2D nextVector = new Vector2D(getCurrentVector());
 		
@@ -85,27 +91,38 @@ public class Player extends Entity {
 		}
 		return nextVector;
 	}
-
+	/**
+	 * Sets number of tokens.
+	 * @param tokenCount 
+	 */
 	public void setTokenCount(int tokenCount) {
 		this.tokenCount = tokenCount;
 	}
-	
+	/**
+	 * Adds 1 to the players Token Count.
+	 */
 	public void giveToken() {
 		this.tokenCount += 1;
 	}
-	
+	/**
+	 * Returns the number of tokens collected by the player.
+	 * @return gives the players number of tokens
+	 */
 	public int getTokenCount() {
 		return tokenCount;
 	}
-	
+	/**
+	 * Compares the required tokens vs the number of tokens the player has.
+	 * @param tokenCount number of tokens
+	 * @return gives a boolean for if the player has enough tokens
+	 */
 	public boolean hasTokens(int tokenCount) {
 		return this.tokenCount >= tokenCount;
 	}
-	
-	public void takeTokens(int tokenCount) {
-		this.tokenCount -= tokenCount;
-	}
-	
+	/**
+	 * Handles the player movement input.
+	 * @param input the number of tokens held
+	*/
 	public void handleInput(Direction input) {
 		curDirection = input;
 		System.out.println("CURRENT VECTOR" + getCurrentVector());
@@ -124,7 +141,10 @@ public class Player extends Entity {
 		
 		
 	}
-	
+	/**
+	 * Kills the player if it and an enemy share the same cell.
+	 * @param e checks if the Player and an enemy share the same cell
+	 */
 	public void checkPlayerIntersectEnemy(Entity e) {
 		if (getCurrentVector().equals(e.getVector())) {
 			playerDeath();
@@ -155,18 +175,18 @@ public class Player extends Entity {
 	 * @return a boolean to show whether the cell can be moved onto
 	 */
 	public boolean isValidMove(Vector2D cellPos) {
-		Cell cell = this.level.getCellAt(cellPos);
-		
-		
-		if (!crepCheck(cell)) { //TODO improve, instanceof
-			
+		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
+		if (!crepCheck(cell)) {			
 			playerDeath();
 		}
 		return cell.isWalkable();
 	}
-	
+	/**
+	 * Moves the Player.
+	 * @param cellPos is the position of a cell
+	 */
 	public void doMoveAction(Vector2D cellPos) {
-		Cell cell = this.level.getCellAt(cellPos);
+		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
 		cell.doAction(this);
 		if (cell instanceof Teleporter) {
 			System.out.println("stuff");
@@ -185,7 +205,7 @@ public class Player extends Entity {
 		if (cell.cellName().equals("Fire")) {
 			for (Item item : this.inventory) {
 				System.out.println("item" + item.getItemID());
-				if (item.getItemID() == 4) { // if player has at least one pair
+				if (item.getItemID() == IV) { // if player has at least one pair
 												// of fireboots
 					return true;
 				}
@@ -193,7 +213,7 @@ public class Player extends Entity {
 			return false;
 		} else if (cell.cellName().equals("Water")) {
 			for (Item item : this.inventory) {
-				if (item.getItemID() == 5) { // if player has at least one pair
+				if (item.getItemID() == V) { // if player has at least one pair
 												// of flippers
 					return true;
 				}

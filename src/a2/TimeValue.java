@@ -32,6 +32,7 @@ public class TimeValue implements Comparable<TimeValue> {
 	}
 	
 	public int getMsecs() {
-		return (int) ((time - getSeconds()) / 10);
+		
+		return (int) ((time - getSeconds()) % 1000);
 	}
 }
