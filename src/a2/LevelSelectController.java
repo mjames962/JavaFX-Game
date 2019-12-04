@@ -21,8 +21,8 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  * Displays the current level.
- * @author Jensen Beard, George Williams-Walton and Darius Thomas
- * @version 1.0
+ * @author Jensen Beard, George Williams-Walton, Darius Thomas, Mitch Thomas
+ * @version 1.4
  */
 public class LevelSelectController implements Initializable {
 	private Level selectedLevel;
