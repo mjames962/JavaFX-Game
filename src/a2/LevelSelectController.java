@@ -71,6 +71,7 @@ public class LevelSelectController implements Initializable {
 			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
 			if (matcher.find()) {
 				levelNum =  Integer.parseInt(matcher.group(1));
+				System.out.println(levelNum);
 			} else {
 				levelNum = -1;
 			}		
@@ -110,7 +111,7 @@ public class LevelSelectController implements Initializable {
 			
 			
 	}
-	
+
 	private void formatLevel() throws FileNotFoundException{
 		
 		String currentLevel;

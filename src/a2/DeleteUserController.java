@@ -13,6 +13,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
+/**
+ * Controls the DeleteUser window.
+ * @author Jensen Beard, Jamie Springett
+ * @version 1.3 
+ */
 public class DeleteUserController {
 	@FXML
 	private Button btn_Delete;
@@ -41,12 +46,12 @@ public class DeleteUserController {
 			Optional<ButtonType> result = confirm.showAndWait();
 			
 			if (result.get() == ButtonType.OK) {
-			UserData.deleteUser(name);
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("Error");
-			alert.setHeaderText("User Deleted");
-			alert.setContentText(null);
-			alert.showAndWait();
+				UserData.deleteUser(name);
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error");
+				alert.setHeaderText("User Deleted");
+				alert.setContentText(null);
+				alert.showAndWait();
 			} else {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Error");

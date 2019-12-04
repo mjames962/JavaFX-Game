@@ -102,8 +102,7 @@ public class Profile {
 	 */
 	
 	public void setBestTime(int level, long time) {
-		String filePath = "src/a2/resources/file formats/LBLevel"
-				+ Integer.toString(level) + ".txt";
+		
 		if (isBestTime(level, time)) {
 			if (bestTimes.size() == level - 1) {
 				bestTimes.add(time);
@@ -113,7 +112,7 @@ public class Profile {
 			}
 			Scanner leaderboardFile = null;
 			try {
-				leaderboardFile = new Scanner(new File(filePath));
+				leaderboardFile = new Scanner(UserData.getLeaderboardFile(level));
 			} catch  (IOException e) {
 				System.out.println("Failed to load file");
 			}
