@@ -219,7 +219,6 @@ public class Level {
 			in = new Scanner(levelFile);
 		} catch (FileNotFoundException e) {
 			System.out.println("Cannot open '" + levelFile.toString() + "'");
-			System.exit(0);
 		}
 
 		this.readFile(in);
@@ -234,7 +233,7 @@ public class Level {
 	 *            scanner
 	 * @return 2D array of Cell type
 	 */
-	public void readFile(Scanner in) {
+	private void readFile(Scanner in) {
 
 		int x = in.nextInt();
 		this.xLength = x;

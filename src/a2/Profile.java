@@ -1,6 +1,6 @@
 package a2;
 
-import java.io.BufferedWriter;
+import java.io.BufferedWriter; 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -69,7 +69,7 @@ public class Profile {
 	
 	/**
 	 * Sets the highest level the user has reached to a new value.
-	 * @param newHigh the new highest level the user has reached
+	 * @param newHigh the new highest level the user has reached.
 	 */
 	
 	public void setHighestLevel(int level) {
