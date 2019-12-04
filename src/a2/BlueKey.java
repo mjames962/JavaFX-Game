@@ -1,7 +1,8 @@
 package a2;
 /**
- * the item blue key for the players inventory.
+ * The class for the # item blue key to be stored in the players inventory.
  * @author George Williams Walton, Tom Wood
+ * @version 1.3
  */
 public class BlueKey extends Key {
 	private static final int ID = 3;
