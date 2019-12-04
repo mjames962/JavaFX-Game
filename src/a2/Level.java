@@ -3,7 +3,11 @@ package a2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,10 +29,8 @@ public class Level {
 	private ArrayList<Entity> entityList = new ArrayList<>();
 	private int xLength;
 	private int yLength;
-	private static Level currentLevel = null;
-	//public static final String 
-
-	//	LEVEL_STORAGE = "src/a2/resources/file formats";
+	private static Level currentLevel;
+	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 
 	private int levelNo;
@@ -447,6 +449,148 @@ public class Level {
 				return new Wall(position);
 		}
 	}
+	
+	public void saveLevelProgress(Profile currentUser) throws IOException {
+
+		//Profile currentUser = UserData.getCurrentUser();
+		String name = currentUser.getName();
+		String levelName = this.levelFile.getName();
+		String saveFilePath = LEVEL_STORAGE + "/" + name + "_" + levelName;
+		File saveFile = new File(saveFilePath);
+		saveFile.delete();
+		saveFile.createNewFile();
+		
+		int xLength = this.levelXLength();
+		int yLength = this.levelYLength();
+		
+
+		// write x and y length
+		Files.write(Paths.get(saveFilePath), (xLength + " " + yLength + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+
+		
+		
+		String printLine = "";
+		// write level layout
+		for (int i = yLength - 1; i >= 0; i--) {
+			for (int j = 0; j < xLength; j++) {
+				Cell cell = this.getCellAt(j, i);
+				printLine = printLine + cell.getChar();
+			}
+			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+			printLine = "";
+		}
+		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+
+		
+		printLine = "";
+		// write entities
+		for (Entity e : this.entityList) {
+			printLine = printLine + (e.getVector().getX() + 1) + " ";
+			printLine = printLine + (e.getVector().getY() + 1) + " ";
+			printLine = printLine + e.getEntityID() + " ";
+			//printLine = printLine + e.getDirection();
+			
+			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+			printLine = "";
+		}
+		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+
+		printLine = "";
+		// write token doors
+		for (int i = yLength - 1; i >= 0; i--) {
+			for (int j = 0; j < xLength; j++) {
+				Cell cell = this.getCellAt(j, i);
+				char cellChar = cell.getChar();
+				if (cellChar == 'D') {
+					printLine = printLine + (cell.getX() + 1) + " " + (cell.getY() + 1) + " ";
+					printLine = printLine + ((TokenDoor) cell).getRequiredTokens();
+					
+					Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+					printLine = "";
+				}
+				
+			}
+		}
+		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+
+		printLine = "";
+		// write teleporters
+		for (int i = yLength - 1; i >= 0; i--) {
+			for (int j = 0; j < xLength; j++) {
+				Cell cell = this.getCellAt(j, i);
+				char cellChar = cell.getChar();
+				if (cellChar == 'T') {
+					printLine = printLine + (cell.getX() + 1) + " " + (cell.getY() + 1) + " ";
+					Vector2D vector = ((Teleporter) cell).getLinkedTP();
+					printLine = printLine + (vector.getX() + 1) + " " + (vector.getY() + 1);
+
+					Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+					printLine = "";
+				}
+
+			}
+		}
+		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+
+		printLine = "";
+		// write inventory
+		LinkedList<Item> inventory = this.getPlayer().getInventory();
+		int tokenCount = this.getPlayer().getTokenCount();
+		int redKeys = 0;
+		int greenKeys = 0;
+		int blueKeys = 0;
+		boolean fireBoots = false;
+		boolean flippers = false;
+		
+		for (Item i : inventory) {
+			switch (i.getItemID()) {
+			case (1) :
+				redKeys++;
+			break;
+			case (2) :
+				greenKeys++;
+			break;
+			case (3) :
+				blueKeys++;
+				break;
+			case (4) :
+				fireBoots = true;
+				break;
+			case (5) :
+				flippers = true;
+				break;
+			default :
+				
+			}
+		}
+		
+		printLine = printLine + redKeys + " ";
+		printLine = printLine + blueKeys + " ";
+		printLine = printLine + greenKeys + " ";
+		printLine = printLine + tokenCount + " ";
+		printLine = printLine + fireBoots + " ";
+		printLine = printLine + flippers;
+		
+		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+		
+		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
+	}
+	
 
 	/**
 	 * Returns the level number.

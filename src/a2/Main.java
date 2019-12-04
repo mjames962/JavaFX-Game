@@ -12,9 +12,8 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * The main class for this program.
- * 
- * @author Jensen Mitch Jamie
- *
+ * @author Jensen Bbeard, Mitch James, Jamie Springett
+ * @version 2.8
  */
 
 public class Main extends Application {
@@ -47,12 +46,12 @@ public class Main extends Application {
 	public static Stage getStage() {
 		return curStage;
 	}
-	
+	@Override
 	/**
 	 * Loads the main window of the game.
+	 * @param stage is the JFX stage the game is displayed on
 	 */
-	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage stage) {
 		try {
 			// Load the main scene.
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass()
@@ -61,10 +60,10 @@ public class Main extends Application {
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
 			// Place the main scene on stage and show it.
-			curStage = primaryStage;
-			primaryStage.setScene(scene);
-			primaryStage.setTitle(WINDOW_TITLE);
-			primaryStage.show();
+			curStage = stage;
+			stage.setScene(scene);
+			stage.setTitle(WINDOW_TITLE);
+			stage.show();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +72,6 @@ public class Main extends Application {
 
 	/**
 	 * The main method of the program.
-	 * 
 	 * @param args arguments
 	 */
 	public static void main(String[] args) {

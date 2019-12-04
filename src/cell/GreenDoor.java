@@ -30,5 +30,9 @@ public class GreenDoor extends Door {
 	public String getSprite() {
 		return SPRITE;
 	}
+	
+	public char getChar() {
+		return 'G';
+	}
 
 }

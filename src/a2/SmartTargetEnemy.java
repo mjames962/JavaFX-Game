@@ -8,8 +8,8 @@ import cell.Cell;
 //import java.util.LinkedList;
 /**
  * The enemy type that follows the A* algorithm to hunt the player.
- * @author James Colebourn
- * @version 1.0
+ * @author James Colebourn, Tom Wood
+ * @version 2.7
  */
 public class SmartTargetEnemy extends Entity {
 	
@@ -106,12 +106,13 @@ public class SmartTargetEnemy extends Entity {
 	 */
 	public void move() {
 		moveList = new ArrayList<>();
-			if (!getCurrentVector().equals(Level.getCurrentLevel().getPlayer().getVector())) {
-				System.out.println(shortPathFind(getCurrentVector().getX(), 
+		if (!getCurrentVector().equals(Level.getCurrentLevel().
+				getPlayer().getVector())) {
+			System.out.println(shortPathFind(getCurrentVector().getX(), 
 						getCurrentVector().getY(), 
 						maxViewDistance, 0));
 
-				this.setCurrentVector(nextMove);
+			this.setCurrentVector(nextMove);
 		}
 	}
 
