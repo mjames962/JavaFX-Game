@@ -43,8 +43,6 @@ public class LeaderboardColumn<T> {
 	    		, ObservableValue<T>>() {
 	        public ObservableValue<T> call(CellDataFeatures<
 	        		LeaderboardEntry, T> p) {
-	            // p.getValue() returns the Person instance for a 
-	        	particular TableView row
 	        	LeaderboardEntry le = (LeaderboardEntry) p.getValue();
 	            return new SimpleObjectProperty(le.getData(name));
 	        }

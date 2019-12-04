@@ -133,8 +133,6 @@ public class GameWindowController implements Initializable {
 	 */
 	public void show() {
 		Scene scene = new Scene(gamePane);
-		scene.getStylesheets().addAll(this.getClass()
-				.getResource("resources/GameStyle.css").toExternalForm());
 		Main.switchScene(scene);
 		
 		hookInput(scene);
@@ -258,7 +256,9 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
-		
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/MainMenu.fxml"));  
+		gamePane.getChildren().setAll(window);
 		
 	}
 }
