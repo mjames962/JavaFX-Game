@@ -155,7 +155,7 @@ public class Player extends Entity {
 	 * @return a boolean to show whether the cell can be moved onto
 	 */
 	public boolean isValidMove(Vector2D cellPos) {
-		Cell cell = this.level.getCellAt(cellPos);
+		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
 		
 		
 		if (!crepCheck(cell)) { //TODO improve, instanceof
@@ -166,7 +166,7 @@ public class Player extends Entity {
 	}
 	
 	public void doMoveAction(Vector2D cellPos) {
-		Cell cell = this.level.getCellAt(cellPos);
+		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
 		cell.doAction(this);
 		if (cell instanceof Teleporter) {
 			System.out.println("stuff");

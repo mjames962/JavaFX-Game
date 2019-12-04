@@ -1,6 +1,5 @@
 package a2;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,26 +8,16 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cell.Cell;
-import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+
 
 /**
  * Displays the current level.
@@ -40,22 +29,22 @@ public class LevelSelectController implements Initializable {
 	
 	@FXML
 	private Button btn_LoadLevel;
-
 	@FXML
 	private ComboBox<String> cmb_LevelSelect;
-
 	@FXML
 	private AnchorPane levelBottom;
-	
 	@FXML
 	private AnchorPane levelScene;
-	
 	@FXML
 	private Button btn_Log_Out;
 	
 	
 	
 	@Override
+	/**
+	 * @param arg0
+	 * @param arg1
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);

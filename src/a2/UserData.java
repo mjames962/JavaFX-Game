@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -102,6 +104,11 @@ public class UserData {
 		return false;
 	}
 	
+	public static String getLevelIdentifier(File fle) {
+		String fileName = fle.getName();
+		return fileName.replaceFirst("\\.txt", "");
+	}
+	
 	
 	// user file writer
 	public static void createUser(String username) throws IOException {
@@ -156,6 +163,16 @@ public class UserData {
 	public static File getLeaderboardFile(int levelNo) {
 		return new File("src/a2/resources/Leaderboards/LBLevel"
 				+ Integer.toString(levelNo) + ".txt");
+	}
+	
+	public static int getLevelNumber(String fileName) {
+		
+		Matcher matcher = Pattern.compile("([0-9]+)").matcher(fileName);
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group(1));
+		} else {
+			return -1;
+		}
 	}
 	
 	public static Leaderboard readLeaderboard(int levelNo) {
