@@ -21,12 +21,12 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  * Displays the current level.
- * @author Jensen Beard, George Williams-Walton and Darius Thomas
- * @version 1.0
+ * @author Jensen Beard, George Williams-Walton, Darius Thomas, Mitch Thomas
+ * @version 1.4
  */
 public class LevelSelectController implements Initializable {
+	private static final int IV = 4;
 	private Level selectedLevel;
-	
 	@FXML
 	private Button btn_LoadLevel;
 	@FXML
@@ -38,12 +38,14 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private Button btn_Log_Out;
 	
-	
+
 	
 	@Override
 	/**
-	 * @param arg0
-	 * @param arg1
+	 * Identifies levels the user is allowed to play and 
+	 * 									adds it to the drop down box .
+	 * @param arg0 for JFX
+	 * @param arg1 for JFX
 	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -52,19 +54,21 @@ public class LevelSelectController implements Initializable {
 		System.out.println("file testing");
 		for (File file : listOfFiles) {
 			String fileName = file.getName();
-			
 			//gets level number from file name
-			String levelString = fileName.substring(0, fileName.length() - 4); 
-			//String levelNumString = fileName.replaceFirst("([0-9]+)\\.txt", "");
+			String levelString = fileName.substring(0, fileName.length() - IV); 
+			//String levelNumString = 
+			fileName.replaceFirst("([0-9]+)\\.txt", "");
 			int levelNum;
-			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+			Matcher matcher = Pattern.compile("([0-9]+)\\.txt")
+					.matcher(fileName);
 			if (matcher.find()) {
 				levelNum =  Integer.parseInt(matcher.group(1));
 				System.out.println(levelNum);
 			} else {
 				levelNum = -1;
 			}		
-			if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNum) {
+			if (file.isFile() && UserData.getCurrentUser().
+					getHighestLevel() >= levelNum) {
 		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 		    }
 		}
@@ -86,6 +90,10 @@ public class LevelSelectController implements Initializable {
 	}
 	
 	@FXML
+	/**
+	 * Event handling to produce a pop-up alert + throw the error.
+	 * @param event the action that instantiates the error throw
+	 */
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
 		formatLevel();
 		if (selectedLevel == null) {
@@ -100,32 +108,47 @@ public class LevelSelectController implements Initializable {
 			
 			
 	}
-
-	private void formatLevel() throws FileNotFoundException{
+	/**
+	 * Formatting level file names to be searched for.
+	 * @throws FileNotFoundException when the requested file is absent
+	 */
+	private void formatLevel() throws FileNotFoundException {
 		
 		String currentLevel;
 		currentLevel = cmb_LevelSelect.getValue();
 		
 		//File levelLeaderboard = new File("src/a2/resources/file formats/LB"
 		//		 + currentLevel + ".txt");
-		if(currentLevel != null) {
+		if (currentLevel != null) {
 			selectedLevel = new Level(
-					"src/a2/resources/file formats/"+ currentLevel + ".txt");	
+					"src/a2/resources/file formats/" + currentLevel + ".txt");	
 		}
 		
 	}
-	
+	/**
+	 * .
+	 * @param fileName holds the name of the file
+	 * @return gives the file name minus .txt extension
+	 */
 	public String getLevelIdentifier(String fileName) {
-		
 		return fileName.replaceFirst("\\.txt", "");
 	}
 	@FXML
+	/**
+	 * Handles the log out button.
+	 * @param event for logging out
+	 * @throws IOException thrown in the event of invalid inputs 
+	 */
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		levelScene.getChildren().setAll(window);
 	}
 	@FXML
+	/**
+	 * Handles Leaderboard Window IO.
+	 * @throws IOException thrown in the event of invalid inputs 
+	 */
 	private void handleLeaderboard() throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
 				getResource("resources/fxml docs/Leaderboard.fxml"));
