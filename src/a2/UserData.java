@@ -25,7 +25,7 @@ public class UserData {
 	final public static String IMAGE_FOLDER_LOCATION = "src/a2/resources/stock photos";
 	final public static String FXML_FOLDER_LOCATION = "src/a2/resources/fxml docs";
 	
-	private static Profile currentUser; 
+	private static Profile currentUser;
 	
 	public static Profile getCurrentUser() {
 		return currentUser;
@@ -37,7 +37,7 @@ public class UserData {
 		currentUser = profile;
 	}
 	 
-	 public static boolean doesExist(String username) {
+	public static boolean doesExist(String username) {
 		File inputFile = new File(USERS_FILE_LOCATION);
 		try {
 			inputFile.createNewFile();

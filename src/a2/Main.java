@@ -1,7 +1,7 @@
 
 package a2;
 
-import javafx.application.Application;
+import javafx.application.Application; 
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,11 +21,11 @@ public class Main extends Application {
 	public static final int LEVEL_LOADER_WINDOW_WIDTH = 800;
 	public static final int LEVEL_LOADER_WINDOW_HEIGHT = 500;
 	public static final String LEVEL_LOADER_WINDOW_TITLE = "Placeholder";
-	
+
 	public static final int CREATE_PROFILE_WINDOW_WIDTH = 800;
 	public static final int CREATE_PROFILE_WINDOW_HEIGHT = 500;
 	public static final String CREATE_PROFILE_WINDOW_TITLE = "Create a Profile";
-	
+
 	private static final int MAIN_WINDOW_WIDTH = 800;
 	private static final int MAIN_WINDOW_HEIGHT = 500;
 	private static final String WINDOW_TITLE = "Placeholder";
@@ -39,6 +39,7 @@ public class Main extends Application {
 	public static void switchScene(Scene s) {
 		curStage.setScene(s);
 	}
+	
 	/**
 	 * Returns the current Stage.
 	 * @return gives the current stage
@@ -46,6 +47,7 @@ public class Main extends Application {
 	public static Stage getStage() {
 		return curStage;
 	}
+	
 	@Override
 	/**
 	 * Loads the main window of the game.
