@@ -153,4 +153,35 @@ public class UserData {
 		}
 	}
 	
+	public static File getLeaderboardFile(int levelNo) {
+		return new File("src/a2/resources/Leaderboards/LBLevel"
+				+ Integer.toString(levelNo) + ".txt");
+	}
+	
+	public static Leaderboard readLeaderboard(int levelNo) {
+		Scanner leaderboardFile = null;
+		try {
+			leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
+		} catch  (IOException e) {
+			System.out.println("Failed to load file");
+		}
+		Leaderboard leader = new Leaderboard();
+		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
+		leader.addColumn(new LeaderboardColumn<TimeValue>(TimeValue.class, "Time"));
+		//Populate Leaderboard Prev Values
+
+		while (leaderboardFile.hasNext()) {
+			LeaderboardEntry le = new LeaderboardEntry(leader);
+			le.addData("Name", leaderboardFile.next());
+			TimeValue tv = new TimeValue(leaderboardFile.nextLong());
+			le.addData("Time", tv);	
+			leader.setSortedColumn("Time");
+			leader.addEntry(le);
+		}
+		return leader;
+		
+	}
+	
+	
+	
 }

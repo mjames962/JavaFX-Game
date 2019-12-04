@@ -2,6 +2,7 @@ package a2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -38,6 +39,13 @@ public class Level {
 		levelFile = new File(fileName);
 		this.readFile();
 		currentLevel = this;
+		try {
+			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
+					+ levelFile.getName());
+			levelLeaderboard.createNewFile();
+		} catch (IOException e) {
+			System.out.println("fail");
+		}
 		Timer.start();
 		
 	}
@@ -50,6 +58,15 @@ public class Level {
 		this.levelFile = levelFile;
 		this.readFile();
 		currentLevel = this;
+		try {
+			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
+					+ levelFile.getName());
+			
+			
+			levelLeaderboard.createNewFile();
+		} catch (IOException e) {
+			System.out.println("fail");
+		}
 		Timer.start();
 	}
 	/**
