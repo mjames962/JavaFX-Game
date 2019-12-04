@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
@@ -40,8 +42,8 @@ public class LevelSelectController implements Initializable {
 	
 	@Override
 	/**
-	 * @param arg0
-	 * @param arg1
+	 * @param arg0 for JFX
+	 * @param arg1 for JFX
 	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -84,6 +86,10 @@ public class LevelSelectController implements Initializable {
 	}
 	
 	@FXML
+	/**
+	 * Event handling to produce a pop-up alert + throw the error.
+	 * @param event the action that instantiates the error throw
+	 */
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
 		formatLevel();
 		if (selectedLevel == null) {
@@ -98,26 +104,37 @@ public class LevelSelectController implements Initializable {
 			
 			
 	}
-
-	private void formatLevel() throws FileNotFoundException{
+	/**
+	 * Formatting level file names to be searched for.
+	 * @throws FileNotFoundException when the requested file is absent
+	 */
+	private void formatLevel() throws FileNotFoundException {
 		
 		String currentLevel;
 		currentLevel = cmb_LevelSelect.getValue();
 		
 		//File levelLeaderboard = new File("src/a2/resources/file formats/LB"
 		//		 + currentLevel + ".txt");
-		if(currentLevel != null) {
+		if (currentLevel != null) {
 			selectedLevel = new Level(
-					"src/a2/resources/file formats/"+ currentLevel + ".txt");	
+					"src/a2/resources/file formats/" + currentLevel + ".txt");	
 		}
 		
 	}
-	
+	/**
+	 * .
+	 * @param fileName holds the name of the file
+	 * @return gives the file name minus .txt extension
+	 */
 	public String getLevelIdentifier(String fileName) {
-		
 		return fileName.replaceFirst("\\.txt", "");
 	}
 	@FXML
+	/**
+	 * 
+	 * @param event
+	 * @throws IOException thrown when 
+	 */
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
