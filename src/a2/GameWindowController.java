@@ -256,7 +256,9 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
-		
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/MainMenu.fxml"));  
+		gamePane.getChildren().setAll(window);
 		
 	}
 }
