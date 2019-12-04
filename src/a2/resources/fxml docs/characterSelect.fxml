@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="charSelection" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.charSelectController">
+  <children>
+    <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <center>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+          <children>
+            <Label layoutX="137.0" layoutY="14.0" text="Choose Character" textFill="WHITE" />
+            <ComboBox fx:id="cmb_CharSelect" layoutX="137.0" layoutY="39.0" prefHeight="21.0" prefWidth="140.0" promptText="Choose character">
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                </FXCollections>
+              </items>
+            </ComboBox>
+            <Button fx:id="btn_Accept" layoutX="137.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleAcceptBtn" text="Accept" />
+            <Button fx:id="btn_Back" layoutX="137.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" />
+          </children>
+        </AnchorPane>
+      </center>
+      <right>
+        <AnchorPane prefHeight="333.0" prefWidth="413.0">
+          <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Preview" textFill="WHITE" />
+            <Label fx:id="lbl_Preview" layoutX="14.0" layoutY="44.0" text="[]" textFill="WHITE" />
+          </children>
+        </AnchorPane>
+      </right>
+      <top>
+        <Pane prefHeight="167.0" prefWidth="800.0">
+          <children>
+            <Label layoutX="130.0" layoutY="84.0" text="Character Selection" textFill="WHITE">
+              <font>
+                <Font size="30.0" />
+              </font>
+            </Label>
+          </children>
+        </Pane>
+      </top>
+    </BorderPane>
+  </children>
+  <stylesheets>
+    <URL value="@../style.css" />
+  </stylesheets>
+</AnchorPane>

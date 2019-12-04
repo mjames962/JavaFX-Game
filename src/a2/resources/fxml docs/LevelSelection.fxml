@@ -42,6 +42,7 @@
             </ComboBox>
             <Button fx:id="LeaderboardBtn" layoutX="50.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleLeaderboard" text="Leaderboard" />
             <Button fx:id="btn_Log_Out" layoutX="50.0" layoutY="136.0" mnemonicParsing="false" onAction="#handleLogOutBtn" text="Log Out" />
+            <Button fx:id="btn_ChooseChar" layoutX="220.0" layoutY="67.0" mnemonicParsing="false" onAction="#handleCharSelectBtn" text="Choose Character" />
           </children>
         </AnchorPane>
       </left>

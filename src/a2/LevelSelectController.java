@@ -156,4 +156,12 @@ public class LevelSelectController implements Initializable {
 		levelScene.getChildren().setAll(window);
 		((LeaderboardController) fx.getController()).display();
 	}
+	
+	@FXML
+	private void handleCharSelectBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/characterSelect.fxml"));  
+		levelScene.getChildren().setAll(window);
+		
+	}
 }
