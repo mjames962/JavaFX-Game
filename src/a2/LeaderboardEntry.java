@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 /**
  * Represents an entry on a given leaderboard.
- * @author george
- *
+ * @author George Williams Walton
+ * @version 1.7
  */
 public class LeaderboardEntry {
 	
@@ -25,9 +25,11 @@ public class LeaderboardEntry {
 	 * Attempts to add data to a column.
 	 * @param name name of column to add to
 	 * @param data the data you wish to set
-	 * @throws InvalidParameterException Data given does not match the type of column.
+	 * @throws InvalidParameterException Data given 
+	 * 							does not match the type of column.
 	 */
-	public void addData(String name, Object data) throws InvalidParameterException {
+	public void addData(String name, Object data) throws 
+		InvalidParameterException {
 		//Class<?> dataClass = data.getClass();
 		LeaderboardColumn<?> column = leader.getColumn(name);
 		Class<?> columnClass = column.getMyType();
@@ -35,27 +37,29 @@ public class LeaderboardEntry {
 			entryData.put(column.getName(), data);
 		} else {
 			throw new InvalidParameterException(""
-					+ "Attempt to add data with a different type to the column\n" + 
-					"Want:" + columnClass + "|" + "Provided:" + data.getClass());
+					+ "Attempt to add data with a different type to the "
+					+ "column\n" + "Want:" + columnClass + "|" + "Provided:" + 
+						data.getClass());
 		}
 	}
 	/**
 	 * Returns true if data has a column entry.
-	 * @param column
-	 * @return truth value
+	 * @param column the column of the leaderboard
+	 * @return gives the requested data stored at the 
+	 * 								specified point in the leaderboard
 	 */
-	public boolean hasColumn(LeaderboardColumn<?> column ) {
+	public boolean hasColumn(LeaderboardColumn<?> column) {
 		return entryData.containsKey(column.getName());
 	}
 	
 	//probably not needed
 	/**
-	 * A convience method for adding lots of data at once.
-	 * @param data
+	 * A convient method for adding lots of data at once.
+	 * @param data the data beign added 
 	 */
-	public void addDatas(HashMap<String,Object> data) {
+	public void addDatas(HashMap<String, Object> data) {
 		for (String name : data.keySet()) {
-			addData(name,data.get(name));
+			addData(name, data.get(name));
 		}
 	}
 	

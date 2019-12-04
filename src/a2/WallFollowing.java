@@ -30,7 +30,7 @@ public class WallFollowing extends Entity {
 			int enemyID, String direction, Level level) {
 		super(currentVector, enemyID, level);
 		enemyID = 2;
-		currentVector = this.currentVector;
+		currentVector = this.getCurrentVector();
 
 		
 	}
@@ -48,8 +48,8 @@ public class WallFollowing extends Entity {
 	 */
 	
 	public Vector2D nextMove() {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
+		int cX = getCurrentVector().getX();
+		int cY = getCurrentVector().getY();
 		Vector2D nextVector = new Vector2D(cX + modifier(true),
 				cY + modifier(false));
 		Vector2D leftWall = new Vector2D(cX + findLeft(true),
@@ -174,7 +174,7 @@ public class WallFollowing extends Entity {
 	 */
 		
 	public void move() {
-		currentVector = nextMove();
+		setCurrentVector(nextMove());
 	}
 	
 }

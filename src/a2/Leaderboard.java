@@ -8,9 +8,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 /**
- * A representation of a leaderboard, with the ability to display to a javafx TableView.
+ * A representation of a leaderboard, with the ability to display 
+ * 												to a javafx TableView.
  * @author george
- *
+ * @version 2.3
  */
 public class Leaderboard {
 
@@ -53,7 +54,8 @@ public class Leaderboard {
 	 * @param le the LeaderboardEntry to check.
 	 * @throws IllegalStateException Entry is missing a column value
 	 */
-	private void checkAllColumnsPresent(LeaderboardEntry le) throws IllegalStateException {
+	private void checkAllColumnsPresent(LeaderboardEntry le) 
+			throws IllegalStateException {
 		for (LeaderboardColumn<?> column : columns.values()) {
 			if (!le.hasColumn(column)) {
 				throw new IllegalStateException(
@@ -74,12 +76,15 @@ public class Leaderboard {
 	 * Gets the column with given column name.
 	 * @param columnName Name of column
 	 * @return The requested LeaderboardColumn
-	 * @throws InvalidParameterException If a column with the given name does not exist
+	 * @throws InvalidParameterException If a column with the given 
+	 * 												name does not exist
 	 */
-	public LeaderboardColumn<?> getColumn(String columnName) throws InvalidParameterException {
+	public LeaderboardColumn<?> getColumn(String columnName) 
+			throws InvalidParameterException {
 		LeaderboardColumn<?> column = columns.get(columnName);
 		if (column == null) {
-			throw new InvalidParameterException("Column " + columnName + " does not exist!");
+			throw new InvalidParameterException("Column " + 
+				columnName + " does not exist!");
 		}
 		
 		return column;
@@ -94,7 +99,7 @@ public class Leaderboard {
 		
 	}
 	/**
-	 * Gets the sort type of the initially sorted column
+	 * Gets the sort type of the initially sorted column.
 	 * @return The sort type ASCENDING/DESCENDING 
 	 */
 	public TableColumn.SortType getSortType() {

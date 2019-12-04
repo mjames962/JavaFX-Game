@@ -11,9 +11,8 @@ import a2.Player.Direction;
 import cell.*;
 
 /**
- * class for the creation of the level.
- * 
- * @author Jensen, Mitch
+ * Class for the creation of the level.
+ * @author Jensen Beard, Mitch James
  *
  */
 public class Level {
@@ -24,7 +23,8 @@ public class Level {
 	private int xLength;
 	private int yLength;
 	private static Level currentLevel = null;
-	//public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
+	//public static final String 
+		LEVEL_STORAGE = "src/a2/resources/file formats";
 
 	private int levelNo;
 	
