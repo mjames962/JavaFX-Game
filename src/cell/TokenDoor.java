@@ -61,6 +61,10 @@ public class TokenDoor extends Door {
 		return SPRITE;
 	}
 	
+	public char getChar() {
+		return 'D';
+	}
+	
 	
 	
 }

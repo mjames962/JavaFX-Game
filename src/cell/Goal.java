@@ -64,4 +64,8 @@ public class Goal extends Cell {
 	public String getSprite() {
 		return SPRITE;
 	}
+	
+	public char getChar() {
+		return 'X';
+	}
 }

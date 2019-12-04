@@ -36,4 +36,8 @@ public class FlippersCell extends Collectible {
 	public String getSprite() {
 		return SPRITE;
 	}
+	
+	public char getChar() {
+		return 'w';
+	}
 }
