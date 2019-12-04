@@ -13,25 +13,19 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="653.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.GameWindowController">
+<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.GameWindowController">
   <children>
     <BorderPane fx:id="gameBorderPane" layoutX="14.0" layoutY="14.0" prefHeight="556.0" prefWidth="572.0">
-      <bottom>
-        <Pane prefHeight="98.5" prefWidth="572.0">
-          <children>
-            <Label fx:id="lbl_MOTD" layoutX="14.0" layoutY="14.0" text="MOTD" textFill="WHITE" />
-            <Button fx:id="btnQuit" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
-          </children>
-        </Pane>
-      </bottom>
       <center>
-        <Canvas fx:id="gameCanvas" height="400.0" scaleX="1.202528108842342" scaleY="0.9912736151164937" width="350.0" BorderPane.alignment="CENTER" />
+        <Canvas fx:id="gameCanvas" height="400.0" scaleX="1.202528108842342" scaleY="0.9912736151164937" width="350.0" BorderPane.alignment="TOP_CENTER" />
       </center>
       <right>
         <Pane prefHeight="377.0" prefWidth="129.5576171875">
           <children>
             <Label id="lbl" fx:id="lbl_Timer" layoutX="14.0" layoutY="101.0" text="Timer" textFill="WHITE" />
             <Label fx:id="lbl_User" layoutX="14.0" layoutY="33.0" text="User" textFill="WHITE" />
+            <Label fx:id="lbl_MOTD" layoutX="11.0" layoutY="144.0" text="MOTD" textFill="WHITE" />
+            <Button fx:id="btnQuit" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
           </children>
         </Pane>
       </right>

@@ -1,6 +1,7 @@
 package a2;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,12 +13,14 @@ import javafx.beans.property.adapter.JavaBeanStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
 /**
@@ -37,6 +40,9 @@ public class LeaderboardController {
 	private ChoiceBox<String> levelSelector;
 	@FXML 
 	private TableView<LeaderboardEntry> leaderTable;
+	@FXML
+	private Button backButton;
+	
 
 	
 	/**
@@ -44,9 +50,11 @@ public class LeaderboardController {
 	 */
 	public void display() {
 		addValuesToSelector();
-		Leaderboard lead = UserData.readLeaderboard(1);
-		if (lead != null) {
+		try {
+			Leaderboard lead = UserData.readLeaderboard(1);
 			lead.display(leaderTable);
+		} catch (IOException e) {
+			System.out.println("Failed to read leaderboard");
 		}
 		hookSelector();
 		
@@ -68,10 +76,12 @@ public class LeaderboardController {
 	}
 	
 	public void changeDisplayedLeaderboard(int levelNo) {
-		Leaderboard lead = UserData.readLeaderboard(levelNo);
-		if (lead != null) {
+		try {
+			Leaderboard lead = UserData.readLeaderboard(levelNo);
 			scrubTableView(leaderTable);
 			lead.display(leaderTable);
+		} catch (IOException e) {
+			scrubTableView(leaderTable);
 		}
 	}
 	
@@ -116,6 +126,15 @@ public class LeaderboardController {
 	public void leadBut2Press() {
 			
 	}
+	
+	public void backButtonPressed() throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/LevelSelection.fxml"));  
+		
+		AnchorPane ap = (AnchorPane) backButton.getScene().getRoot();
+		ap.getChildren().setAll(window);
+	}
+	
 	/**
 	 * Allows for pressing buttons.
 	 */

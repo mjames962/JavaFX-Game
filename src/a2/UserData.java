@@ -175,13 +175,10 @@ public class UserData {
 		}
 	}
 	
-	public static Leaderboard readLeaderboard(int levelNo) {
+	public static Leaderboard readLeaderboard(int levelNo) throws IOException {
 		Scanner leaderboardFile = null;
-		try {
-			leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
-		} catch  (IOException e) {
-			System.out.println("Failed to load file");
-		}
+		leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
+		
 		Leaderboard leader = new Leaderboard();
 		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
 		leader.addColumn(new LeaderboardColumn<TimeValue>(TimeValue.class, "Time"));
@@ -195,6 +192,7 @@ public class UserData {
 			leader.setSortedColumn("Time");
 			leader.addEntry(le);
 		}
+		leaderboardFile.close();
 		return leader;
 		
 	}
