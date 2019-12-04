@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 /**
  * Holds information about a user and their scores.
- * @author tomwo
+ * @author Tom Wood
  *
  */
 public class Profile {
@@ -160,7 +160,10 @@ public class Profile {
 			}
 		}
 	}
-	
+	/**
+	 * Writes the leaderboard to the file.
+	 * @param filePath the directory path to hte given file
+	 */
 	public void writeLeaderboardFile(String filePath) {
 		PrintWriter writer = null;
 		try {
@@ -180,7 +183,10 @@ public class Profile {
 		writer.close();
 	}
 	
-	
+	/**
+	 * Returns the profile name.
+	 * @return gives the name
+	 */
 	public String getName() {
 		return name;
 	}
@@ -188,9 +194,7 @@ public class Profile {
 	
 	/**
 	 * Updates user file with changes made since reading
-	 * from file.
-	 * 
-	 * @param file The location of the users file.
+	 *											 from file.
 	 */
 	
 	public void updateFile() {
