@@ -2,7 +2,7 @@ package a2;
 
 /**
  * Class that holds the location of the player.
- * @author Darius Thomas and James Colebourn
+ * @author James Colebourn, Darius Thomas 
  * @version 1.0
  */
 
