@@ -113,10 +113,10 @@ public class Player extends Entity {
 				nextVector.add(new Vector2D(0, -1));
 				break;
 			case LEFT:
-				nextVector.add(new Vector2D(-1, 0));
+				nextVector.add(new Vector2D(1, 0));
 				break;
 			case RIGHT:
-				nextVector.add(new Vector2D(1, 0));
+				nextVector.add(new Vector2D(-1, 0));
 				break;
 		}
 		return nextVector;
@@ -160,19 +160,23 @@ public class Player extends Entity {
 		doMoveAction(move(input));
 		if (cell.cellName() != "Goal") {
 			if (isValidMove(move(input))) {
-				Iterator<Entity> iter = Level.getCurrentLevel().
-						getEntityList().iterator();
-				while (iter.hasNext()) {
-					Entity ent = iter.next();
+				for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 					if (ent == this) { 
 						setCurrentVector(move(input));
 					} else {
 						checkPlayerIntersectEnemy(ent);
 						ent.move();
-						if (ent.getRemove()) {
-							iter.remove();
-						}
+						
 						checkPlayerIntersectEnemy(ent);
+					}
+				}
+				Iterator<Entity> iter = Level.getCurrentLevel().
+						getEntityList().iterator();
+				while (iter.hasNext()) {
+					Entity ent = iter.next();
+					ent.hasHitDagger();
+					if (ent.getRemove()) {
+						iter.remove();
 					}
 				}
 			}
@@ -192,10 +196,19 @@ public class Player extends Entity {
 			}
 		}
 		final int DAGGER_ID = 10; 
+		Iterator<Entity> iter = Level.getCurrentLevel().
+				getEntityList().iterator();
+		while (iter.hasNext()) {
+			Entity ent = iter.next();
+			ent.hasHitDagger();
+			if (ent.getRemove()) {
+				iter.remove();
+			}
+		}
 		for (Item item : this.inventory) {
 			if (item.getItemID() == DAGGER_ID) {
 				this.inventory.remove(item);
-				Dagger newDagger = new Dagger(shoot(input));
+				Dagger newDagger = new Dagger(shoot(input), input);
 				newDagger.setDirection(newDagger.getDirection(input));
 				Level.getCurrentLevel().getEntityList().add(
 						newDagger);

@@ -6,15 +6,16 @@ import cell.DaggerCell;
 
 public class Dagger extends Entity {
 	
-	private static final String 			
-		SPRITE = "a2/resources/stock photos/Dagger.png";
+	public static final String SPRITE = "a2/resources/stock photos/Dagger.png";
+	public final String SPRITE2;
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = true;
 	/**		 * An item of type blue key.
 	 */
-	public Dagger(Vector2D pos) {
+	public Dagger(Vector2D pos, ShootDirection dir) {
 		super(pos);
 		setEntityID(10);
+		SPRITE2 = getDirSprite(dir);
 	}
 	
 	@Override
@@ -93,11 +94,26 @@ public class Dagger extends Entity {
 			case DOWN:
 				return 2;
 			case LEFT:
-				return 3;
-			case RIGHT:
 				return 1;
+			case RIGHT:
+				return 3;
 			default:
 				return 0;	
+		}
+	}
+	
+	public String getDirSprite(ShootDirection dir) {
+		switch (dir) {
+			case UP:
+				return "a2/resources/stock photos/DaggerUp.png";
+			case DOWN:
+				return "a2/resources/stock photos/DaggerDown.png";
+			case LEFT:
+				return "a2/resources/stock photos/DaggerRight.png";
+			case RIGHT:
+				return "a2/resources/stock photos/DaggerLeft.png";
+			default:
+				return "a2/resources/stock photos/DaggerUp.png";
 		}
 	}
 		

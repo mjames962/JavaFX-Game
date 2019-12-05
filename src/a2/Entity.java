@@ -119,6 +119,20 @@ public class Entity implements Sprite {
 	public void move() {
 		
 	}
+	
+	
+	public void hasHitDagger() {
+		if (this.getEntityID() != 10) {
+			for (Entity ent : Level.getCurrentLevel().getEntityList()) {
+				if (ent != this) { 
+					if ((ent.getEntityID() == 10) && 
+						(this.getCurrentVector() == ent.getCurrentVector())) {
+						remove = true;
+					}
+				}
+			}
+		}
+	}
 	/**
 	 * @return the currentVector
 	 */
