@@ -122,11 +122,12 @@ public class Entity implements Sprite {
 	
 	
 	public void hasHitDagger() {
-		if (this.getEntityID() != 10) {
+		final int DAGGERID = 10;
+		if (this.getEntityID() != DAGGERID) {
 			for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 				if (ent != this) { 
-					if ((ent.getEntityID() == 10) && 
-						(this.getCurrentVector() == ent.getCurrentVector())) {
+					if ((ent.getEntityID() == DAGGERID) && 
+						(this.getCurrentVector().equals(ent.getCurrentVector()))) {
 						remove = true;
 					}
 				}
