@@ -158,7 +158,7 @@ public class Player extends Entity {
 		System.out.println("CURRENT VECTOR" + getCurrentVector());
 		Cell cell = Level.getCurrentLevel().getCellAt(move(input));
 		doMoveAction(move(input));
-		if (cell.cellName() != "Goal") {
+		if (!(cell instanceof Goal)) {
 			if (isValidMove(move(input))) {
 				for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 					if (ent == this) { 
@@ -278,18 +278,21 @@ public class Player extends Entity {
 	 */
 	public boolean crepCheck(Cell cell) {
 		
-		if (cell.cellName().equals("Fire")) {
+		
+		if (cell instanceof Fire) {
 			for (Item item : this.inventory) {
 				System.out.println("item" + item.getItemID());
-				if (item.getItemID() == IV) { // if player has at least one pair
+				if (item instanceof FireBoots) {
+					// if player has at least one pair
 												// of fireboots
 					return true;
 				}
 			}
 			return false;
-		} else if (cell.cellName().equals("Water")) {
+		} else if (cell instanceof Water) {
 			for (Item item : this.inventory) {
-				if (item.getItemID() == V) { // if player has at least one pair
+				if (item instanceof Flippers) { 
+					// if player has at least one pair
 												// of flippers
 					return true;
 				}

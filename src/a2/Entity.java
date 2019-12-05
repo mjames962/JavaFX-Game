@@ -1,6 +1,7 @@
 package a2;
 
 import a2.Player.ShootDirection;
+import cell.Ground;
 
 /**
  * This hold the Entity superclass.
@@ -99,8 +100,8 @@ public class Entity implements Sprite {
 	
 	public boolean isValidMove(Vector2D nextVector) {
 		if (this.entityID != 0) { // Enemies
-			if (Level.getCurrentLevel().getCellAt(nextVector).cellName()
-					== "Ground") {
+			if (Level.getCurrentLevel().getCellAt(nextVector) instanceof
+					Ground) {
 				return true;						//Ground Cell class
 			} else {
 				return false;
@@ -122,11 +123,10 @@ public class Entity implements Sprite {
 	
 	
 	public void hasHitDagger() {
-		final int DAGGERID = 10;
-		if (this.getEntityID() != DAGGERID) {
+		if (!(this instanceof Dagger)) {
 			for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 				if (ent != this) { 
-					if ((ent.getEntityID() == DAGGERID) && 
+					if ((ent instanceof Dagger) && 
 						(this.getCurrentVector().equals(ent.getCurrentVector()))) {
 						remove = true;
 					}

@@ -191,7 +191,7 @@ public class Level {
 	 */
 	public Player getPlayer() {
 		for (Entity e : this.entityList) { 
-		    if (e.getEntityID() == 0) {
+		    if (e instanceof Player) {
 		    	return (Player) e;
 		    }
 		}
