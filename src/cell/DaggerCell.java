@@ -1,20 +1,17 @@
+package cell;
 
 import a2.DaggerItem;
-import a2.Flippers;
 import a2.Item;
 import a2.Vector2D;
 
-public class Dagger extends Collectible {
-	
+public class DaggerCell extends Collectible {
 	
 	protected static final String 
-		SPRITE = "a2/resources/stock photos/Dagger.png";
-	
-	
-	public Dagger(Vector2D pos) {
-		super(pos);
-	}
-	
+		SPRITE = "a2/resources/stock photos/Dagger.png";		
+		
+	public DaggerCell(Vector2D pos) {
+		super(pos);		}
+		
 	public Item createItem() {
 		return new DaggerItem();
 	}
@@ -22,11 +19,11 @@ public class Dagger extends Collectible {
 	public String cellName() {
 		return "DaggerCell";
 	}
-	
+		
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+		
 	public char getChar() {
 		return 's';
 	}

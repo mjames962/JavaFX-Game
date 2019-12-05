@@ -19,7 +19,7 @@ public class StraightLine extends Entity {
 	 * 	 
 	 */
 	public StraightLine(Vector2D currentVector, int enemyID, Level level) {
-		super(currentVector, enemyID, level);
+		super(currentVector);
 	}
 	
 	public String getSprite() {

@@ -184,6 +184,15 @@ public class Player extends Entity {
 				checkPlayerIntersectEnemy(ent);
 			}
 		}
+		final int DAGGER_ID = 10; 
+		for (Item item : this.inventory) {
+			if (item.getItemID() == DAGGER_ID) {
+				this.inventory.remove(item);
+				Level.getCurrentLevel().getEntityList().add(
+						new Dagger(shoot(input)));
+			}
+		}
+		 
 	}
 
 	/**

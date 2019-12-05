@@ -28,7 +28,7 @@ public class SmartTargetEnemy extends Entity {
 	 * @param level holds the current level
 	 */
 	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
-		super(currentVector, enemyID, level);
+		super(currentVector);
 		nextMove = new Vector2D(currentVector.getX(), currentVector.getY());
 	}
 	/**

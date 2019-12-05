@@ -2,7 +2,7 @@
 public class Dagger extends Entity {
 	
 	private static final String 			
-		SPRITE = "a2/resources/stock photos/BlueKeySprite.png";
+		SPRITE = "a2/resources/stock photos/Dagger.png";
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = false;
 	/**		 * An item of type blue key.

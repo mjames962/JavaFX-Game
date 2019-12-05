@@ -448,6 +448,8 @@ public class Level {
 				return new TokenDoor(position);
 			case 'd':
 				return new TokenCell(position);
+			case 's':
+				return new DaggerCell(position);
 			default:
 				return new Wall(position);
 		}
