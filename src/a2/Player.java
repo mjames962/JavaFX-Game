@@ -1,5 +1,6 @@
 package a2;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
@@ -159,12 +160,18 @@ public class Player extends Entity {
 		doMoveAction(move(input));
 		if (cell.cellName() != "Goal") {
 			if (isValidMove(move(input))) {
-				for (Entity ent : Level.getCurrentLevel().getEntityList()) {
+				Iterator<Entity> iter = Level.getCurrentLevel().
+						getEntityList().iterator();
+				while (iter.hasNext()) {
+					Entity ent = iter.next();
 					if (ent == this) { 
 						setCurrentVector(move(input));
 					} else {
 						checkPlayerIntersectEnemy(ent);
 						ent.move();
+						if (ent.getRemove()) {
+							iter.remove();
+						}
 						checkPlayerIntersectEnemy(ent);
 					}
 				}
@@ -188,8 +195,10 @@ public class Player extends Entity {
 		for (Item item : this.inventory) {
 			if (item.getItemID() == DAGGER_ID) {
 				this.inventory.remove(item);
+				Dagger newDagger = new Dagger(shoot(input));
+				newDagger.setDirection(newDagger.getDirection(input));
 				Level.getCurrentLevel().getEntityList().add(
-						new Dagger(shoot(input)));
+						newDagger);
 			}
 		}
 		 

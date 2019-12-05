@@ -1,5 +1,7 @@
 package a2;
 
+import a2.Player.ShootDirection;
+
 /**
  * This hold the Entity superclass.
  * @author Darius Thomas and James Colebourn
@@ -17,6 +19,7 @@ public class Entity implements Sprite {
 	private Level level;	
 	private Vector2D vector;
 	private int entityID;
+	private boolean remove = false;
 
 
 	/**
@@ -44,6 +47,16 @@ public class Entity implements Sprite {
 		return this.level;
 	}
 	
+	public boolean getRemove() {
+		return remove;
+	}
+	
+	public void setRemove(boolean re) {
+		remove = re;
+	}
+	
+	
+	
 	/**
 	 * gets the coordinates of the entity. 
 	 * @return vector 
@@ -60,6 +73,14 @@ public class Entity implements Sprite {
 	 */
 	public int getEntityID() {
 		return entityID;
+	}
+	
+	public void setDirection(int dir) {
+		
+	}
+	
+	public int getDirection(ShootDirection dir) {
+		return -1;
 	}
 	
 	/**

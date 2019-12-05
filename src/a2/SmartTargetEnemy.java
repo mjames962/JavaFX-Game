@@ -29,6 +29,7 @@ public class SmartTargetEnemy extends Entity {
 	 */
 	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
+		setEntityID(4);
 		nextMove = new Vector2D(currentVector.getX(), currentVector.getY());
 	}
 	/**

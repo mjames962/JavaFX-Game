@@ -18,6 +18,7 @@ public class DumbTargeting extends Entity {
 	 */
 	public DumbTargeting(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
+		setEntityID(3);
 	}
 	
 	

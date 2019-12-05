@@ -29,7 +29,7 @@ public class WallFollowing extends Entity {
 	public WallFollowing(Vector2D currentVector, 
 			int enemyID, String direction, Level level) {
 		super(currentVector);
-		enemyID = 2;
+		setEntityID(2);
 		currentVector = this.getCurrentVector();
 
 		
@@ -63,6 +63,7 @@ public class WallFollowing extends Entity {
 			increaseDirection();
 			return nextMove();
 		}
+		
 	}
 	
 	

@@ -5,7 +5,7 @@ public class DaggerItem extends Item {
 	
 	private static final int ID = 10;
 	private static final String 
-		SPRITE = "a2/resources/stock photos/BlueKeySprite.png";
+		SPRITE = "a2/resources/stock photos/Dagger.png";
 	/**
 	 * An item of type blue key.
 	 */
