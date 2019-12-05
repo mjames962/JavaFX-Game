@@ -22,10 +22,8 @@ public class Entity implements Sprite {
 	/**
 	 * Constructor for the Entity superclass.
 	 * @param vector the entity coordinates
-	 * @param entityID the ID of the entity
-	 * @param level is the currently loaded level
 	 */
-	public Entity(Vector2D vector, int entityID, Level level) {
+	public Entity(Vector2D vector) {
 		this.setCurrentVector(vector);
 		this.entityID = entityID;
 		this.level = level;

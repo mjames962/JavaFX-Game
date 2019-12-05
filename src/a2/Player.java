@@ -23,6 +23,16 @@ public class Player extends Entity {
 	public enum Direction {
 		UP, DOWN, LEFT, RIGHT,
 	}
+	
+	
+	/**
+	 * Sets of directions the player can shoot the dagger.
+	 * @author tomwo
+	 *
+	 */
+	public enum ShootDirection {
+		UP, DOWN, LEFT, RIGHT,
+	}
 	private static final int IV = 4;
 	private static final int V = 5;
 	private static final String SPRITE = 
@@ -44,7 +54,7 @@ public class Player extends Entity {
 	 */
 	public Player(Vector2D currentVector, int entityID, Level level) {
 		
-		super(currentVector, entityID, level);
+		super(currentVector);
 		System.out.println("CURRENTVECTOR2" + currentVector + 
 				this.getCurrentVector());
 		this.alive = true;
@@ -75,6 +85,25 @@ public class Player extends Entity {
 	public Vector2D move(Direction dir) {
 		Vector2D nextVector = new Vector2D(getCurrentVector());
 		
+		switch (dir) {
+			case UP:
+				nextVector.add(new Vector2D(0, 1));
+				break;
+			case DOWN:
+				nextVector.add(new Vector2D(0, -1));
+				break;
+			case LEFT:
+				nextVector.add(new Vector2D(-1, 0));
+				break;
+			case RIGHT:
+				nextVector.add(new Vector2D(1, 0));
+				break;
+		}
+		return nextVector;
+	}
+	
+	public Vector2D shoot(ShootDirection dir) {
+		Vector2D nextVector = new Vector2D(getCurrentVector());
 		switch (dir) {
 			case UP:
 				nextVector.add(new Vector2D(0, 1));
@@ -141,9 +170,22 @@ public class Player extends Entity {
 				}
 			}
 		}
-		
-		
 	}
+	
+	
+	public void handleShoot(ShootDirection input) {
+		//curDirection = input;
+		System.out.println("CURRENT VECTOR" + getCurrentVector());
+		Cell cell = Level.getCurrentLevel().getCellAt(shoot(input));
+		for (Entity ent : Level.getCurrentLevel().getEntityList()) {
+			if (ent != this) { 
+				checkPlayerIntersectEnemy(ent);
+				ent.move();
+				checkPlayerIntersectEnemy(ent);
+			}
+		}
+	}
+
 	/**
 	 * Kills the player if it and an enemy share the same cell.
 	 * @param e checks if the Player and an enemy share the same cell

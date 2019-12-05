@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import a2.Player.Direction;
+import a2.Player.ShootDirection;
 import cell.Cell;
 import cell.Collectible;
 import cell.Wall;
@@ -103,6 +104,12 @@ public class GameWindowController implements Initializable {
 		//maybe can give responsibility to Level instead
 		this.drawAll();
 	}	
+	
+	public void nextTick(ShootDirection shootDirection) {
+		level.getPlayer().handleShoot(shootDirection); 
+		//maybe can give responsibility to Level instead
+		this.drawAll();
+	}	
 	/**
 	 * Checks user input.
 	 * @param sc stores the current scene
@@ -123,8 +130,21 @@ public class GameWindowController implements Initializable {
         			case RIGHT:
         				nextTick(Direction.RIGHT);
         				break;
+        			case W:
+        				nextTick(ShootDirection.UP);
+        				break;
+        			case D:
+        				nextTick(ShootDirection.LEFT);
+        				break;
+        			case S:
+        				nextTick(ShootDirection.DOWN);
+        				break;
+        			case A:
+        				nextTick(ShootDirection.RIGHT);
+        				break;
         			default:
         				break;
+        				
         		}
             }
         });
