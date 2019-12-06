@@ -33,7 +33,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * Draws the canvas and allows the user to interact.
  * @author Jensen Beard, George Williams Walton, Jamie
- * @version 1.6
+ * @version 1.7
  */
 public class GameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 350;
@@ -287,7 +287,8 @@ public class GameWindowController implements Initializable {
         
 	}
 	/**
-	 *Deals with the quit button on the game window to take them to the main menu
+	 *Deals with the quit button on the 
+	 *game window to take them to the main menu.
 	 */
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
@@ -297,12 +298,22 @@ public class GameWindowController implements Initializable {
 		
 	}
 	
+	/**
+	 * Deals with back button events to take 
+	 * the user back to the level select screen.
+	 * @param event
+	 * @throws IOException 
+	 */
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/LevelSelection.fxml"));  
 		gamePane.getChildren().setAll(window);
-		
+	}
+	
+	/**
+	 * @param event
+	 */
 	@FXML
 	private void handleSaveBtn(ActionEvent event) {
 		Profile currentUser = UserData.getCurrentUser();
