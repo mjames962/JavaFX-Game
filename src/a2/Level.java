@@ -341,6 +341,9 @@ public class Level {
 		int daggerCount = in.nextInt();
 		Boolean hasFireBoots = in.nextBoolean();
 		Boolean hasFlippers = in.nextBoolean();
+		Timer.setSavedTime(0);
+		long time = in.nextLong();
+		Timer.setSavedTime(time);
 
 		for (int i = 0; i < redKeys; i++) {
 			player.getInventory().add(new RedKey());
@@ -508,7 +511,15 @@ public class Level {
 		//Profile currentUser = UserData.getCurrentUser();
 		String name = currentUser.getName();
 		String levelName = this.levelFile.getName();
-		String saveFilePath = LEVEL_STORAGE + "/" + name + "_" + levelName;
+		
+		String saveFilePath;
+		
+		if (levelName.contains(name)) {
+			saveFilePath = LEVEL_STORAGE + "/" + levelName;
+		} else {
+			saveFilePath = LEVEL_STORAGE + "/" + name + "_" + levelName;
+		}
+		
 		File saveFile = new File(saveFilePath);
 		saveFile.delete();
 		saveFile.createNewFile();
@@ -607,6 +618,8 @@ public class Level {
 		int daggerCount = 0;
 		boolean fireBoots = false;
 		boolean flippers = false;
+		Timer.stop();
+		long time = Timer.getSavedTime();
 		
 		for (Item i : inventory) {
 			switch (i.getItemID()) {
@@ -637,7 +650,8 @@ public class Level {
 		printLine = printLine + tokenCount + " ";
 		printLine = printLine + daggerCount + " ";
 		printLine = printLine + fireBoots + " ";
-		printLine = printLine + flippers;
+		printLine = printLine + flippers + " ";
+		printLine = printLine + time;
 		
 		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
 				StandardOpenOption.APPEND);

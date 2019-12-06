@@ -19,8 +19,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -62,6 +64,9 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private Button btn_Back;
+	
+	@FXML
+	private Button btnSave;
 	
 	@FXML
 	private Label lbl_MOTD;
@@ -298,6 +303,21 @@ public class GameWindowController implements Initializable {
 				getResource("resources/fxml docs/LevelSelection.fxml"));  
 		gamePane.getChildren().setAll(window);
 		
+	@FXML
+	private void handleSaveBtn(ActionEvent event) {
+		Profile currentUser = UserData.getCurrentUser();
+		try {
+			this.level.saveLevelProgress(currentUser);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Success!");
+			alert.setHeaderText("Level Progress Saved");
+			alert.setContentText(null);
+			alert.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 }
 
