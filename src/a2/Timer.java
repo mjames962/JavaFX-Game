@@ -4,7 +4,8 @@ import java.lang.System;
 
 /**
  * The timer that will track how long a player takes to complete a level.
- * @author tomwo
+ * @author Tom Wood
+ * @version 1.4
  *
  */
 
@@ -12,7 +13,10 @@ public class Timer {
 	
 	private static long lastTime;
 	private static boolean running = false;
-	
+	/**
+	 * Returns if the timer "on".
+	 * @return true/false if the timer is incrementing
+	 */
 	public static boolean isRunning() {
 		return running;
 	}

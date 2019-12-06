@@ -10,13 +10,10 @@ import java.util.Queue;
  * @version 1.0
  */
 public class WallFollowing extends Entity {
-	
+	private static final int MAGIC3 = 3;
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Wall_Following_Enemy.png";
-	private boolean increaseVDirection = true;
-	private boolean increaseHDirection = true;
 	private int direction = 0; //0=left,1=up,2=right,3=down
-	private boolean escapeMove = false;
 	
 	
 	/**
@@ -92,7 +89,7 @@ public class WallFollowing extends Entity {
 				} else {
 					return 0;
 				}
-			case 3:
+			case MAGIC3:
 				if (isX) {
 					return 0;
 				} else {
@@ -132,7 +129,7 @@ public class WallFollowing extends Entity {
 				} else {
 					return 1;
 				}
-			case 3:
+			case MAGIC3:
 				if (isX) {
 					return 1;
 				} else {
@@ -149,7 +146,7 @@ public class WallFollowing extends Entity {
 	 */
 	
 	public void increaseDirection() {
-		if (direction == 3) {
+		if (direction == MAGIC3) {
 			direction = 0;
 		} else {
 			++direction;
@@ -162,7 +159,7 @@ public class WallFollowing extends Entity {
 	
 	public void decreaseDircetion() {
 		if (direction == 0) {
-			direction = 3;
+			direction = MAGIC3;
 		} else {
 			--direction;
 		}

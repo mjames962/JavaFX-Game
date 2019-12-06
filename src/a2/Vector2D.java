@@ -2,8 +2,8 @@ package a2;
 
 /**
  * A class that represents a coordinate in 2d.
- * @author George
- *
+ * @author George Williams Walton
+ * @version 1.4
  */
 public class Vector2D {
 	
@@ -25,7 +25,10 @@ public class Vector2D {
 	public Vector2D() {
 		
 	}
-	
+	/**
+	 * Duplicates a Vector2D.
+	 * @param othervec a vector2D being taken in
+	 */
 	public Vector2D(Vector2D othervec) {
 		copy(othervec);
 	}
@@ -81,14 +84,14 @@ public class Vector2D {
 	 * @param otherVec the vector being subtracted
 	 */
 	public void takeAway(Vector2D otherVec) {
-		set(this.x - otherVec.getX(),this.y - otherVec.getY());
+		set(this.x - otherVec.getX(), this.y - otherVec.getY());
 	}
 	/**
 	 * Addition for computation of vectors.
 	 * @param otherVec the vector being added
 	 */
 	public void add(Vector2D otherVec) {
-		set(this.x + otherVec.getX(),this.y + otherVec.getY());
+		set(this.x + otherVec.getX(), this.y + otherVec.getY());
 	}
 	
 	
