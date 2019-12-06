@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.sound.sampled.LineUnavailableException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,12 +90,10 @@ public class MainMenuController implements Initializable{
 			lstView_Users.setVisible(false);
 		} else {
 			lstView_Users.setVisible(true);
-			
+
 		}
-		MusicPlayer.playMusic("src/resources/sound bytes/Background music.mp3");
-		
 	}
-	
+
 	/**
 	 * .
 	 * Creates new window of format file
@@ -113,7 +113,7 @@ public class MainMenuController implements Initializable{
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		for(String user : UserData.readUsers()) {
+		for (String user : UserData.readUsers()) {
 			lstView_Users.getItems().add(user);
 		}
 	}

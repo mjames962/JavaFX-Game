@@ -6,6 +6,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import javax.sound.sampled.LineUnavailableException;
+
 import a2.Player.Direction;
 import cell.Cell;
 import cell.Collectible;
@@ -64,6 +66,7 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private Label lbl_User;
+
 	
 	/**
 	 * Gets the current controller.
@@ -85,11 +88,20 @@ public class GameWindowController implements Initializable {
 			lbl_MOTD.setText(MOTD.getMOTD());
 			lbl_MOTD.setWrapText(true);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		currentController = this;
-		MusicPlayer.playMusic("src/resources/sound bytes/Background music.mp3");
+		String audioFilePath = "C:\\Users\\dktho\\Music\\Guns N Roses\\Mix/Background music.wav";
+		MusicPlayer player = new MusicPlayer();
+		try {
+			player.playMusic(audioFilePath);
+		} catch (LineUnavailableException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
 	/**
@@ -105,7 +117,7 @@ public class GameWindowController implements Initializable {
 	 * Checks user input.
 	 */
 	public void hookInput(Scene sc) {
-		sc.addEventFilter(KeyEvent.KEY_PRESSED,new EventHandler<KeyEvent>() {
+		sc.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) { 
         		switch (ke.getCode()) {
         			case UP:
@@ -120,6 +132,8 @@ public class GameWindowController implements Initializable {
         			case RIGHT:
         				nextTick(Direction.RIGHT);
         				break;
+        			case M:
+        				MusicPlayer.stop();
         			default:
         				break;
         		}
