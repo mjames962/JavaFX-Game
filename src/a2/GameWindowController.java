@@ -164,6 +164,20 @@ public class GameWindowController implements Initializable {
 	        			case A:
 	        				nextTick(ShootDirection.RIGHT);
 	        				break;
+                        case M: {
+                            if (!MusicPlayer.isMuted()) {
+                                backgroundMusic.getmusicClip().stop();
+                                MusicPlayer.mute();
+                            } else {
+                                MusicPlayer.mute();
+                                String audioFilePath =
+                                        "src/a2/resources/Sound bytes/Background music.wav";
+                                backgroundMusic = new MusicPlayer(audioFilePath);
+                                backgroundMusic.play();
+                            }
+
+                            break;
+                        }
 	        			default:
 	        				break;
 	        		}
@@ -314,6 +328,7 @@ public class GameWindowController implements Initializable {
 	 */
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
+        backgroundMusic.getmusicClip().stop();
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/LevelSelection.fxml"));  
 		gamePane.getChildren().setAll(window);
