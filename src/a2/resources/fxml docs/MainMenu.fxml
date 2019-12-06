@@ -24,11 +24,12 @@
           <children>
             <Button fx:id="btn_LogIn" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#handleLogInBtn" prefWidth="87.0" text="Log In" />
             <TextField fx:id="tbox_Username" layoutX="14.0" layoutY="44.0" prefWidth="200.0" promptText="Enter Username" />
-            <Button fx:id="btn_Create" layoutX="14.0" layoutY="150.0" mnemonicParsing="false" onAction="#handleCreateBtn" prefWidth="87.0" text="Create" />
-            <Label layoutX="16.0" layoutY="22.0" text="Username" textFill="WHITE" />
-            <Label layoutX="14.0" layoutY="117.0" text="Create New User" textFill="WHITE" />
-            <Button fx:id="btn_Delete" layoutX="16.0" layoutY="198.0" mnemonicParsing="false" onAction="#handleDeleteBtn" prefWidth="87.0" text="Delete" />
-            <CheckBox fx:id="cb_ShowUser" layoutX="16.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleCBShowUsers" text="Show Users" textFill="WHITE" />
+            <Button fx:id="btn_Create" layoutX="14.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleCreateBtn" prefWidth="87.0" text="Create" />
+            <Label layoutX="14.0" layoutY="22.0" text="Username" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="110.0" text="Create New User" textFill="WHITE" />
+            <Button fx:id="btn_Delete" layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleDeleteBtn" prefWidth="87.0" text="Delete" />
+            <CheckBox fx:id="cb_ShowUser" layoutX="14.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCBShowUsers" text="Show Users" textFill="WHITE" />
+            <CheckBox fx:id="cb_ToggleMusic" layoutX="14.0" layoutY="217.0" mnemonicParsing="false"  text="Toggle Music" textFill="WHITE" />
           </children>
         </AnchorPane>
       </left>
