@@ -40,7 +40,7 @@ public class Timer {
 	 */
 	public static long checkTimeElapsed() {
 		long curTime = System.currentTimeMillis();
-		return curTime - lastTime;
+		return curTime + savedTime - lastTime;
 	}
 	
 	
@@ -48,7 +48,7 @@ public class Timer {
 	 * Sets the timer running state to false.
 	 */
 	public static void stop() {
-		savedTime = savedTime + checkTimeElapsed();
+		savedTime = checkTimeElapsed();
 		running = false;
 	}
 	
