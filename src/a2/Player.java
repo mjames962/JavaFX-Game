@@ -421,7 +421,7 @@ public class Player extends Entity {
 	 * @return gives the player sprite
 	 */
 	public String getSprite() {
-		return SPRITE;
+		return charSelectController.getCharSprite();
 	}
 	
 	/**
