@@ -52,27 +52,33 @@ public class LevelSelectController implements Initializable {
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
 		System.out.println("file testing");
+		Profile currentUser = UserData.getCurrentUser();
+		
 		for (File file : listOfFiles) {
 			String fileName = file.getName();
-			//gets level number from file name
-			String levelString = fileName.substring(0, fileName.length() - IV); 
-			//String levelNumString = 
-			fileName.replaceFirst("([0-9]+)\\.txt", "");
-			int levelNum;
-			Matcher matcher = Pattern.compile("([0-9]+)\\.txt")
-					.matcher(fileName);
-			if (matcher.find()) {
-				levelNum =  Integer.parseInt(matcher.group(1));
-				System.out.println(levelNum);
-			} else {
-				levelNum = -1;
-			}		
-			if (file.isFile() && UserData.getCurrentUser().
-					getHighestLevel() >= levelNum) {
-		    	cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
-		    }
+
+			//check to see if saves belong to current user
+			if (fileName.startsWith(currentUser.getName() + "_") || !fileName.contains("_")) { 
+				// gets level number from file name
+				String levelString = fileName.substring(0, fileName.length() - IV);
+
+				// String levelNumString =
+				fileName.replaceFirst("([0-9]+)\\.txt", "");
+				int levelNum;
+				Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+
+				if (matcher.find()) {
+					levelNum = Integer.parseInt(matcher.group(1));
+					System.out.println(levelNum);
+				} else {
+					levelNum = -1;
+				}
+				if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNum) {
+					cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
+				}
+			}
 		}
-		
+
 	}
 	
 	
