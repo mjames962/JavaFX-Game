@@ -13,6 +13,10 @@ public class Timer {
 	private static long lastTime;
 	private static boolean running = false;
 	private static long savedTime = 0;
+	/**
+	 * Returns if the timer "on".
+	 * @return true/false if the timer is incrementing
+	 */
 	
 	public static boolean isRunning() {
 		return running;

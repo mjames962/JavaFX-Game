@@ -32,7 +32,7 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * Draws the canvas and allows the user to interact.
- * @author Jensen Beard, George Williams Walton
+ * @author Jensen Beard, George Williams Walton, Jamie
  * @version 1.6
  */
 public class GameWindowController implements Initializable {
@@ -283,7 +283,9 @@ public class GameWindowController implements Initializable {
 		updateExtras();
         
 	}
-	
+	/**
+	 *Deals with the quit button on the game window to take them to the main menu
+	 */
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
