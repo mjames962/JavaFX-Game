@@ -240,7 +240,8 @@ public class Level {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("All levels completed!");
 			alert.setHeaderText("Congratulations!!!");
-			//alert.setContentText("Your time was: " + new TimeValue(finishTime).toString());
+			alert.setContentText("Now either press 'Back' to return to level selection"
+					+ "\nor 'Quit' to log out.");
 			alert.showAndWait();
 			
 		}

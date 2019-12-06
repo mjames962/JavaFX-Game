@@ -45,7 +45,6 @@ public class GameWindowController implements Initializable {
 	public static final int MAX_DRAW = 5;
 	private static GameWindowController currentController;
 	
-
 	private GraphicsContext gc;
 	private Level level; 
 
@@ -126,34 +125,35 @@ public class GameWindowController implements Initializable {
 	public void hookInput(Scene sc) {
 		sc.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) { 
-        		switch (ke.getCode()) {
-        			case UP:
-        				nextTick(Direction.UP);
-        				break;
-        			case LEFT:
-        				nextTick(Direction.LEFT);
-        				break;
-        			case DOWN:
-        				nextTick(Direction.DOWN);
-        				break;
-        			case RIGHT:
-        				nextTick(Direction.RIGHT);
-        				break;
-        			case W:
-        				nextTick(ShootDirection.UP);
-        				break;
-        			case D:
-        				nextTick(ShootDirection.LEFT);
-        				break;
-        			case S:
-        				nextTick(ShootDirection.DOWN);
-        				break;
-        			case A:
-        				nextTick(ShootDirection.RIGHT);
-        				break;
-        			default:
-        				break;
-        				
+            	if (Timer.isRunning()) {
+	        		switch (ke.getCode()) {
+	        			case UP:
+	        				nextTick(Direction.UP);
+	        				break;
+	        			case LEFT:
+	        				nextTick(Direction.LEFT);
+	        				break;
+	        			case DOWN:
+	        				nextTick(Direction.DOWN);
+	        				break;
+	        			case RIGHT:
+	        				nextTick(Direction.RIGHT);
+	        				break;
+	        			case W:
+	        				nextTick(ShootDirection.UP);
+	        				break;
+	        			case D:
+	        				nextTick(ShootDirection.LEFT);
+	        				break;
+	        			case S:
+	        				nextTick(ShootDirection.DOWN);
+	        				break;
+	        			case A:
+	        				nextTick(ShootDirection.RIGHT);
+	        				break;
+	        			default:
+	        				break;
+	        		}
         		}
             }
         });
@@ -331,5 +331,6 @@ public class GameWindowController implements Initializable {
 		}
 
 	}
+
 }
 
