@@ -225,6 +225,10 @@ public class Player extends Entity {
 					newDagger.setDirection(newDagger.getDirection(input));
 					Level.getCurrentLevel().getEntityList().add(
 							newDagger);
+                    String audioFilePath =
+                            "src/a2/resources/Sound bytes/Pick up item.wav";
+                    MusicPlayer daggerClip = new MusicPlayer(audioFilePath);
+                    daggerClip.play();
 				}
 			}
 		}

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Jensen 4653
 Mitch 5248
 Jensen 10512
-=======
-Jensen 5603
-Jensen 4586
->>>>>>> refs/heads/master
+

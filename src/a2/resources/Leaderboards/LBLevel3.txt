@@ -1,8 +1,4 @@
 Jensen 10020
 Mitch 8877
-<<<<<<< HEAD
 Darius 10842
-=======
-Jensen 13021
-Mitch 12817
->>>>>>> refs/heads/master
+

@@ -125,26 +125,28 @@ public class LeaderboardController {
 		File[] listOfFiles = folder.listFiles();
 		System.out.println("file testing");
 		for (File file : listOfFiles) {
-			String fileName = file.getName();
-			
-			//gets level number from file name
-			String levelString = fileName.substring(0, fileName.length() - 4); 
-			int levelNum;
-			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").
-					matcher(fileName);
-			if (matcher.find()) {
-				levelNum =  Integer.parseInt(matcher.group(1));
-				//System.out.println(levelNum);
-			} else {
-				levelNum = -1;
-			}		
-			if (file.isFile()) {
-				String identifier = UserData.getLevelIdentifier(file);
-		    	levelSelector.getItems().add(identifier);
-		    	if (levelNum == 1) {
-		    		levelSelector.setValue(identifier);
-		    	}
-		    }
+            if (!file.getName().contains("_")) {
+                String fileName = file.getName();
+
+                //gets level number from file name
+                String levelString = fileName.substring(0, fileName.length() - 4);
+                int levelNum;
+                Matcher matcher = Pattern.compile("([0-9]+)\\.txt").
+                        matcher(fileName);
+                if (matcher.find()) {
+                    levelNum = Integer.parseInt(matcher.group(1));
+                    //System.out.println(levelNum);
+                } else {
+                    levelNum = -1;
+                }
+                if (file.isFile()) {
+                    String identifier = UserData.getLevelIdentifier(file);
+                    levelSelector.getItems().add(identifier);
+                    if (levelNum == 1) {
+                        levelSelector.setValue(identifier);
+                    }
+                }
+            }
 		}
 	}
 	/**
