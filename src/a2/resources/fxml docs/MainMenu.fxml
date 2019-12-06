@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.MainMenuController">
   <children>
-    <BorderPane id="root" layoutX="60.0" layoutY="40.0" prefHeight="384.0" prefWidth="443.0">
+    <BorderPane id="root" layoutX="60.0" layoutY="40.0" prefHeight="446.0" prefWidth="443.0">
       <center>
         <AnchorPane prefHeight="310.0" prefWidth="180.0">
           <children>
@@ -27,10 +27,10 @@
             <Button fx:id="btn_Create" layoutX="14.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleCreateBtn" prefWidth="87.0" text="Create" />
             <Label layoutX="14.0" layoutY="22.0" text="Username" textFill="WHITE" />
             <Label layoutX="14.0" layoutY="110.0" text="Create New User" textFill="WHITE" />
-            <Button fx:id="btn_Delete" layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleDeleteBtn" prefWidth="87.0" text="Delete" />
-            <CheckBox fx:id="cb_ShowUser" layoutX="14.0" layoutY="195.0" mnemonicParsing="false" onAction="#handleCBShowUsers" text="Show Users" textFill="WHITE" />
-            <CheckBox fx:id="cb_ToggleMusic" layoutX="14.0" layoutY="217.0" mnemonicParsing="false" text="Toggle Music" textFill="WHITE" />
-            <Button fx:id="btn_Exit" layoutX="14.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
+            <Button fx:id="btn_Delete" layoutX="14.0" layoutY="189.0" mnemonicParsing="false" onAction="#handleDeleteBtn" prefWidth="87.0" text="Delete" />
+            <CheckBox fx:id="cb_ShowUser" layoutX="17.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleCBShowUsers" text="Show Users" textFill="WHITE" />
+            <Button fx:id="btn_Exit" layoutX="16.0" layoutY="305.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
+            <Label layoutX="14.0" layoutY="163.0" text="Delete User" textFill="WHITE" />
           </children>
         </AnchorPane>
       </left>

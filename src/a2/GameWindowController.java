@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import a2.Player.Direction;
 import a2.Player.ShootDirection;
 import cell.Cell;
-import cell.Collectible;
 import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -113,9 +112,12 @@ public class GameWindowController implements Initializable {
 		this.drawAll();
 	}	
 	
+	/**
+	 * Sets direction the dagger will fly.
+	 * @param shootDirection enum for direction.
+	 */
 	public void nextTick(ShootDirection shootDirection) {
 		level.getPlayer().handleShoot(shootDirection); 
-		//maybe can give responsibility to Level instead
 		this.drawAll();
 	}	
 	/**
@@ -264,17 +266,13 @@ public class GameWindowController implements Initializable {
     /**
      * Updates the timer, icon of the player + name.
      */
-    public void updateExtras() {
-    	
-		
+    public void updateExtras() {	
     	Image image = new Image(CharSelectController.getCharSprite());
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(UserData.getCurrentUser().getName());
     	lbl_User.setGraphic(imageView);
-    	lbl_TokenCount.setText("Token Count: " + Level.getCurrentLevel().getPlayer().getTokens());
-    	
-		
-    	 
+    	lbl_TokenCount.setText("Token Count: " 
+    				+ Level.getCurrentLevel().getPlayer().getTokens());
 	}
 	
 	/**
@@ -284,12 +282,12 @@ public class GameWindowController implements Initializable {
 		drawCells();
 		drawInventory();
 		updateExtras();
-        
 	}
+	
 	/**
 	 * Deals with the quit button events.
-	 * @param event
-	 * @throws
+	 * @param event Quit button click.
+	 * @throws IOException On resource selection.
 	 */
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
@@ -301,8 +299,8 @@ public class GameWindowController implements Initializable {
 	
 	/**
 	 * Deals with back button events.
-	 * @param event
-	 * @throws IOException 
+	 * @param event Back button click.
+	 * @throws IOException On resource selection.
 	 */
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
@@ -313,7 +311,7 @@ public class GameWindowController implements Initializable {
 	
 	/**
 	 * Deals with save button events.
-	 * @param event
+	 * @param event Save button click.
 	 */
 	@FXML
 	private void handleSaveBtn(ActionEvent event) {

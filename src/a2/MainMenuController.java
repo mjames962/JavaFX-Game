@@ -121,17 +121,22 @@ public class MainMenuController implements Initializable {
 		}
 	}
 	
+	/**
+	 * Quits program.
+	 * @param event Quit button click.
+	 */
 	@FXML
-	private void handleQuitBtn(ActionEvent event) throws IOException {
+	private void handleQuitBtn(ActionEvent event) {
 		System.exit(0);
 	}
 	
-	@Override
+	
 	/**
 	 * Initialises the main menu window.
 	 * @param arg0 needed for JFX
 	 * @param arg1 needed for JFX
 	 */
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		for (String user : UserData.readUsers()) {
 			lstView_Users.getItems().add(user);
