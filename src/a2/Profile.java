@@ -1,33 +1,36 @@
 package a2;
 
-import java.io.BufferedWriter; 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
 /**
  * Holds information about a user and their scores.
  * @author Tom Wood
- *
+ * @version 1.5
  */
 public class Profile {
 
+    private static final int LEADERBOARDMAXLENGTH = 3;
+    private static final int FILE_LENGTH = 28;
 	private File pfile;
 	private String name;
 	private int highestLevel;
 	private ArrayList<Long> bestTimes = new ArrayList<>();
-    private int leaderboardMaxLength = 3;
 	private ArrayList<String> usersLB = new ArrayList<>();
 	private ArrayList<Long> timesLB = new ArrayList<>();
 	private ArrayList<Long> addItems = new ArrayList<>();
 	private ArrayList<Long> removeTimes = new ArrayList<>();
+	
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -39,10 +42,13 @@ public class Profile {
 		this.highestLevel = 1;
 		
 		String filePath = this.pfile.getPath();
-		filePath = filePath.substring(28, filePath.length());
+		filePath = filePath.substring(FILE_LENGTH, filePath.length());
 		this.name = filePath.replaceFirst(".txt", "");
 	}
-	
+	/**
+	 * Returns the highest level a user can play.
+	 * @return gives an int for the highest level the user can play
+	 */
 	public int getHighestLevel() {
 		return this.highestLevel;
 	}
@@ -51,11 +57,11 @@ public class Profile {
 	 * Imports information from the user's profile and
 	 * the appropriate variables are set to the corresponding
 	 * values.
-	 * @param in the scanner that will read the file
 	 * @throws FileNotFoundException 
 	 */
 	public void readFile() throws FileNotFoundException {
-		Scanner in = new Scanner(new File(UserData.USER_FOLDER_LOCATION + "/" + this.name + ".txt"));
+		Scanner in = new Scanner(new File(UserData.
+				USER_FOLDER_LOCATION + "/" + this.name + ".txt"));
 		
 		this.name = in.next();
 		this.highestLevel = in.nextInt();
@@ -70,7 +76,7 @@ public class Profile {
 	
 	/**
 	 * Sets the highest level the user has reached to a new value.
-	 * @param newHigh the new highest level the user has reached.
+	 * @param level the new highest level the user has reached.
 	 */
 	
 	public void setHighestLevel(int level) {
@@ -95,6 +101,39 @@ public class Profile {
 		}
 	}
 	
+	/**
+	 * Saves the deaths of the player on the current level.
+	 * @param level The level the player is on.
+	 * @param deaths The number of deaths.
+	 */
+	
+	public void saveDeaths(int level, int deaths) {
+		File deathfile = UserData.getDeathFile(level);
+		HashMap<String, Integer> deathmap = UserData.readDeaths(deathfile);
+		addDeaths(deathmap, deaths);
+		UserData.writeDeaths(deathmap, deathfile);
+	}
+	
+	/**
+	 * Adds a death to the users death count.
+	 * @param deathmap the map of the username and deaths
+	 * @param deaths the number of deaths.
+	 */
+	
+	public void addDeaths(HashMap<String, Integer> deathmap, int deaths) {
+		if (deathmap.containsKey(name)) {
+			if (deathmap.get(name) > deaths) {
+				System.out.println("new death count" + deaths);
+				deathmap.put(name, deaths);
+			}
+		} else {
+			deathmap.put(name, deaths);
+		}
+	}
+	
+	
+	
+	
 	
 	/**
 	 * Sets a new best time for a specified level.
@@ -114,7 +153,8 @@ public class Profile {
 			}
 			Scanner leaderboardFile = null;
 			try {
-				leaderboardFile = new Scanner(UserData.getLeaderboardFile(level));
+				leaderboardFile = new Scanner(UserData.
+						getLeaderboardFile(level));
 			} catch  (IOException e) {
 				System.out.println("Failed to load file");
 			}
@@ -132,7 +172,7 @@ public class Profile {
 			
 			
 			//Add if applicable
-			if (usersLB.size() < leaderboardMaxLength) {
+			if (usersLB.size() < LEADERBOARDMAXLENGTH) {
 				usersLB.add(name);
 				timesLB.add(time);
 			} else {
@@ -149,7 +189,12 @@ public class Profile {
 			writeLeaderboardFile(filePath);
 		}
 	}
-	
+	/**
+	 * Searches for lowest existing time for a level.
+	 * @param curName The name of the current user
+	 * @param time the time taken to complete a given level, 
+	 * 							to be uploaded to the leaderboard
+	 */
 	public void findLowestTimes(String curName, long time) {
 		boolean swapped = false;
 		String tempUser = null;
@@ -205,8 +250,7 @@ public class Profile {
 	/**
 	 * Updates user file with changes made since reading
 	 *											 from file.
-	 */
-	
+	 */	
 	public void updateFile() {
 		
 		String filePath = this.pfile.getPath();

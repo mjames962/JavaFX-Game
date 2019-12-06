@@ -1,7 +1,8 @@
 package a2;
 /**
- * the item green key for the players inventory.
+ * The item green key for the players inventory.
  * @author George Williams Walton, Tom Wood
+ * @version 1.1
  */
 public class GreenKey extends Key {
 	

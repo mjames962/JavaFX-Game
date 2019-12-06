@@ -12,9 +12,8 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="370.0" prefWidth="143.0">
                <children>
-                  <Button fx:id="leadBut1" layoutY="1.0" mnemonicParsing="false" onAction="#leadBut1Press" prefHeight="26.0" prefWidth="124.0" text="Button" />
-                  <Button fx:id="leadBut2" layoutY="27.0" mnemonicParsing="false" onAction="#leadBut2Press" prefHeight="26.0" prefWidth="124.0" text="Button" />
-                  <Button fx:id="leadBut3" layoutY="53.0" mnemonicParsing="false" onAction="#leadBut3Press" prefHeight="26.0" prefWidth="124.0" text="Button" />
+                  <Button fx:id="timeBut" defaultButton="true" layoutY="1.0" mnemonicParsing="false" onAction="#timeButPress" prefHeight="26.0" prefWidth="124.0" text="Best Times" />
+                  <Button fx:id="deathBut" layoutY="27.0" mnemonicParsing="false" onAction="#deathButPress" prefHeight="26.0" prefWidth="124.0" text="Deaths" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="352.0" prefWidth="440.0">

@@ -5,11 +5,13 @@ import a2.Item;
 import a2.Vector2D;
 /**
  * ground cell with a collectible green key on it.
- * @author George, Tom
+ * @author George Williams Walton, Tom Wood
+ * @version 1.3
  */
 public class GreenKeyCell extends Collectible {
 	
-	protected static final String SPRITE = "a2/resources/stock photos/GreenKeySprite.png";
+	protected static final String SPRITE = 
+			"a2/resources/stock photos/GreenKeySprite.png";
 	/**
 	 * creates the cell at the location.
 	 * @param pos holds the Vector2D of the cell
@@ -25,15 +27,17 @@ public class GreenKeyCell extends Collectible {
 	public Item createItem() {
 		return new GreenKey();
 	}
-	
-	public String cellName() {
-		return "GreenKeyCell";
-	}
-	
+	/**
+	 * Getter for the GreenKeyCell Sprite.
+	 * @return gives the sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+	/**
+	 * Getter for unique identifying character.
+	 * @return gives the unique identifier
+	 */
 	public char getChar() {
 		return 'g';
 	}

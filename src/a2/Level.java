@@ -19,7 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 
 /**
  * Class for the creation of the level.
- * @author Jensen Beard, Mitch James
+ * @author Mitch James, Jensen Beard, James Colebourn, Tom Wood, George Williams Walton
  * @version 2.5
  */
 public class Level {
@@ -32,9 +32,15 @@ public class Level {
 	private int xLength;
 	private int yLength;
 	
-
-
 	private int levelNo;
+	
+	/**
+	 * Returns the level number.
+	 * @return gives the level number
+	 */
+	public int getLevelNo() {
+		return levelNo;
+	}
 	
 	
 	/**
@@ -46,6 +52,14 @@ public class Level {
 		levelFile = new File(fileName);
 		this.readFile();
 		currentLevel = this;
+		String usernameStart = UserData.getCurrentUser().getName() + "_";
+		
+		// changes the location to the original level file rather than the save location
+		if (fileName.startsWith(Level.LEVEL_STORAGE + "/" + usernameStart)) {
+			this.levelFile = new File(fileName.replaceFirst(usernameStart, ""));
+		}
+		
+		
 		try {
 			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
 					+ levelFile.getName());
@@ -65,6 +79,14 @@ public class Level {
 		this.levelFile = levelFile;
 		this.readFile();
 		currentLevel = this;
+		String usernameStart = UserData.getCurrentUser().getName() + "_";
+		
+		// changes the location to the original level file rather than the save location
+		if (levelFile.getName().startsWith(Level.LEVEL_STORAGE + "/" + usernameStart)) {
+			this.levelFile = new File(levelFile.getName().replaceFirst(usernameStart, ""));
+		}
+		
+		
 		try {
 			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
 					+ levelFile.getName());
@@ -87,7 +109,10 @@ public class Level {
 	 * Calls the level to be reloaded in the event of player death.
 	 */
 	public static void restartLevel() {
+		shouldLoadDeaths = false;
 		currentLevel = new Level(currentLevel.levelFile);
+		addDeath();
+		shouldLoadDeaths = true;
 		GameWindowController.getCurrentController().refreshLevel();
 	}
 	
@@ -101,6 +126,19 @@ public class Level {
 		return levelFile;
 	}
 	
+	
+	public static void addDeath() {
+		currentDeaths += 1;
+		System.out.println("DETH" + currentDeaths);
+	}
+	
+	public static int getCurrentDeaths() {
+		return currentDeaths;
+	}
+	
+	public static void resetDeaths() {
+		currentDeaths = 0;
+	}
 
 	/**
 	 * Method for .

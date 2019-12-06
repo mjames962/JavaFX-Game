@@ -14,12 +14,13 @@ import javafx.scene.control.Alert.AlertType;
 /**
  * Goal cell that will end the level when walked on
  * by the player.
- * @author tomwo
- *
+ * @author Tom Wood
+ * @version 1.3
  */
 
 public class Goal extends Cell {
-	protected static final String SPRITE = "a2/resources/stock photos/Goal_Cell.png";
+	protected static final String SPRITE = 
+			"a2/resources/stock photos/Goal_Cell.png";
 	
 	/**
 	 * Send the position to the cell superclass.
@@ -37,8 +38,7 @@ public class Goal extends Cell {
 	 * it will update the players save file and leaderboard with the new 
 	 * time before creating the next level.
 	 * @param ply the player currently on the level
-	 * @param user The user profile currently in use
-	 * @param lv The level the user is currently on
+
 	 */
 	
 	@Override
@@ -55,23 +55,29 @@ public class Goal extends Cell {
 		goalClip.play();
 		displayCompleted(finishTime);
 	}
-	
+	/**
+	 * Shows the Completion time of the level.
+	 * @param finishTime the time taken to complete the level
+	 */
 	public void displayCompleted(Long finishTime) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Level Completed");
 		alert.setHeaderText("Congrats");
-		alert.setContentText("Your time was: " + new TimeValue(finishTime).toString());
+		alert.setContentText("Your time was: " 
+				+ new TimeValue(finishTime).toString());
 		alert.showAndWait();
 	}
-	
-	public String cellName() {
-		return "Goal";
-	}
-	
+	/**
+	 * Getter for the Goal Sprite.
+	 * @return gives the sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+	/**
+	 * Getter for unique identifying character.
+	 * @return gives the unique identifier
+	 */
 	public char getChar() {
 		return 'X';
 	}

@@ -2,17 +2,17 @@ package cell;
 
 import a2.MusicPlayer;
 import a2.Player;
-import a2.Player.Direction;
 import a2.Vector2D;
 
 
 /**
  * A cell that teleports the player from one teleporter to another.
- * @author george and Tom Wood
+ * @author George Williams Walton, Tom Wood
  *
  */
 public class Teleporter extends Cell {
-	protected static final String SPRITE = "a2/resources/stock photos/Teleporter_Cell.png";
+	protected static final String SPRITE = 
+			"a2/resources/stock photos/Teleporter_Cell.png";
 	
 	private Vector2D linkedTP;
 
@@ -38,15 +38,12 @@ public class Teleporter extends Cell {
 	
 	/**
 	 * Teleport the player.
-	 * 
-	 * @param direction represents the direction the player is moving in.
 	 * @param player represents the player that will be moved to the new space
 	 */
 	@Override
 	public void doAction(Player player) {
 		System.out.println(linkedTP);
 		Vector2D pos = player.getVector();
-		Direction direction = player.getCurrentDirection();
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());
 		String audioFilePath =
@@ -65,29 +62,33 @@ public class Teleporter extends Cell {
 	public void setLinkedTP(Vector2D linkedTP) {
 		this.linkedTP = linkedTP;
 	}
-	
+	/**
+	 * Identifies the Teleporter linking to current Teleporter.
+	 * @return gives Vector2D of the linked teleporter.
+	 */
 	public Vector2D getLinkedTP() {
 		return this.linkedTP;
 	}
 	
 	/**
-	 * Sets up the teleporter linkup on both teleporters at once
-	 * 
-	 * @param link
+	 * Sets up the teleporter linkup on both teleporters at once.
+	 * @param link the Teleporter this cell is linked to
 	 */
 	public void setLinks(Teleporter link) {
 		this.setLinkedTP(link.getPos());
 		link.setLinkedTP(this.getPos());
 	}
-	
-	public String cellName() {
-		return "Teleporter";
-	}
-	
+	/**
+	 * Getter for the TeleporterCell Sprite.
+	 * @return gives the sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+	/**
+	 * Getter for unique identifying character.
+	 * @return gives the unique identifier
+	 */
 	public char getChar() {
 		return 'T';
 	}

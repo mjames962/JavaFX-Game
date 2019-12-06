@@ -9,8 +9,8 @@ import javafx.scene.control.TableView;
 
 /**
  * A representation of a leaderboard, with the ability to display 
- * 												to a javafx TableView.
- * @author george
+ * to a javafx TableView.
+ * @author George Williams Walton
  * @version 2.3
  */
 public class Leaderboard {
@@ -18,7 +18,7 @@ public class Leaderboard {
 	private ArrayList<LeaderboardEntry> entries = new ArrayList<>();
 	private HashMap<String, LeaderboardColumn<?>> columns = new HashMap<>();
 	private ArrayList<LeaderboardColumn<?>> orderedColumns = new ArrayList<>();
-	private TableColumn.SortType sortType = TableColumn.SortType.DESCENDING;
+	private TableColumn.SortType sortType = TableColumn.SortType.ASCENDING;
 	private LeaderboardColumn<?> sortedColumn;
 	
 	/**

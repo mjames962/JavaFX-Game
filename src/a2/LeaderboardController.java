@@ -31,11 +31,9 @@ import javafx.util.Callback;
 public class LeaderboardController {
 	
 	@FXML 
-	private Button leadBut1;
+	private Button timeBut;
 	@FXML 
-	private Button leadBut2;
-	@FXML 
-	private Button leadBut3;
+	private Button deathBut;
 	@FXML 
 	private ChoiceBox<String> levelSelector;
 	@FXML 
@@ -43,7 +41,9 @@ public class LeaderboardController {
 	@FXML
 	private Button backButton;
 	
-
+	private boolean timeSelected = true;
+	
+	private boolean deathSelected = false;
 	
 	/**
 	 * Displays the leaderboard.
@@ -55,6 +55,7 @@ public class LeaderboardController {
 			lead.display(leaderTable);
 		} catch (IOException e) {
 			System.out.println("Failed to read leaderboard");
+			System.exit(-1);
 		}
 		hookSelector();
 		
@@ -62,22 +63,32 @@ public class LeaderboardController {
 	}
 	
 	
-	
 	public void hookSelector() {
 		levelSelector.getSelectionModel().
-		selectedItemProperty().addListener(new ChangeListener<String>() {
-		      @Override
-		      public void changed(ObservableValue<? extends String> observableValue,String oldVal, String newVal) {
-		    	  System.out.println(oldVal + newVal);
-		    	  System.out.println(UserData.getLevelNumber(newVal));
-		    	  changeDisplayedLeaderboard(UserData.getLevelNumber(newVal));
-		      }
-		});
+			selectedItemProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> 
+						observableValue, String oldVal, String newVal) {
+					changeDisplayedLeaderboard(UserData.getLevelNumber(newVal));
+				}
+			});
 	}
 	
+	/**
+	 * Change leaderboard to intended leaderboard to display.
+	 * @param levelNo the level you are looking at the leaderboard for
+	 */
+	
 	public void changeDisplayedLeaderboard(int levelNo) {
+		
 		try {
-			Leaderboard lead = UserData.readLeaderboard(levelNo);
+			Leaderboard lead = null;
+			if (timeSelected) {
+				lead = UserData.readLeaderboard(levelNo);
+			} else {
+				lead = UserData.getDeathLeaderboard(levelNo);
+			}
+			
 			scrubTableView(leaderTable);
 			lead.display(leaderTable);
 		} catch (IOException e) {
@@ -85,11 +96,29 @@ public class LeaderboardController {
 		}
 	}
 	
+	/**
+	 * Gets the current level shown by the leaderboard.
+	 * @return the level shown by the leaderboard.
+	 */
+	
+	public int getSelectedLevel() {
+		return UserData.getLevelNumber(levelSelector.getValue());
+	}
+	
+	
+	/**
+	 * Clears the table.
+	 * @param tv the table being displayed
+	 */
 	public void scrubTableView(TableView tv) {
 		tv.getItems().clear();
 		tv.getColumns().clear();
 		
 	}
+	
+	/**
+	 * Adds the vales to the options the leaderboard can show.
+	 */
 
 	public void addValuesToSelector() {
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
@@ -100,32 +129,54 @@ public class LeaderboardController {
 			
 			//gets level number from file name
 			String levelString = fileName.substring(0, fileName.length() - 4); 
-			//String levelNumString = fileName.replaceFirst("([0-9]+)\\.txt", "");
 			int levelNum;
-			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").
+					matcher(fileName);
 			if (matcher.find()) {
 				levelNum =  Integer.parseInt(matcher.group(1));
-				System.out.println(levelNum);
+				//System.out.println(levelNum);
 			} else {
 				levelNum = -1;
 			}		
 			if (file.isFile()) {
-		    	levelSelector.getItems().add(UserData.getLevelIdentifier(file));
+				String identifier = UserData.getLevelIdentifier(file);
+		    	levelSelector.getItems().add(identifier);
+		    	if (levelNum == 1) {
+		    		levelSelector.setValue(identifier);
+		    	}
 		    }
 		}
 	}
 	/**
 	 * Allows for pressing buttons.
 	 */
-	public void leadBut1Press() {
-		
+	public void timeButPress() {
+		if (!timeSelected) {
+			deathSelected = false;
+			timeSelected = true;
+			timeBut.setDefaultButton(true);
+			deathBut.setDefaultButton(false);
+			changeDisplayedLeaderboard(getSelectedLevel());
+		}
 	}
 	/**
 	 * Allows for pressing buttons.
 	 */
-	public void leadBut2Press() {
+	public void deathButPress() {
+		if (!deathSelected) {
+			deathSelected = true;
+			timeSelected = false;
+			timeBut.setDefaultButton(false);
+			deathBut.setDefaultButton(true);
+			changeDisplayedLeaderboard(getSelectedLevel());
+		}
 			
 	}
+	
+	/**
+	 * Goes to previous window when back button pressed. 
+	 * @throws IOException if there is a failure reading throw exception
+	 */
 	
 	public void backButtonPressed() throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
@@ -134,12 +185,6 @@ public class LeaderboardController {
 		AnchorPane ap = (AnchorPane) backButton.getScene().getRoot();
 		ap.getChildren().setAll(window);
 	}
-	
-	/**
-	 * Allows for pressing buttons.
-	 */
-	public void leadBut3Press() {
-		
-	}
+
 
 }

@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.sound.sampled.LineUnavailableException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,6 +30,8 @@ public class MainMenuController implements Initializable {
 	private Button btn_Create;
 	@FXML
 	private Button btn_Delete;
+	@FXML
+	private Button btn_Quit;
 	@FXML 
 	private TextField tbox_Username;
 	@FXML 
@@ -98,7 +98,7 @@ public class MainMenuController implements Initializable {
 			lstView_Users.setVisible(false);
 		} else {
 			lstView_Users.setVisible(true);
-
+			
 		}
 	}
 
@@ -118,12 +118,23 @@ public class MainMenuController implements Initializable {
 			System.exit(-1);
 		}
 	}
-	@Override
+	
+	/**
+	 * Quits program.
+	 * @param event Quit button click.
+	 */
+	@FXML
+	private void handleQuitBtn(ActionEvent event) {
+		System.exit(0);
+	}
+	
+	
 	/**
 	 * Initialises the main menu window.
 	 * @param arg0 needed for JFX
 	 * @param arg1 needed for JFX
 	 */
+	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		for (String user : UserData.readUsers()) {
 			lstView_Users.getItems().add(user);

@@ -2,21 +2,19 @@ package cell;
 
 import a2.Vector2D;
 
-//TODO are these needed?
-
 /**
  * A cell that blocks the player.
- * @author george
- *
+ * @author George Williams Walton
+ * @version 1.1
  */
 public class Wall extends Cell {
 	
-	public final static String SPRITE = "a2/resources/stock photos/Wall.png";
+	public static final String SPRITE = 
+			"a2/resources/stock photos/Wall.png";
 	
 	
 	/**
 	 * Send the position to the cell superclass.
-	 * 
 	 * @param pos Holds the position of the Cell 
 	 */
 	
@@ -26,18 +24,25 @@ public class Wall extends Cell {
 	}
 	
 	@Override
+	/**
+	 * Returns false if entity tries to move onto a wall.
+	 * @return stops entities moving onto Walls
+	 */
 	public boolean isWalkable() {
 		return false;
 	}
-	
-	public String cellName() {
-		return "Wall";
-	}
 	@Override
+	/**
+	 * Getter for the WallCell Sprite.
+	 * @return gives the sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+	/**
+	 * Getter for unique identifying character.
+	 * @return gives the unique identifier
+	 */
 	public char getChar() {
 		return '#';
 	}

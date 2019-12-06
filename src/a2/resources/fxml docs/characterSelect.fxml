@@ -9,14 +9,14 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" fx:id="charSelection" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.charSelectController">
+<AnchorPane id="AnchorPane" fx:id="charSelection" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.CharSelectController">
   <children>
     <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label layoutX="137.0" layoutY="14.0" text="Choose Character" textFill="WHITE" />
-            <ComboBox fx:id="cmb_CharSelect" layoutX="137.0" layoutY="39.0" onAction="#handleCmbSelect" prefHeight="21.0" prefWidth="140.0" promptText="Choose character">
+            <ComboBox fx:id="cmb_CharSelect" layoutX="137.0" layoutY="39.0" onAction="#handleCmbSelect" prefHeight="25.0" prefWidth="145.0" promptText="Choose character">
               <items>
                 <FXCollections fx:factory="observableArrayList" />
               </items>
@@ -29,7 +29,7 @@
       <right>
         <AnchorPane prefHeight="333.0" prefWidth="413.0">
           <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Preview" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="10.0" text="Preview" textFill="WHITE" />
             <Label fx:id="lbl_Preview" layoutX="14.0" layoutY="44.0" text="" textFill="WHITE" />
           </children>
         </AnchorPane>

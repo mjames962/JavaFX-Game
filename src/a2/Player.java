@@ -2,9 +2,6 @@ package a2;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-
-import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
-
 import cell.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -102,6 +99,12 @@ public class Player extends Entity {
 		return nextVector;
 	}
 	
+	/**
+	 * The method for enacting the throwing of a dagger.
+	 * @param dir the direction the dagger is being thrown in
+	 * @return the next position of the dagger.
+	 */
+	
 	public Vector2D shoot(ShootDirection dir) {
 		Vector2D nextVector = new Vector2D(getCurrentVector());
 		switch (dir) {
@@ -187,6 +190,11 @@ public class Player extends Entity {
 	}
 	
 	
+	/**
+	 * Handles the throwing of the dagger.
+	 * @param input the direction the dagger is being thrown in.
+	 */
+	
 	public void handleShoot(ShootDirection input) {
 		//curDirection = input;
 		System.out.println("CURRENT VECTOR" + getCurrentVector());
@@ -209,13 +217,15 @@ public class Player extends Entity {
 				iter.remove();
 			}
 		}
-		for (Item item : this.inventory) {
-			if (item.getItemID() == DAGGER_ID) {
-				this.inventory.remove(item);
-				Dagger newDagger = new Dagger(shoot(input), input);
-				newDagger.setDirection(newDagger.getDirection(input));
-				Level.getCurrentLevel().getEntityList().add(
-						newDagger);
+		if (cell instanceof Ground) {
+			for (Item item : this.inventory) {
+				if (item.getItemID() == DAGGER_ID) {
+					this.inventory.remove(item);
+					Dagger newDagger = new Dagger(shoot(input), input);
+					newDagger.setDirection(newDagger.getDirection(input));
+					Level.getCurrentLevel().getEntityList().add(
+							newDagger);
+				}
 			}
 		}
 		 
@@ -256,9 +266,6 @@ public class Player extends Entity {
 	 */
 	public boolean isValidMove(Vector2D cellPos) {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
-		if (!crepCheck(cell)) {			
-			playerDeath();
-		}
 		return cell.isWalkable();
 	}
 	/**
@@ -268,9 +275,6 @@ public class Player extends Entity {
 	public void doMoveAction(Vector2D cellPos) {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
 		cell.doAction(this);
-		if (cell instanceof Teleporter) {
-			System.out.println("stuff");
-		}
 	}
 	
 	
@@ -280,7 +284,7 @@ public class Player extends Entity {
 	 * @param cell the cell being walked on
 	 * @return boolean for if the player has needed item
 	 */
-	public boolean crepCheck(Cell cell) {
+	/*public boolean crepCheck(Cell cell) {
 		
 		
 		if (cell instanceof Fire) {
@@ -306,7 +310,7 @@ public class Player extends Entity {
 
 		return true;
 	}
-
+	*/
 	/**
 	 * Checks token door vs number of held tokens.
 	 * @param door the door being checked for.
@@ -359,12 +363,12 @@ public class Player extends Entity {
 		return false;
 	}
 	
-
+	
 	/**
 	 * This method handles the death of the player.
 	 */
 
-	private void playerDeath() {
+	public void playerDeath() {
 		this.alive = false;
 		String audioFilePath =
 				"src\\a2\\resources\\Sound bytes/Player Death.wav";
@@ -398,7 +402,7 @@ public class Player extends Entity {
 	 */
 	public boolean hasItem(Class<?> itemCheck) {
 		for (Item item : this.inventory) {
-			if (item.getClass() == itemCheck) {
+			if (itemCheck.isInstance(item)) {
 				System.out.println("returned true");
 				return true;
 			}
@@ -437,7 +441,7 @@ public class Player extends Entity {
 	 * @return gives the player sprite
 	 */
 	public String getSprite() {
-		return charSelectController.getCharSprite();
+		return CharSelectController.getCharSprite();
 	}
 	
 	/**

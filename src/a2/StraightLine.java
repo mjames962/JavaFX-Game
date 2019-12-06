@@ -2,14 +2,16 @@ package a2;
 
 /**
  * This enemy moves in a straight line.
- * @author Darius Thomas and James Colebourn
+ * @author Darius Thomas, James Colebourn and Tom Wood
  * @version 1.0
  * */
 public class StraightLine extends Entity {
-	
+
+	private static final int LINE_ID = 4;
+	private static final String SPRITE = 
+			"a2/resources/stock photos/Straight_Line_Enemy.png";
 	private boolean increaseDirection = true;
 	private String direction = "v";
-	private static final String SPRITE = "a2/resources/stock photos/Straight_Line_Enemy.png";
 	
 	/**
 	 * Constructs the StraightLine class.
@@ -20,15 +22,18 @@ public class StraightLine extends Entity {
 	 */
 	public StraightLine(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
-		setEntityID(4);
+		setEntityID(LINE_ID);
 	}
-	
+	/**
+	 * Getter for the StraightLine Enemy sprite.
+	 * @return returns the StraightLine Enemy sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
 	
 	/**
-	 * establishes the next move for the enemy.
+	 * Establishes the next move for the enemy.
 	 * @return nextVector the requested next cell to move to
 	 */
 	public Vector2D nextMove() {
@@ -59,71 +64,11 @@ public class StraightLine extends Entity {
 		}
 		return nextVector;
 	}		
-	
+	/**
+	 * Enacts the next move.
+	 */
 	public void move() {
 		this.setCurrentVector(nextMove());
 	}
 }
 			
-			
-			
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	/*	if (direction == "v") {		//entity is moving vertically
-			X = cX;
-			if (increaseDirection == true) {
-				cX = currentVector.getX();
-				cY = currentVector.getY();
-				if (direction == "v") {
-					X = cX;
-					if (increaseDirection == true) {
-						nY = cY++;
-						nextVector.set(nX, nY);
-					} else {
-						nY = cY--;
-						nextVector.set(nX, nY); 
-					} 
-				} else if (direction == "h") {
-					Y = cY;
-					if (increaseDirection == true) {
-					}
-				} else {
-					nY = cY--;
-					nextVector.set(nX, nY);
-				}
-			
-			
-			
-			
-			} else { 				// entity is moving horizontally
-				Y = cY;
-				if (increaseDirection == true) {
-					nX = cX++;
-					nextVector.set(nX, nY);				
-				} else {
-					nX = cX--;
-					nextVector.set(nX, nY);
-				}
-				if (isValidMove(this.getEntityID()) == false) {
-					if (increaseDirection == false) {
-						increaseDirection = true;
-						nextMove();
-					}
-				} else {
-					increaseDirection = false;
-					nextMove();
-				}
-			}
-		}*/

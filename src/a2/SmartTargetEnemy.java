@@ -12,7 +12,7 @@ import cell.Cell;
  * @version 2.7
  */
 public class SmartTargetEnemy extends Entity {
-	
+	private static final int SMART_ID = 4;
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Smart_Target_Enemy.png";
 	private final int maxViewDistance = 10;
@@ -29,7 +29,7 @@ public class SmartTargetEnemy extends Entity {
 	 */
 	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
-		setEntityID(4);
+		setEntityID(SMART_ID);
 		nextMove = new Vector2D(currentVector.getX(), currentVector.getY());
 	}
 	/**
@@ -55,7 +55,11 @@ public class SmartTargetEnemy extends Entity {
 		int playerY = Level.getCurrentLevel().getPlayer().getVector().getY();
 		if ((x == playerX && y == playerY) || distance >= maxViewDistance) {
 			if ((Integer.min(distance, minDistance) == distance)) {
-				nextMove = moveList.get(moveList.size() - distance + 1);
+				if (distance == 1) {
+					nextMove = new Vector2D(x, y);
+				} else {
+					nextMove = moveList.get(moveList.size() - distance + 1);
+				}
 			} 
 			return Integer.min(distance, minDistance);
 		}

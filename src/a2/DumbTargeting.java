@@ -2,11 +2,13 @@ package a2;
 
 /**
  * This enemy will locate the player, but will include invalid moves.
- * @author Darius Thomas, James Colebourn
+ * @author Darius Thomas, James Colebourn, Tom Wood
  * @version 1.0
  * */
 public class DumbTargeting extends Entity {
 	
+	
+	private static final int DUMB_ID = 3;
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Dumb_Target_Enemy.png";
 	
@@ -18,14 +20,14 @@ public class DumbTargeting extends Entity {
 	 */
 	public DumbTargeting(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
-		setEntityID(3);
+		setEntityID(DUMB_ID);
 	}
 	
 	
 	/**
 	 * The method to determine the enemy's next move.
 	 * @return returns nextVector, a Vector2D for the next 
-	 *                               location the enemy should move to
+	 *   location the enemy should move to
 	 */
 	private Vector2D nextMove() {
 		/*

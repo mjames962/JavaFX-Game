@@ -1,6 +1,6 @@
 package a2;
 /**
- * The SuperCall for all Items.
+ * The Superclass for all Items.
  * @author George Williams Walton, Tom Wood
  * @version 1.3
  */

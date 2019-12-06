@@ -11,7 +11,6 @@ import javax.sound.sampled.LineUnavailableException;
 import a2.Player.Direction;
 import a2.Player.ShootDirection;
 import cell.Cell;
-import cell.Collectible;
 import cell.Wall;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,8 +20,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -32,8 +33,8 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * Draws the canvas and allows the user to interact.
- * @author Jensen Beard, George Williams Walton
- * @version 1.6
+ * @author Jensen Beard, George Williams Walton, Jamie
+ * @version 1.7
  */
 public class GameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 350;
@@ -46,7 +47,6 @@ public class GameWindowController implements Initializable {
 	private static GameWindowController currentController;
 	private MusicPlayer backgroundMusic;
 	
-
 	private GraphicsContext gc;
 	private Level level; 
 
@@ -61,7 +61,13 @@ public class GameWindowController implements Initializable {
 	private Canvas gameCanvas;
 	
 	@FXML
-	private Button btnQuit;
+	private Button btn_Quit;
+	
+	@FXML
+	private Button btn_Back;
+	
+	@FXML
+	private Button btnSave;
 	
 	@FXML
 	private Label lbl_MOTD;
@@ -72,6 +78,9 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private Label lbl_TokenCount;
+	
+	@FXML
+	private Label lbl_Deaths;
 	
 	/**
 	 * Gets the current controller.
@@ -114,9 +123,12 @@ public class GameWindowController implements Initializable {
 		this.drawAll();
 	}	
 	
+	/**
+	 * Sets direction the dagger will fly.
+	 * @param shootDirection enum for direction.
+	 */
 	public void nextTick(ShootDirection shootDirection) {
 		level.getPlayer().handleShoot(shootDirection); 
-		//maybe can give responsibility to Level instead
 		this.drawAll();
 	}	
 	/**
@@ -126,34 +138,35 @@ public class GameWindowController implements Initializable {
 	public void hookInput(Scene sc) {
 		sc.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
             public void handle(KeyEvent ke) { 
-        		switch (ke.getCode()) {
-        			case UP:
-        				nextTick(Direction.UP);
-        				break;
-        			case LEFT:
-        				nextTick(Direction.LEFT);
-        				break;
-        			case DOWN:
-        				nextTick(Direction.DOWN);
-        				break;
-        			case RIGHT:
-        				nextTick(Direction.RIGHT);
-        				break;
-        			case W:
-        				nextTick(ShootDirection.UP);
-        				break;
-        			case D:
-        				nextTick(ShootDirection.LEFT);
-        				break;
-        			case S:
-        				nextTick(ShootDirection.DOWN);
-        				break;
-        			case A:
-        				nextTick(ShootDirection.RIGHT);
-        				break;
-        			default:
-        				break;
-        				
+            	if (Timer.isRunning()) {
+	        		switch (ke.getCode()) {
+	        			case UP:
+	        				nextTick(Direction.UP);
+	        				break;
+	        			case LEFT:
+	        				nextTick(Direction.LEFT);
+	        				break;
+	        			case DOWN:
+	        				nextTick(Direction.DOWN);
+	        				break;
+	        			case RIGHT:
+	        				nextTick(Direction.RIGHT);
+	        				break;
+	        			case W:
+	        				nextTick(ShootDirection.UP);
+	        				break;
+	        			case D:
+	        				nextTick(ShootDirection.LEFT);
+	        				break;
+	        			case S:
+	        				nextTick(ShootDirection.DOWN);
+	        				break;
+	        			case A:
+	        				nextTick(ShootDirection.RIGHT);
+	        				break;
+	        			default:
+	        				break;
+	        		}
         		}
             }
         });
@@ -245,7 +258,7 @@ public class GameWindowController implements Initializable {
 	
 	
 	/**
-	 * draws inventory window to canvas.
+	 * Draws inventory window to canvas.
 	 */
 	public void drawInventory() {
 		LinkedList<Item> inventory = 
@@ -261,17 +274,14 @@ public class GameWindowController implements Initializable {
     /**
      * Updates the timer, icon of the player + name.
      */
-    public void updateExtras() {
-    	
-		
-    	Image image = new Image(charSelectController.getCharSprite());
+    public void updateExtras() {	
+    	Image image = new Image(CharSelectController.getCharSprite());
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(UserData.getCurrentUser().getName());
     	lbl_User.setGraphic(imageView);
-    	lbl_TokenCount.setText("Token Count: " + Level.getCurrentLevel().getPlayer().getTokens());
-    	
-		
-    	 
+    	lbl_TokenCount.setText("Token Count: " 
+    				+ Level.getCurrentLevel().getPlayer().getTokens());
+    	lbl_Deaths.setText("Deaths: " + Level.getCurrentDeaths());
 	}
 	
 	/**
@@ -281,16 +291,55 @@ public class GameWindowController implements Initializable {
 		drawCells();
 		drawInventory();
 		updateExtras();
-        
 	}
 	
+	/**
+	 * Deals with the quit button events.
+	 * @param event Quit button click.
+	 * @throws IOException On resource selection.
+	 */
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
 		backgroundMusic.getmusicClip().stop();
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		gamePane.getChildren().setAll(window);
-		
+		Level.resetDeaths();
 	}
+	
+	/**
+	 * Deals with back button events.
+	 * @param event Back button click.
+	 * @throws IOException On resource selection.
+	 */
+	@FXML
+	private void handleBackBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/LevelSelection.fxml"));  
+		gamePane.getChildren().setAll(window);
+		Level.resetDeaths();
+	}
+	
+	/**
+	 * Deals with save button events.
+	 * @param event Save button click.
+	 */
+	@FXML
+	private void handleSaveBtn(ActionEvent event) {
+		Profile currentUser = UserData.getCurrentUser();
+		try {
+			this.level.saveLevelProgress(currentUser);
+			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert.setTitle("Success!");
+			alert.setHeaderText("Level Progress Saved");
+			alert.setContentText(null);
+			alert.showAndWait();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
 }
 

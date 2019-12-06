@@ -5,10 +5,12 @@ import a2.RedKey;
 import a2.Vector2D;
 /**
  * Class for a type of coloured key door.
- * @author George, Tom
+ * @author George Williams Walton, Tom Wood
+ * @version 1.3
  */
 public class RedDoor extends Door {
-	protected static final String SPRITE = "a2/resources/stock photos/RedDoor.png";
+	protected static final String SPRITE = 
+			"a2/resources/stock photos/RedDoor.png";
 	/**
 	 * creates a door at the position.
 	 * @param pos holds current Vector2D of the door
@@ -18,20 +20,21 @@ public class RedDoor extends Door {
 	}
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		return ply.hasKey('r');
+		return ply.hasItem(RedKey.class);
 		
 	}
 	
-	
-	
-	public String cellName() {
-		return "RedDoor";
-	}
-	
+	/**
+	 * Getter for the RedDoorCell Sprite.
+	 * @return gives the sprite
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+	/**
+	 * Getter for unique identifying character.
+	 * @return gives the unique identifier
+	 */
 	public char getChar() {
 		return 'R';
 	}

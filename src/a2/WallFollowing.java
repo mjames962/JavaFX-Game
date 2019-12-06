@@ -6,31 +6,26 @@ import java.util.Queue;
 /**
  * This enemy follows the wall to its left
  * placed on the lower and right side of the wall.
- * @author James Colebourn
+ * @author James Colebourn, Tom Wood
  * @version 1.0
  */
 public class WallFollowing extends Entity {
-	
+	private static final int MAX_DIR = 3;
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Wall_Following_Enemy.png";
-	private boolean increaseVDirection = true;
-	private boolean increaseHDirection = true;
 	private int direction = 0; //0=left,1=up,2=right,3=down
-	private boolean escapeMove = false;
 	
 	
 	/**
 	 * Constructs the Wall Following Enemy.
 	 * @param currentVector the position of the enemy
 	 * @param enemyID the ID of the enemy
-	 * @param direction holds the direction of travel
 	 * @param level holds the current level
 	 */
 	public WallFollowing(Vector2D currentVector, 
-			int enemyID, String direction, Level level) {
+			int enemyID, Level level) {
 		super(currentVector);
 		setEntityID(2);
-		currentVector = this.getCurrentVector();
 
 		
 	}
@@ -40,6 +35,16 @@ public class WallFollowing extends Entity {
 	 */
 	public String getSprite() {
 		return SPRITE;
+	}
+	
+	/**
+	 * Gets the direction the enemy is moving in.
+	 * @return the direction the enemy is moving in.
+	 */
+	
+	
+	public int getDirection() {
+		return direction;
 	}
 	
 	/**
@@ -61,8 +66,8 @@ public class WallFollowing extends Entity {
 			return nextVector;
 		} else {
 			increaseDirection();
-			return nextMove();
 		}
+		return nextMove();
 		
 	}
 	
@@ -92,7 +97,7 @@ public class WallFollowing extends Entity {
 				} else {
 					return 0;
 				}
-			case 3:
+			case MAX_DIR:
 				if (isX) {
 					return 0;
 				} else {
@@ -132,7 +137,7 @@ public class WallFollowing extends Entity {
 				} else {
 					return 1;
 				}
-			case 3:
+			case MAX_DIR:
 				if (isX) {
 					return 1;
 				} else {
@@ -149,7 +154,7 @@ public class WallFollowing extends Entity {
 	 */
 	
 	public void increaseDirection() {
-		if (direction == 3) {
+		if (direction == MAX_DIR) {
 			direction = 0;
 		} else {
 			++direction;
@@ -162,7 +167,7 @@ public class WallFollowing extends Entity {
 	
 	public void decreaseDircetion() {
 		if (direction == 0) {
-			direction = 3;
+			direction = MAX_DIR;
 		} else {
 			--direction;
 		}
