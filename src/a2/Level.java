@@ -45,6 +45,11 @@ public class Level {
 		levelFile = new File(fileName);
 		this.readFile();
 		currentLevel = this;
+		
+		String usernameStart = UserData.getCurrentUser().getName() + "_";
+		if (fileName.startsWith(Level.LEVEL_STORAGE + "/" + usernameStart)) {
+			this.levelFile = new File(fileName.replaceFirst(usernameStart, ""));
+		}
 		try {
 			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
 					+ levelFile.getName());
@@ -64,6 +69,10 @@ public class Level {
 		this.levelFile = levelFile;
 		this.readFile();
 		currentLevel = this;
+		String usernameStart = UserData.getCurrentUser().getName() + "_";
+		if (levelFile.getName().startsWith(Level.LEVEL_STORAGE + "/" + usernameStart)) {
+			this.levelFile = new File(levelFile.getName().replaceFirst(usernameStart, ""));
+		}
 		try {
 			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
 					+ levelFile.getName());
