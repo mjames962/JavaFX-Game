@@ -165,16 +165,16 @@ public class Player extends Entity {
 						setCurrentVector(move(input));
 					} else {
 						checkPlayerIntersectEnemy(ent);
-						ent.move();
-						
+						ent.hasHitDagger();
+						ent.move();	
 						checkPlayerIntersectEnemy(ent);
+						ent.hasHitDagger();
 					}
 				}
 				Iterator<Entity> iter = Level.getCurrentLevel().
 						getEntityList().iterator();
 				while (iter.hasNext()) {
 					Entity ent = iter.next();
-					ent.hasHitDagger();
 					if (ent.getRemove()) {
 						iter.remove();
 					}
@@ -191,8 +191,10 @@ public class Player extends Entity {
 		for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 			if (ent != this) { 
 				checkPlayerIntersectEnemy(ent);
+				ent.hasHitDagger();
 				ent.move();
 				checkPlayerIntersectEnemy(ent);
+				ent.hasHitDagger();
 			}
 		}
 		final int DAGGER_ID = 10; 
@@ -200,7 +202,6 @@ public class Player extends Entity {
 				getEntityList().iterator();
 		while (iter.hasNext()) {
 			Entity ent = iter.next();
-			ent.hasHitDagger();
 			if (ent.getRemove()) {
 				iter.remove();
 			}
