@@ -435,26 +435,26 @@ public class Level {
 		Entity entity = null;
 
 		switch (entityID) {
-		case 0:
-			entity = new Player(vector, entityID, this);
-			break;
-		case 1:
-			entity = new StraightLine(vector, entityID, this);
-			break;
-		case 2:
-			entity = new WallFollowing(vector, entityID, this);
-			break;
-		case 3:
-			entity = new DumbTargeting(vector, entityID, this);
-			break;
-		case 4:
-			entity = new SmartTargetEnemy(vector, entityID, this);
-			break;
-		case 10:
-			entity = new Dagger(vector, direction);
-			break;
-		default:
-			entity = null;
+			case 0:
+				entity = new Player(vector, entityID, this);
+				break;
+			case 1:
+				entity = new StraightLine(vector, entityID, this);
+				break;
+			case 2:
+				entity = new WallFollowing(vector, entityID, this);
+				break;
+			case 3:
+				entity = new DumbTargeting(vector, entityID, this);
+				break;
+			case 4:
+				entity = new SmartTargetEnemy(vector, entityID, this);
+				break;
+			case 10:
+				entity = new Dagger(vector, direction);
+				break;
+			default:
+				entity = null;
 		}
 
 		this.addEntity(entity);

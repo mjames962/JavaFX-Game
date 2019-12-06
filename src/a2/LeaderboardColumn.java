@@ -11,7 +11,7 @@ import javafx.util.Callback;
 /**
  * Represents a possible column on a leaderboard, restricted to a type.
  * @author George Williams Walton, Tom Wood
- * @version 
+ * @version 1.5 
  * @param <T> The type of the data in the column.
  */
 public class LeaderboardColumn<T> {
@@ -40,13 +40,13 @@ public class LeaderboardColumn<T> {
 	private void setupFactory() {
 		tcolumn.setCellValueFactory(
 	    		new Callback<CellDataFeatures<LeaderboardEntry, T>
-	    		, ObservableValue<T>>() {
-	        public ObservableValue<T> call(CellDataFeatures<
-	        		LeaderboardEntry, T> p) {
-	        	LeaderboardEntry le = (LeaderboardEntry) p.getValue();
-	            return new SimpleObjectProperty(le.getData(name));
-	        }
-	     });
+		    	, ObservableValue<T>>() {
+	    			public ObservableValue<T> call(CellDataFeatures<
+		        		LeaderboardEntry, T> p) {
+		        	LeaderboardEntry le = (LeaderboardEntry) p.getValue();
+		            return new SimpleObjectProperty(le.getData(name));
+		        }
+		     });
 	}
 	
 	/**

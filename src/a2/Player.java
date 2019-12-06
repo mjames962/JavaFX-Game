@@ -349,10 +349,6 @@ public class Player extends Entity {
 		return false;
 	}
 	
-
-	public void findItem(Class<?> itemClass) {
-		
-	}
 	
 	/**
 	 * This method handles the death of the player.

@@ -10,8 +10,7 @@ import cell.DaggerCell;
  */
 public class Dagger extends Entity {
 	public static final String SPRITE = "a2/resources/stock photos/Dagger.png";
-	private static final int MAGIC3 = 3;
-	private static final int MAGIC10 = 10;	
+	private static final int DAGGER_ID = 10;	
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = true;
 	/**		 
@@ -21,12 +20,12 @@ public class Dagger extends Entity {
 	 */
 	public Dagger(Vector2D pos, ShootDirection dir) {
 		super(pos);
-		setEntityID(MAGIC10);
+		setEntityID(DAGGER_ID);
 	}
 	
 	public Dagger(Vector2D pos, int dir) {
 		super(pos);
-		setEntityID(MAGIC10);
+		setEntityID(DAGGER_ID);
 		direction = dir;
 	}
 	
@@ -72,26 +71,30 @@ public class Dagger extends Entity {
 	 * @return gives next modifier to reach the next location
 	 */
 	public int getMoveModifier(boolean isX) {
+		final int UP_DIR = 0;
+		final int DOWN_DIR = 2;
+		final int LEFT_DIR = 1;
+		final int RIGHT_DIR = 3;
 		switch (direction) {
-			case 0:
+			case UP_DIR:
 				if (isX) {
 					return 0;
 				} else {
 					return 1;
 				}
-			case 1:
+			case LEFT_DIR:
 				if (isX) {
 					return 1;
 				} else {
 					return 0;
 				}
-			case 2:
+			case DOWN_DIR:
 				if (isX) {
 					return 0;
 				} else {
 					return -1;
 				}
-			case MAGIC3:
+			case RIGHT_DIR:
 				if (isX) {
 					return -1;
 				} else {
@@ -108,20 +111,31 @@ public class Dagger extends Entity {
 	 * @return gives the case for direction of travel
 	 */
 	public int getDirection(ShootDirection dir) {
+		final int UP_DIR = 0;
+		final int DOWN_DIR = 2;
+		final int LEFT_DIR = 1;
+		final int RIGHT_DIR = 3;
 		switch (dir) {
 			case UP:
-				return 0;
+				return UP_DIR;
 			case DOWN:
-				return 2;
+				return DOWN_DIR;
 			case LEFT:
-				return 1;
+				return LEFT_DIR;
 			case RIGHT:
-				return MAGIC3;
+				return RIGHT_DIR;
 			default:
 				return 0;	
 		}
 	}
 	
+	
+	/**
+	 * Gets the direction the dagger is
+	 * Travelling in.
+	 * 
+	 * @return the direction the dagger is moving
+	 */
 	public int getDirection() {
 		return this.direction;
 	}

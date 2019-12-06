@@ -2,8 +2,9 @@ package a2;
 
 /**
  * Class for the dagger item.
+ * 
  * @author Tom Wood
- * version 1.2
+ * @version 1.2
  */
 public class DaggerItem extends Item {
 
