@@ -253,9 +253,6 @@ public class Player extends Entity {
 	 */
 	public boolean isValidMove(Vector2D cellPos) {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
-		//if (!crepCheck(cell)) {			
-		//	playerDeath();
-		//}
 		return cell.isWalkable();
 	}
 	/**
@@ -365,6 +362,7 @@ public class Player extends Entity {
 		alert.setHeaderText("You died.");
 		alert.setContentText(null);
 		alert.showAndWait();
+		getLevel().addDeath();
 		Level.restartLevel();
 	}
 

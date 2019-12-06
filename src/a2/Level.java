@@ -30,6 +30,7 @@ public class Level {
 	private int xLength;
 	private int yLength;
 	private static Level currentLevel;
+	private int currentDeaths;
 	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 
 
@@ -103,6 +104,7 @@ public class Level {
 	 */
 	public static void restartLevel() {
 		currentLevel = new Level(currentLevel.levelFile);
+		
 		GameWindowController.getCurrentController().refreshLevel();
 	}
 	
@@ -116,6 +118,18 @@ public class Level {
 		return levelFile;
 	}
 	
+	
+	public void addDeath() {
+		currentDeaths += 1;
+	}
+	
+	public int getCurrentDeaths() {
+		return currentDeaths;
+	}
+	
+	public void resetDeaths() {
+		currentDeaths = 0;
+	}
 
 	/**
 	 * Method for .
@@ -668,7 +682,8 @@ public class Level {
 		printLine = printLine + daggerCount + " ";
 		printLine = printLine + fireBoots + " ";
 		printLine = printLine + flippers + " ";
-		printLine = printLine + time;
+		printLine = printLine + time + " ";
+		printLine = printLine + currentDeaths;
 		
 		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
 				StandardOpenOption.APPEND);

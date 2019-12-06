@@ -43,12 +43,14 @@ public class Goal extends Cell {
 	@Override
 	public void doAction(Player ply) {
 		long finishTime = Timer.checkTimeElapsed();
-		int levelNum = Level.getCurrentLevel().getLevelNumber();
+		Level curLevel = Level.getCurrentLevel();
+		int levelNum = curLevel.getLevelNumber();
 		Timer.stop();
+		UserData.getCurrentUser().saveDeaths(levelNum, curLevel.getCurrentDeaths());
 		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
 		UserData.getCurrentUser().setHighestLevel(levelNum);
 		displayCompleted(finishTime);
-		Level.getCurrentLevel().loadNextLevel();
+		curLevel.loadNextLevel();
 		
 	}
 	

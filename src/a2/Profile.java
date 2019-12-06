@@ -1,11 +1,15 @@
 package a2;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 
@@ -26,6 +30,7 @@ public class Profile {
 	private ArrayList<Long> timesLB = new ArrayList<>();
 	private ArrayList<Long> addItems = new ArrayList<>();
 	private ArrayList<Long> removeTimes = new ArrayList<>();
+	
 	
 	/**
 	 * Sets the file that holds the user information. 
@@ -95,6 +100,27 @@ public class Profile {
 			return bestTimes.get(level - 1) > time; 
 		}
 	}
+	
+	public void saveDeaths(int level, int deaths) {
+		File deathfile = UserData.getDeathFile(level);
+		HashMap<String,Integer> deathmap = UserData.readDeaths(deathfile);
+		addDeaths(deathmap,deaths);
+		UserData.writeDeaths(deathmap,deathfile);
+	}
+	
+	public void addDeaths(HashMap<String,Integer> deathmap,int deaths) {
+		if (deathmap.containsKey(name)) {
+			if (deathmap.get(name) > deaths ) {
+				System.out.println("new death count" + deaths);
+				deathmap.put(name, deaths);
+			}
+		} else {
+			deathmap.put(name, deaths);
+		}
+	}
+	
+	
+	
 	
 	
 	/**
