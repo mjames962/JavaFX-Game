@@ -33,7 +33,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * Draws the canvas and allows the user to interact.
  * @author Jensen Beard, George Williams Walton, Jamie
- * @version 1.6
+ * @version 1.7
  */
 public class GameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 350;
@@ -60,7 +60,10 @@ public class GameWindowController implements Initializable {
 	private Canvas gameCanvas;
 	
 	@FXML
-	private Button btnQuit;
+	private Button btn_Quit;
+	
+	@FXML
+	private Button btn_Back;
 	
 	@FXML
 	private Button btnSave;
@@ -242,7 +245,7 @@ public class GameWindowController implements Initializable {
 	
 	
 	/**
-	 * draws inventory window to canvas.
+	 * Draws inventory window to canvas.
 	 */
 	public void drawInventory() {
 		LinkedList<Item> inventory = 
@@ -284,7 +287,9 @@ public class GameWindowController implements Initializable {
         
 	}
 	/**
-	 *Deals with the quit button on the game window to take them to the main menu
+	 * Deals with the quit button events.
+	 * @param event
+	 * @throws
 	 */
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
@@ -294,6 +299,22 @@ public class GameWindowController implements Initializable {
 		
 	}
 	
+	/**
+	 * Deals with back button events.
+	 * @param event
+	 * @throws IOException 
+	 */
+	@FXML
+	private void handleBackBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/LevelSelection.fxml"));  
+		gamePane.getChildren().setAll(window);
+	}
+	
+	/**
+	 * Deals with save button events.
+	 * @param event
+	 */
 	@FXML
 	private void handleSaveBtn(ActionEvent event) {
 		Profile currentUser = UserData.getCurrentUser();
@@ -308,6 +329,7 @@ public class GameWindowController implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 }
 

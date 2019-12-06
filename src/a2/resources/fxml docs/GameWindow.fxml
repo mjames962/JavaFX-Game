@@ -1,40 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import java.net.URL?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="a2.GameWindowController">
+<AnchorPane id="AnchorPane" fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.GameWindowController">
   <children>
-    <BorderPane fx:id="gameBorderPane" layoutX="14.0" layoutY="14.0" prefHeight="556.0" prefWidth="572.0">
+    <BorderPane fx:id="gameBorderPane" layoutX="14.0" layoutY="14.0" prefHeight="556.0" prefWidth="772.0">
       <center>
         <Canvas fx:id="gameCanvas" height="400.0" scaleX="1.202528108842342" scaleY="0.9912736151164937" width="350.0" BorderPane.alignment="TOP_CENTER" />
       </center>
       <right>
-        <Pane prefHeight="377.0" prefWidth="129.5576171875">
+        <Pane prefHeight="476.0" prefWidth="179.0">
           <children>
             <Label id="lbl" fx:id="lbl_Timer" layoutX="14.0" layoutY="72.0" text="Timer" textFill="WHITE" />
             <Label fx:id="lbl_User" layoutX="14.0" layoutY="33.0" text="User" textFill="WHITE" />
-            <Label fx:id="lbl_MOTD" layoutX="11.0" layoutY="144.0" prefHeight="166.0" prefWidth="113.0" text="MOTD" textFill="WHITE" wrapText="true" />
-            <Button fx:id="btnQuit" layoutX="10.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
-                  <Label fx:id="lbl_TokenCount" layoutX="15.0" layoutY="110.0" text="Token Count: 0" textFill="WHITE" />
+            <Label fx:id="lbl_MOTD" layoutX="11.0" layoutY="144.0" text="MOTD" textFill="WHITE" />
+            <Button fx:id="btn_Quit" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
+            <Label fx:id="lbl_TokenCount" layoutX="15.0" layoutY="110.0" text="Token Count: 0" textFill="WHITE" />
                   <Button fx:id="btnSave" layoutX="10.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleSaveBtn" prefHeight="25.0" prefWidth="49.0" text="Save" />
           </children>
         </Pane>
       </right>
       <top>
-        <Pane fx:id="topPane" prefHeight="80.0" prefWidth="572.0">
+        <Pane fx:id="topPane" prefHeight="80.0" prefWidth="757.0">
           <children>
             <Label fx:id="lbl_GameName" layoutX="209.0" layoutY="20.0" text="Placeholder" textFill="WHITE">
               <font>
                 <Font size="30.0" />
               </font>
             </Label>
+            <Button fx:id="btn_Back" layoutX="593.0" layoutY="39.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" />
+            <Label layoutX="593.0" layoutY="7.0" text="Back to level select" textFill="WHITE" />
           </children>
         </Pane>
       </top>

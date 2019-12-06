@@ -242,6 +242,7 @@ public class Level {
 			alert.setHeaderText("Congratulations!!!");
 			//alert.setContentText("Your time was: " + new TimeValue(finishTime).toString());
 			alert.showAndWait();
+			
 		}
 	}
 
