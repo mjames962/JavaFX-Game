@@ -29,9 +29,15 @@ public class Level {
 	private int yLength;
 	private static Level currentLevel;
 	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
-
-
 	private int levelNo;
+	
+	/**
+	 * Returns the level number.
+	 * @return gives the level number
+	 */
+	public int getLevelNo() {
+		return levelNo;
+	}
 	
 	
 	/**
@@ -148,10 +154,6 @@ public class Level {
 	 * @return level[x][y] cell at (x,y)
 	 */
 	public Cell getCellAt(int x, int y) {
-		if (x == 18 || y == 18) {
-			System.out.println("");
-		}
-
 		return this.level[x][y];
 	}
 	/**
@@ -351,7 +353,7 @@ public class Level {
 	 * Takes a string of inventory information and adds it to the player's inventory.
 	 * @param str The string containing all of the inventory information
 	 */
-	public void readInventory(String str) {
+	private void readInventory(String str) {
 		Scanner in = new Scanner(str);
 
 		Player player = this.getPlayer();
@@ -419,7 +421,7 @@ public class Level {
 	 * reads in Entities and their data.
 	 * @param str is the string read in from file
 	 */
-	public void readEntity(String str) {
+	private void readEntity(String str) {
 		Scanner in = new Scanner(str);
 
 		int startX = in.nextInt() - 1; // -1 to convert file to 0 indexed array
@@ -465,7 +467,7 @@ public class Level {
 	 * Reading in data for location and required tokens of token doors.
 	 * @param str is the string containing relevant data in the file
 	 */
-	public void readTokenDoor(String str) {
+	private void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
 
 		int xPosition = in.nextInt() - 1; // -1 because of 0 indexed array
@@ -486,7 +488,7 @@ public class Level {
 	 * @param y coordinate         
 	 * @return cell gives the newly created cell
 	 */
-	public Cell readChar(char c, int x, int y) {
+	private Cell readChar(char c, int x, int y) {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
@@ -715,14 +717,5 @@ public class Level {
 				StandardOpenOption.APPEND);
 		
 		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
-	}
-	
-
-	/**
-	 * Returns the level number.
-	 * @return gives the level number
-	 */
-	public int getLevelNo() {
-		return levelNo;
 	}
 }
