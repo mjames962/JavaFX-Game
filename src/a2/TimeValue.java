@@ -7,7 +7,7 @@ package a2;
  */
 public class TimeValue implements Comparable<TimeValue> {
 	
-	private static final int MAGIC = 60;
+	private static final int MAGIC60 = 60;
 	private static final int MAGIC1000 = 1000;
 	private static final int MAGIC60000 = 60000;
 	private Long time;

@@ -58,7 +58,10 @@ public class GameWindowController implements Initializable {
 	private Canvas gameCanvas;
 	
 	@FXML
-	private Button btnQuit;
+	private Button btn_Quit;
+	
+	@FXML
+	private Button btn_Back;
 	
 	@FXML
 	private Label lbl_MOTD;
@@ -285,6 +288,14 @@ public class GameWindowController implements Initializable {
 	private void handleQuitBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
+		gamePane.getChildren().setAll(window);
+		
+	}
+	
+	@FXML
+	private void handleBackBtn(ActionEvent event) throws IOException {
+		AnchorPane window = FXMLLoader.load(getClass().
+				getResource("resources/fxml docs/LevelSelection.fxml"));  
 		gamePane.getChildren().setAll(window);
 		
 	}
