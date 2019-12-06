@@ -267,7 +267,7 @@ public class GameWindowController implements Initializable {
     public void updateExtras() {
     	
 		
-    	Image image = new Image(charSelectController.getCharSprite());
+    	Image image = new Image(CharSelectController.getCharSprite());
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(UserData.getCurrentUser().getName());
     	lbl_User.setGraphic(imageView);
