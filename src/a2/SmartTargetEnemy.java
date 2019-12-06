@@ -55,7 +55,11 @@ public class SmartTargetEnemy extends Entity {
 		int playerY = Level.getCurrentLevel().getPlayer().getVector().getY();
 		if ((x == playerX && y == playerY) || distance >= maxViewDistance) {
 			if ((Integer.min(distance, minDistance) == distance)) {
-				nextMove = moveList.get(moveList.size() - distance + 1);
+				if (distance == 1) {
+					nextMove = new Vector2D(x, y);
+				} else {
+					nextMove = moveList.get(moveList.size() - distance + 1);
+				}
 			} 
 			return Integer.min(distance, minDistance);
 		}

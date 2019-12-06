@@ -214,7 +214,7 @@ public class Player extends Entity {
 				iter.remove();
 			}
 		}
-		if (cell instanceof  Ground) {
+		if (cell instanceof Ground) {
 			for (Item item : this.inventory) {
 				if (item.getItemID() == DAGGER_ID) {
 					this.inventory.remove(item);
