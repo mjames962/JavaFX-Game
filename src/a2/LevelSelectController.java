@@ -43,7 +43,7 @@ public class LevelSelectController implements Initializable {
 	@Override
 	/**
 	 * Identifies levels the user is allowed to play and 
-	 * 									adds it to the drop down box .
+	 * adds it to the drop down box .
 	 * @param arg0 for JFX
 	 * @param arg1 for JFX
 	 */
@@ -58,14 +58,17 @@ public class LevelSelectController implements Initializable {
 			String fileName = file.getName();
 
 			//check to see if saves belong to current user
-			if (fileName.startsWith(currentUser.getName() + "_") || !fileName.contains("_")) { 
+			if (fileName.startsWith(currentUser.getName() + "_") 
+					|| !fileName.contains("_")) { 
 				// gets level number from file name
-				String levelString = fileName.substring(0, fileName.length() - IV);
+				String levelString = fileName
+						.substring(0, fileName.length() - IV);
 
 				// String levelNumString =
 				fileName.replaceFirst("([0-9]+)\\.txt", "");
 				int levelNum;
-				Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+				Matcher matcher = Pattern.compile("([0-9]+)\\.txt")
+						.matcher(fileName);
 
 				if (matcher.find()) {
 					levelNum = Integer.parseInt(matcher.group(1));
@@ -73,7 +76,8 @@ public class LevelSelectController implements Initializable {
 				} else {
 					levelNum = -1;
 				}
-				if (file.isFile() && UserData.getCurrentUser().getHighestLevel() >= levelNum) {
+				if (file.isFile() && UserData.getCurrentUser()
+						.getHighestLevel() >= levelNum) {
 					cmb_LevelSelect.getItems().add(getLevelIdentifier(fileName));
 				}
 			}
@@ -82,16 +86,15 @@ public class LevelSelectController implements Initializable {
 	}
 	
 	
+	/**
+	 * Displays the GameWindow.
+	 * @param lvl The level to be drawn
+	 * @throws IOException On resource selection.
+	 */
 	private void displayNewLevel(Level lvl) throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
 				getResource("resources/fxml docs/GameWindow.fxml"));
 		AnchorPane window = fx.load();
-		
-		//Stage stage = (Stage) levelScene.getScene().getWindow();
-		
-		
-		//levelScene.getChildren().setAll(window);
-
 		
 	}
 	
@@ -114,6 +117,7 @@ public class LevelSelectController implements Initializable {
 			
 			
 	}
+	
 	/**
 	 * Formatting level file names to be searched for.
 	 * @throws FileNotFoundException when the requested file is absent
@@ -122,9 +126,6 @@ public class LevelSelectController implements Initializable {
 		
 		String currentLevel;
 		currentLevel = cmb_LevelSelect.getValue();
-		
-		//File levelLeaderboard = new File("src/a2/resources/file formats/LB"
-		//		 + currentLevel + ".txt");
 		if (currentLevel != null) {
 			selectedLevel = new Level(
 					"src/a2/resources/file formats/" + currentLevel + ".txt");	
@@ -132,7 +133,7 @@ public class LevelSelectController implements Initializable {
 		
 	}
 	/**
-	 * .
+	 * Removes the .txt from level files.
 	 * @param fileName holds the name of the file
 	 * @return gives the file name minus .txt extension
 	 */
@@ -163,6 +164,11 @@ public class LevelSelectController implements Initializable {
 		((LeaderboardController) fx.getController()).display();
 	}
 	
+	/**
+	 * Switches window to the character selection window.
+	 * @param event Character select button click.
+	 * @throws IOException On resource selection.
+	 */
 	@FXML
 	private void handleCharSelectBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
