@@ -51,7 +51,7 @@ public class charSelectController implements Initializable{
 							+ fileSubstring;
 			Alert news = new Alert(AlertType.INFORMATION);
 			news.setTitle("Success");
-			news.setHeaderText("User Created");
+			news.setHeaderText("Player selected");
 			news.setContentText(null);
 			news.showAndWait();
 			
