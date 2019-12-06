@@ -29,9 +29,6 @@ public class FlippersCell extends Collectible {
 		return new Flippers();
 	}
 	
-	public String cellName() {
-		return "FlippersCell";
-	}
 	
 	public String getSprite() {
 		return SPRITE;

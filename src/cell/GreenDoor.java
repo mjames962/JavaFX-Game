@@ -1,5 +1,6 @@
 package cell;
 
+import a2.GreenKey;
 import a2.Player;
 import a2.Vector2D;
 /**
@@ -20,12 +21,9 @@ public class GreenDoor extends Door {
 
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		return ply.hasKey('g');
+		return ply.hasItem(GreenKey.class);
 	}
 	
-	public String cellName() {
-		return "GreenDoor";
-	}
 	
 	public String getSprite() {
 		return SPRITE;

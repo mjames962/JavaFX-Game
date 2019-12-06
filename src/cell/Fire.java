@@ -1,5 +1,7 @@
 package cell;
 
+import a2.FireBoots;
+import a2.Player;
 import a2.Vector2D;
 
 /**
@@ -23,10 +25,12 @@ public class Fire extends Cell {
 		
 	}
 	
-	
-	
-	public String cellName() {
-		return "Fire";
+	@Override
+	public void doAction(Player ply) {
+		
+		if (!ply.hasItem(FireBoots.class)) {
+			ply.playerDeath();
+		}
 	}
 	
 	public String getSprite() {

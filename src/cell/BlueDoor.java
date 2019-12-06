@@ -1,5 +1,6 @@
 package cell;
 
+import a2.BlueKey;
 import a2.Player;
 import a2.Vector2D;
 /**
@@ -23,14 +24,7 @@ public class BlueDoor extends Door {
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		// TODO Auto-generated method stub
-		return ply.hasKey('b');
-	}
-	/**
-	 * Holds the name of the cell as a string.
-	 * @return gives the string name of the cell
-	 */
-	public String cellName() {
-		return "BlueDoor";
+		return ply.hasItem(BlueKey.class);
 	}
 	
 	/**

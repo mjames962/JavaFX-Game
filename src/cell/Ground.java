@@ -24,10 +24,6 @@ public class Ground extends Cell {
 		super(pos);
 
 	}
-
-	public String cellName() {
-		return "Ground";
-	}
 	
 	public String getSprite() {
 		return SPRITE;

@@ -30,13 +30,6 @@ public class BlueKeyCell extends Collectible {
 		return new BlueKey();
 	}
 	/**
-	 * Holds the name of the cell as a string.
-	 * @return gives the string name of the cell
-	 */
-	public String cellName() {
-		return "BlueKeyCell";
-	}
-	/**
 	 * Getter for the class' sprite.
 	 * @return gives the sprite for the class
 	 */

@@ -1,5 +1,8 @@
 package cell;
 
+import a2.FireBoots;
+import a2.Flippers;
+import a2.Player;
 import a2.Vector2D;
 
 /**
@@ -24,8 +27,12 @@ public class Water extends Cell {
 		
 	}
 	
-	public String cellName() {
-		return "Water";
+	@Override
+	public void doAction(Player ply) {
+		
+		if (!ply.hasItem(Flippers.class)) {
+			ply.playerDeath();
+		}
 	}
 	
 	public String getSprite() {

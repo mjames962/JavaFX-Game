@@ -18,15 +18,10 @@ public class RedDoor extends Door {
 	}
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		return ply.hasKey('r');
+		return ply.hasItem(RedKey.class);
 		
 	}
 	
-	
-	
-	public String cellName() {
-		return "RedDoor";
-	}
 	
 	public String getSprite() {
 		return SPRITE;

@@ -19,9 +19,6 @@ public class Dagger extends Collectible {
 		return new DaggerItem();
 	}
 	
-	public String cellName() {
-		return "DaggerCell";
-	}
 	
 	public String getSprite() {
 		return SPRITE;

@@ -67,13 +67,6 @@ public class TokenDoor extends Door {
 	public void setReqTokens(int requiredTokens) {
 		this.requiredTokens = requiredTokens;
 	}
-	/**
-	 * allows the name of the cell to compared as a string.
-	 * @return the name as a string
-	 */
-	public String cellName() {
-		return "TokenDoor";
-	}
 	
 	public String getSprite() {
 		return SPRITE;

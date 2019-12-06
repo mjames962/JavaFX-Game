@@ -26,10 +26,6 @@ public class RedKeyCell extends Collectible {
 		return new RedKey();
 	}
 	
-	public String cellName() {
-		return "RedKeyCell";
-	}
-	
 	public String getSprite() {
 		return SPRITE;
 	}

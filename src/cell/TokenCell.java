@@ -25,10 +25,6 @@ public class TokenCell extends Replaceable {
 		super(pos);
 	}
 	
-	public String cellName() {
-		return "TokenCell";
-	}
-	
 	public String getSprite() {
 		return SPRITE;
 	}

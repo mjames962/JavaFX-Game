@@ -40,6 +40,8 @@ public class Entity implements Sprite {
 		return SPRITE;
 	}
 	
+	
+	
 	/**
 	 * Returns the current level.
 	 * @return gives the current level

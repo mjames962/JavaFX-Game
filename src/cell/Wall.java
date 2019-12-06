@@ -30,9 +30,6 @@ public class Wall extends Cell {
 		return false;
 	}
 	
-	public String cellName() {
-		return "Wall";
-	}
 	@Override
 	public String getSprite() {
 		return SPRITE;

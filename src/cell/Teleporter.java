@@ -75,10 +75,6 @@ public class Teleporter extends Cell {
 		link.setLinkedTP(this.getPos());
 	}
 	
-	public String cellName() {
-		return "Teleporter";
-	}
-	
 	public String getSprite() {
 		return SPRITE;
 	}

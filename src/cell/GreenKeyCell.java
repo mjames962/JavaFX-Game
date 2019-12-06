@@ -26,10 +26,6 @@ public class GreenKeyCell extends Collectible {
 		return new GreenKey();
 	}
 	
-	public String cellName() {
-		return "GreenKeyCell";
-	}
-	
 	public String getSprite() {
 		return SPRITE;
 	}

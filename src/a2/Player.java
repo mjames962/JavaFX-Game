@@ -253,9 +253,9 @@ public class Player extends Entity {
 	 */
 	public boolean isValidMove(Vector2D cellPos) {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
-		if (!crepCheck(cell)) {			
-			playerDeath();
-		}
+		//if (!crepCheck(cell)) {			
+		//	playerDeath();
+		//}
 		return cell.isWalkable();
 	}
 	/**
@@ -265,9 +265,6 @@ public class Player extends Entity {
 	public void doMoveAction(Vector2D cellPos) {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
 		cell.doAction(this);
-		if (cell instanceof Teleporter) {
-			System.out.println("stuff");
-		}
 	}
 	
 	
@@ -277,7 +274,7 @@ public class Player extends Entity {
 	 * @param cell the cell being walked on
 	 * @return boolean for if the player has needed item
 	 */
-	public boolean crepCheck(Cell cell) {
+	/*public boolean crepCheck(Cell cell) {
 		
 		
 		if (cell instanceof Fire) {
@@ -303,7 +300,7 @@ public class Player extends Entity {
 
 		return true;
 	}
-
+	*/
 	/**
 	 * Checks token door vs number of held tokens.
 	 * @param door the door being checked for.
@@ -353,11 +350,15 @@ public class Player extends Entity {
 	}
 	
 
+	public void findItem(Class<?> itemClass) {
+		
+	}
+	
 	/**
 	 * This method handles the death of the player.
 	 */
 
-	private void playerDeath() {
+	public void playerDeath() {
 		this.alive = false;
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Death");
@@ -383,7 +384,7 @@ public class Player extends Entity {
 	 */
 	public boolean hasItem(Class<?> itemCheck) {
 		for (Item item : this.inventory) {
-			if (item.getClass() == itemCheck) {
+			if (itemCheck.isInstance(item)) {
 				System.out.println("returned true");
 				return true;
 			}

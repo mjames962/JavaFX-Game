@@ -59,10 +59,6 @@ public class Goal extends Cell {
 		alert.showAndWait();
 	}
 	
-	public String cellName() {
-		return "Goal";
-	}
-	
 	public String getSprite() {
 		return SPRITE;
 	}

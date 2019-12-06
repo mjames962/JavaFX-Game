@@ -33,9 +33,6 @@ public class FireBootsCell extends Collectible {
 		return SPRITE;
 	}
 	
-	public String cellName() {
-		return "FireBootsCell";
-	}
 	
 	public char getChar() {
 		return 'f';

@@ -65,13 +65,6 @@ public abstract class Cell implements Sprite {
 	}
 	
 	/**
-	 * Get the sprite (placeholder).
-	 * @return the sprite being used
-	 */	
-	public String cellName() {
-		return "";
-	}
-	/**
 	 * Getter for the class' sprite.
 	 * @return gives the generic sprite
 	 */
