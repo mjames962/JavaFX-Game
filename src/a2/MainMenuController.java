@@ -98,7 +98,7 @@ public class MainMenuController implements Initializable {
 			lstView_Users.setVisible(true);
 			
 		}
-		MusicPlayer.playMusic("src/resources/sound bytes/Background music.mp3");
+		
 		
 	}
 	
