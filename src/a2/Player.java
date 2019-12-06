@@ -362,7 +362,6 @@ public class Player extends Entity {
 		alert.setHeaderText("You died.");
 		alert.setContentText(null);
 		alert.showAndWait();
-		getLevel().addDeath();
 		Level.restartLevel();
 	}
 

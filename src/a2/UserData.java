@@ -260,10 +260,13 @@ public class UserData {
 			System.out.println("Could not read death leaderboard file!");
 			System.exit(-1);
 		}
-		while (in.hasNextLine()) {
+		while (in.hasNext()) {
+			
 			String name = in.next();
+			System.out.println(name);
 			int deaths = in.nextInt();
 			map.put(name, deaths);
+			in.nextLine();
 		}
 		return map;
 	}

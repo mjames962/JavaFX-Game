@@ -18,7 +18,7 @@ public class Leaderboard {
 	private ArrayList<LeaderboardEntry> entries = new ArrayList<>();
 	private HashMap<String, LeaderboardColumn<?>> columns = new HashMap<>();
 	private ArrayList<LeaderboardColumn<?>> orderedColumns = new ArrayList<>();
-	private TableColumn.SortType sortType = TableColumn.SortType.DESCENDING;
+	private TableColumn.SortType sortType = TableColumn.SortType.ASCENDING;
 	private LeaderboardColumn<?> sortedColumn;
 	
 	/**

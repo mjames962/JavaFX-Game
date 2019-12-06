@@ -52,17 +52,6 @@ public class LeaderboardEntry {
 		return entryData.containsKey(column.getName());
 	}
 	
-	//probably not needed
-	/**
-	 * A convient method for adding lots of data at once.
-	 * @param data the data beign added 
-	 */
-	public void addDatas(HashMap<String, Object> data) {
-		for (String name : data.keySet()) {
-			addData(name, data.get(name));
-		}
-	}
-	
 	/**
 	 * Gets data of column for this entry.
 	 * @param name Name of the column you wish to retrieve
