@@ -16,7 +16,7 @@
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
           <children>
             <Label layoutX="137.0" layoutY="14.0" text="Choose Character" textFill="WHITE" />
-            <ComboBox fx:id="cmb_CharSelect" layoutX="137.0" layoutY="39.0" onAction="#handleCmbSelect" prefHeight="21.0" prefWidth="140.0" promptText="Choose character">
+            <ComboBox fx:id="cmb_CharSelect" layoutX="137.0" layoutY="39.0" onAction="#handleCmbSelect" prefHeight="25.0" prefWidth="145.0" promptText="Choose character">
               <items>
                 <FXCollections fx:factory="observableArrayList" />
               </items>
@@ -29,7 +29,7 @@
       <right>
         <AnchorPane prefHeight="333.0" prefWidth="413.0">
           <children>
-            <Label layoutX="14.0" layoutY="14.0" text="Preview" textFill="WHITE" />
+            <Label layoutX="14.0" layoutY="10.0" text="Preview" textFill="WHITE" />
             <Label fx:id="lbl_Preview" layoutX="14.0" layoutY="44.0" text="" textFill="WHITE" />
           </children>
         </AnchorPane>

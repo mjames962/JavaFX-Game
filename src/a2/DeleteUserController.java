@@ -27,8 +27,6 @@ public class DeleteUserController {
 	private TextField txt_User;
 	@FXML
 	private AnchorPane DeleteRoot;
-
-		// TODO Auto-generated method stub
 		
 	/**
 	 * Deletes the selected user.

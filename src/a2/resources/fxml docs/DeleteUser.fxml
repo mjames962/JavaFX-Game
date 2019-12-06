@@ -10,9 +10,13 @@
 
 <AnchorPane id="AnchorPane" fx:id="DeleteRoot" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.DeleteUserController">
   <children>
-    <BorderPane layoutX="80.0" layoutY="70.0" prefHeight="247.0" prefWidth="323.0">
+    <BorderPane layoutX="68.0" layoutY="86.0" prefHeight="247.0" prefWidth="323.0">
       <bottom>
-        <Button id="btn_Delete" fx:id="btnBack" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" BorderPane.alignment="BASELINE_CENTER" />
+        <Pane prefHeight="66.0" prefWidth="323.0">
+          <children>
+            <Button id="btn_Delete" fx:id="btnBack" layoutX="14.0" layoutY="0.0" mnemonicParsing="false" onAction="#handleBackBtn" text="Back" />
+          </children>
+        </Pane>
       </bottom>
       <center>
         <TextField fx:id="txt_User" maxWidth="200.0" prefWidth="200.0" promptText="Name" text="" BorderPane.alignment="CENTER" />
