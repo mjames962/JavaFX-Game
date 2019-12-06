@@ -421,6 +421,7 @@ public class Level {
 		int startX = in.nextInt() - 1; // -1 to convert file to 0 indexed array
 		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
+		int direction = in.nextInt();
 
 
 		Vector2D vector = new Vector2D(startX, startY);
@@ -442,6 +443,9 @@ public class Level {
 			break;
 		case 4:
 			entity = new SmartTargetEnemy(vector, entityID, this);
+			break;
+		case 10:
+			entity = new Dagger(vector, direction);
 			break;
 		default:
 			entity = null;
@@ -524,66 +528,70 @@ public class Level {
 	
 	public void saveLevelProgress(Profile currentUser) throws IOException {
 
-		//Profile currentUser = UserData.getCurrentUser();
 		String name = currentUser.getName();
 		String levelName = this.levelFile.getName();
-		
+		String printLine;
 		String saveFilePath;
-		
+
 		if (levelName.contains(name)) {
 			saveFilePath = LEVEL_STORAGE + "/" + levelName;
 		} else {
 			saveFilePath = LEVEL_STORAGE + "/" + name + "_" + levelName;
 		}
-		
+
 		File saveFile = new File(saveFilePath);
 		saveFile.delete();
 		saveFile.createNewFile();
-		
-		int xLength = this.levelXLength();
-		int yLength = this.levelYLength();
-		
 
 		// write x and y length
-		Files.write(Paths.get(saveFilePath), (xLength + " " + yLength + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+		Files.write(Paths.get(saveFilePath), (this.xLength + " " + this.yLength + "\n").getBytes(),
 				StandardOpenOption.APPEND);
 
-		
-		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+
+		writeLevelLayout(saveFilePath);
+
+		writeEntities(saveFilePath);
+
+		writeTokenDoors(saveFilePath);
+
+		writeTeleporters(saveFilePath);
+
+		writePlayerInventory(saveFilePath);
+
+	}
+	
+	private void writeLevelLayout(String saveFilePath) throws IOException {
 		String printLine = "";
 		// write level layout
-		for (int i = yLength - 1; i >= 0; i--) {
-			for (int j = 0; j < xLength; j++) {
+		for (int i = this.yLength - 1; i >= 0; i--) {
+			for (int j = 0; j < this.xLength; j++) {
 				Cell cell = this.getCellAt(j, i);
 				printLine = printLine + cell.getChar();
 			}
 			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
 			printLine = "";
 		}
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	private void writeEntities(String saveFilePath) throws IOException {
+		String printLine = "";
 		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		
-		printLine = "";
-		// write entities
 		for (Entity e : this.entityList) {
 			printLine = printLine + (e.getVector().getX() + 1) + " ";
 			printLine = printLine + (e.getVector().getY() + 1) + " ";
 			printLine = printLine + e.getEntityID() + " ";
-			//printLine = printLine + e.getDirection();
+			printLine = printLine + e.getDirection();
 			
 			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
 			printLine = "";
 		}
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		printLine = "";
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	private void writeTokenDoors(String saveFilePath) throws IOException {
+		String printLine = "";
 		// write token doors
 		for (int i = yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < xLength; j++) {
@@ -599,11 +607,11 @@ public class Level {
 				
 			}
 		}
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		printLine = "";
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	private void writeTeleporters(String saveFilePath) throws IOException {
+		String printLine = "";
 		// write teleporters
 		for (int i = yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < xLength; j++) {
@@ -620,11 +628,11 @@ public class Level {
 
 			}
 		}
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		printLine = "";
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	private void writePlayerInventory(String saveFilePath) throws IOException {
+		String printLine = "";
 		// write inventory
 		LinkedList<Item> inventory = this.getPlayer().getInventory();
 		int tokenCount = this.getPlayer().getTokenCount();
@@ -672,9 +680,7 @@ public class Level {
 		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
 				StandardOpenOption.APPEND);
 		
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
 	}
 	
 
