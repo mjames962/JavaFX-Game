@@ -30,6 +30,8 @@ public class MainMenuController implements Initializable {
 	private Button btn_Create;
 	@FXML
 	private Button btn_Delete;
+	@FXML
+	private Button btn_Quit;
 	@FXML 
 	private TextField tbox_Username;
 	@FXML 
@@ -118,6 +120,12 @@ public class MainMenuController implements Initializable {
 			System.exit(-1);
 		}
 	}
+	
+	@FXML
+	private void handleQuitBtn(ActionEvent event) throws IOException {
+		System.exit(0);
+	}
+	
 	@Override
 	/**
 	 * Initialises the main menu window.
