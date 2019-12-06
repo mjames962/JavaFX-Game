@@ -318,9 +318,57 @@ public class Level {
 			readTeleporter(line);
 			line = in.nextLine();
 		}
+		line = in.nextLine();
+		
+		// player inventory
+		while (!line.equals("*")) {
+			readInventory(line);
+			line = in.nextLine();
+		}
 		
 		in.close();
 	}
+	
+	public void readInventory(String str) {
+		Scanner in = new Scanner(str);
+
+		Player player = this.getPlayer();
+		int redKeys = in.nextInt();
+		int greenKeys = in.nextInt();
+		int blueKeys = in.nextInt();
+		int tokenCount = in.nextInt();
+		int daggerCount = in.nextInt();
+		Boolean hasFireBoots = in.nextBoolean();
+		Boolean hasFlippers = in.nextBoolean();
+
+		for (int i = 0; i < redKeys; i++) {
+			player.getInventory().add(new RedKey());
+		}
+
+		for (int i = 0; i < greenKeys; i++) {
+			player.getInventory().add(new GreenKey());
+		}
+
+		for (int i = 0; i < blueKeys; i++) {
+			player.getInventory().add(new BlueKey());
+		}
+
+		player.setTokenCount(tokenCount);
+
+		for (int i = 0; i < daggerCount; i++) {
+			player.getInventory().add(new DaggerItem());
+		}
+
+		if (hasFireBoots) {
+			player.getInventory().add(new FireBoots());
+		}
+
+		if (hasFlippers) {
+			player.getInventory().add(new Flippers());
+		}
+
+	}
+	
 	/**
 	 * Reads in data for Teleporter Cells.
 	 * @param str is the string being read in for the 
@@ -354,7 +402,6 @@ public class Level {
 		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
 
-		String direction = in.next();
 
 		Vector2D vector = new Vector2D(startX, startY);
 
@@ -368,7 +415,7 @@ public class Level {
 			entity = new StraightLine(vector, entityID, this);
 			break;
 		case 2:
-			entity = new WallFollowing(vector, entityID, direction, this);
+			entity = new WallFollowing(vector, entityID, this);
 			break;
 		case 3:
 			entity = new DumbTargeting(vector, entityID, this);
@@ -556,6 +603,7 @@ public class Level {
 		int redKeys = 0;
 		int greenKeys = 0;
 		int blueKeys = 0;
+		int daggerCount = 0;
 		boolean fireBoots = false;
 		boolean flippers = false;
 		
@@ -576,15 +624,17 @@ public class Level {
 			case (5) :
 				flippers = true;
 				break;
+			case (10) :
+				daggerCount++;
 			default :
-				
 			}
 		}
 		
 		printLine = printLine + redKeys + " ";
-		printLine = printLine + blueKeys + " ";
 		printLine = printLine + greenKeys + " ";
+		printLine = printLine + blueKeys + " ";
 		printLine = printLine + tokenCount + " ";
+		printLine = printLine + daggerCount + " ";
 		printLine = printLine + fireBoots + " ";
 		printLine = printLine + flippers;
 		

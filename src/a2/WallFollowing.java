@@ -24,7 +24,7 @@ public class WallFollowing extends Entity {
 	 * @param level holds the current level
 	 */
 	public WallFollowing(Vector2D currentVector, 
-			int enemyID, String direction, Level level) {
+			int enemyID, Level level) {
 		super(currentVector);
 		setEntityID(2);
 		currentVector = this.getCurrentVector();
