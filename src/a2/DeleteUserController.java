@@ -70,8 +70,8 @@ public class DeleteUserController {
 	}
 	/**
 	 * Handles back button event.
-	 * @param event Checks for an event occurring.
-	 * @throws IOException .
+	 * @param event Back button click.
+	 * @throws IOException On resource selection. 
 	 */
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
