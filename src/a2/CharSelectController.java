@@ -20,7 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 
-public class charSelectController implements Initializable{
+/**
+ * Allows the user to select and image sprite. 
+ * @author Jensen
+ * 
+ */
+public class CharSelectController implements Initializable{
 	//to use replace file path with 
 	private static String fileLocation = "a2/resources/stock photos/Player1.png";
 	private String fileSubstring;
