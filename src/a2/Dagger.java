@@ -3,18 +3,26 @@ package a2;
 import a2.Player.ShootDirection;
 import cell.Cell;
 import cell.DaggerCell;
-
+/**
+ * The Class object for the moving dagger entity.
+ * @author Tom Wood
+ * @version 1.2
+ */
 public class Dagger extends Entity {
-	
 	public static final String SPRITE = "a2/resources/stock photos/Dagger.png";
+	private static final int MAGIC3 = 3;
+	private static final int MAGIC10 = 10;	
 	public final String SPRITE2;
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = true;
-	/**		 * An item of type blue key.
+	/**		 
+	 * Holds directions for the moving Dagger.
+	 * @param pos holds the position
+	 * @param dir holds the direction
 	 */
 	public Dagger(Vector2D pos, ShootDirection dir) {
 		super(pos);
-		setEntityID(10);
+		setEntityID(MAGIC10);
 		SPRITE2 = getDirSprite(dir);
 	}
 	
@@ -54,7 +62,11 @@ public class Dagger extends Entity {
 			}
 		}
 	}
-	
+	/**
+	 * Checks the direction and calculates the next move.
+	 * @param isX Checks if direction of travel is Vertical or Horizontal
+	 * @return gives next modifier to reach the next location
+	 */
 	public int getMoveModifier(boolean isX) {
 		switch (direction) {
 			case 0:
@@ -75,7 +87,7 @@ public class Dagger extends Entity {
 				} else {
 					return -1;
 				}
-			case 3:
+			case MAGIC3:
 				if (isX) {
 					return -1;
 				} else {
@@ -86,7 +98,11 @@ public class Dagger extends Entity {
 			
 		}
 	}
-		
+	/**
+	 * Getter for the direction of movement of the entity.
+	 * @param dir reads in the direction
+	 * @return gives the case for direction of travel
+	 */
 	public int getDirection(ShootDirection dir) {
 		switch (dir) {
 			case UP:
@@ -96,12 +112,17 @@ public class Dagger extends Entity {
 			case LEFT:
 				return 1;
 			case RIGHT:
-				return 3;
+				return MAGIC3;
 			default:
 				return 0;	
 		}
 	}
 	
+	/**
+	 * Identifies the correct sprite for the direction the entity is moving.
+	 * @param dir the direction of travel
+	 * @return gives sprite for the given direction
+	 */
 	public String getDirSprite(ShootDirection dir) {
 		switch (dir) {
 			case UP:
