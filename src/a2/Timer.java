@@ -70,7 +70,7 @@ public class Timer {
 	 * new value.
 	 * @param save The value savedTime is being set to
 	 */
-	public static void setSavedTime(long save){
+	public static void setSavedTime(long save) {
 		savedTime = save;
 	}
 

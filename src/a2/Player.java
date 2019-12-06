@@ -214,13 +214,15 @@ public class Player extends Entity {
 				iter.remove();
 			}
 		}
-		for (Item item : this.inventory) {
-			if (item.getItemID() == DAGGER_ID) {
-				this.inventory.remove(item);
-				Dagger newDagger = new Dagger(shoot(input), input);
-				newDagger.setDirection(newDagger.getDirection(input));
-				Level.getCurrentLevel().getEntityList().add(
-						newDagger);
+		if (cell instanceof  Ground) {
+			for (Item item : this.inventory) {
+				if (item.getItemID() == DAGGER_ID) {
+					this.inventory.remove(item);
+					Dagger newDagger = new Dagger(shoot(input), input);
+					newDagger.setDirection(newDagger.getDirection(input));
+					Level.getCurrentLevel().getEntityList().add(
+							newDagger);
+				}
 			}
 		}
 		 
