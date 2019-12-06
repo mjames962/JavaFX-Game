@@ -11,11 +11,6 @@ public class Flippers extends Item {
 	private static final String SPRITE = 
 			"a2/resources/stock photos/flippers.png";
 
-	@Override
-	void pickUp(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
 	/**
 	 * Returns the ItemID for Flippers.
 	 * @return gives the ItemID
