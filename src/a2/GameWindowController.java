@@ -75,6 +75,9 @@ public class GameWindowController implements Initializable {
 	@FXML
 	private Label lbl_TokenCount;
 	
+	@FXML
+	private Label lbl_Deaths;
+	
 	/**
 	 * Gets the current controller.
 	 * @return currentController
@@ -273,6 +276,7 @@ public class GameWindowController implements Initializable {
     	lbl_User.setGraphic(imageView);
     	lbl_TokenCount.setText("Token Count: " 
     				+ Level.getCurrentLevel().getPlayer().getTokens());
+    	lbl_Deaths.setText("Deaths: " + Level.getCurrentDeaths());
 	}
 	
 	/**
@@ -294,7 +298,7 @@ public class GameWindowController implements Initializable {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		gamePane.getChildren().setAll(window);
-		
+		Level.resetDeaths();
 	}
 	
 	/**
@@ -307,6 +311,7 @@ public class GameWindowController implements Initializable {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/LevelSelection.fxml"));  
 		gamePane.getChildren().setAll(window);
+		Level.resetDeaths();
 	}
 	
 	/**

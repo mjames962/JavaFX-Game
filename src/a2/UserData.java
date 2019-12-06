@@ -3,13 +3,18 @@ package a2;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javafx.scene.control.TableColumn.SortType;
 
 
 /**
@@ -24,7 +29,7 @@ public class UserData {
 	final public static String LEVEL_FOLDER_LOCATION = "src/a2/resources/file formats";
 	final public static String IMAGE_FOLDER_LOCATION = "src/a2/resources/stock photos";
 	final public static String FXML_FOLDER_LOCATION = "src/a2/resources/fxml docs";
-	
+	final public static String LEADERBOARD_FOLDER_LOCATION = "src/a2/resources/Leaderboards";
 	private static Profile currentUser;
 	
 	public static Profile getCurrentUser() {
@@ -190,6 +195,7 @@ public class UserData {
 			TimeValue tv = new TimeValue(leaderboardFile.nextLong());
 			le.addData("Time", tv);	
 			leader.setSortedColumn("Time");
+			leader.setSortType(SortType.ASCENDING);
 			leader.addEntry(le);
 		}
 		leaderboardFile.close();
@@ -197,6 +203,71 @@ public class UserData {
 		
 	}
 	
+	public static Leaderboard getDeathLeaderboard(int levelNo) throws IOException {
+		File deathfile = getDeathFile(levelNo);
+		Leaderboard leader = new Leaderboard();
+		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
+		leader.addColumn(new LeaderboardColumn<Integer>(Integer.class, "Deaths"));
+		HashMap<String,Integer> deathmap = readDeaths(deathfile);
+		for (String name : deathmap.keySet()) {
+			int deaths = deathmap.get(name);
+			LeaderboardEntry le = new LeaderboardEntry(leader);
+			le.addData("Name", name);
+			le.addData("Deaths", deaths);
+			leader.addEntry(le);
+		}
+		return leader;
+	}
 	
+	public static File getDeathFile(int level) {
+		File deathfile = new File(UserData.LEADERBOARD_FOLDER_LOCATION + "/DTHLevel"
+				+ Integer.toString(level) + ".txt");
+		if (!deathfile.exists()) {
+			try {
+				deathfile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.err.println("Could not create death leaderboard file!");
+				System.exit(-1);
+			}
+		}
+		return deathfile;
+	}
 	
+	public static void writeDeaths(HashMap<String,Integer> map,File f) {
+		PrintWriter writer = null;
+		try {
+			writer = new PrintWriter(f, "UTF-8");
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (UnsupportedEncodingException e1) {
+			e1.printStackTrace();
+		}
+		for (String k : map.keySet()) {
+			Integer deaths = map.get(k);
+			writer.println(k + " " + deaths.toString() + "\n");
+		}
+		writer.close();
+	}
+	
+	public static HashMap<String,Integer> readDeaths(File f) {
+		HashMap<String, Integer> map = new HashMap<>();
+		Scanner in = null;
+		try {
+			in = new Scanner(f);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("Could not read death leaderboard file!");
+			System.exit(-1);
+		}
+		while (in.hasNext()) {
+			
+			String name = in.next();
+			System.out.println(name);
+			int deaths = in.nextInt();
+			map.put(name, deaths);
+			in.nextLine();
+		}
+		return map;
+	}
 }

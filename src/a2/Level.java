@@ -28,6 +28,8 @@ public class Level {
 	private int xLength;
 	private int yLength;
 	private static Level currentLevel;
+	private static int currentDeaths;
+	private static boolean shouldLoadDeaths = true;
 	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
 	private int levelNo;
 	
@@ -106,7 +108,10 @@ public class Level {
 	 * Calls the level to be reloaded in the event of player death.
 	 */
 	public static void restartLevel() {
+		shouldLoadDeaths = false;
 		currentLevel = new Level(currentLevel.levelFile);
+		addDeath();
+		shouldLoadDeaths = true;
 		GameWindowController.getCurrentController().refreshLevel();
 	}
 	
@@ -120,6 +125,19 @@ public class Level {
 		return levelFile;
 	}
 	
+	
+	public static void addDeath() {
+		currentDeaths += 1;
+		System.out.println("DETH" + currentDeaths);
+	}
+	
+	public static int getCurrentDeaths() {
+		return currentDeaths;
+	}
+	
+	public static void resetDeaths() {
+		currentDeaths = 0;
+	}
 
 	/**
 	 * Method for .
@@ -257,6 +275,7 @@ public class Level {
 		if (nextLevel.exists()) {
 			currentLevel = new Level(nextLevel);
 			GameWindowController.getCurrentController().refreshLevel();
+			Level.resetDeaths();
 		} else {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("All levels completed!");
@@ -366,6 +385,8 @@ public class Level {
 		Boolean hasFlippers = in.nextBoolean();
 		Timer.setSavedTime(0);
 		long time = in.nextLong();
+		int deaths = in.nextInt();
+		
 		Timer.setSavedTime(time);
 
 		for (int i = 0; i < redKeys; i++) {
@@ -393,6 +414,10 @@ public class Level {
 		if (hasFlippers) {
 			player.getInventory().add(new Flippers());
 		}
+		if (shouldLoadDeaths) {
+			currentDeaths = deaths;
+		}
+		
 
 	}
 	
@@ -711,7 +736,8 @@ public class Level {
 		printLine = printLine + daggerCount + " ";
 		printLine = printLine + fireBoots + " ";
 		printLine = printLine + flippers + " ";
-		printLine = printLine + time;
+		printLine = printLine + time + " ";
+		printLine = printLine + currentDeaths;
 		
 		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
 				StandardOpenOption.APPEND);

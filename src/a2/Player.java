@@ -253,9 +253,6 @@ public class Player extends Entity {
 	 */
 	public boolean isValidMove(Vector2D cellPos) {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
-		//if (!crepCheck(cell)) {			
-		//	playerDeath();
-		//}
 		return cell.isWalkable();
 	}
 	/**
