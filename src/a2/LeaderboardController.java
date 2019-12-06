@@ -63,17 +63,21 @@ public class LeaderboardController {
 	}
 	
 	
-	
 	public void hookSelector() {
 		levelSelector.getSelectionModel().
-		selectedItemProperty().addListener(new ChangeListener<String>() {
-		      @Override
-		      public void changed(ObservableValue<? extends String> observableValue,String oldVal, String newVal) {
-		  
-		    	  changeDisplayedLeaderboard(UserData.getLevelNumber(newVal));
-		      }
-		});
+			selectedItemProperty().addListener(new ChangeListener<String>() {
+				@Override
+				public void changed(ObservableValue<? extends String> 
+						observableValue, String oldVal, String newVal) {
+					changeDisplayedLeaderboard(UserData.getLevelNumber(newVal));
+				}
+			});
 	}
+	
+	/**
+	 * Change leaderboard to intended leaderboard to display.
+	 * @param levelNo the level you are looking at the leaderboard for
+	 */
 	
 	public void changeDisplayedLeaderboard(int levelNo) {
 		
@@ -92,15 +96,29 @@ public class LeaderboardController {
 		}
 	}
 	
+	/**
+	 * Gets the current level shown by the leaderboard.
+	 * @return the level shown by the leaderboard.
+	 */
+	
 	public int getSelectedLevel() {
 		return UserData.getLevelNumber(levelSelector.getValue());
 	}
 	
+	
+	/**
+	 * Clears the table.
+	 * @param tv the table being displayed
+	 */
 	public void scrubTableView(TableView tv) {
 		tv.getItems().clear();
 		tv.getColumns().clear();
 		
 	}
+	
+	/**
+	 * Adds the vales to the options the leaderboard can show.
+	 */
 
 	public void addValuesToSelector() {
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
@@ -111,9 +129,9 @@ public class LeaderboardController {
 			
 			//gets level number from file name
 			String levelString = fileName.substring(0, fileName.length() - 4); 
-			//String levelNumString = fileName.replaceFirst("([0-9]+)\\.txt", "");
 			int levelNum;
-			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").matcher(fileName);
+			Matcher matcher = Pattern.compile("([0-9]+)\\.txt").
+					matcher(fileName);
 			if (matcher.find()) {
 				levelNum =  Integer.parseInt(matcher.group(1));
 				//System.out.println(levelNum);
@@ -154,6 +172,11 @@ public class LeaderboardController {
 		}
 			
 	}
+	
+	/**
+	 * Goes to previous window when back button pressed. 
+	 * @throws IOException if there is a failure reading throw exception
+	 */
 	
 	public void backButtonPressed() throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().

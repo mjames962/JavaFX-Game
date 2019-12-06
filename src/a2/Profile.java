@@ -21,7 +21,7 @@ import java.util.Scanner;
 public class Profile {
 
     private static final int LEADERBOARDMAXLENGTH = 3;
-    private static final int MAGIC28 = 28;
+    private static final int FILE_LENGTH = 28;
 	private File pfile;
 	private String name;
 	private int highestLevel;
@@ -42,7 +42,7 @@ public class Profile {
 		this.highestLevel = 1;
 		
 		String filePath = this.pfile.getPath();
-		filePath = filePath.substring(MAGIC28, filePath.length());
+		filePath = filePath.substring(FILE_LENGTH, filePath.length());
 		this.name = filePath.replaceFirst(".txt", "");
 	}
 	/**
@@ -101,16 +101,28 @@ public class Profile {
 		}
 	}
 	
+	/**
+	 * Saves the deaths of the player on the current level.
+	 * @param level The level the player is on.
+	 * @param deaths The number of deaths.
+	 */
+	
 	public void saveDeaths(int level, int deaths) {
 		File deathfile = UserData.getDeathFile(level);
-		HashMap<String,Integer> deathmap = UserData.readDeaths(deathfile);
-		addDeaths(deathmap,deaths);
-		UserData.writeDeaths(deathmap,deathfile);
+		HashMap<String, Integer> deathmap = UserData.readDeaths(deathfile);
+		addDeaths(deathmap, deaths);
+		UserData.writeDeaths(deathmap, deathfile);
 	}
 	
-	public void addDeaths(HashMap<String,Integer> deathmap,int deaths) {
+	/**
+	 * Adds a death to the users death count.
+	 * @param deathmap the map of the username and deaths
+	 * @param deaths the number of deaths.
+	 */
+	
+	public void addDeaths(HashMap<String, Integer> deathmap, int deaths) {
 		if (deathmap.containsKey(name)) {
-			if (deathmap.get(name) > deaths ) {
+			if (deathmap.get(name) > deaths) {
 				System.out.println("new death count" + deaths);
 				deathmap.put(name, deaths);
 			}

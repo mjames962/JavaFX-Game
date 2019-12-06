@@ -2,9 +2,6 @@ package a2;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-
-import javax.swing.plaf.basic.BasicScrollPaneUI.VSBChangeListener;
-
 import cell.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -103,6 +100,12 @@ public class Player extends Entity {
 		return nextVector;
 	}
 	
+	/**
+	 * The method for enacting the throwing of a dagger.
+	 * @param dir the direction the dagger is being thrown in
+	 * @return the next position of the dagger.
+	 */
+	
 	public Vector2D shoot(ShootDirection dir) {
 		Vector2D nextVector = new Vector2D(getCurrentVector());
 		switch (dir) {
@@ -183,6 +186,11 @@ public class Player extends Entity {
 		}
 	}
 	
+	
+	/**
+	 * Handles the throwing of the dagger.
+	 * @param input the direction the dagger is being thrown in.
+	 */
 	
 	public void handleShoot(ShootDirection input) {
 		//curDirection = input;

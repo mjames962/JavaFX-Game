@@ -453,7 +453,11 @@ public class Level {
 		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
 		int direction = in.nextInt();
-
+		final int DAGGER_ID = 10;
+		final int SMART_ID = 4;
+		final int DUMB_ID = 3;
+		final int WALL_ID = 2;
+		final int LINE_ID = 1;
 
 		Vector2D vector = new Vector2D(startX, startY);
 
@@ -463,19 +467,19 @@ public class Level {
 			case 0:
 				entity = new Player(vector, entityID, this);
 				break;
-			case 1:
+			case LINE_ID:
 				entity = new StraightLine(vector, entityID, this);
 				break;
-			case 2:
+			case WALL_ID:
 				entity = new WallFollowing(vector, entityID, this);
 				break;
-			case 3:
+			case DUMB_ID:
 				entity = new DumbTargeting(vector, entityID, this);
 				break;
-			case 4:
+			case SMART_ID:
 				entity = new SmartTargetEnemy(vector, entityID, this);
 				break;
-			case 10:
+			case DAGGER_ID:
 				entity = new Dagger(vector, direction);
 				break;
 			default:
@@ -578,10 +582,12 @@ public class Level {
 		saveFile.createNewFile();
 
 		// write x and y length
-		Files.write(Paths.get(saveFilePath), (this.xLength + " " + this.yLength + "\n").getBytes(),
+		Files.write(Paths.get(saveFilePath), (this.xLength + " " 
+				+ this.yLength + "\n").getBytes(),
 				StandardOpenOption.APPEND);
 
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
 
 		writeLevelLayout(saveFilePath);
 
@@ -596,7 +602,7 @@ public class Level {
 	}
 	
 	/**
-	 * Writes the current state of the level cells in the save file
+	 * Writes the current state of the level cells in the save file.
 	 * @param saveFilePath File path to the save file.
 	 * @throws IOException when file can't be written to.
 	 */
@@ -608,10 +614,12 @@ public class Level {
 				Cell cell = this.getCellAt(j, i);
 				printLine = printLine + cell.getChar();
 			}
-			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), 
+					StandardOpenOption.APPEND);
 			printLine = "";
 		}
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), 
+				StandardOpenOption.APPEND);
 	}
 	
 	/**
@@ -628,10 +636,12 @@ public class Level {
 			printLine = printLine + e.getEntityID() + " ";
 			printLine = printLine + e.getDirection();
 			
-			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
+					StandardOpenOption.APPEND);
 			printLine = "";
 		}
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), 
+				StandardOpenOption.APPEND);
 	}
 	
 	
@@ -648,16 +658,20 @@ public class Level {
 				Cell cell = this.getCellAt(j, i);
 				char cellChar = cell.getChar();
 				if (cellChar == 'D') {
-					printLine = printLine + (cell.getX() + 1) + " " + (cell.getY() + 1) + " ";
-					printLine = printLine + ((TokenDoor) cell).getRequiredTokens();
+					printLine = printLine + (cell.getX() + 1) + " " 
+							+ (cell.getY() + 1) + " ";
+					printLine = printLine + ((TokenDoor) cell)
+							.getRequiredTokens();
 					
-					Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+					Files.write(Paths.get(saveFilePath), (printLine + "\n").
+							getBytes(), StandardOpenOption.APPEND);
 					printLine = "";
 				}
 				
 			}
 		}
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), 
+				StandardOpenOption.APPEND);
 	}
 	
 	/**
@@ -673,17 +687,21 @@ public class Level {
 				Cell cell = this.getCellAt(j, i);
 				char cellChar = cell.getChar();
 				if (cellChar == 'T') {
-					printLine = printLine + (cell.getX() + 1) + " " + (cell.getY() + 1) + " ";
+					printLine = printLine + (cell.getX() + 1) + " " +
+							(cell.getY() + 1) + " ";
 					Vector2D vector = ((Teleporter) cell).getLinkedTP();
-					printLine = printLine + (vector.getX() + 1) + " " + (vector.getY() + 1);
+					printLine = printLine + (vector.getX() + 1) + " " 
+							+ (vector.getY() + 1);
 
-					Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
+					Files.write(Paths.get(saveFilePath), (printLine + "\n")
+							.getBytes(), StandardOpenOption.APPEND);
 					printLine = "";
 				}
 
 			}
 		}
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
 	}
 	
 	/**
@@ -696,7 +714,6 @@ public class Level {
 		String printLine = "";
 		// write inventory
 		LinkedList<Item> inventory = this.getPlayer().getInventory();
-		int tokenCount = this.getPlayer().getTokenCount();
 		int redKeys = 0;
 		int greenKeys = 0;
 		int blueKeys = 0;
@@ -704,31 +721,31 @@ public class Level {
 		boolean fireBoots = false;
 		boolean flippers = false;
 		Timer.stop();
-		long time = Timer.getSavedTime();
 		
 		for (Item i : inventory) {
 			switch (i.getItemID()) {
-			case (1) :
-				redKeys++;
-			break;
-			case (2) :
-				greenKeys++;
-			break;
-			case (3) :
-				blueKeys++;
-				break;
-			case (4) :
-				fireBoots = true;
-				break;
-			case (5) :
-				flippers = true;
-				break;
-			case (10) :
-				daggerCount++;
-			default :
+				case (1) :
+					redKeys++;
+					break;
+				case (2) :
+					greenKeys++;
+					break;
+				case (3) :
+					blueKeys++;
+					break;
+				case (4) :
+					fireBoots = true;
+					break;
+				case (5) :
+					flippers = true;
+					break;
+				case (10) :
+					daggerCount++;
+				default :
 			}
 		}
 		
+		int tokenCount = this.getPlayer().getTokenCount();
 		printLine = printLine + redKeys + " ";
 		printLine = printLine + greenKeys + " ";
 		printLine = printLine + blueKeys + " ";
@@ -736,12 +753,14 @@ public class Level {
 		printLine = printLine + daggerCount + " ";
 		printLine = printLine + fireBoots + " ";
 		printLine = printLine + flippers + " ";
+		long time = Timer.getSavedTime();
 		printLine = printLine + time + " ";
 		printLine = printLine + currentDeaths;
 		
 		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
 				StandardOpenOption.APPEND);
 		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+				StandardOpenOption.APPEND);
 	}
 }

@@ -39,14 +39,14 @@ public class LeaderboardColumn<T> {
 	 */
 	private void setupFactory() {
 		tcolumn.setCellValueFactory(
-	    		new Callback<CellDataFeatures<LeaderboardEntry, T>
-		    	, ObservableValue<T>>() {
+	    		new Callback<CellDataFeatures<LeaderboardEntry, T>,
+	    							ObservableValue<T>>() {
 	    			public ObservableValue<T> call(CellDataFeatures<
 		        		LeaderboardEntry, T> p) {
-		        	LeaderboardEntry le = (LeaderboardEntry) p.getValue();
-		            return new SimpleObjectProperty(le.getData(name));
-		        }
-		     });
+	    				LeaderboardEntry le = (LeaderboardEntry) p.getValue();
+	    				return new SimpleObjectProperty(le.getData(name));
+	    			}
+	    		});
 	}
 	
 	/**
@@ -76,10 +76,11 @@ public class LeaderboardColumn<T> {
 	
 	
 	/**
-	 * Gets javafx TableColumn representation. Should not be needed in most cases.
-	 * @return TableColumn<LeaderboardEntry,Type>
+	 * Gets javafx TableColumn representation. Should not be needed in most
+	 * cases.
+	 * @return tcolumn is the table column being added to the table
 	 */
-	public TableColumn<LeaderboardEntry,T> getTableColumn() {
+	public TableColumn<LeaderboardEntry, T> getTableColumn() {
 		return tcolumn;
 	}
 	
@@ -91,8 +92,8 @@ public class LeaderboardColumn<T> {
 		return name;
 	}
 	/**
-	 * Returns type of the column as a Class<T> object.
-	 * @return Class<T>
+	 * Returns type of the column as a Class object.
+	 * @return the type of class.
 	 */
 	public Class<T> getMyType() {
 		return type;
