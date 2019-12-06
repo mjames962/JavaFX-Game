@@ -23,11 +23,13 @@ import javafx.scene.layout.AnchorPane;
 /**
  * Allows the user to select and image sprite. 
  * @author Jensen
+ * @version 1.2
  * 
  */
-public class CharSelectController implements Initializable{
-	//to use replace file path with 
-	private static String fileLocation = "a2/resources/stock photos/Player1.png";
+public class CharSelectController implements Initializable {
+	private static final int FILEDELIMETER = 6;
+	private static String fileLocation =
+			"a2/resources/stock photos/Player1.png";
 	private String fileSubstring;
 	@FXML
 	private AnchorPane charSelection;
@@ -44,10 +46,19 @@ public class CharSelectController implements Initializable{
 	@FXML
 	private Label lbl_Preview;
 	
+	/**
+	 * Returns fileLocation.
+	 * @return fileLocation the location of the chosen image sprite
+	 */
 	public static String getCharSprite() {
 		return fileLocation;
 	}
 	
+	/**
+	 * Sets the sprite the user has selected in the combobox.
+	 * @param event Accept button click 
+	 * @throws IOException On resource selection.
+	 */
 	@FXML
 	private void handleAcceptBtn(Event event) throws IOException {
 		fileSubstring = cmb_CharSelect.getValue();
@@ -74,6 +85,11 @@ public class CharSelectController implements Initializable{
 		
 	}
 	
+	/**
+	 * Takes the user back to the Level Select window.
+	 * @param event Back button click.
+	 * @throws IOException On resource selection.
+	 */
 	@FXML
 	private void handleBackBtn(Event event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
@@ -81,6 +97,11 @@ public class CharSelectController implements Initializable{
 		charSelection.getChildren().setAll(window);
 	}
 	
+	/**
+	 * Sets lbl_Preview to the selected image sprite.
+	 * @param event combobox selection.
+	 * @throws IOException On resource selection.
+	 */
 	@FXML
 	private void handleCmbSelect(Event event) throws IOException {
 		ImageView image = new ImageView("a2/resources/stock photos/" 
@@ -88,6 +109,9 @@ public class CharSelectController implements Initializable{
 		lbl_Preview.setGraphic(image);
 	}
 	
+	/**
+	 * Adds file names to the combobox on level load.
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File folder = new File("src/a2/resources/stock photos");
@@ -95,7 +119,8 @@ public class CharSelectController implements Initializable{
 		for (File file : listOfFiles) {
 			String fileName = file.getName();
 			if (file.isFile()) {
-				if (fileName.substring(0,6).equals("Player")) {			
+				if (fileName.substring(0, FILEDELIMETER)
+						.equals("Player")) {			
 					cmb_CharSelect.getItems().add(fileName);
 				}  	
 		    }
