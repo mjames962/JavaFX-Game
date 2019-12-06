@@ -40,6 +40,11 @@ public class Entity implements Sprite {
 		return SPRITE;
 	}
 	
+	public int getDirection() {
+		return -1;
+		
+	}
+	
 	
 	
 	/**
