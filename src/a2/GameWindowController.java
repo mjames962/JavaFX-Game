@@ -245,7 +245,7 @@ public class GameWindowController implements Initializable {
 	
 	
 	/**
-	 * draws inventory window to canvas.
+	 * Draws inventory window to canvas.
 	 */
 	public void drawInventory() {
 		LinkedList<Item> inventory = 
@@ -287,8 +287,9 @@ public class GameWindowController implements Initializable {
         
 	}
 	/**
-	 *Deals with the quit button on the 
-	 *game window to take them to the main menu.
+	 * Deals with the quit button events.
+	 * @param event
+	 * @throws
 	 */
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
@@ -299,8 +300,7 @@ public class GameWindowController implements Initializable {
 	}
 	
 	/**
-	 * Deals with back button events to take 
-	 * the user back to the level select screen.
+	 * Deals with back button events.
 	 * @param event
 	 * @throws IOException 
 	 */
@@ -312,6 +312,7 @@ public class GameWindowController implements Initializable {
 	}
 	
 	/**
+	 * Deals with save button events.
 	 * @param event
 	 */
 	@FXML
