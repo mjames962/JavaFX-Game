@@ -12,7 +12,6 @@ public class Dagger extends Entity {
 	public static final String SPRITE = "a2/resources/stock photos/Dagger.png";
 	private static final int MAGIC3 = 3;
 	private static final int MAGIC10 = 10;	
-	public final String SPRITE2;
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = true;
 	/**		 
@@ -23,7 +22,12 @@ public class Dagger extends Entity {
 	public Dagger(Vector2D pos, ShootDirection dir) {
 		super(pos);
 		setEntityID(MAGIC10);
-		SPRITE2 = getDirSprite(dir);
+	}
+	
+	public Dagger(Vector2D pos, int dir) {
+		super(pos);
+		setEntityID(MAGIC10);
+		direction = dir;
 	}
 	
 	@Override
@@ -116,6 +120,10 @@ public class Dagger extends Entity {
 			default:
 				return 0;	
 		}
+	}
+	
+	public int getDirection() {
+		return this.direction;
 	}
 	
 	/**

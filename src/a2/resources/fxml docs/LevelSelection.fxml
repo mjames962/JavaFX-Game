@@ -20,7 +20,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="levelScene" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="a2.LevelSelectController">
   <children>
-    <BorderPane fx:id="levelBorderPane" layoutX="98.0" layoutY="79.0" prefHeight="500.0" prefWidth="800.0">
+    <BorderPane fx:id="levelBorderPane" layoutX="98.0" layoutY="79.0" prefHeight="397.0" prefWidth="674.0">
       <bottom>
         <AnchorPane fx:id="levelBottom" maxHeight="300.0" maxWidth="300.0" prefHeight="76.0" prefWidth="490.0" BorderPane.alignment="BASELINE_LEFT">
           <padding>

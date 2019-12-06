@@ -26,7 +26,6 @@ public class WallFollowing extends Entity {
 			int enemyID, Level level) {
 		super(currentVector);
 		setEntityID(2);
-		currentVector = this.getCurrentVector();
 
 		
 	}
@@ -36,6 +35,11 @@ public class WallFollowing extends Entity {
 	 */
 	public String getSprite() {
 		return SPRITE;
+	}
+	
+	
+	public int getDirection(){
+		return direction;
 	}
 	
 	/**
@@ -57,8 +61,8 @@ public class WallFollowing extends Entity {
 			return nextVector;
 		} else {
 			increaseDirection();
-			return nextMove();
 		}
+		return nextMove();
 		
 	}
 	

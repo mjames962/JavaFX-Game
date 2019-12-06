@@ -11,15 +11,13 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import a2.Player.Direction;
 import cell.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 /**
  * Class for the creation of the level.
- * @author Jensen Beard, Mitch James
+ * @author Mitch James, Jensen Beard, James Colebourn, Tom Wood, George Williams Walton
  * @version 2.5
  */
 public class Level {
@@ -32,9 +30,15 @@ public class Level {
 	private static Level currentLevel;
 	private int currentDeaths;
 	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
-
-
 	private int levelNo;
+	
+	/**
+	 * Returns the level number.
+	 * @return gives the level number
+	 */
+	public int getLevelNo() {
+		return levelNo;
+	}
 	
 	
 	/**
@@ -164,10 +168,6 @@ public class Level {
 	 * @return level[x][y] cell at (x,y)
 	 */
 	public Cell getCellAt(int x, int y) {
-		if (x == 18 || y == 18) {
-			System.out.println("");
-		}
-
 		return this.level[x][y];
 	}
 	/**
@@ -208,6 +208,7 @@ public class Level {
 	public int levelXLength() {
 		return this.xLength;
 	}
+	
 	/**
 	 * returns the height of the level in # of cells.
 	 * @return gives the height of the level (y axis)
@@ -215,8 +216,9 @@ public class Level {
 	public int levelYLength() {
 		return this.yLength;
 	}
+	
 	/**
-	 * returns the current entity for player.
+	 * returns the player object for this level.
 	 * @return e , returns the entity (a player) 
 	 */
 	public Player getPlayer() {
@@ -228,9 +230,10 @@ public class Level {
 		
 		return null;
 	}
+	
 	/**
-	 * Returns the unique identifier in level names.
-	 * @return gives an int to be searched for in level files.
+	 * Returns the level number of this level object.
+	 * @return current level number
 	 */
 	public int getLevelNumber() {
 		String fileName = levelFile.getName();
@@ -242,24 +245,26 @@ public class Level {
 		}
 	}
 	/**
-	 * Returns the unique identifier for a level.
-	 * @return gives the int level identifier
+	 * Returns the name of the level file excluding ".txt".
+	 * @return level name
 	 */
 	public String getLevelIdentifier() {
 		String fileName = levelFile.getName();
 		return fileName.replaceFirst("[0-9]+\\.txt", "");
 	}
+	
 	/**
-	 * Returns the unique identifier for the next level.
-	 * @return gives the next level identifier to look for
+	 * Returns the level number of the level that appears after this one.
+	 * @return the number of the next level
 	 */
 	public File getNextLevelFile() {
 		int nextLevelNo = getLevelNumber() + 1;
 		System.out.println(levelFile.getParent() + "/" + getLevelIdentifier() + nextLevelNo);
 		return new File(levelFile.getParent() + "/" + getLevelIdentifier() + nextLevelNo + ".txt");
 	}
+	
 	/**
-	 * Loads the next Level.
+	 * Checks to see if a next level exists and loads it.
 	 */
 	public void loadNextLevel() {
 		File nextLevel = getNextLevelFile();
@@ -278,9 +283,7 @@ public class Level {
 	}
 
 	/**
-	 * Reads the file for level data.
-	 * @param fileName identifies the file extension of the level file
-	 * @return Level[][] gives the level layout array
+	 * Attempts to open a level file, reads file if successful.
 	 */
 	public void readFile() {
 		
@@ -299,9 +302,8 @@ public class Level {
 	
 
 	/**
-	 * Reads files to allow for data permanence.
-	 * @param in needed for scanner
-	 * @return 2D array of Cell type
+	 * Reads a level file and updates this object accordingly.
+	 * @param in scanner containing the level file
 	 */
 	private void readFile(Scanner in) {
 
@@ -361,7 +363,11 @@ public class Level {
 		in.close();
 	}
 	
-	public void readInventory(String str) {
+	/**
+	 * Takes a string of inventory information and adds it to the player's inventory.
+	 * @param str The string containing all of the inventory information
+	 */
+	private void readInventory(String str) {
 		Scanner in = new Scanner(str);
 
 		Player player = this.getPlayer();
@@ -427,15 +433,15 @@ public class Level {
 
 	/**
 	 * reads in Entities and their data.
-	 * @param in needed for Scanner
 	 * @param str is the string read in from file
 	 */
-	public void readEntity(String str) {
+	private void readEntity(String str) {
 		Scanner in = new Scanner(str);
 
 		int startX = in.nextInt() - 1; // -1 to convert file to 0 indexed array
 		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
+		int direction = in.nextInt();
 
 
 		Vector2D vector = new Vector2D(startX, startY);
@@ -458,6 +464,9 @@ public class Level {
 		case 4:
 			entity = new SmartTargetEnemy(vector, entityID, this);
 			break;
+		case 10:
+			entity = new Dagger(vector, direction);
+			break;
 		default:
 			entity = null;
 		}
@@ -471,9 +480,8 @@ public class Level {
 	/**
 	 * Reading in data for location and required tokens of token doors.
 	 * @param str is the string containing relevant data in the file
-	 * @param in needed for Scanner
 	 */
-	public void readTokenDoor(String str) {
+	private void readTokenDoor(String str) {
 		Scanner in = new Scanner(str);
 
 		int xPosition = in.nextInt() - 1; // -1 because of 0 indexed array
@@ -494,7 +502,7 @@ public class Level {
 	 * @param y coordinate         
 	 * @return cell gives the newly created cell
 	 */
-	public Cell readChar(char c, int x, int y) {
+	private Cell readChar(char c, int x, int y) {
 		Vector2D position = new Vector2D(x, y);
 
 		switch (c) {
@@ -537,68 +545,92 @@ public class Level {
 		}
 	}
 	
+	
+	/**
+	 * Writes a level save file in the level folder for the input user.
+	 * @param currentUser the user who the save file is being written for.
+	 * @throws IOException when file can't be written to.
+	 */
 	public void saveLevelProgress(Profile currentUser) throws IOException {
-
-		//Profile currentUser = UserData.getCurrentUser();
 		String name = currentUser.getName();
 		String levelName = this.levelFile.getName();
-		
 		String saveFilePath;
-		
+
 		if (levelName.contains(name)) {
 			saveFilePath = LEVEL_STORAGE + "/" + levelName;
 		} else {
 			saveFilePath = LEVEL_STORAGE + "/" + name + "_" + levelName;
 		}
-		
+
 		File saveFile = new File(saveFilePath);
 		saveFile.delete();
 		saveFile.createNewFile();
-		
-		int xLength = this.levelXLength();
-		int yLength = this.levelYLength();
-		
 
 		// write x and y length
-		Files.write(Paths.get(saveFilePath), (xLength + " " + yLength + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
+		Files.write(Paths.get(saveFilePath), (this.xLength + " " + this.yLength + "\n").getBytes(),
 				StandardOpenOption.APPEND);
 
-		
-		
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+
+		writeLevelLayout(saveFilePath);
+
+		writeEntities(saveFilePath);
+
+		writeTokenDoors(saveFilePath);
+
+		writeTeleporters(saveFilePath);
+
+		writePlayerInventory(saveFilePath);
+
+	}
+	
+	/**
+	 * Writes the current state of the level cells in the save file
+	 * @param saveFilePath File path to the save file.
+	 * @throws IOException when file can't be written to.
+	 */
+	private void writeLevelLayout(String saveFilePath) throws IOException {
 		String printLine = "";
 		// write level layout
-		for (int i = yLength - 1; i >= 0; i--) {
-			for (int j = 0; j < xLength; j++) {
+		for (int i = this.yLength - 1; i >= 0; i--) {
+			for (int j = 0; j < this.xLength; j++) {
 				Cell cell = this.getCellAt(j, i);
 				printLine = printLine + cell.getChar();
 			}
 			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
 			printLine = "";
 		}
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	/**
+	 * Writes the current entities and their locations to the save file.
+	 * @param saveFilePath File path to the save file.
+	 * @throws IOException when file can't be written to.
+	 */
+	private void writeEntities(String saveFilePath) throws IOException {
+		String printLine = "";
 		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		
-		printLine = "";
-		// write entities
 		for (Entity e : this.entityList) {
 			printLine = printLine + (e.getVector().getX() + 1) + " ";
 			printLine = printLine + (e.getVector().getY() + 1) + " ";
 			printLine = printLine + e.getEntityID() + " ";
-			//printLine = printLine + e.getDirection();
+			printLine = printLine + e.getDirection();
 			
 			Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(), StandardOpenOption.APPEND);
 			printLine = "";
 		}
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		printLine = "";
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	
+	/**
+	 * Writes the current Token Door setup to the save file.
+	 * @param saveFilePath File path to the save file.
+	 * @throws IOException when file can't be written to.
+	 */
+	private void writeTokenDoors(String saveFilePath) throws IOException {
+		String printLine = "";
 		// write token doors
 		for (int i = yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < xLength; j++) {
@@ -614,11 +646,16 @@ public class Level {
 				
 			}
 		}
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		printLine = "";
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	/**
+	 * Writes the teleporter connections to the save file.
+	 * @param saveFilePath File path to the save file.
+	 * @throws IOException when file can't be written to.
+	 */
+	private void writeTeleporters(String saveFilePath) throws IOException {
+		String printLine = "";
 		// write teleporters
 		for (int i = yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < xLength; j++) {
@@ -635,11 +672,17 @@ public class Level {
 
 			}
 		}
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-
-		printLine = "";
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
+	}
+	
+	/**
+	 * Writes the current state of the player's inventory to the save file.
+	 * 
+	 * @param saveFilePath File path to the save file.
+	 * @throws IOException when file can't be written to.
+	 */
+	private void writePlayerInventory(String saveFilePath) throws IOException {
+		String printLine = "";
 		// write inventory
 		LinkedList<Item> inventory = this.getPlayer().getInventory();
 		int tokenCount = this.getPlayer().getTokenCount();
@@ -688,17 +731,6 @@ public class Level {
 		Files.write(Paths.get(saveFilePath), (printLine + "\n").getBytes(),
 				StandardOpenOption.APPEND);
 		
-		
-		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),
-				StandardOpenOption.APPEND);
-	}
-	
-
-	/**
-	 * Returns the level number.
-	 * @return gives the level number
-	 */
-	public int getLevelNo() {
-		return levelNo;
+		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), StandardOpenOption.APPEND);
 	}
 }
