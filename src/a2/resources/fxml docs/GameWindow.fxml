@@ -20,9 +20,10 @@
           <children>
             <Label id="lbl" fx:id="lbl_Timer" layoutX="14.0" layoutY="72.0" text="Timer" textFill="WHITE" />
             <Label fx:id="lbl_User" layoutX="14.0" layoutY="33.0" text="User" textFill="WHITE" />
-            <Label fx:id="lbl_MOTD" layoutX="11.0" layoutY="144.0" text="MOTD" textFill="WHITE" />
-            <Button fx:id="btnQuit" layoutX="10.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
+            <Label fx:id="lbl_MOTD" layoutX="11.0" layoutY="144.0" prefHeight="166.0" prefWidth="113.0" text="MOTD" textFill="WHITE" wrapText="true" />
+            <Button fx:id="btnQuit" layoutX="10.0" layoutY="315.0" mnemonicParsing="false" onAction="#handleQuitBtn" text="Quit" />
                   <Label fx:id="lbl_TokenCount" layoutX="15.0" layoutY="110.0" text="Token Count: 0" textFill="WHITE" />
+                  <Button fx:id="btnSave" layoutX="10.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleSaveBtn" prefHeight="25.0" prefWidth="49.0" text="Save" />
           </children>
         </Pane>
       </right>
