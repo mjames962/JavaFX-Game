@@ -31,5 +31,9 @@ public class BlueDoor extends Door {
 	public String getSprite() {
 		return SPRITE;
 	}
+	
+	public char getChar() {
+		return 'B';
+	}
 
 }

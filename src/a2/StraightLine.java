@@ -19,7 +19,8 @@ public class StraightLine extends Entity {
 	 * 	 
 	 */
 	public StraightLine(Vector2D currentVector, int enemyID, Level level) {
-		super(currentVector, enemyID, level);
+		super(currentVector);
+		setEntityID(4);
 	}
 	
 	public String getSprite() {
@@ -31,8 +32,8 @@ public class StraightLine extends Entity {
 	 * @return nextVector the requested next cell to move to
 	 */
 	public Vector2D nextMove() {
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
+		int cX = getCurrentVector().getX();
+		int cY = getCurrentVector().getY();
 		Vector2D nextVector = new Vector2D(cX, cY);;
 		if (direction .equals("v")) { // entity is moving vertically
 			if (increaseDirection == true) {
@@ -54,12 +55,13 @@ public class StraightLine extends Entity {
 				increaseDirection = false;
 			}
 			return nextMove();
+			
 		}
 		return nextVector;
 	}		
 	
 	public void move() {
-		this.currentVector = nextMove();
+		this.setCurrentVector(nextMove());
 	}
 }
 			

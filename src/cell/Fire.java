@@ -32,4 +32,8 @@ public class Fire extends Cell {
 	public String getSprite() {
 		return SPRITE;
 	}
+	
+	public char getChar() {
+		return 'F';
+	}
 }

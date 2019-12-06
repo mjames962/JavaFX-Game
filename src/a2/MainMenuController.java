@@ -23,7 +23,7 @@ import javafx.scene.control.TextField;
  * 
  * @author Jensen, Mitch
  */
-public class MainMenuController implements Initializable{
+public class MainMenuController implements Initializable {
 	@FXML
 	private Button btn_LogIn;
 	@FXML 
@@ -78,11 +78,19 @@ public class MainMenuController implements Initializable{
 	}
 	
 	@FXML
+	/**
+	 * Performs action when Delete button is clicked.
+	 * @param event checks for the event occurring.
+	 */
 	private void handleDeleteBtn(ActionEvent event) {
 		initialiseWindow("resources/fxml docs/DeleteUser.fxml");
 	}
 	
 	@FXML
+	/**
+	 * Performs action when Show Users button is toggled.
+	 * @param event
+	 */
 	private void handleCBShowUsers(ActionEvent event) {
 		if (lstView_Users.isVisible()) {
 			lstView_Users.setVisible(false);
@@ -95,8 +103,7 @@ public class MainMenuController implements Initializable{
 	}
 	
 	/**
-	 * .
-	 * Creates new window of format file
+	 * Creates new window of format file.
 	 * @param file Holds the file path of the FXML file.
 	 */
 	private void initialiseWindow(String file) {
@@ -112,8 +119,13 @@ public class MainMenuController implements Initializable{
 		}
 	}
 	@Override
+	/**
+	 * Initialises the main menu window.
+	 * @param arg0 needed for JFX
+	 * @param arg1 needed for JFX
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		for(String user : UserData.readUsers()) {
+		for (String user : UserData.readUsers()) {
 			lstView_Users.getItems().add(user);
 		}
 	}

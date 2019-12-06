@@ -16,9 +16,10 @@ import java.nio.file.*;
 
 /**
  * Controls the CreateUser window.
- * @author Jensen & Jamie
- *
+ * @author Jensen Beard, Jamie Springett
+ *@version 1.4
  */
+
 public class CreateUserController {
 	@FXML
 	private Button btn_CreateUser;

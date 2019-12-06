@@ -36,4 +36,8 @@ public class FireBootsCell extends Collectible {
 	public String cellName() {
 		return "FireBootsCell";
 	}
+	
+	public char getChar() {
+		return 'f';
+	}
 }

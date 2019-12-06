@@ -83,6 +83,10 @@ public class Teleporter extends Cell {
 		return SPRITE;
 	}
 	
+	public char getChar() {
+		return 'T';
+	}
+	
 	
 	
 	

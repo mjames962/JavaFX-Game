@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 /**
@@ -23,17 +25,19 @@ public class UserData {
 	final public static String IMAGE_FOLDER_LOCATION = "src/a2/resources/stock photos";
 	final public static String FXML_FOLDER_LOCATION = "src/a2/resources/fxml docs";
 	
-	private static Profile currentUser; 
+	private static Profile currentUser;
 	
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
 	
+	
+	
 	private static void setCurrentUser(Profile profile) {
 		currentUser = profile;
 	}
 	 
-	 public static boolean doesExist(String username) {
+	public static boolean doesExist(String username) {
 		File inputFile = new File(USERS_FILE_LOCATION);
 		try {
 			inputFile.createNewFile();
@@ -51,6 +55,10 @@ public class UserData {
 		}
 
 		return doesExist(username, in);
+	}
+	
+	public static File getUserFile(String userName) {
+		return new File(USER_FOLDER_LOCATION + userName + ".txt");
 	}
 	
 	public static ArrayList<String> readUsers() {
@@ -94,6 +102,11 @@ public class UserData {
 		}
 		in.close();
 		return false;
+	}
+	
+	public static String getLevelIdentifier(File fle) {
+		String fileName = fle.getName();
+		return fileName.replaceFirst("\\.txt", "");
 	}
 	
 	
@@ -146,5 +159,44 @@ public class UserData {
 			throw new IllegalStateException();
 		}
 	}
+	
+	public static File getLeaderboardFile(int levelNo) {
+		return new File("src/a2/resources/Leaderboards/LBLevel"
+				+ Integer.toString(levelNo) + ".txt");
+	}
+	
+	public static int getLevelNumber(String fileName) {
+		
+		Matcher matcher = Pattern.compile("([0-9]+)").matcher(fileName);
+		if (matcher.find()) {
+			return Integer.parseInt(matcher.group(1));
+		} else {
+			return -1;
+		}
+	}
+	
+	public static Leaderboard readLeaderboard(int levelNo) throws IOException {
+		Scanner leaderboardFile = null;
+		leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
+		
+		Leaderboard leader = new Leaderboard();
+		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
+		leader.addColumn(new LeaderboardColumn<TimeValue>(TimeValue.class, "Time"));
+		//Populate Leaderboard Prev Values
+
+		while (leaderboardFile.hasNext()) {
+			LeaderboardEntry le = new LeaderboardEntry(leader);
+			le.addData("Name", leaderboardFile.next());
+			TimeValue tv = new TimeValue(leaderboardFile.nextLong());
+			le.addData("Time", tv);	
+			leader.setSortedColumn("Time");
+			leader.addEntry(le);
+		}
+		leaderboardFile.close();
+		return leader;
+		
+	}
+	
+	
 	
 }

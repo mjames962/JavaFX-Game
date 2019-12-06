@@ -1,20 +1,32 @@
 package a2;
-
-abstract public class Item implements Sprite {
+/**
+ * The SuperCall for all Items.
+ * @author George Williams Walton, Tom Wood
+ * @version 1.3
+ */
+public abstract class Item implements Sprite {
 	
-	public final static String SPRITE = "a2/resources/stock photos/Wall.png";
+	public static final String SPRITE = "a2/resources/stock photos/Wall.png";
 
-	
+	private String sprite;
+	/**
+	 * Empty Constructor to be overwritten.
+	 */
 	public Item() {
-		// TODO Auto-generated constructor stub
 	}
-	
+	/**
+	 * Method to be overwritten to return ItemID.
+	 * @return gives -1 to prevent Item being instantiated
+	 */
 	public int getItemID() {
 		return -1;
 	}
 
-	private String sprite;
-	
+
+	 /** 
+	 * Method to be overwritten to return the Sprite for an item.
+	 * @return gives a generic to prevent Item being drawn
+	 */
 	public String getSprite() {
 		return SPRITE;
 	}
