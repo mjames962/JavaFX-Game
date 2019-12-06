@@ -31,4 +31,8 @@ public class Water extends Cell {
 	public String getSprite() {
 		return SPRITE;
 	}
+	
+	public char getChar() {
+		return 'W';
+	}
 }

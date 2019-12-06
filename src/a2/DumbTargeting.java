@@ -2,7 +2,7 @@ package a2;
 
 /**
  * This enemy will locate the player, but will include invalid moves.
- * @author Darius Thomas and James Colebourn
+ * @author Darius Thomas, James Colebourn
  * @version 1.0
  * */
 public class DumbTargeting extends Entity {
@@ -17,29 +17,28 @@ public class DumbTargeting extends Entity {
 	 * @param level stores the current level
 	 */
 	public DumbTargeting(Vector2D currentVector, int enemyID, Level level) {
-		super(currentVector, enemyID, level);
+		super(currentVector);
+		setEntityID(3);
 	}
 	
 	
 	/**
 	 * The method to determine the enemy's next move.
-	 * @param playerVector the position of the player
-	 * @param currentVector the position of the enemy
 	 * @return returns nextVector, a Vector2D for the next 
 	 *                               location the enemy should move to
 	 */
 	private Vector2D nextMove() {
-		/**
-		 * pX the extracted x coordinate from the player's current vector
-		 * pY the extracted y coordinate from the player's current vector
-		 * cX the extracted x coordinate from the enemy's current vector
-		 * cY the extracted y coordinate from the enemy's current vector
+		/*
+		  pX the extracted x coordinate from the player's current vector
+		  pY the extracted y coordinate from the player's current vector
+		  cX the extracted x coordinate from the enemy's current vector
+		  cY the extracted y coordinate from the enemy's current vector
 		 */
 		Vector2D playerPos = Level.getCurrentLevel().getPlayer().getVector();
 		int pX = playerPos.getX();
 		int pY = playerPos.getY();
-		int cX = currentVector.getX();
-		int cY = currentVector.getY();
+		int cX = getCurrentVector().getX();
+		int cY = getCurrentVector().getY();
 		if (Math.abs((pX - cX)) > Math.abs((pY - cY))) {
 			if (pX > cX) {      
 				++cX;
@@ -65,7 +64,7 @@ public class DumbTargeting extends Entity {
 				} 
 			}
 		}
-		return currentVector;             //returns vector of chosen move
+		return getCurrentVector();             //returns vector of chosen move
 	
 	}
 	/**
@@ -75,9 +74,11 @@ public class DumbTargeting extends Entity {
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+	/**
+	 * Moves the Enemy.
+	 */
 	public void move() {
-		currentVector = nextMove();
+		setCurrentVector(nextMove());
 	}
 	
 	

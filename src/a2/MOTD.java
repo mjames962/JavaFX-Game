@@ -6,8 +6,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
-
+/**
+ * Handles the message of the day and its assorted puzzles.
+ * @author George Williams Walton
+ * @version 1.3
+ */
 public class MOTD {
 	private static final int MIN_CHAR = 65;
     private static final int MAX_CHAR = 90;
@@ -46,7 +49,8 @@ public class MOTD {
     private static String attemptReadResponse(URL url) throws IOException {
     	Integer response = null;
     	try {
-    		HttpURLConnection httpresponse = (HttpURLConnection) url.openConnection();
+    		HttpURLConnection httpresponse = (HttpURLConnection) 
+    				url.openConnection();
         	response = httpresponse.getResponseCode();
     		InputStreamReader stream = new InputStreamReader(url.openStream());
     		BufferedReader in = new BufferedReader(stream);
@@ -54,7 +58,8 @@ public class MOTD {
     		in.close();
             return line;
     	} catch (IOException e) {
-    		if ((response != null) && (response == HttpURLConnection.HTTP_FORBIDDEN)) {
+    		if ((response != null) && (response
+    				== HttpURLConnection.HTTP_FORBIDDEN)) {
     			throw new InvalidPuzzleSolutionException();
     		} else {
     			throw e;
@@ -67,16 +72,26 @@ public class MOTD {
         return puz;
     }
    
-    private static String submitSolvedPuzzle(String solvedPuzzle) throws IOException {
+    private static String submitSolvedPuzzle(String solvedPuzzle) 
+    		throws IOException {
     	String solvedPuz = attemptReadResponse(
     			new URL(BASE_URL + PUZZLE_RESPONSE + solvedPuzzle)
     			);
     	return solvedPuz;
     }
     
-    //Could be useful to handle no connection differently -> catch UnknownHostException
-    //In possiblility we are too slow to get solution -> catch InvalidPuzzleSolutionException
+    //Could be useful to handle no connection differently 
+    //-> catch UnknownHostException
+    //In possiblility we are too slow to get solution 
+    //-> catch InvalidPuzzleSolutionException
     //Other errors -> IOException
+    
+    
+    /**
+     * Retrieves message of the day becuz Liam sez so.
+     * @return gives the solution to the puzzle to satisfy Liam
+     * @throws IOException for invalid inputs
+     */
     public static String getMOTD() throws IOException {
     	String puzzle = getPuzzle();
     	String solve = solvePuzzle(puzzle);

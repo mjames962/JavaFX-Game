@@ -13,6 +13,10 @@ public class Timer {
 	private static long lastTime;
 	private static boolean running = false;
 	
+	public static boolean isRunning() {
+		return running;
+	}
+	
 	/**
 	 * Checks the current time of the system and sets
 	 * the timer to the running status.

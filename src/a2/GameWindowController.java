@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.sound.sampled.LineUnavailableException;
 
 import a2.Player.Direction;
+import a2.Player.ShootDirection;
 import cell.Cell;
 import cell.Collectible;
 import cell.Wall;
@@ -31,8 +32,8 @@ import javafx.scene.layout.BorderPane;
 
 /**
  * Draws the canvas and allows the user to interact.
- * @author Jensen, George
- * 
+ * @author Jensen Beard, George Williams Walton
+ * @version 1.6
  */
 public class GameWindowController implements Initializable {
 	public static final int LEVEL_WIDTH = 350;
@@ -68,6 +69,9 @@ public class GameWindowController implements Initializable {
 	private Label lbl_User;
 
 	
+	@FXML
+	private Label lbl_TokenCount;
+	
 	/**
 	 * Gets the current controller.
 	 * @return currentController
@@ -77,7 +81,7 @@ public class GameWindowController implements Initializable {
 	}
 	
 	/**
-	 * Creates and displays canvas in the window.
+	 * Creates and displays canvas in the window & displays message of the day.
 	 */
 	
 	@Override
@@ -113,8 +117,15 @@ public class GameWindowController implements Initializable {
 		//maybe can give responsibility to Level instead
 		this.drawAll();
 	}	
+	
+	public void nextTick(ShootDirection shootDirection) {
+		level.getPlayer().handleShoot(shootDirection); 
+		//maybe can give responsibility to Level instead
+		this.drawAll();
+	}	
 	/**
 	 * Checks user input.
+	 * @param sc stores the current scene
 	 */
 	public void hookInput(Scene sc) {
 		sc.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
@@ -132,10 +143,23 @@ public class GameWindowController implements Initializable {
         			case RIGHT:
         				nextTick(Direction.RIGHT);
         				break;
-        			case M:
+        				case M:
         				MusicPlayer.stop();
+        			case W:
+        				nextTick(ShootDirection.UP);
+        				break;
+        			case D:
+        				nextTick(ShootDirection.LEFT);
+        				break;
+        			case S:
+        				nextTick(ShootDirection.DOWN);
+        				break;
+        			case A:
+        				nextTick(ShootDirection.RIGHT);
+        				break;
         			default:
         				break;
+        				
         		}
             }
         });
@@ -143,11 +167,12 @@ public class GameWindowController implements Initializable {
 	
 	//TODO
 	/**
-	 * no idea.
+	 * Shows the scene containing the game window and switches to it.
 	 */
 	public void show() {
 		Scene scene = new Scene(gamePane);
 		Main.switchScene(scene);
+		
 		hookInput(scene);
 	}
 	
@@ -163,11 +188,12 @@ public class GameWindowController implements Initializable {
 	}
 	
 	/**
-	 * Draws the cells.
+	 * Draws the cells on the game map.
 	 */
 	public void drawCells() {
-		Image inventImage = new Image("a2/resources/stock photos/Inventory.png");
-    	gc.drawImage(inventImage,0 ,GAME_HEIGHT);
+		Image inventImage = new Image(
+				"a2/resources/stock photos/Inventory.png");
+    	gc.drawImage(inventImage, 0, GAME_HEIGHT);
 		int playerX = level.getPlayer().getVector().getX();
         int playerY = level.getPlayer().getVector().getY();
 		for (int x = playerX - MIN_DRAW; x < playerX + MAX_DRAW; x++) {
@@ -185,7 +211,8 @@ public class GameWindowController implements Initializable {
             				drawY * CELL_DIMENSIONS);
             	} else {
             		Cell currentCell = level.getCellAt(x, y);
-            		currentCell.draw(gc, drawX * CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
+            		currentCell.draw(gc, drawX * 
+            				CELL_DIMENSIONS, drawY * CELL_DIMENSIONS);
             		
             			
             	}
@@ -208,10 +235,10 @@ public class GameWindowController implements Initializable {
 	}
 	/**
 	 * Draws all entities on the file.
-	 * @param cellPos
-	 * @param drawPos
+	 * @param cellPos stores the position of the cell
+	 * @param drawPos stores the position of an entity to be drawn
 	 */
-	public void drawEntities(Vector2D cellPos,Vector2D drawPos) {
+	public void drawEntities(Vector2D cellPos, Vector2D drawPos) {
 	
         for (Entity ent : level.getEntityList()) {
         	if (cellPos.equals(ent.getVector())) {
@@ -235,21 +262,17 @@ public class GameWindowController implements Initializable {
     		gc.drawImage(itemImage, imageNum * CELL_DIMENSIONS, 
     				LEVEL_LENGTH - CELL_DIMENSIONS);
     		++imageNum;
-        }
-
-	}   
-	
-	
     /**
-     * .
+     * Updates the timer, icon of the player + name.
      */
     public void updateExtras() {
     	
 		
-    	Image image = new Image("a2/resources/stock photos/Player1.png");
+    	Image image = new Image(charSelectController.getCharSprite());
     	ImageView imageView = new ImageView(image);
     	lbl_User.setText(UserData.getCurrentUser().getName());
     	lbl_User.setGraphic(imageView);
+    	lbl_TokenCount.setText("Token Count: " + Level.getCurrentLevel().getPlayer().getTokens());
     	
 		
     	 
@@ -268,8 +291,9 @@ public class GameWindowController implements Initializable {
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/LevelSelection.fxml"));  
+				getResource("resources/fxml docs/MainMenu.fxml"));  
 		gamePane.getChildren().setAll(window);
+		
 	}
 }
 

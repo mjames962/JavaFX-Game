@@ -75,9 +75,13 @@ public abstract class Cell implements Sprite {
 		return DEFAULT_SPRITE;
 	}
 	
+	public char getChar() {
+		return '!';
+	}
 	
 	
-	public void draw(GraphicsContext gc,int drawPosX,int drawPosY) {
+	
+	public void draw(GraphicsContext gc,int drawPosX, int drawPosY) {
 		Image cellImage = new Image(getSprite());
 		gc.drawImage(cellImage, drawPosX,drawPosY);
 		

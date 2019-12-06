@@ -18,7 +18,6 @@ public class RedDoor extends Door {
 	}
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		System.out.println("askdopaskdopka");
 		return ply.hasKey('r');
 		
 	}
@@ -31,5 +30,9 @@ public class RedDoor extends Door {
 	
 	public String getSprite() {
 		return SPRITE;
+	}
+	
+	public char getChar() {
+		return 'R';
 	}
 }

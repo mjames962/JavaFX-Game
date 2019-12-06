@@ -46,6 +46,8 @@ public class TokenCell extends Replaceable {
 		gc.drawImage(collectible, drawPosX,drawPosY);
 	}
 	
-	
+	public char getChar() {
+		return 'd';
+	}
 
 }
