@@ -50,9 +50,9 @@ public class Goal extends Cell {
 		UserData.getCurrentUser().setHighestLevel(levelNum);
 		Level.getCurrentLevel().loadNextLevel();
 		String audioFilePath =
-				"src\\a2\\resources\\Sound bytes/Goal.wav";
-		MusicPlayer.loadMusic(audioFilePath);
-		MusicPlayer.play();
+				"src/a2/resources/Sound bytes/Door unlock.wav";
+		MusicPlayer goalClip = new MusicPlayer(audioFilePath);
+		goalClip.play();
 		displayCompleted(finishTime);
 	}
 	

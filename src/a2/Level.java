@@ -24,13 +24,14 @@ import javafx.scene.control.Alert.AlertType;
  */
 public class Level {
 
+	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";	
+	private static Level currentLevel;
 	private Cell[][] level;
 	private File levelFile;
 	private ArrayList<Entity> entityList = new ArrayList<>();
 	private int xLength;
 	private int yLength;
-	private static Level currentLevel;
-	public static final String LEVEL_STORAGE = "src/a2/resources/file formats";
+	
 
 
 	private int levelNo;

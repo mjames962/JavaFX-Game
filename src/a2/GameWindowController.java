@@ -44,6 +44,7 @@ public class GameWindowController implements Initializable {
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
 	private static GameWindowController currentController;
+	private MusicPlayer backgroundMusic;
 	
 
 	private GraphicsContext gc;
@@ -96,9 +97,9 @@ public class GameWindowController implements Initializable {
 		}
 		currentController = this;
 		String audioFilePath = 
-				"C:\\Users\\dktho\\Music\\Guns N Roses\\Mix/Background music.wav";
-		MusicPlayer.loadMusic(audioFilePath);
-		MusicPlayer.play();
+				"src/a2/resources/Sound bytes/Background music.wav";
+		backgroundMusic = new MusicPlayer(audioFilePath);
+		backgroundMusic.play();
 		
 
 	}
@@ -285,7 +286,7 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
-		MusicPlayer.stop();
+		backgroundMusic.getmusicClip().stop();
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		gamePane.getChildren().setAll(window);

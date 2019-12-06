@@ -18,21 +18,24 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @version 1.0
  */
 public class MusicPlayer {
-	private static Clip musicClip;
-	private static Clip soundClip;
-	private static AudioInputStream currentAudioStream;
-	private static DataLine.Info musicInfo;
-	private static boolean isMuted = false;
-
+	private Clip musicClip;
+	private Clip soundClip;
+	private AudioInputStream currentAudioStream;
+	private DataLine.Info musicInfo;
+	private boolean isMuted = false;
+	private String audioPath;
+	
+	
 	/**
 	 * Loads the music file.
 	 * @param audioFilePath the file path of the music.
 	 * @throws LineUnavailableException 
 	 * @throws IOException
 	 */
-	public static void loadMusic(String audioFilePath) {
+	
+	public MusicPlayer(String audioFilePath) {
 		File musicFile = new File(audioFilePath);
-
+		audioPath = audioFilePath;
 		try {
 			
 			currentAudioStream = 
@@ -40,7 +43,6 @@ public class MusicPlayer {
 			AudioFormat format = currentAudioStream.getFormat();
 			musicInfo = new DataLine.Info(Clip.class, format);
 			musicClip = (Clip) AudioSystem.getLine(musicInfo);
-
 		} catch (UnsupportedAudioFileException ex) {
 			System.out.println("The specified audio file is not supported.");
 			ex.printStackTrace();
@@ -56,14 +58,22 @@ public class MusicPlayer {
 	/**
 	 * Plays the music.
 	 */
-	public static void play() {
+	public void play() {
 		try {
 			musicClip.open(currentAudioStream);
+			if (audioPath.equals(
+					"src/a2/resources/Sound bytes/Background music.wav")) {
+				musicClip.loop(Clip.LOOP_CONTINUOUSLY);
+			}
 		} catch (LineUnavailableException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		musicClip.start();
+	}
+	
+	public Clip getmusicClip() {
+		return musicClip;
 	}
 }

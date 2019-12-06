@@ -3,7 +3,6 @@ package cell;
 import a2.MusicPlayer;
 import a2.Player;
 import a2.Vector2D;
-import a2.Player.Item;
 
 /**
  * class that will hold shared methods between all door types.
@@ -33,18 +32,9 @@ public abstract class Door extends Replaceable {
 			this.turnToGround();
 			String audioFilePath =
 					"src\\a2\\resources\\Sound bytes/Door unlock.wav";
-			MusicPlayer.loadMusic(audioFilePath);
-			MusicPlayer.play();
+			MusicPlayer doorClip = new MusicPlayer(audioFilePath);
+			doorClip.play();
 		}
-	}
-	
-	/**
-	 * Returns the item the door Needs to open.
-	 * @return item the door needs to open.
-	 */
-	
-	public Item getRequires() {
-		return requires;
 	}
 	
 	/**
