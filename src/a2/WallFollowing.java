@@ -20,7 +20,6 @@ public class WallFollowing extends Entity {
 	 * Constructs the Wall Following Enemy.
 	 * @param currentVector the position of the enemy
 	 * @param enemyID the ID of the enemy
-	 * @param direction holds the direction of travel
 	 * @param level holds the current level
 	 */
 	public WallFollowing(Vector2D currentVector, 
