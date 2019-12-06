@@ -5,9 +5,9 @@ import a2.Vector2D;
 import a2.Player.Item;
 
 /**
- * class that will hold shared methods between all door types.
- * @author tomwo
- *
+ * Class that will hold shared methods between all door types.
+ * @author Tom Wood
+ * @version 1.3
  */
 
 public abstract class Door extends Replaceable {
@@ -22,11 +22,18 @@ public abstract class Door extends Replaceable {
 	public Door(Vector2D pos) {
 		super(pos);
 	}
-
+	/**
+	 * Method to deny enemies the ability to walk on the cell.
+	 * @return 's false for whether Enemies can walk over it
+	 */
 	public boolean isWalkable() {
 		return false;
 	}
 	
+	/**
+	 * Replaces Cell with ground when the player opens the door.
+	 * @param ply reference to player
+	 */
 	public void doAction(Player ply) {
 		if (meetsRequirement(ply)) {
 			this.turnToGround();
@@ -47,7 +54,6 @@ public abstract class Door extends Replaceable {
 	 * @param ply The player on the level
 	 * @return if the player has the item needed.
 	 */
-	
 	public abstract boolean meetsRequirement(Player ply);
 	
 }
