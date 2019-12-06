@@ -25,7 +25,6 @@ public class Player extends Entity {
 		UP, DOWN, LEFT, RIGHT,
 	}
 	
-	
 	/**
 	 * Sets of directions the player can shoot the dagger.
 	 * @author tomwo
@@ -133,6 +132,10 @@ public class Player extends Entity {
 	 */
 	public void giveToken() {
 		this.tokenCount += 1;
+		String audioFilePath =
+				"src\\a2\\resources\\Sound bytes/Token Collect.wav";
+		MusicPlayer.loadMusic(audioFilePath);
+		MusicPlayer.play();
 	}
 	/**
 	 * Returns the number of tokens collected by the player.
@@ -315,6 +318,10 @@ public class Player extends Entity {
 		if (this.tokenCount >= requiredTokens) {
 			this.tokenCount = this.tokenCount - requiredTokens;
 			door.turnToGround();
+			String audioFilePath =
+					"src\\a2\\resources\\Sound bytes/Door unlock.wav";
+			MusicPlayer.loadMusic(audioFilePath);
+			MusicPlayer.play();
 			return true;
 		}
 		return false;
@@ -359,6 +366,10 @@ public class Player extends Entity {
 
 	private void playerDeath() {
 		this.alive = false;
+		String audioFilePath =
+				"src\\a2\\resources\\Sound bytes/Player Death.wav";
+		MusicPlayer.loadMusic(audioFilePath);
+		MusicPlayer.play();
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Death");
 		alert.setHeaderText("You died.");
@@ -372,7 +383,11 @@ public class Player extends Entity {
 	 * @param item the thing being picked up
 	 */
 	public void pickupItem(Item item) {
-		inventory.add(item);	
+		String audioFilePath =
+				"src\\a2\\resources\\Sound bytes/Pick up item.wav";
+		MusicPlayer.loadMusic(audioFilePath);
+		MusicPlayer.play();
+		inventory.add(item);
 	}
 
 	/**
@@ -433,7 +448,4 @@ public class Player extends Entity {
 		return getCurrentVector();
 		
 	}
-	
-	
-	
 }

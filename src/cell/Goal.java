@@ -1,6 +1,7 @@
 package cell;
 
 import a2.Level;
+import a2.MusicPlayer;
 import a2.Player;
 import a2.Profile;
 import a2.TimeValue;
@@ -48,6 +49,10 @@ public class Goal extends Cell {
 		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
 		UserData.getCurrentUser().setHighestLevel(levelNum);
 		Level.getCurrentLevel().loadNextLevel();
+		String audioFilePath =
+				"src\\a2\\resources\\Sound bytes/Goal.wav";
+		MusicPlayer.loadMusic(audioFilePath);
+		MusicPlayer.play();
 		displayCompleted(finishTime);
 	}
 	

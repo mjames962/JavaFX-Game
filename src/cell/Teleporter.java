@@ -1,5 +1,6 @@
 package cell;
 
+import a2.MusicPlayer;
 import a2.Player;
 import a2.Player.Direction;
 import a2.Vector2D;
@@ -48,6 +49,10 @@ public class Teleporter extends Cell {
 		Direction direction = player.getCurrentDirection();
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());
+		String audioFilePath =
+				"src\\a2\\resources\\Sound bytes/Teleport.wav";
+		MusicPlayer.loadMusic(audioFilePath);
+		MusicPlayer.play();
 	}
 	
 	/**

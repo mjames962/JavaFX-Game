@@ -43,7 +43,11 @@ public class Dagger extends Entity {
 			int nextX = getCurrentVector().getX() + getMoveModifier(true);
 			int nextY = getCurrentVector().getY() + getMoveModifier(false);
 			if (isValidMove(new Vector2D(nextX, nextY))) {
-				getCurrentVector().set(nextX, nextY);;
+				getCurrentVector().set(nextX, nextY);
+				String audioFilePath =
+						"src\\a2\\resources\\Sound bytes/Token Collect.wav";
+				MusicPlayer.loadMusic(audioFilePath);
+				MusicPlayer.play();
 			} else {
 				move = false;
 				setRemove(true);

@@ -95,17 +95,12 @@ public class GameWindowController implements Initializable {
 			e.printStackTrace();
 		}
 		currentController = this;
-		String audioFilePath = "C:\\Users\\dktho\\Music\\Guns N Roses\\Mix/Background music.wav";
-		MusicPlayer player = new MusicPlayer();
-		try {
-			player.playMusic(audioFilePath);
-		} catch (LineUnavailableException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		String audioFilePath = 
+				"C:\\Users\\dktho\\Music\\Guns N Roses\\Mix/Background music.wav";
+		MusicPlayer.loadMusic(audioFilePath);
+		MusicPlayer.play();
+		
+
 	}
 	
 	/**
@@ -143,8 +138,6 @@ public class GameWindowController implements Initializable {
         			case RIGHT:
         				nextTick(Direction.RIGHT);
         				break;
-        				case M:
-        				MusicPlayer.stop();
         			case W:
         				nextTick(ShootDirection.UP);
         				break;
@@ -262,6 +255,8 @@ public class GameWindowController implements Initializable {
     		gc.drawImage(itemImage, imageNum * CELL_DIMENSIONS, 
     				LEVEL_LENGTH - CELL_DIMENSIONS);
     		++imageNum;
+        }
+	}
     /**
      * Updates the timer, icon of the player + name.
      */
@@ -290,6 +285,7 @@ public class GameWindowController implements Initializable {
 	
 	@FXML
 	private void handleQuitBtn(ActionEvent event) throws IOException {
+		MusicPlayer.stop();
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		gamePane.getChildren().setAll(window);

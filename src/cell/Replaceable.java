@@ -1,6 +1,7 @@
 package cell;
 
 import a2.Level;
+import a2.MusicPlayer;
 import a2.Vector2D;
 
 //TODO is this needed? just one method

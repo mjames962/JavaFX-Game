@@ -1,5 +1,6 @@
 package cell;
 
+import a2.MusicPlayer;
 import a2.Player;
 import a2.Vector2D;
 import a2.Player.Item;
@@ -30,6 +31,10 @@ public abstract class Door extends Replaceable {
 	public void doAction(Player ply) {
 		if (meetsRequirement(ply)) {
 			this.turnToGround();
+			String audioFilePath =
+					"src\\a2\\resources\\Sound bytes/Door unlock.wav";
+			MusicPlayer.loadMusic(audioFilePath);
+			MusicPlayer.play();
 		}
 	}
 	
