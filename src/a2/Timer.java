@@ -12,6 +12,7 @@ public class Timer {
 	
 	private static long lastTime;
 	private static boolean running = false;
+	private static long savedTime = 0;
 	
 	public static boolean isRunning() {
 		return running;
@@ -43,7 +44,16 @@ public class Timer {
 	 * Sets the timer running state to false.
 	 */
 	public static void stop() {
+		savedTime = savedTime + checkTimeElapsed();
 		running = false;
+	}
+	
+	public static long getSavedTime(){
+		return savedTime;
+	}
+	
+	public static void setSavedTime(long save){
+		savedTime = save;
 	}
 
 }
