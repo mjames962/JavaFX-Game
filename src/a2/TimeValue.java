@@ -7,9 +7,9 @@ package a2;
  */
 public class TimeValue implements Comparable<TimeValue> {
 	
-	private static final int MAGIC60 = 60;
-	private static final int MAGIC1000 = 1000;
-	private static final int MAGIC60000 = 60000;
+	private static final int MILL = 60;
+	private static final int SECOND = 1000;
+	private static final int MINUTE = 60000;
 	private Long time;
 	
 	/**
@@ -48,20 +48,20 @@ public class TimeValue implements Comparable<TimeValue> {
 	 * @return gives time in minutes rather than milliseconds
 	 */
 	public int getMinuites() {
-		return (int) (time / MAGIC60000);
+		return (int) (time / MINUTE);
 	}
 	/**
 	 * Getter for time, converted to seconds.
 	 * @return gives time in seconds rather than milliseconds
 	 */
 	public int getSeconds() {
-		return (int) ((time - getMinuites()) / MAGIC1000 % MAGIC60);
+		return (int) ((time - getMinuites()) / SECOND % MILL);
 	}
 	/**
 	 * Getter for time in milliseconds.
 	 * @return gives the time in milliseconds
 	 */
 	public int getMsecs() {
-		return (int) ((time - getSeconds()) % MAGIC1000);
+		return (int) ((time - getSeconds()) % SECOND);
 	}
 }

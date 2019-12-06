@@ -12,7 +12,7 @@ import cell.Cell;
  * @version 2.7
  */
 public class SmartTargetEnemy extends Entity {
-	private static final int MAGIC4 = 4;
+	private static final int SMART_ID = 4;
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Smart_Target_Enemy.png";
 	private final int maxViewDistance = 10;
@@ -29,7 +29,7 @@ public class SmartTargetEnemy extends Entity {
 	 */
 	public SmartTargetEnemy(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
-		setEntityID(MAGIC4);
+		setEntityID(SMART_ID);
 		nextMove = new Vector2D(currentVector.getX(), currentVector.getY());
 	}
 	/**

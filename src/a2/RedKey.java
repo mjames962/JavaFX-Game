@@ -9,7 +9,7 @@ public class RedKey extends Key {
 	private static final String SPRITE = 
 			"a2/resources/stock photos/RedKeySprite.png";
 	/**
-	 * An item of type red key.
+	 * Constructor for an item of type red key.
 	 */
 	public RedKey() {
 		super();

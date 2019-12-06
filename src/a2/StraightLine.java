@@ -2,12 +2,12 @@ package a2;
 
 /**
  * This enemy moves in a straight line.
- * @author Darius Thomas and James Colebourn
+ * @author Darius Thomas, James Colebourn and Tom Wood
  * @version 1.0
  * */
 public class StraightLine extends Entity {
 
-	private static final int MAGIC4 = 4;
+	private static final int LINE_ID = 4;
 	private static final String SPRITE = 
 			"a2/resources/stock photos/Straight_Line_Enemy.png";
 	private boolean increaseDirection = true;
@@ -22,7 +22,7 @@ public class StraightLine extends Entity {
 	 */
 	public StraightLine(Vector2D currentVector, int enemyID, Level level) {
 		super(currentVector);
-		setEntityID(MAGIC4);
+		setEntityID(LINE_ID);
 	}
 	/**
 	 * Getter for the StraightLine Enemy sprite.
@@ -33,7 +33,7 @@ public class StraightLine extends Entity {
 	}
 	
 	/**
-	 * establishes the next move for the enemy.
+	 * Establishes the next move for the enemy.
 	 * @return nextVector the requested next cell to move to
 	 */
 	public Vector2D nextMove() {

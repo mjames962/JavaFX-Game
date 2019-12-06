@@ -6,11 +6,11 @@ import java.util.Queue;
 /**
  * This enemy follows the wall to its left
  * placed on the lower and right side of the wall.
- * @author James Colebourn
+ * @author James Colebourn, Tom Wood
  * @version 1.0
  */
 public class WallFollowing extends Entity {
-	private static final int MAGIC3 = 3;
+	private static final int MAX_DIR = 3;
 	private static final String SPRITE 
 		= "a2/resources/stock photos/Wall_Following_Enemy.png";
 	private int direction = 0; //0=left,1=up,2=right,3=down
@@ -37,8 +37,13 @@ public class WallFollowing extends Entity {
 		return SPRITE;
 	}
 	
+	/**
+	 * Gets the direction the enemy is moving in.
+	 * @return the direction the enemy is moving in.
+	 */
 	
-	public int getDirection(){
+	
+	public int getDirection() {
 		return direction;
 	}
 	
@@ -92,7 +97,7 @@ public class WallFollowing extends Entity {
 				} else {
 					return 0;
 				}
-			case MAGIC3:
+			case MAX_DIR:
 				if (isX) {
 					return 0;
 				} else {
@@ -132,7 +137,7 @@ public class WallFollowing extends Entity {
 				} else {
 					return 1;
 				}
-			case MAGIC3:
+			case MAX_DIR:
 				if (isX) {
 					return 1;
 				} else {
@@ -149,7 +154,7 @@ public class WallFollowing extends Entity {
 	 */
 	
 	public void increaseDirection() {
-		if (direction == MAGIC3) {
+		if (direction == MAX_DIR) {
 			direction = 0;
 		} else {
 			++direction;
@@ -162,7 +167,7 @@ public class WallFollowing extends Entity {
 	
 	public void decreaseDircetion() {
 		if (direction == 0) {
-			direction = MAGIC3;
+			direction = MAX_DIR;
 		} else {
 			--direction;
 		}
