@@ -345,7 +345,7 @@ public class UserData {
 	
 	/**
 	 * Helper function for creating valid users
-	 * @param userName
+	 * @param userName name to be checked
 	 * @return true if it's a valid name
 	 */
 	public static boolean validateName(String userName) {

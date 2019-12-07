@@ -103,6 +103,7 @@ public class LevelSelectController implements Initializable {
 	/**
 	 * Event handling to produce a pop-up alert + throw the error.
 	 * @param event the action that instantiates the error throw
+	 * @throws IOException when displayNewLevel fails
 	 */
     @FXML
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
