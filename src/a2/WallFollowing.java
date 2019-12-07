@@ -22,9 +22,8 @@ public class WallFollowing extends Entity {
 	public WallFollowing(Vector2D currentVector, 
 			int enemyID, Level level) {
 		super(currentVector);
-		//TODO
-		//Magic Number??
-		setEntityID(2);
+		final int WALL_ID = 2;
+		setEntityID(WALL_ID);
 
 	}
 	/**

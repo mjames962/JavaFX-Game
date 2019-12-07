@@ -1,6 +1,4 @@
 package a2;
-//TODO
-//Delete this??
 
 /**
  * Handles a custom exception for message of the day.
