@@ -115,7 +115,6 @@ public class LeaderboardController {
 	public void addValuesToSelector() {
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
-		System.out.println("file testing");
 		for (File file : listOfFiles) {
             if (!file.getName().contains("_")) {
                 String fileName = file.getName();

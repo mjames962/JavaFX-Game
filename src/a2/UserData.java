@@ -405,7 +405,6 @@ public class UserData {
 		while (in.hasNext()) {
 			
 			String name = in.next();
-			System.out.println(name);
 			int deaths = in.nextInt();
 			map.put(name, deaths);
 			in.nextLine();

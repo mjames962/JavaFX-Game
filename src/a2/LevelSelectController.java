@@ -51,7 +51,6 @@ public class LevelSelectController implements Initializable {
 		
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
-		System.out.println("file testing");
 		Profile currentUser = UserData.getCurrentUser();
 		
 		for (File file : listOfFiles) {
@@ -72,7 +71,6 @@ public class LevelSelectController implements Initializable {
 
 				if (matcher.find()) {
 					levelNum = Integer.parseInt(matcher.group(1));
-					System.out.println(levelNum);
 				} else {
 					levelNum = -1;
 				}

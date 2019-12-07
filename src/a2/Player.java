@@ -52,8 +52,6 @@ public class Player extends Entity {
 	public Player(Vector2D currentVector, int entityID, Level level) {
 		
 		super(currentVector);
-		System.out.println("CURRENTVECTOR2" + currentVector + 
-				this.getCurrentVector());
 		this.alive = true;
 		this.inventory = new LinkedList<>();
 		this.tokenCount = 0;
@@ -161,7 +159,6 @@ public class Player extends Entity {
 	*/
 	public void handleInput(Direction input) {
 		curDirection = input;
-		System.out.println("CURRENT VECTOR" + getCurrentVector());
 		Cell cell = Level.getCurrentLevel().getCellAt(move(input));
 		doMoveAction(move(input));
 		if (!(cell instanceof Goal)) {
@@ -197,7 +194,6 @@ public class Player extends Entity {
 	
 	public void handleShoot(ShootDirection input) {
 		//curDirection = input;
-		System.out.println("CURRENT VECTOR" + getCurrentVector());
 		Cell cell = Level.getCurrentLevel().getCellAt(shoot(input));
 		for (Entity ent : Level.getCurrentLevel().getEntityList()) {
 			if (ent != this) { 
@@ -355,7 +351,6 @@ public class Player extends Entity {
 	public boolean hasItem(Class<?> itemCheck) {
 		for (Item item : this.inventory) {
 			if (itemCheck.isInstance(item)) {
-				System.out.println("returned true");
 				return true;
 			}
 		}
