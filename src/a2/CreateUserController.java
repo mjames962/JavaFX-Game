@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Controls the CreateUser window.
  * @author Jensen Beard, Jamie Springett
- *@version 1.4
+ * @version 1.4
  */
 
 public class CreateUserController {

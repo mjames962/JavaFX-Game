@@ -18,6 +18,32 @@ public class MOTD {
     private static final String PUZZLE_GET = "puzzle";
     private static final String PUZZLE_RESPONSE = "message?solution=";
 
+    
+    
+    /**
+     * Retrieves message of the day becuz Liam sez so.
+     * @return gives the solution to the puzzle to satisfy Liam
+     * @throws IOException for invalid inputs
+     */
+    public static String getMOTD() throws IOException {
+    	String puzzle = getPuzzle();
+    	String solve = solvePuzzle(puzzle);
+    	return submitSolvedPuzzle(solve);
+    }
+    
+    /**
+     * @return
+     * @throws IOException
+     */
+    private static String getPuzzle() throws IOException {
+        return attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
+    }
+    
+    /**
+     * @param chr
+     * @param forward
+     * @return
+     */
     private static char shift(char chr, boolean forward) {
         int shiftNum;
         if (forward) {
@@ -35,6 +61,10 @@ public class MOTD {
         }
     }
     
+    /**
+     * @param puz
+     * @return
+     */
     private static String solvePuzzle(String puz) {
         char[] solvedchars = new char[puz.length()];
         boolean forward = true;
@@ -46,6 +76,11 @@ public class MOTD {
         return new String(solvedchars);
     }
     
+    /**
+     * @param url
+     * @return
+     * @throws IOException
+     */
     private static String attemptReadResponse(URL url) throws IOException {
     	Integer response = null;
     	try {
@@ -66,11 +101,13 @@ public class MOTD {
     		}
     	}
     }
-    
-    private static String getPuzzle() throws IOException {
-        return attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
-    }
    
+    /**
+     * 
+     * @param solvedPuzzle
+     * @return
+     * @throws IOException
+     */
     private static String submitSolvedPuzzle(String solvedPuzzle) 
     		throws IOException {
     	String solvedPuz = attemptReadResponse(
@@ -78,23 +115,4 @@ public class MOTD {
     			);
     	return solvedPuz;
     }
-    
-    //Could be useful to handle no connection differently 
-    //-> catch UnknownHostException
-    //In possiblility we are too slow to get solution
-    //-> catch InvalidPuzzleSolutionException
-    //Other errors -> IOException
-    
-    
-    /**
-     * Retrieves message of the day becuz Liam sez so.
-     * @return gives the solution to the puzzle to satisfy Liam
-     * @throws IOException for invalid inputs
-     */
-    public static String getMOTD() throws IOException {
-    	String puzzle = getPuzzle();
-    	String solve = solvePuzzle(puzzle);
-    	return submitSolvedPuzzle(solve);
-    }
-    
 }
