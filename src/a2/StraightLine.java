@@ -40,22 +40,25 @@ public class StraightLine extends Entity {
         int cY = getCurrentVector().getY();
         Vector2D nextVector = new Vector2D(cX, cY);
         String direction = "v";
-        if (increaseDirection) {
-            nextVector.set(cX, ++cY);
+        if (direction .equals("v")) {
+            if (increaseDirection) {
+                nextVector.set(cX, ++cY);
+            } else {
+                nextVector.set(cX, --cY);
+            }
         } else {
-            nextVector.set(cX, --cY);
+                //entity is moving horizontally
+                if (increaseDirection) {
+                    nextVector.set(++cX, cY);
+                } else {
+                    nextVector.set(--cX, cY);
+                }
         }
-        //entity is moving horizontally
-        if (increaseDirection) {
-            nextVector.set(++cX, cY);
-        } else {
-            nextVector.set(--cX, cY);
+        if (!this.isValidMove(nextVector)) {
+            increaseDirection = !increaseDirection;
+            return nextMove();
         }
-		if (!this.isValidMove(nextVector)) {
-			increaseDirection = !increaseDirection;
-			return nextMove();
-		}
-		return nextVector;
+        return nextVector;
 	}		
 	/**
 	 * Enacts the next move.
