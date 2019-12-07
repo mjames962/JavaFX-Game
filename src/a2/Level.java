@@ -363,9 +363,62 @@ public class Level {
 			readTeleporter(line);
 			line = in.nextLine();
 		}
-		
+		line = in.nextLine();
+
+		// player inventory
+		while (!line.equals("*")) {
+			readPlayerInventory(line);
+			line = in.nextLine();
+		}
+
 		in.close();
 	}
+
+	private void readPlayerInventory(String line) {
+		Scanner in = new Scanner(line);
+
+		int redKeys = in.nextInt();
+		int greenKeys = in.nextInt();
+		int blueKeys = in.nextInt();
+		int tokenCount = in.nextInt();
+		int daggerCount = in.nextInt();
+		boolean hasFireBoots = in.nextBoolean();
+		boolean hasFlippers = in.nextBoolean();
+		long time = in.nextLong();
+		int deathCount = in.nextInt();
+
+		for (int i = 0; i < redKeys; i++) {
+			this.getPlayer().getInventory().add(new RedKey());
+		}
+
+		for (int i = 0; i < greenKeys; i++) {
+			this.getPlayer().getInventory().add(new GreenKey());
+		}
+
+		for (int i = 0; i < blueKeys; i++) {
+			this.getPlayer().getInventory().add(new BlueKey());
+		}
+
+		this.getPlayer().setTokenCount(tokenCount);
+
+		for (int i = 0; i < daggerCount; i++) {
+			this.getPlayer().getInventory().add(new DaggerItem());
+		}
+
+		if (hasFireBoots) {
+			this.getPlayer().getInventory().add(new FireBoots());
+		}
+
+		if (hasFlippers) {
+			this.getPlayer().getInventory().add(new Flippers());
+		}
+
+		Timer.setSavedTime(time);
+		Level.currentDeaths = deathCount;
+
+		in.close();
+	}
+
 	/**
 	 * Reads in data for Teleporter Cells.
 	 * @param str is the string being read in for the 
@@ -544,6 +597,9 @@ public class Level {
 
 		writePlayerInventory(saveFilePath);
 
+		Files.write(Paths.get(saveFilePath), (this.getCurrentDeaths() + "\n*").getBytes(),
+				StandardOpenOption.APPEND);
+
 	}
 
 		
@@ -663,6 +719,7 @@ public class Level {
 		int redKeys = 0;
 		int greenKeys = 0;
 		int blueKeys = 0;
+		int tokenCount = this.getPlayer().getTokenCount();
 		int daggerCount = 0;
 		boolean fireBoots = false;
 		boolean flippers = false;
@@ -690,8 +747,7 @@ public class Level {
 				default :
 			}
 		}
-		
-		int tokenCount = this.getPlayer().getTokenCount();
+
 		printLine = printLine + redKeys + " ";
 		printLine = printLine + greenKeys + " ";
 		printLine = printLine + blueKeys + " ";
