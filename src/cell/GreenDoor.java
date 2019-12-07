@@ -20,6 +20,12 @@ public class GreenDoor extends Door {
 		super(pos);
 	}
 
+
+    /**
+     * Finds if the player has a green key item in their inventory.
+     * @param ply The player on the level
+     * @return if the player holds the key.
+     */
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		return ply.hasItem(GreenKey.class);

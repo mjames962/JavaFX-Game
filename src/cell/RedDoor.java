@@ -18,6 +18,13 @@ public class RedDoor extends Door {
 	public RedDoor(Vector2D pos) {
 		super(pos);
 	}
+
+
+    /**
+     * Finds if the player has a red key in their inventory.
+     * @param ply The player on the level
+     * @return if the player has the key in their inventory.
+     */
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		return ply.hasItem(RedKey.class);

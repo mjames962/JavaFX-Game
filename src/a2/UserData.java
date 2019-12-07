@@ -281,8 +281,8 @@ public class UserData {
 		leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
 		
 		Leaderboard leader = new Leaderboard();
-		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
-		leader.addColumn(new LeaderboardColumn<TimeValue>(TimeValue.class,
+		leader.addColumn(new LeaderboardColumn<>(String.class, "Name"));
+		leader.addColumn(new LeaderboardColumn<>(TimeValue.class,
 				"Time"));
 		//Populate Leaderboard Prev Values
 
@@ -304,15 +304,13 @@ public class UserData {
 	 * Gets the death leaderboard with data from a file.
 	 * @param levelNo the level you are getting the deaths for.
 	 * @return the leaderboard holding all data read from a file.
-	 * @throws IOException If there is an issue reading from file 
-	 * throw exception.
 	 */
 	
 	public static Leaderboard getDeathLeaderboard(int levelNo) {
 		File deathfile = getDeathFile(levelNo);
 		Leaderboard leader = new Leaderboard();
-		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));
-		leader.addColumn(new LeaderboardColumn<Integer>(Integer.class, 
+		leader.addColumn(new LeaderboardColumn<>(String.class, "Name"));
+		leader.addColumn(new LeaderboardColumn<>(Integer.class,
 				"Deaths"));
 		HashMap<String, Integer> deathmap = readDeaths(deathfile);
 		for (String name : deathmap.keySet()) {

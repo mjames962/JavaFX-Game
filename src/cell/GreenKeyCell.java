@@ -4,7 +4,7 @@ import a2.GreenKey;
 import a2.Item;
 import a2.Vector2D;
 /**
- * ground cell with a collectible green key on it.
+ * Ground cell with a collectible green key on it.
  * @author George Williams Walton, Tom Wood
  * @version 1.3
  */

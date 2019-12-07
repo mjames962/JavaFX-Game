@@ -98,7 +98,6 @@ public class CharSelectController implements Initializable {
 	/**
 	 * Sets lbl_Preview to the selected image sprite.
 	 * @param event combobox selection.
-	 * @throws IOException On resource selection.
 	 */
 	@FXML
 	private void handleCmbSelect(Event event) {

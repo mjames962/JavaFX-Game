@@ -20,6 +20,12 @@ public class BlueDoor extends Door {
 		super(pos);
 	}
 
+    /**
+     * Finds if they player has a bule key in their inventory.
+     * @param ply The player on the level
+     * @return if the player has the key.
+     */
+
 	@Override
 	public boolean meetsRequirement(Player ply) {
 		return ply.hasItem(BlueKey.class);

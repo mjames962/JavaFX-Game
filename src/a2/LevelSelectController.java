@@ -122,7 +122,6 @@ public class LevelSelectController implements Initializable {
 	
 	/**
 	 * Formatting level file names to be searched for.
-	 * @throws FileNotFoundException when the requested file is absent
 	 */
 	private void formatLevel() {
 		

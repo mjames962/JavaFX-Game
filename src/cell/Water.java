@@ -26,6 +26,11 @@ public class Water extends Cell {
 		super(pos);
 		
 	}
+
+    /**
+     * If the player does not have flippers kill the player.
+     * @param ply the current player
+     */
 	
 	@Override
 	public void doAction(Player ply) {
@@ -41,6 +46,7 @@ public class Water extends Cell {
 	public String getSprite() {
 		return SPRITE;
 	}
+
 	/**
 	 * Getter for unique identifying character.
 	 * @return gives the unique identifier

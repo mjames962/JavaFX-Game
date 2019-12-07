@@ -32,6 +32,12 @@ public class TokenCell extends Replaceable {
 	public String getSprite() {
 		return SPRITE;
 	}
+
+    /**
+     * Adds a token cell to the players token count and removes the cell from
+     * the map.
+     * @param p the player in the level.
+     */
 	
 	@Override
 	public void doAction(Player p) {
