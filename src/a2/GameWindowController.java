@@ -107,8 +107,6 @@ public class GameWindowController implements Initializable {
 				"src/a2/resources/Sound bytes/Background music.wav";
 		backgroundMusic = new MusicPlayer(audioFilePath);
 		backgroundMusic.play();
-		
-
 	}
 	
 	/**

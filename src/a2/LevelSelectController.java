@@ -1,7 +1,6 @@
 package a2;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.File; 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -83,9 +82,16 @@ public class LevelSelectController implements Initializable {
 				}
 			}
 		}
-
 	}
 	
+    /**
+	 * Removes the .txt from level files.
+	 * @param fileName holds the name of the file
+	 * @return gives the file name minus .txt extension
+	 */
+	public String getLevelIdentifier(String fileName) {
+		return fileName.replaceFirst("\\.txt", "");
+	}
 	
 	/**
 	 * Displays the GameWindow.
@@ -115,9 +121,7 @@ public class LevelSelectController implements Initializable {
 			alert.showAndWait();
 		} else {
 			displayNewLevel(selectedLevel);
-		}
-			
-			
+		}	
 	}
 	
 	/**
@@ -131,15 +135,6 @@ public class LevelSelectController implements Initializable {
 			selectedLevel = new Level(
 					"src/a2/resources/file formats/" + currentLevel + ".txt");	
 		}
-		
-	}
-	/**
-	 * Removes the .txt from level files.
-	 * @param fileName holds the name of the file
-	 * @return gives the file name minus .txt extension
-	 */
-	public String getLevelIdentifier(String fileName) {
-		return fileName.replaceFirst("\\.txt", "");
 	}
 
 	/**
@@ -176,7 +171,6 @@ public class LevelSelectController implements Initializable {
 	private void handleCharSelectBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/characterSelect.fxml"));  
-		levelScene.getChildren().setAll(window);
-		
+		levelScene.getChildren().setAll(window);	
 	}
 }

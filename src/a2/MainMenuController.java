@@ -21,7 +21,8 @@ import javafx.scene.control.TextField;
 /**
  * This Class Controls the actions for the GUI in the Main Menu Window.
  * 
- * @author Jensen, Mitch
+ * @author Jensen Beard, Mitch Thomas
+ * @version 1.6
  */
 public class MainMenuController implements Initializable {
 	@FXML
@@ -40,6 +41,19 @@ public class MainMenuController implements Initializable {
 	private ListView<String> lstView_Users;
 	@FXML
 	private CheckBox cb_ShowUsers;
+	
+	
+	/**
+	 * Initialises the main menu window.
+	 * @param arg0 needed for JFX
+	 * @param arg1 needed for JFX
+	 */
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		for (String user : UserData.readUsers()) {
+			lstView_Users.getItems().add(user);
+		}
+	}
 	
 	/**
 	 * Performs action when Create button is clicked.
@@ -109,7 +123,8 @@ public class MainMenuController implements Initializable {
 	 */
 	private void initialiseWindow(String file) {
 		try {
-
+			//Erases the current children replacing it with 
+			//those found within the fxml, reduces lag.
 			AnchorPane window = FXMLLoader.load(getClass().
 					getResource(file));  
 			root.getChildren().setAll(window);
@@ -127,19 +142,6 @@ public class MainMenuController implements Initializable {
 	@FXML
 	private void handleQuitBtn(ActionEvent event) {
 		System.exit(0);
-	}
-	
-	
-	/**
-	 * Initialises the main menu window.
-	 * @param arg0 needed for JFX
-	 * @param arg1 needed for JFX
-	 */
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		for (String user : UserData.readUsers()) {
-			lstView_Users.getItems().add(user);
-		}
 	}
 }
 

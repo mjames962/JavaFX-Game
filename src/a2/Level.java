@@ -49,8 +49,7 @@ public class Level {
 		if (fileName.startsWith(Level.LEVEL_STORAGE + "/" + usernameStart)) {
 			this.levelFile = new File(fileName.replaceFirst(usernameStart, ""));
 		}
-		
-		
+	
 		try {
 			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
 					+ levelFile.getName());
