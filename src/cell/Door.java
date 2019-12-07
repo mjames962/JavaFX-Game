@@ -38,7 +38,7 @@ public abstract class Door extends Replaceable {
 		if (meetsRequirement(ply)) {
 			this.turnToGround();
 			String audioFilePath =
-					"src\\a2\\resources\\Sound bytes/Door unlock.wav";
+					"src/a2/resources/Sound bytes/Door unlock.wav";
 			MusicPlayer doorClip = new MusicPlayer(audioFilePath);
 			doorClip.play();
 		}

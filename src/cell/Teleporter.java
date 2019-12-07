@@ -46,7 +46,7 @@ public class Teleporter extends Cell {
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());
 		String audioFilePath =
-				"src\\a2\\resources\\Sound bytes/Teleport.wav";
+				"src/a2/resources/Sound bytes/Teleport.wav";
 		MusicPlayer teleportClip = new MusicPlayer(audioFilePath);
 		teleportClip.play();
 	}

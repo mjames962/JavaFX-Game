@@ -60,10 +60,6 @@ public class LevelSelectController implements Initializable {
 			if (fileName.startsWith(currentUser.getName() + "_") 
 					|| !fileName.contains("_")) { 
 				// gets level number from file name
-				String levelString = fileName
-						.substring(0, fileName.length() - IV);
-
-				// String levelNumString =
 				fileName.replaceFirst("([0-9]+)\\.txt", "");
 				int levelNum;
 				Matcher matcher = Pattern.compile("([0-9]+)\\.txt")

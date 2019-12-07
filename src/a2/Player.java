@@ -134,7 +134,7 @@ public class Player extends Entity {
 	public void giveToken() {
 		this.tokenCount += 1;
 		String audioFilePath =
-				"src\\a2\\resources\\Sound bytes/Token Collect.wav";
+				"src/a2/resources/Sound bytes/Token Collect.wav";
 		MusicPlayer tokenClip = new MusicPlayer(audioFilePath);
 		tokenClip.play();
 	}
@@ -271,7 +271,7 @@ public class Player extends Entity {
 			this.tokenCount = this.tokenCount - requiredTokens;
 			door.turnToGround();
 			String audioFilePath =
-					"src\\a2\\resources\\Sound bytes/Door unlock.wav";
+					"src/a2/resources/Sound bytes/Door unlock.wav";
 			MusicPlayer doorClip = new MusicPlayer(audioFilePath);
 			doorClip.play();
 			return true;
@@ -319,7 +319,7 @@ public class Player extends Entity {
 	public void playerDeath() {
 		this.alive = false;
 		String audioFilePath =
-				"src\\a2\\resources\\Sound bytes/Player Death.wav";
+				"src/a2/resources/Sound bytes/Player Death.wav";
 		MusicPlayer deathClip = new MusicPlayer(audioFilePath);
 		deathClip.play();
 		Alert alert = new Alert(AlertType.INFORMATION);
@@ -336,7 +336,7 @@ public class Player extends Entity {
 	 */
 	public void pickupItem(Item item) {
 		String audioFilePath =
-				"src\\a2\\resources\\Sound bytes/Pick up item.wav";
+				"src/a2/resources/Sound bytes/Pick up item.wav";
 		MusicPlayer itemClip = new MusicPlayer(audioFilePath);
 		itemClip.play();
 		inventory.add(item);
