@@ -717,6 +717,13 @@ public class Level {
 	 */
 	private void writePlayerInventory(String saveFilePath) throws IOException {
 		String printLine = "";
+
+		final int RED_ID = 1;
+        final int GREEEN_ID = 2;
+        final int BLUE_ID = 3;
+        final int FIRE_ID = 4;
+        final int WATER_ID = 5;
+        final int DAGGER_ID = 10;
 		
 		LinkedList<Item> inventory = this.getPlayer().getInventory();
 		int redKeys = 0;
@@ -730,22 +737,22 @@ public class Level {
 		
 		for (Item i : inventory) {
 			switch (i.getItemID()) {
-				case (1) :
+				case (RED_ID) :
 					redKeys++;
 					break;
-				case (2) :
+				case (GREEEN_ID) :
 					greenKeys++;
 					break;
-				case (3) :
+				case (BLUE_ID) :
 					blueKeys++;
 					break;
-				case (4) :
+				case (FIRE_ID) :
 					fireBoots = true;
 					break;
-				case (5) :
+				case (WATER_ID) :
 					flippers = true;
 					break;
-				case (10) :
+				case (DAGGER_ID) :
 					daggerCount++;
 				default :
 			}

@@ -137,28 +137,7 @@ public class Dagger extends Entity {
 	 * @return the direction the dagger is moving
 	 */
 	public int getDirection() {
-		return this.direction;
-	}
-	
-	/**
-	 * Identifies the correct sprite for the direction the entity is moving.
-	 * @param dir the direction of travel
-	 * @return gives sprite for the given direction
-	 */
-	public String getDirSprite(ShootDirection dir) {
-		switch (dir) {
-			case UP:
-				return "a2/resources/stock photos/DaggerUp.png";
-			case DOWN:
-				return "a2/resources/stock photos/DaggerDown.png";
-			case LEFT:
-				return "a2/resources/stock photos/DaggerRight.png";
-			case RIGHT:
-				return "a2/resources/stock photos/DaggerLeft.png";
-			default:
-				return "a2/resources/stock photos/DaggerUp.png";
-		}
-	}
-		
+        return this.direction;
+    }
 
 }
