@@ -8,7 +8,7 @@ public abstract class Item implements Sprite {
 	
 	public static final String SPRITE = "a2/resources/stock photos/Wall.png";
 
-	private String sprite;
+
 	/**
 	 * Empty Constructor to be overwritten.
 	 */
