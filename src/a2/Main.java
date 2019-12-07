@@ -31,14 +31,6 @@ public class Main extends Application {
 	private static Stage curStage;
 	
 	/**
-	 * Changes the scene on the current stage to the scene specified.
-	 * @param s the scene being switched to.
-	 */
-	public static void switchScene(Scene s) {
-		curStage.setScene(s);
-	}
-	
-	/**
 	 * Returns the current Stage.
 	 * @return gives the current stage
 	 */
@@ -46,7 +38,14 @@ public class Main extends Application {
 		return curStage;
 	}
 	
-
+	/**
+	 * Changes the scene on the current stage to the scene specified.
+	 * @param s the scene being switched to.
+	 */
+	public static void switchScene(Scene s) {
+		curStage.setScene(s);
+	}
+	
 	/**
 	 * Loads the main window of the game.
 	 * @param stage is the JFX stage the game is displayed on

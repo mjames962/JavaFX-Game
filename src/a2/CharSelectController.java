@@ -21,7 +21,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  * Allows the user to select and image sprite. 
- * @author Jensen
+ * @author Jensen Beard
  * @version 1.2
  * 
  */
@@ -43,6 +43,28 @@ public class CharSelectController implements Initializable {
 	
 	@FXML
 	private Label lbl_Preview;
+	
+
+	/**
+	 * Adds file names to the combobox on level load.
+	 * @param arg0 needed for JFX
+	 * @param arg1 needed for JFX
+	 */
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		//reads through stock photos folder.
+		File folder = new File("src/a2/resources/stock photos");
+		File[] listOfFiles = folder.listFiles();
+		for (File file : listOfFiles) {
+			String fileName = file.getName();
+			if (file.isFile()) {
+				if (fileName.substring(0, FILEDELIMETER)
+						.equals("Player")) {			
+					cmb_CharSelect.getItems().add(fileName);
+				}  	
+		    }
+		}
+	}
 	
 	/**
 	 * Returns fileLocation.
@@ -97,30 +119,12 @@ public class CharSelectController implements Initializable {
 	
 	/**
 	 * Sets lbl_Preview to the selected image sprite.
-	 * @param event combobox selection.
+	 * @param event combobox option selection.
 	 */
 	@FXML
 	private void handleCmbSelect(Event event) {
 		ImageView image = new ImageView("a2/resources/stock photos/" 
 						+ cmb_CharSelect.getValue());
 		lbl_Preview.setGraphic(image);
-	}
-	
-	/**
-	 * Adds file names to the combobox on level load.
-	 */
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		File folder = new File("src/a2/resources/stock photos");
-		File[] listOfFiles = folder.listFiles();
-		for (File file : listOfFiles) {
-			String fileName = file.getName();
-			if (file.isFile()) {
-				if (fileName.substring(0, FILEDELIMETER)
-						.equals("Player")) {			
-					cmb_CharSelect.getItems().add(fileName);
-				}  	
-		    }
-		}
 	}
 }
