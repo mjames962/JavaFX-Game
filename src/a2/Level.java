@@ -25,6 +25,8 @@ public class Level {
 
 	public static final String LEVEL_STORAGE =
 			"src/a2/resources/file formats";
+	public static final String LEADERBOARD_STORAGE =
+			"src/a2/resources/Leaderboards";
 	private static int currentDeaths;
     private static Level currentLevel;
 	private Cell[][] level;
@@ -51,7 +53,7 @@ public class Level {
 		}
 	
 		try {
-			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
+			File levelLeaderboard = new File(Level.LEADERBOARD_STORAGE + "/LB"
 					+ levelFile.getName());
 			levelLeaderboard.createNewFile();
 		} catch (IOException e) {
@@ -79,7 +81,7 @@ public class Level {
 					.replaceFirst(usernameStart, ""));
 		}
 		try {
-			File levelLeaderboard = new File("src/a2/resources/Leaderboards/LB"
+			File levelLeaderboard = new File(Level.LEADERBOARD_STORAGE + "/LB"
 					+ levelFile.getName());
 			
 			
@@ -109,10 +111,8 @@ public class Level {
 	 * Calls the level to be reloaded in the event of player death.
 	 */
 	public static void restartLevel() {
-        boolean shouldLoadDeaths = false;
 		currentLevel = new Level(currentLevel.levelFile);
 		addDeath();
-		shouldLoadDeaths = true;
 		GameWindowController.getCurrentController().refreshLevel();
 	}
 	
@@ -133,7 +133,6 @@ public class Level {
 	
 	public static void addDeath() {
 		currentDeaths += 1;
-		System.out.println("DETH" + currentDeaths);
 	}
 
     /**
@@ -153,7 +152,7 @@ public class Level {
 	}
 
 	/**
-	 * Method for .
+	 * Returns an arraylist containing all of the entities in the level.
 	 * @return entityList list of entities
 	 */
 	public ArrayList<Entity> getEntityList() {
@@ -210,7 +209,7 @@ public class Level {
 	
 	/**
 	 * Method for placing cells in the level.
-	 * @param cell the cell to be in-putted
+	 * @param cell the cell to be input
 	 * @param x coordinate where the cell is going
 	 * @param y coordinate where the cell is going
 	 *            
@@ -454,6 +453,8 @@ public class Level {
 		int direction = in.nextInt();
 
 		Vector2D vector = new Vector2D(startX, startY);
+		
+		final int PLAYER_ID = 0;
 		final int LINE_ID = 1;
         final int WALL_ID = 2;
         final int DUMB_ID = 3;
@@ -463,7 +464,7 @@ public class Level {
 		Entity entity;
 
 		switch (entityID) {
-			case 0:
+			case PLAYER_ID:
 				entity = new Player(vector, entityID, this);
 				break;
 			case LINE_ID:
@@ -597,7 +598,7 @@ public class Level {
 
 		writePlayerInventory(saveFilePath);
 
-		Files.write(Paths.get(saveFilePath), (this.getCurrentDeaths() + "\n*").getBytes(),
+		Files.write(Paths.get(saveFilePath), (Level.getCurrentDeaths() + "\n*").getBytes(),
 				StandardOpenOption.APPEND);
 
 	}
@@ -610,7 +611,7 @@ public class Level {
 	 */
 	private void writeLevelLayout(String saveFilePath) throws IOException {
 		String printLine = "";
-		// write level layout
+		
 		for (int i = this.yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < this.xLength; j++) {
 				Cell cell = this.getCellAt(j, i);
@@ -654,7 +655,7 @@ public class Level {
 	 */
 	private void writeTokenDoors(String saveFilePath) throws IOException {
 		String printLine = "";
-		// write token doors
+		
 		for (int i = yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < xLength; j++) {
 				Cell cell = this.getCellAt(j, i);
@@ -683,7 +684,7 @@ public class Level {
 	 */
 	private void writeTeleporters(String saveFilePath) throws IOException {
 		String printLine = "";
-		// write teleporters
+		
 		for (int i = yLength - 1; i >= 0; i--) {
 			for (int j = 0; j < xLength; j++) {
 				Cell cell = this.getCellAt(j, i);
@@ -714,7 +715,7 @@ public class Level {
 	 */
 	private void writePlayerInventory(String saveFilePath) throws IOException {
 		String printLine = "";
-		// write inventory
+		
 		LinkedList<Item> inventory = this.getPlayer().getInventory();
 		int redKeys = 0;
 		int greenKeys = 0;
