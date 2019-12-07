@@ -1,6 +1,6 @@
 package a2;
 /**
- * Generic type for a sprite, defaulting to the Wall sprite.
+ * An interface for drawing a sprite.
  * @author George Williams Walton
  * @version 1.2
  */
