@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 
 /**
  * Holds the Cell Superclass.
- * @author Jensen Beard
+ * @author George Williams Walton,Tom Wood
  * @version 1.3
  *
  */

@@ -1,6 +1,6 @@
 package a2;
 
-import javafx.event.ActionEvent;
+import javafx.event.ActionEvent; 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Controls the CreateUser window.
  * @author Jensen Beard, Jamie Springett
- *@version 1.4
+ * @version 1.4
  */
 
 public class CreateUserController {

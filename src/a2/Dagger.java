@@ -10,10 +10,37 @@ import cell.DaggerCell;
  */
 public class Dagger extends Entity {
 	public static final String SPRITE = "a2/resources/stock photos/Dagger.png";
-	private static final int DAGGER_ID = 10;	
+	private static final int DAGGER_ID = 10;
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = true;
-	/**		 
+
+
+	/**
+	 * Gets the direction the dagger is
+	 * Travelling in.
+	 * @return the direction the dagger is moving
+	 */
+	public int getDirection() {
+        return this.direction;
+    }
+
+	/**
+	* Returns the sprite.
+	* @return gives the sprite
+	*/
+	public String getSprite() {
+		return SPRITE;
+	}
+
+	/**
+	 * Sets throw direction.
+	 */
+	@Override
+	public void setDirection(int dir) {
+		direction = dir;
+	}
+
+	/**
 	 * Holds directions for the moving Dagger.
 	 * @param pos holds the position
 	 */
@@ -32,26 +59,10 @@ public class Dagger extends Entity {
 		setEntityID(DAGGER_ID);
 		direction = dir;
 	}
-	
-	@Override
-	public void setDirection(int dir) {
-		direction = dir;
-	}
-	
-
-	
-	/**
-	* Returns the sprite.
-	* @return gives the sprite
-	*/
-	public String getSprite() {
-		return SPRITE;
-	}
 
     /**
      * Moves the dagger in the intended direction.
      */
-	
 	@Override
 	public void move() {
 		if (move) {
@@ -69,6 +80,7 @@ public class Dagger extends Entity {
 			}
 		}
 	}
+
 	/**
 	 * Checks the direction and calculates the next move.
 	 * @param isX Checks if direction of travel is Vertical or Horizontal
@@ -109,6 +121,7 @@ public class Dagger extends Entity {
 			
 		}
 	}
+
 	/**
 	 * Getter for the direction of movement of the entity.
 	 * @param dir reads in the direction
@@ -132,16 +145,4 @@ public class Dagger extends Entity {
 				return 0;	
 		}
 	}
-	
-	
-	/**
-	 * Gets the direction the dagger is
-	 * Travelling in.
-	 * 
-	 * @return the direction the dagger is moving
-	 */
-	public int getDirection() {
-        return this.direction;
-    }
-
 }
