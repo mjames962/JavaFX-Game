@@ -21,30 +21,31 @@ public class MOTD {
     
     
     /**
-     * Retrieves message of the day becuz Liam sez so.
-     * @return gives the solution to the puzzle to satisfy Liam
+     * Retrieves message of the day.
+     * @return Final motd
+     * @throws InvalidPuzzleSolutionException If our attempt to solve the puzzle was wrong/too slow.
      * @throws IOException for invalid inputs
      */
-    public static String getMOTD() throws IOException {
+    public static String getMOTD() throws IOException, InvalidPuzzleSolutionException {
     	String puzzle = getPuzzle();
     	String solve = solvePuzzle(puzzle);
     	return submitSolvedPuzzle(solve);
     }
     
     /**
-     * Gets the puzzle.
-     * @return attemptReadResponse
-     * @throws IOException
+     * Gets the puzzle from the webpage.
+     * @return The puzzle to solve
+     * @throws IOException If our attempt to get the puzzle fails.
      */
     private static String getPuzzle() throws IOException {
         return attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
     }
     
-    //TODO
     /**
-     * @param chr
-     * @param forward
-     * @return
+     * Moves a character forward or backward in the alphabet.
+     * @param chr The character to shift
+     * @param forward Forward true Backward false
+     * @return The shifted char
      */
     private static char shift(char chr, boolean forward) {
         int shiftNum;
@@ -63,10 +64,10 @@ public class MOTD {
         }
     }
     
-    //TODO
     /**
-     * @param puz
-     * @return
+     * Attempts to solve the given puzzle.
+     * @param puz Puzzle string
+     * @return The solution to the puzzle
      */
     private static String solvePuzzle(String puz) {
         char[] solvedchars = new char[puz.length()];
@@ -79,13 +80,15 @@ public class MOTD {
         return new String(solvedchars);
     }
     
-    //TODO
     /**
-     * @param url
-     * @return
-     * @throws IOException
+     * Attempts to try to get a string response from the given url.
+     * @param url The solution url to try
+     * @return The string response
+     * @throws InvalidPuzzleSolutionException The puzzle solution given was rejected (403)
+     * @throws IOException Any other invalid response from the server
      */
-    private static String attemptReadResponse(URL url) throws IOException {
+    private static String attemptReadResponse(URL url) 
+    		throws IOException, InvalidPuzzleSolutionException {
     	Integer response = null;
     	try {
     		HttpURLConnection httpresponse = (HttpURLConnection) 
@@ -97,8 +100,8 @@ public class MOTD {
     		in.close();
             return line;
     	} catch (IOException e) {
-    		if ((response != null) && (response
-    				== HttpURLConnection.HTTP_FORBIDDEN)) {
+    		if ((response != null) && 
+    				(response == HttpURLConnection.HTTP_FORBIDDEN)) {
     			throw new InvalidPuzzleSolutionException();
     		} else {
     			throw e;
@@ -106,15 +109,15 @@ public class MOTD {
     	}
     }
    
-    //TODO
     /**
-     * 
-     * @param solvedPuzzle
-     * @return
-     * @throws IOException
+     * Attempts to submit the solved puzzle, and retrieve the final MOTD.
+     * @param solvedPuzzle The solution to the puzzle
+     * @return Final MOTD if successful
+     * @throws InvalidPuzzleSolutionException If the puzzle solution was incorrect
+     * @throws IOException Any other invalid response
      */
     private static String submitSolvedPuzzle(String solvedPuzzle) 
-    		throws IOException {
+    		throws IOException,InvalidPuzzleSolutionException {
     	String solvedPuz = attemptReadResponse(
     			new URL(BASE_URL + PUZZLE_RESPONSE + solvedPuzzle)
     			);

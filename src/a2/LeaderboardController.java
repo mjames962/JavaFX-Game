@@ -54,9 +54,8 @@ public class LeaderboardController {
         
 	}
 	
-	//TODO
 	/**
-	 *TODO.
+	 * Adds a listener to the levelselector to change leaderboard
 	 */
 	public void hookSelector() {
 		levelSelector.getSelectionModel().
