@@ -45,6 +45,7 @@ public class Goal extends Cell {
 		long finishTime = Timer.checkTimeElapsed();
 		int levelNum = Level.getCurrentLevel().getLevelNumber();
 		Timer.stop();
+		UserData.getCurrentUser().saveDeaths(levelNum, Level.getCurrentDeaths());
 		UserData.getCurrentUser().setBestTime(levelNum, finishTime);
 		UserData.getCurrentUser().setHighestLevel(levelNum);
 		Level.getCurrentLevel().loadNextLevel();
@@ -52,6 +53,7 @@ public class Goal extends Cell {
 				"src/a2/resources/Sound bytes/Goal.wav";
 		MusicPlayer goalClip = new MusicPlayer(audioFilePath);
 		goalClip.play();
+		
 		displayCompleted(finishTime);
 	}
 	/**

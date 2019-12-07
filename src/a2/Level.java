@@ -28,6 +28,7 @@ public class Level {
 	public static final String LEADERBOARD_STORAGE =
 			"src/a2/resources/Leaderboards";
 	private static int currentDeaths;
+	private static boolean shouldReadDeaths = true;
     private static Level currentLevel;
 	private Cell[][] level;
 	private File levelFile;
@@ -111,8 +112,11 @@ public class Level {
 	 * Calls the level to be reloaded in the event of player death.
 	 */
 	public static void restartLevel() {
+		shouldReadDeaths = false;
 		currentLevel = new Level(currentLevel.levelFile);
+		
 		addDeath();
+		shouldReadDeaths = true;
 		GameWindowController.getCurrentController().refreshLevel();
 	}
 	
@@ -408,7 +412,10 @@ public class Level {
 		}
 
 		Timer.setSavedTime(time);
-		Level.currentDeaths = deathCount;
+		if (shouldReadDeaths) {
+			Level.currentDeaths = deathCount;
+		}
+		
 
 		in.close();
 	}

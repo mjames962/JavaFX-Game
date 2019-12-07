@@ -327,9 +327,11 @@ public class UserData {
 	public static Leaderboard getDeathLeaderboard(int levelNo) {
 		File deathfile = getDeathFile(levelNo);
 		Leaderboard leader = new Leaderboard();
+		
 		leader.addColumn(new LeaderboardColumn<>(String.class, "Name"));
 		leader.addColumn(new LeaderboardColumn<>(Integer.class,
 				"Deaths"));
+		leader.setSortedColumn("Deaths");
 		HashMap<String, Integer> deathmap = readDeaths(deathfile);
 		for (String name : deathmap.keySet()) {
 			int deaths = deathmap.get(name);
