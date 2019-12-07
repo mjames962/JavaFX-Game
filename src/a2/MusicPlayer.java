@@ -2,7 +2,6 @@ package a2;
 
 import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -18,11 +17,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class MusicPlayer {
 	private Clip musicClip;
-	private Clip soundClip;
 	private AudioInputStream currentAudioStream;
-    private boolean isMuted = false;
 	private String audioPath;
 	private static boolean muted = false;
+	public static final String MUSIC_FOLDER_LOCATION = "src/a2/resources/Sound bytes";
 	
 	
 	/**
@@ -54,6 +52,11 @@ public class MusicPlayer {
         }
 	}
 
+    /**
+     * Returns whether or not the game sounds have been muted.
+     * 
+     * @return muted True if muted, false otherwise
+     */
     public static boolean isMuted() {
         return muted;
     }
@@ -66,7 +69,7 @@ public class MusicPlayer {
             try {
                 musicClip.open(currentAudioStream);
                 if (audioPath.equals(
-                        "src/a2/resources/Sound bytes/Background music.wav")) {
+                        MUSIC_FOLDER_LOCATION + "/Background music.wav")) {
                     musicClip.loop(Clip.LOOP_CONTINUOUSLY);
                 }
             } catch (LineUnavailableException e) {
@@ -78,10 +81,16 @@ public class MusicPlayer {
         }
 	}
 	
+	/**
+	 * @return musicClip
+	 */
 	public Clip getmusicClip() {
 		return musicClip;
 	}
 
+	/**
+	 * Mutes the game if sound is playing, unmutes otherwise.
+	 */
 	public static void mute() {
 	    muted = !muted;
     }
