@@ -218,7 +218,25 @@ public class UserData {
 
 			Files.delete(Paths.get(USERS_FILE_LOCATION));
 			newUsersFile.renameTo(new File(USERS_FILE_LOCATION));
+			
+			deleteAllSaves(username);
 		}
+	}
+	
+	/**
+	 * Deletes all of the level save files of the parsed in user.
+	 * 
+	 * @param username the username of the user who we are deleting all save files for
+	 */
+	private static void deleteAllSaves(String username) {
+		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
+		File[] listOfFiles = folder.listFiles();
+		
+		for (File file : listOfFiles) {
+			if (file.getName().startsWith(username + "_")) {
+				file.delete();
+			}
+		}	
 	}
 	
 	/**
