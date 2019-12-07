@@ -94,7 +94,6 @@ public class Vector2D {
 		set(this.x + otherVec.getX(), this.y + otherVec.getY());
 	}
 	
-	
 	/**
 	 * Sets the x and y coordinates of the vector.
 	 * @param x x coordinate

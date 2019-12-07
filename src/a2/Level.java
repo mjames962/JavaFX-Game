@@ -48,7 +48,8 @@ public class Level {
 		currentLevel = this;
 		String usernameStart = UserData.getCurrentUser().getName() + "_";
 		
-		// changes the location to the original level file rather than the save location
+		// changes the location to the original 
+		//level file rather than the save location
 		if (fileName.startsWith(Level.LEVEL_STORAGE + "/" + usernameStart)) {
 			this.levelFile = new File(fileName.replaceFirst(usernameStart, ""));
 		}
@@ -61,7 +62,6 @@ public class Level {
 			System.out.println("fail");
 		}
 		Timer.start();
-		
 	}
 	/**
 	 * Reads in the level and starts the timer when the file is already made.
@@ -119,8 +119,6 @@ public class Level {
 		shouldReadDeaths = true;
 		GameWindowController.getCurrentController().refreshLevel();
 	}
-	
-	
 
 	/**
 	 * Returns the LevelFile.
@@ -133,8 +131,7 @@ public class Level {
     /**
      * Adds a death to the players death Counter.
      */
-	
-	
+		
 	public static void addDeath() {
 		currentDeaths += 1;
 	}
@@ -163,8 +160,6 @@ public class Level {
 		return entityList;
 	}
 	
-	
-
 	/**
 	 * Method for instantiating entities onto the level.
 	 * @param entity is the entity to be added to level       
@@ -190,6 +185,7 @@ public class Level {
 	public Cell getCellAt(int x, int y) {
 		return this.level[x][y];
 	}
+	
 	/**
 	 * gives the type of cell at the requested location.
 	 * @param vector the location to look at the cell type
@@ -245,9 +241,9 @@ public class Level {
 		    	return (Player) e;
 		    }
 		}
-		
 		return null;
 	}
+	
 	/**
 	 * Returns the unique identifier in level names.
 	 * @return gives an int to be searched for in level files.
@@ -307,8 +303,6 @@ public class Level {
 
 		this.readFile(in);
 	}
-	
-	
 
 	/**
 	 * Reads files to allow for data permanence.
@@ -339,7 +333,6 @@ public class Level {
 			}
 			line = in.nextLine();
 		}
-
 		line = in.nextLine();
 
 		// entity info
@@ -415,8 +408,6 @@ public class Level {
 		if (shouldReadDeaths) {
 			Level.currentDeaths = deathCount;
 		}
-		
-
 		in.close();
 	}
 
@@ -602,10 +593,8 @@ public class Level {
 
 		Files.write(Paths.get(saveFilePath), (Level.getCurrentDeaths() + "\n*").getBytes(),
 				StandardOpenOption.APPEND);
-
 	}
-
-		
+	
 	/**
 	 * Writes the current state of the level cells in the save file.
 	 * @param saveFilePath File path to the save file.
@@ -648,8 +637,7 @@ public class Level {
 		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), 
 				StandardOpenOption.APPEND);
 	}
-	
-	
+
 	/**
 	 * Writes the current Token Door setup to the save file.
 	 * @param saveFilePath File path to the save file.
@@ -671,8 +659,7 @@ public class Level {
 					Files.write(Paths.get(saveFilePath), (printLine + "\n").
 							getBytes(), StandardOpenOption.APPEND);
 					printLine = "";
-				}
-				
+				}				
 			}
 		}
 		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(), 
@@ -702,7 +689,6 @@ public class Level {
 							.getBytes(), StandardOpenOption.APPEND);
 					printLine = "";
 				}
-
 			}
 		}
 		Files.write(Paths.get(saveFilePath), ("*" + "\n").getBytes(),

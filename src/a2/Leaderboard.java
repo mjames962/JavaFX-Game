@@ -45,7 +45,6 @@ public class Leaderboard {
 	 * @return LeaderboardEntry requested
 	 */
 	public LeaderboardEntry getEntry(int index) {
-		
 		return entries.get(index);
 	}
 	
@@ -125,9 +124,7 @@ public class Leaderboard {
 			if (column.equals(sortedColumn)) {
 				column.setSortable(true);
 				tv.getSortOrder().add(column.getTableColumn());
-				
 				column.setSortOrder(getSortType());
-				
 			}
 		}
 		for (LeaderboardEntry entry : entries) {
@@ -135,5 +132,4 @@ public class Leaderboard {
 		}
 		tv.sort();
 	}
-
 }

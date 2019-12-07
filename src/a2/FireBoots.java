@@ -2,7 +2,7 @@ package a2;
 
 /**
  * The Class responsible for the FireBoots Item to 
- * 							be stored in the player's inventory.
+ * be stored in the player's inventory.
  * @author George Williams Walton, Tom Wood
  * @version 1.1
  */
@@ -24,6 +24,5 @@ public class FireBoots extends Item {
 	 */
 	public String getSprite() {
 		return SPRITE;
-	}
-	
+	}	
 }

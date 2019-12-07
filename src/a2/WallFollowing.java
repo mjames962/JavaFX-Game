@@ -22,9 +22,10 @@ public class WallFollowing extends Entity {
 	public WallFollowing(Vector2D currentVector, 
 			int enemyID, Level level) {
 		super(currentVector);
+		//TODO
+		//Magic Number??
 		setEntityID(2);
 
-		
 	}
 	/**
 	 * method for getting the sprite.
@@ -38,8 +39,7 @@ public class WallFollowing extends Entity {
 	 * Gets the direction the enemy is moving in.
 	 * @return the direction the enemy is moving in.
 	 */
-	
-	
+
 	public int getDirection() {
 		return direction;
 	}
@@ -57,7 +57,7 @@ public class WallFollowing extends Entity {
 		Vector2D leftWall = new Vector2D(cX + findLeft(true),
 				cY + findLeft(false));
 		if (isValidMove(leftWall)) {
-			decreaseDircetion();
+			decreaseDirection();
 			return leftWall;
 		} else if (isValidMove(nextVector)) {
 			return nextVector;
@@ -67,7 +67,6 @@ public class WallFollowing extends Entity {
 		return nextMove();
 		
 	}
-	
 	
 	/**
 	 * Finds the change in position after the next movement. 	
@@ -141,8 +140,7 @@ public class WallFollowing extends Entity {
 					return 0;
 				}
 			default:
-				return 0;
-				
+				return 0;	
 		}
 	}
 	
@@ -162,14 +160,13 @@ public class WallFollowing extends Entity {
 	 * Rotates the enemy 90 degrees anti clockwise.
 	 */
 	
-	public void decreaseDircetion() {
+	public void decreaseDirection() {
 		if (direction == 0) {
 			direction = MAX_DIR;
 		} else {
 			--direction;
 		}
 	}
-	
 	
 	/**
 	 * Changes the current position to the next position the
@@ -178,6 +175,5 @@ public class WallFollowing extends Entity {
 		
 	public void move() {
 		setCurrentVector(nextMove());
-	}
-	
+	}	
 }

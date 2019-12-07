@@ -29,11 +29,10 @@ public class LeaderboardColumn<T> {
 		this.tcolumn = new TableColumn<>(name);
 		setupFactory();
 		setSortable(false);
-		
 	}
 	
 	/**
-	 * Sets up the cellvaluefactory for TableColumn.
+	 * Sets up the cell value factory for TableColumn.
 	 */
 	private void setupFactory() {
 		tcolumn.setCellValueFactory(
@@ -96,6 +95,4 @@ public class LeaderboardColumn<T> {
 	public Class<T> getMyType() {
 		return type;
 	}
-	
-
 }

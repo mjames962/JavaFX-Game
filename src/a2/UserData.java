@@ -37,6 +37,7 @@ public class UserData {
 			"src/a2/resources/fxml docs";
 	public static final String LEADERBOARD_FOLDER_LOCATION = 
 			"src/a2/resources/Leaderboards";
+	private static final int MAX_CHARACTER_LIMIT = 25;
 	private static Profile currentUser;
 	
 	/**
@@ -47,7 +48,6 @@ public class UserData {
 	public static Profile getCurrentUser() {
 		return currentUser;
 	}
-	
 	
 	/**
 	 * Sets the current user playing the game. 
@@ -79,7 +79,6 @@ public class UserData {
 			System.out.println("Cannot open Users.txt");
 			System.exit(0);
 		}
-
 		return doesExist(username, in);
 	}
 	
@@ -225,8 +224,8 @@ public class UserData {
 	
 	/**
 	 * Deletes all of the level save files of the parsed in user.
-	 * 
-	 * @param username the username of the user who we are deleting all save files for
+	 * @param username the username of the user 
+	 * who we are deleting all save files for
 	 */
 	private static void deleteAllSaves(String username) {
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
@@ -344,13 +343,13 @@ public class UserData {
 	}
 	
 	/**
-	 * Helper function for creating valid users
+	 * Helper function for creating valid users.
 	 * @param userName name to be checked
 	 * @return true if it's a valid name
 	 */
 	public static boolean validateName(String userName) {
 		boolean invalidChars = userName.matches(".*[^a-zA-Z0-9]+.*");
-		boolean tooManyChars = userName.length() > 25;
+		boolean tooManyChars = userName.length() > MAX_CHARACTER_LIMIT;;
 		boolean noInput = userName.equals("");
 		return !(invalidChars || noInput || tooManyChars);
 	}

@@ -8,7 +8,6 @@ public abstract class Item implements Sprite {
 	
 	public static final String SPRITE = "a2/resources/stock photos/Wall.png";
 
-
 	/**
 	 * Empty Constructor to be overwritten.
 	 */
@@ -22,13 +21,11 @@ public abstract class Item implements Sprite {
 		return -1;
 	}
 
-
 	 /** 
 	 * Method to be overwritten to return the Sprite for an item.
 	 * @return gives a generic to prevent Item being drawn
 	 */
 	public String getSprite() {
 		return SPRITE;
-	}
-	
+	}	
 }

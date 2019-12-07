@@ -82,8 +82,4 @@ public class DumbTargeting extends Entity {
 	public void move() {
 		setCurrentVector(nextMove());
 	}
-	
-	
-
-	
 }

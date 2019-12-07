@@ -12,7 +12,7 @@ public class StraightLine extends Entity {
 			"a2/resources/stock photos/Straight_Line_Enemy.png";
 	private boolean increaseDirection = true;
 
-    /**
+	/**
 	 * Constructs the StraightLine class.
 	 * @param enemyID the ID of the enemy
 	 * @param currentVector the position of the enemy
@@ -30,35 +30,35 @@ public class StraightLine extends Entity {
 	public String getSprite() {
 		return SPRITE;
 	}
-	
+
 	/**
 	 * Establishes the next move for the enemy.
 	 * @return nextVector the requested next cell to move to
 	 */
 	public Vector2D nextMove() {
-        int cX = getCurrentVector().getX();
-        int cY = getCurrentVector().getY();
-        Vector2D nextVector = new Vector2D(cX, cY);
-        String direction = "v";
-        if (direction .equals("v")) {
-            if (increaseDirection) {
-                nextVector.set(cX, ++cY);
-            } else {
-                nextVector.set(cX, --cY);
-            }
-        } else {
-                //entity is moving horizontally
-                if (increaseDirection) {
-                    nextVector.set(++cX, cY);
-                } else {
-                    nextVector.set(--cX, cY);
-                }
-        }
-        if (!this.isValidMove(nextVector)) {
-            increaseDirection = !increaseDirection;
-            return nextMove();
-        }
-        return nextVector;
+		int cX = getCurrentVector().getX();
+		int cY = getCurrentVector().getY();
+		Vector2D nextVector = new Vector2D(cX, cY);
+		String direction = "v";
+		if (direction .equals("v")) {
+			if (increaseDirection) {
+				nextVector.set(cX, ++cY);
+			} else {
+				nextVector.set(cX, --cY);
+			}
+		} else {
+			//entity is moving horizontally
+			if (increaseDirection) {
+				nextVector.set(++cX, cY);
+			} else {
+				nextVector.set(--cX, cY);
+			}
+		}
+		if (!this.isValidMove(nextVector)) {
+			increaseDirection = !increaseDirection;
+			return nextMove();
+		}
+		return nextVector;
 	}		
 	/**
 	 * Enacts the next move.
@@ -67,4 +67,3 @@ public class StraightLine extends Entity {
 		this.setCurrentVector(nextMove());
 	}
 }
-			

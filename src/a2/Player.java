@@ -184,8 +184,7 @@ public class Player extends Entity {
 				}
 			}
 		}
-	}
-	
+	}	
 	
 	/**
 	 * Handles the throwing of the dagger.
@@ -325,7 +324,7 @@ public class Player extends Entity {
 	}
 	
 	/**
-	 * Gets the first item of type found in inventory
+	 * Gets the first item of type found in inventory.
 	 * @param itemType the collectible type to find
 	 * @return The item found of type, otherwise null
 	 */
@@ -340,9 +339,7 @@ public class Player extends Entity {
 
 	/**
 	 * This removes the item from the inventory.
-	 * 
-	 * @param item
-	 *            the current item being removed
+	 * @param item the current item being removed
 	 */
 	public void removeItem(Item item) {
 		this.inventory.remove(item);
@@ -350,7 +347,6 @@ public class Player extends Entity {
 
 	/**
 	 * Gets the number of tokens.
-	 * 
 	 * @return tokenCount
 	 */
 	public int getTokens() {
@@ -358,7 +354,7 @@ public class Player extends Entity {
 	}
 	/**
 	 * The inventory for the player.
-	 * @return 's the inventory
+	 * @return the inventory
 	 */
 	public LinkedList<Item> getInventory() {
 		return this.inventory;
@@ -378,6 +374,5 @@ public class Player extends Entity {
 	 */
 	public Vector2D getPlayerVector() {
 		return getCurrentVector();
-		
 	}
 }

@@ -37,9 +37,6 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private Button btn_Log_Out;
 	
-
-	
-
 	/**
 	 * Identifies levels the user is allowed to play and 
 	 * adds it to the drop down box .

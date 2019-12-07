@@ -32,5 +32,4 @@ public class DaggerItem extends Item {
 	public String getSprite() {
 		return SPRITE;
 	}
-
 }

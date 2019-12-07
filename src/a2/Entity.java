@@ -90,8 +90,6 @@ public class Entity implements Sprite {
 		remove = re;
 	}
 	
-	
-	
 	/**
 	 * gets the coordinates of the entity. 
 	 * @return vector 
@@ -101,11 +99,11 @@ public class Entity implements Sprite {
 		return getCurrentVector();
 	}
 
-	
 	/**
 	 * Retrieves the entity ID.
 	 * @return entityID
 	 */
+	
 	public int getEntityID() {
 		return entityID;
 	}
@@ -147,8 +145,8 @@ public class Entity implements Sprite {
 	
 	public boolean isValidMove(Vector2D nextVector) {
 		if (this.entityID != 0) { // Enemies
-				return Level.getCurrentLevel().getCellAt(nextVector) instanceof
-                        Ground;
+			return Level.getCurrentLevel().getCellAt(nextVector) instanceof 
+					Ground;
 		} else { //player class will override with access restraints.
 			return false;
 		}

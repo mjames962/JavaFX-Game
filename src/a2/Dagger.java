@@ -17,7 +17,7 @@ public class Dagger extends Entity {
 	
 	/**
 	 * Gets the direction the dagger is
-	 * Travelling in.
+	 * travelling in.
 	 * @return the direction the dagger is moving
 	 */
 	public int getDirection() {

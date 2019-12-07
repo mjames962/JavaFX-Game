@@ -67,7 +67,7 @@ public class CharSelectController implements Initializable {
 	}
 	
 	/**
-	 * Returns the loaction of the image file.
+	 * Returns the location of the image file.
 	 * @return fileLocation the location of the chosen image sprite
 	 */
 	public static String getCharSprite() {

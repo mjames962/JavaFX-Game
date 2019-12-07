@@ -80,7 +80,7 @@ public class CreateUserController {
 	/**
 	 * Returns the user to the main menu.
 	 * @param event Checks for an event occurring.
-	 * @throws IOException .
+	 * @throws IOException.
 	 */
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
@@ -89,4 +89,3 @@ public class CreateUserController {
 		createScene.getChildren().setAll(window);
 	}
 }
-

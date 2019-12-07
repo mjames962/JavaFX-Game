@@ -32,13 +32,15 @@ public class MOTD {
     }
     
     /**
-     * @return
+     * Gets the puzzle.
+     * @return attemptReadResponse
      * @throws IOException
      */
     private static String getPuzzle() throws IOException {
         return attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
     }
     
+    //TODO
     /**
      * @param chr
      * @param forward
@@ -61,6 +63,7 @@ public class MOTD {
         }
     }
     
+    //TODO
     /**
      * @param puz
      * @return
@@ -76,6 +79,7 @@ public class MOTD {
         return new String(solvedchars);
     }
     
+    //TODO
     /**
      * @param url
      * @return
@@ -102,6 +106,7 @@ public class MOTD {
     	}
     }
    
+    //TODO
     /**
      * 
      * @param solvedPuzzle

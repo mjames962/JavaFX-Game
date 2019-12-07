@@ -126,11 +126,7 @@ public class Profile {
 			deathmap.put(name, deaths);
 		}
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * Sets a new best time for a specified level.
 	 * @param level the level the new time is being set to.
@@ -184,11 +180,12 @@ public class Profile {
 			writeLeaderboardFile(filePath);
 		}
 	}
+	
 	/**
 	 * Searches for lowest existing time for a level.
 	 * @param curName The name of the current user
 	 * @param time the time taken to complete a given level, 
-	 * 							to be uploaded to the leaderboard
+	 * to be uploaded to the leaderboard
 	 */
 	public void findLowestTimes(String curName, long time) {
 		boolean swapped = false;
@@ -269,11 +266,6 @@ public class Profile {
         for (Long bestTime : bestTimes) {
             writer.println(Long.toString(bestTime));
         }
-		writer.close();
-		
-	}
-	
-	
-	
-	
+		writer.close();	
+	}	
 }

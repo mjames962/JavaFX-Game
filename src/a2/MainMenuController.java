@@ -41,8 +41,7 @@ public class MainMenuController implements Initializable {
 	private ListView<String> lstView_Users;
 	@FXML
 	private CheckBox cb_ShowUsers;
-	
-	
+		
 	/**
 	 * Initialises the main menu window.
 	 * @param arg0 needed for JFX
@@ -144,4 +143,3 @@ public class MainMenuController implements Initializable {
 		System.exit(0);
 	}
 }
-

@@ -2,8 +2,6 @@ package a2;
 
 import java.util.ArrayList;
 
-//import java.util.Queue;
-//import java.util.LinkedList;
 /**
  * The enemy type that follows the A* algorithm to hunt the player.
  * @author James Colebourn, Tom Wood
@@ -16,9 +14,7 @@ public class SmartTargetEnemy extends Entity {
 	private final int maxViewDistance = 10;
 	private Vector2D nextMove;
 	private ArrayList<Vector2D> moveList = new ArrayList<>();
-
-//	private Vector2D currentVector = null;
-// 	 * @param curShortestPath holds a queue of vectors for next moves	
+	
 	/**
 	 * Required parameters for a Smart Targeting Enemy.
 	 * @param currentVector holds a Vector2D for current position
@@ -103,7 +99,6 @@ public class SmartTargetEnemy extends Entity {
 				y >= 0 && y < level.levelYLength());
 	}
 	
-	
 	/**
 	 * Moves the enemy to their new position.
 	 */
@@ -118,10 +113,4 @@ public class SmartTargetEnemy extends Entity {
 			this.setCurrentVector(nextMove);
 		}
 	}
-
-	
-	
-	
-
-
 }

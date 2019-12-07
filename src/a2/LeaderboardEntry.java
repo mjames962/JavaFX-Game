@@ -63,8 +63,6 @@ public class LeaderboardEntry {
 		} else {
 			throw new InvalidParameterException(""
 					+ "Attempt to find a column with no data set! " + name);
-		}
-		
+		}	
 	}
-
 }

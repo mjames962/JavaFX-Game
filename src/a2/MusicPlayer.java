@@ -16,13 +16,12 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @version 1.0
  */
 public class MusicPlayer {
+	private static boolean muted = false;
+	public static final String MUSIC_FOLDER_LOCATION = "src/a2/resources/Sound bytes";
 	private Clip musicClip;
 	private AudioInputStream currentAudioStream;
 	private String audioPath;
-	private static boolean muted = false;
-	public static final String MUSIC_FOLDER_LOCATION = "src/a2/resources/Sound bytes";
-	
-	
+
 	/**
 	 * Loads the music file.
 	 * @param audioFilePath the file path of the music.
@@ -82,6 +81,7 @@ public class MusicPlayer {
 	}
 	
 	/**
+	 * Gets the music clip.
 	 * @return musicClip
 	 */
 	public Clip getmusicClip() {

@@ -78,4 +78,3 @@ public class DeleteUserController {
 		DeleteRoot.getChildren().setAll(window);
 	}
 }
-

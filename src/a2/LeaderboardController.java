@@ -54,7 +54,10 @@ public class LeaderboardController {
         
 	}
 	
-	
+	//TODO
+	/**
+	 *TODO.
+	 */
 	public void hookSelector() {
 		levelSelector.getSelectionModel().
 			selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -96,7 +99,6 @@ public class LeaderboardController {
 	public int getSelectedLevel() {
 		return UserData.getLevelNumber(levelSelector.getValue());
 	}
-	
 	
 	/**
 	 * Clears the table.
@@ -180,6 +182,4 @@ public class LeaderboardController {
 		AnchorPane ap = (AnchorPane) backButton.getScene().getRoot();
 		ap.getChildren().setAll(window);
 	}
-
-
 }
