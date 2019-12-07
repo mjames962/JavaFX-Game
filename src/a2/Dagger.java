@@ -10,7 +10,7 @@ import cell.DaggerCell;
  */
 public class Dagger extends Entity {
 	public static final String SPRITE = "a2/resources/stock photos/Dagger.png";
-	private static final int DAGGER_ID = 10;	
+	private static final int DAGGER_ID = 10;
 	private int direction = -1; //0=up,1=right,2=down,3=left
 	private boolean move = true;
 	
@@ -30,6 +30,14 @@ public class Dagger extends Entity {
 	*/
 	public String getSprite() {
 		return SPRITE;
+	}
+	
+	/**
+	 * Sets throw direction.
+	 */
+	@Override
+	public void setDirection(int dir) {
+		direction = dir;
 	}
 	
 	/**		 
@@ -53,14 +61,6 @@ public class Dagger extends Entity {
 		direction = dir;
 	}
 	
-	/**
-	 * Sets throw direction.
-	 */
-	@Override
-	public void setDirection(int dir) {
-		direction = dir;
-	}
-
     /**
      * Moves the dagger in the intended direction.
      */
