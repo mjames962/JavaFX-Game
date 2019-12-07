@@ -344,6 +344,18 @@ public class UserData {
 	}
 	
 	/**
+	 * Helper function for creating valid users
+	 * @param userName
+	 * @return true if it's a valid name
+	 */
+	public static boolean validateName(String userName) {
+		boolean invalidChars = userName.matches(".*[^a-zA-Z0-9]+.*");
+		boolean tooManyChars = userName.length() > 25;
+		boolean noInput = userName.equals("");
+		return !(invalidChars || noInput || tooManyChars);
+	}
+	
+	/**
 	 * Gets the death leaderboard File.
 	 * @param level the level number you are getting the file for.
 	 * @return the file holding the death leaderbaodr for a given level number.

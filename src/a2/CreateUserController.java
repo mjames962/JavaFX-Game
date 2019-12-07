@@ -46,6 +46,13 @@ public class CreateUserController {
 			alert.setContentText(null);
 			alert.showAndWait();
 			
+		} else if (!UserData.validateName(newUser)) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Invalid user name, Please try again");
+			alert.setContentText("Usernames must be less than 25 characters "
+					+ "\nand only contain letters and numbers");
+			alert.showAndWait();
 		} else {
 			
 			
