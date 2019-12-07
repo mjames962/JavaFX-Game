@@ -217,7 +217,7 @@ public class Player extends Entity {
 			for (Item item : this.inventory) {
 				if (item.getItemID() == DAGGER_ID) {
 					this.inventory.remove(item);
-					Dagger newDagger = new Dagger(shoot(input), input);
+					Dagger newDagger = new Dagger(shoot(input));
 					newDagger.setDirection(newDagger.getDirection(input));
 					Level.getCurrentLevel().getEntityList().add(
 							newDagger);

@@ -16,13 +16,17 @@ public class Dagger extends Entity {
 	/**		 
 	 * Holds directions for the moving Dagger.
 	 * @param pos holds the position
-	 * @param dir holds the direction
 	 */
-	public Dagger(Vector2D pos, ShootDirection dir) {
+	public Dagger(Vector2D pos) {
 		super(pos);
 		setEntityID(DAGGER_ID);
 	}
-	
+
+    /**
+     * Holds directions for the moving Dagger.
+     * @param pos holds the position
+     * @param dir Holds the direction the daggeer is travelling.
+     */
 	public Dagger(Vector2D pos, int dir) {
 		super(pos);
 		setEntityID(DAGGER_ID);
