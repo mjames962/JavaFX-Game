@@ -89,7 +89,7 @@ public class GameWindowController implements Initializable {
 	}
 	
 	/**
-	 * Creates and displays canvas in the window & displays message of the day.
+	 * Creates and displays canvas in the window and displays message of the day.
 	 */
 	
 	@Override
