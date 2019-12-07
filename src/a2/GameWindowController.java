@@ -128,7 +128,7 @@ public class GameWindowController implements Initializable {
 		this.drawAll();
 	}	
 	/**
-	 * Checks user input.
+	 * Checks user input and acts upon it in the intended result.
 	 * @param sc stores the current scene
 	 */
 	public void hookInput(Scene sc) {
@@ -194,7 +194,7 @@ public class GameWindowController implements Initializable {
 	}
 	
 	/**
-	 * Updates the current level.
+	 * redraws the current level to the screen.
 	 */
 	public void refreshLevel() {
 		this.level = Level.getCurrentLevel();
