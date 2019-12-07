@@ -46,9 +46,7 @@ public class Entity implements Sprite {
 		return -1;
 		
 	}
-	
-	
-	
+
 	/**
 	 * Returns the current level.
 	 * @return gives the current level
@@ -123,7 +121,7 @@ public class Entity implements Sprite {
 	
 	/**
 	 * Gets the integer direction from a value
-	 * of ShhotDirection.
+	 * of ShootDirection.
 	 * @param dir the direction you are finding the value for.
 	 * @return the direction being moved. -1 if the enemy does not
 	 * change direction.
@@ -142,7 +140,7 @@ public class Entity implements Sprite {
 	}
 	
 	/**
-	 * determines validity of moving onto the requested cell.
+	 * Determines validity of moving onto the requested cell.
 	 * @return returns a boolean for if the requested move is legal
 	 * @param nextVector the intended next location for the entity
 	 */
@@ -160,7 +158,7 @@ public class Entity implements Sprite {
 	
 	/**
 	 * This is responsible for handling movement of entities. 
-	 * 											Will be overwritten.
+	 * Will be overwritten.
 	 */
 	public void move() {
 		

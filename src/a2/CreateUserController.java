@@ -29,7 +29,7 @@ public class CreateUserController {
 	private AnchorPane window;
 	
 	/**
-	 * Handles click event for create button.
+	 * When create user button pressed if valid user create the user and file.
 	 * @param event Checks for an event occurring.
 	 * @throws IOException .
 	 */
@@ -78,7 +78,7 @@ public class CreateUserController {
 	}
 	
 	/**
-	 * Handles back button event.
+	 * Returns the user to the main menu.
 	 * @param event Checks for an event occurring.
 	 * @throws IOException .
 	 */

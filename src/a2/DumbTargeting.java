@@ -77,7 +77,7 @@ public class DumbTargeting extends Entity {
 		return SPRITE;
 	}
 	/**
-	 * Moves the Enemy.
+	 * Moves the Enemy to their next position.
 	 */
 	public void move() {
 		setCurrentVector(nextMove());
