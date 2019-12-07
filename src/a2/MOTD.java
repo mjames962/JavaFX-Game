@@ -117,7 +117,7 @@ public class MOTD {
      * @throws IOException Any other invalid response
      */
     private static String submitSolvedPuzzle(String solvedPuzzle) 
-    		throws IOException,InvalidPuzzleSolutionException {
+    		throws IOException, InvalidPuzzleSolutionException {
     	String solvedPuz = attemptReadResponse(
     			new URL(BASE_URL + PUZZLE_RESPONSE + solvedPuzzle)
     			);
