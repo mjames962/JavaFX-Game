@@ -415,6 +415,8 @@ public class Level {
 		
 		Timer.setSavedTime(time);
 		Level.currentDeaths = deathCount;
+		
+		in.close();
 	}
 	
 	/**
