@@ -113,6 +113,7 @@ public class LeaderboardController {
 	 */
 
 	public void addValuesToSelector() {
+	    final int FILE_TYPE_LENGTH = 4;
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
 		File[] listOfFiles = folder.listFiles();
 		for (File file : listOfFiles) {
@@ -120,7 +121,8 @@ public class LeaderboardController {
                 String fileName = file.getName();
 
                 //gets level number from file name
-                String levelString = fileName.substring(0, fileName.length() - 4);
+                String levelString = fileName.substring(0, fileName.length() -
+                        FILE_TYPE_LENGTH);
                 int levelNum;
                 Matcher matcher = Pattern.compile("([0-9]+)\\.txt").
                         matcher(fileName);
