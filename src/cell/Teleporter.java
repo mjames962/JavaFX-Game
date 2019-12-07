@@ -42,7 +42,6 @@ public class Teleporter extends Cell {
 	 */
 	@Override
 	public void doAction(Player player) {
-		System.out.println(linkedTP);
 		Vector2D pos = player.getVector();
 	    pos.setX(linkedTP.getX());
 	    pos.setY(linkedTP.getY());

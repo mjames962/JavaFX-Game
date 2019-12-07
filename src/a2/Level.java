@@ -133,7 +133,6 @@ public class Level {
 	
 	public static void addDeath() {
 		currentDeaths += 1;
-		System.out.println("DETH" + currentDeaths);
 	}
 
     /**
@@ -272,8 +271,6 @@ public class Level {
 	 */
 	public File getNextLevelFile() {
 		int nextLevelNo = getLevelNumber() + 1;
-		System.out.println(levelFile.getParent() + "/" 
-				+ getLevelIdentifier() + nextLevelNo);
 		return new File(levelFile.getParent() + "/" + 
 				getLevelIdentifier() + nextLevelNo + ".txt");
 	}
@@ -297,10 +294,7 @@ public class Level {
 	 * Reads the file for level data.
 	 */
 	public void readFile() {
-		
-		System.out.println(levelFile.exists());
-		
-		Scanner in = null;
+	    Scanner in = null;
 		try {
 			in = new Scanner(levelFile);
 		} catch (FileNotFoundException e) {

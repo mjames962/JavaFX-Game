@@ -120,7 +120,6 @@ public class Profile {
 	public void addDeaths(HashMap<String, Integer> deathmap, int deaths) {
 		if (deathmap.containsKey(name)) {
 			if (deathmap.get(name) > deaths) {
-				System.out.println("new death count" + deaths);
 				deathmap.put(name, deaths);
 			}
 		} else {
@@ -153,7 +152,6 @@ public class Profile {
 				leaderboardFile = new Scanner(UserData.
 						getLeaderboardFile(level));
 			} catch  (IOException e) {
-				System.out.println("Failed to load file");
 			}
 			//Populate Leaderboard Prev Values
 			timesLB = new ArrayList<>();
