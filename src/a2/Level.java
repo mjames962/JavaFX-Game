@@ -398,9 +398,14 @@ public class Level {
 		int startY = in.nextInt() - 1;
 		int entityID = in.nextInt();
 
-		String direction = in.next();
+		int direction = in.nextInt();
 
 		Vector2D vector = new Vector2D(startX, startY);
+		final int LINE_ID = 1;
+        final int WALL_ID = 2;
+        final int DUMB_ID = 3;
+        final int SMART_ID = 4;
+        final int DAGGER_ID = 10;
 
 		Entity entity;
 
@@ -408,18 +413,21 @@ public class Level {
 			case 0:
 				entity = new Player(vector, entityID, this);
 				break;
-			case 1:
+			case LINE_ID:
 				entity = new StraightLine(vector, entityID, this);
 				break;
-			case 2:
+			case WALL_ID:
 				entity = new WallFollowing(vector, entityID, this);
 				break;
-			case 3:
+			case DUMB_ID:
 				entity = new DumbTargeting(vector, entityID, this);
 				break;
-			case 4:
+			case SMART_ID:
 				entity = new SmartTargetEnemy(vector, entityID, this);
 				break;
+            case DAGGER_ID:
+                entity = new Dagger(vector, direction);
+                break;
 			default:
 				entity = null;
 		}
