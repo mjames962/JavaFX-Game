@@ -15,7 +15,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
@@ -30,8 +29,7 @@ public class CharSelectController implements Initializable {
 	private static final int FILEDELIMETER = 6;
 	private static String fileLocation =
 			"a2/resources/stock photos/Player1.png";
-	private String fileSubstring;
-	@FXML
+    @FXML
 	private AnchorPane charSelection;
 	
 	@FXML
@@ -61,7 +59,7 @@ public class CharSelectController implements Initializable {
 	 */
 	@FXML
 	private void handleAcceptBtn(Event event) throws IOException {
-		fileSubstring = cmb_CharSelect.getValue();
+        String fileSubstring = cmb_CharSelect.getValue();
 		if (fileSubstring != null) {
 			fileLocation = "a2/resources/stock photos/" 
 							+ fileSubstring;
@@ -103,7 +101,7 @@ public class CharSelectController implements Initializable {
 	 * @throws IOException On resource selection.
 	 */
 	@FXML
-	private void handleCmbSelect(Event event) throws IOException {
+	private void handleCmbSelect(Event event) {
 		ImageView image = new ImageView("a2/resources/stock photos/" 
 						+ cmb_CharSelect.getValue());
 		lbl_Preview.setGraphic(image);

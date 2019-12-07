@@ -18,7 +18,6 @@ public class GreenKeyCell extends Collectible {
 	 */
 	public GreenKeyCell(Vector2D pos) {
 		super(pos);
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * creates the collectible item.

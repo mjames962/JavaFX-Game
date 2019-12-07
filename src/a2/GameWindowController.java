@@ -6,8 +6,6 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import javax.sound.sampled.LineUnavailableException;
-
 import a2.Player.Direction;
 import a2.Player.ShootDirection;
 import cell.Cell;
@@ -185,8 +183,7 @@ public class GameWindowController implements Initializable {
             }
         });
 	}
-	
-	//TODO
+
 	/**
 	 * Shows the scene containing the game window and switches to it.
 	 */
@@ -350,7 +347,6 @@ public class GameWindowController implements Initializable {
 			alert.setContentText(null);
 			alert.showAndWait();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

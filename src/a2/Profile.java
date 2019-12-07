@@ -1,12 +1,9 @@
 package a2;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -57,7 +54,7 @@ public class Profile {
 	 * Imports information from the user's profile and
 	 * the appropriate variables are set to the corresponding
 	 * values.
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException If the file cannot be found throw exception.
 	 */
 	public void readFile() throws FileNotFoundException {
 		Scanner in = new Scanner(new File(UserData.
@@ -224,10 +221,8 @@ public class Profile {
 		try {
 			writer = new PrintWriter(filePath, "UTF-8");
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		int loopPos = 0;
@@ -260,7 +255,6 @@ public class Profile {
 		try {
 			pfile.createNewFile();
 		} catch (IOException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 		
@@ -268,17 +262,15 @@ public class Profile {
 		try {
 			writer = new PrintWriter(filePath, "UTF-8");
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		writer.println(this.name);
 		writer.println(this.highestLevel);
-		for (int i = 0; i < bestTimes.size(); i++) {
-			writer.println(Long.toString(bestTimes.get(i)));
-		}
+        for (Long bestTime : bestTimes) {
+            writer.println(Long.toString(bestTime));
+        }
 		writer.close();
 		
 	}

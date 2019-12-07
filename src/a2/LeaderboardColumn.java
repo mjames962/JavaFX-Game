@@ -1,7 +1,5 @@
 package a2;
 
-import java.util.ArrayList;
-
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;

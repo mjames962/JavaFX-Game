@@ -8,7 +8,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.DataLine;
-import javax.sound.sampled.Line.Info;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -21,8 +20,7 @@ public class MusicPlayer {
 	private Clip musicClip;
 	private Clip soundClip;
 	private AudioInputStream currentAudioStream;
-	private DataLine.Info musicInfo;
-	private boolean isMuted = false;
+    private boolean isMuted = false;
 	private String audioPath;
 	private static boolean muted = false;
 	
@@ -30,8 +28,6 @@ public class MusicPlayer {
 	/**
 	 * Loads the music file.
 	 * @param audioFilePath the file path of the music.
-	 * @throws LineUnavailableException 
-	 * @throws IOException
 	 */
 	
 	public MusicPlayer(String audioFilePath) {
@@ -43,7 +39,7 @@ public class MusicPlayer {
                 currentAudioStream =
                         AudioSystem.getAudioInputStream(musicFile);
                 AudioFormat format = currentAudioStream.getFormat();
-                musicInfo = new DataLine.Info(Clip.class, format);
+                DataLine.Info musicInfo = new DataLine.Info(Clip.class, format);
                 musicClip = (Clip) AudioSystem.getLine(musicInfo);
             } catch (UnsupportedAudioFileException ex) {
                 System.out.println("The specified audio file is not supported.");

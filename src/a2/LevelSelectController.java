@@ -40,13 +40,14 @@ public class LevelSelectController implements Initializable {
 	
 
 	
-	@Override
+
 	/**
 	 * Identifies levels the user is allowed to play and 
 	 * adds it to the drop down box .
 	 * @param arg0 for JFX
 	 * @param arg1 for JFX
 	 */
+    @Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		File folder = new File(UserData.LEVEL_FOLDER_LOCATION);
@@ -98,11 +99,12 @@ public class LevelSelectController implements Initializable {
 		
 	}
 	
-	@FXML
+
 	/**
 	 * Event handling to produce a pop-up alert + throw the error.
 	 * @param event the action that instantiates the error throw
 	 */
+    @FXML
 	private void handleLoadLevelBtn(ActionEvent event) throws IOException {
 		formatLevel();
 		if (selectedLevel == null) {
@@ -122,7 +124,7 @@ public class LevelSelectController implements Initializable {
 	 * Formatting level file names to be searched for.
 	 * @throws FileNotFoundException when the requested file is absent
 	 */
-	private void formatLevel() throws FileNotFoundException {
+	private void formatLevel() {
 		
 		String currentLevel;
 		currentLevel = cmb_LevelSelect.getValue();
@@ -140,22 +142,24 @@ public class LevelSelectController implements Initializable {
 	public String getLevelIdentifier(String fileName) {
 		return fileName.replaceFirst("\\.txt", "");
 	}
-	@FXML
+
 	/**
 	 * Handles the log out button.
 	 * @param event for logging out
 	 * @throws IOException thrown in the event of invalid inputs 
 	 */
+    @FXML
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
 				getResource("resources/fxml docs/MainMenu.fxml"));  
 		levelScene.getChildren().setAll(window);
 	}
-	@FXML
+
 	/**
 	 * Handles Leaderboard Window IO.
 	 * @throws IOException thrown in the event of invalid inputs 
 	 */
+    @FXML
 	private void handleLeaderboard() throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
 				getResource("resources/fxml docs/Leaderboard.fxml"));

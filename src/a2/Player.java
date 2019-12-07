@@ -55,7 +55,7 @@ public class Player extends Entity {
 		System.out.println("CURRENTVECTOR2" + currentVector + 
 				this.getCurrentVector());
 		this.alive = true;
-		this.inventory = new LinkedList<Item>();
+		this.inventory = new LinkedList<>();
 		this.tokenCount = 0;
 		
 	}
@@ -125,7 +125,7 @@ public class Player extends Entity {
 	}
 	/**
 	 * Sets number of tokens.
-	 * @param tokenCount 
+	 * @param tokenCount The number of token the new count is being set to.
 	 */
 	public void setTokenCount(int tokenCount) {
 		this.tokenCount = tokenCount;
@@ -244,25 +244,7 @@ public class Player extends Entity {
 			playerDeath();
 		}
 	}
-	
-	
 
-	/**
-	 * Overrides the isValidMove method in Entity for player entities.
-	 * @param level the given level currently loaded          
-	 * @param nextVector the requested cell to move to
-	 * @return returns a boolean for if the requested move is valid
-	 */
-	/*public boolean isValidMove(Vector2D nextVector, Level level) {
-		int cX = nextVector.getX();
-		int cY = nextVector.getY();
-		Cell cell = level.getCellAt(cX, cY);
-		String cellType = cell.cellName();
-		// Class<?> typ = cell.getClass();
-		// Class<Ground> = Ground.class;
-
-		return isValidMove(cellType, nextVector, level);
-	}*/
 	/**
 	 * Determines whether the requested move is valid.
 	 * @param cellPos the position of the cell on the map
@@ -280,41 +262,7 @@ public class Player extends Entity {
 		Cell cell = Level.getCurrentLevel().getCellAt(cellPos);
 		cell.doAction(this);
 	}
-	
-	
 
-	/**
-	 * Checks for Flippers/FireBoots on Water/Fire cells.
-	 * @param cell the cell being walked on
-	 * @return boolean for if the player has needed item
-	 */
-	/*public boolean crepCheck(Cell cell) {
-		
-		
-		if (cell instanceof Fire) {
-			for (Item item : this.inventory) {
-				System.out.println("item" + item.getItemID());
-				if (item instanceof FireBoots) {
-					// if player has at least one pair
-												// of fireboots
-					return true;
-				}
-			}
-			return false;
-		} else if (cell instanceof Water) {
-			for (Item item : this.inventory) {
-				if (item instanceof Flippers) { 
-					// if player has at least one pair
-												// of flippers
-					return true;
-				}
-			}
-			return false;
-		}
-
-		return true;
-	}
-	*/
 	/**
 	 * Checks token door vs number of held tokens.
 	 * @param door the door being checked for.

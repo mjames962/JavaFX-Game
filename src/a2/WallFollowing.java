@@ -1,8 +1,5 @@
 package a2;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 /**
  * This enemy follows the wall to its left
  * placed on the lower and right side of the wall.

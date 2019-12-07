@@ -61,10 +61,8 @@ public class MainMenuController implements Initializable {
 			try {
 				UserData.setCurrentUser(tbox_Username.getText());
 			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
@@ -79,20 +77,23 @@ public class MainMenuController implements Initializable {
 		}
 	}
 	
-	@FXML
+
 	/**
 	 * Performs action when Delete button is clicked.
 	 * @param event checks for the event occurring.
 	 */
+    @FXML
 	private void handleDeleteBtn(ActionEvent event) {
 		initialiseWindow("resources/fxml docs/DeleteUser.fxml");
 	}
 	
-	@FXML
+
 	/**
 	 * Performs action when Show Users button is toggled.
-	 * @param event
+	 * @param event Contains information about the action being passed
+     *              to the method.
 	 */
+    @FXML
 	private void handleCBShowUsers(ActionEvent event) {
 		if (lstView_Users.isVisible()) {
 			lstView_Users.setVisible(false);

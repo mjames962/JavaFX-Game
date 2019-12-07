@@ -34,11 +34,7 @@ public class Dagger extends Entity {
 		direction = dir;
 	}
 	
-	
-	/**
-	 * Returns the itemID.		
-	 * @return gives the itemID of 3
-	 */
+
 	
 	/**
 	* Returns the sprite.
@@ -47,6 +43,10 @@ public class Dagger extends Entity {
 	public String getSprite() {
 		return SPRITE;
 	}
+
+    /**
+     * Moves the dagger in the intended direction.
+     */
 	
 	@Override
 	public void move() {

@@ -18,7 +18,6 @@ public class GreenDoor extends Door {
 	 */
 	public GreenDoor(Vector2D pos) {
 		super(pos);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

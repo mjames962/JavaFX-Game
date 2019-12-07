@@ -12,7 +12,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import a2.Player.Direction;
 import cell.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -27,8 +26,7 @@ public class Level {
 	public static final String LEVEL_STORAGE =
 			"src/a2/resources/file formats";
 	private static int currentDeaths;
-	private static boolean shouldLoadDeaths = true;
-	private static Level currentLevel;
+    private static Level currentLevel;
 	private Cell[][] level;
 	private File levelFile;
 	private ArrayList<Entity> entityList = new ArrayList<>();
@@ -112,7 +110,7 @@ public class Level {
 	 * Calls the level to be reloaded in the event of player death.
 	 */
 	public static void restartLevel() {
-		shouldLoadDeaths = false;
+        boolean shouldLoadDeaths = false;
 		currentLevel = new Level(currentLevel.levelFile);
 		addDeath();
 		shouldLoadDeaths = true;
@@ -128,16 +126,28 @@ public class Level {
 	public File getLevelFile() {
 		return levelFile;
 	}
+
+    /**
+     * Adds a death to the players death Counter.
+     */
 	
 	
 	public static void addDeath() {
 		currentDeaths += 1;
 		System.out.println("DETH" + currentDeaths);
 	}
-	
+
+    /**
+     * Gets the current number of deaths in this level.
+     * @return the number of deaths.
+     */
 	public static int getCurrentDeaths() {
 		return currentDeaths;
 	}
+
+    /**
+     * Sets deaths for this level to 0.
+     */
 	
 	public static void resetDeaths() {
 		currentDeaths = 0;
@@ -393,7 +403,7 @@ public class Level {
 
 		Vector2D vector = new Vector2D(startX, startY);
 
-		Entity entity = null;
+		Entity entity;
 
 		switch (entityID) {
 			case 0:

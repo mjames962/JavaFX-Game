@@ -20,11 +20,12 @@ public abstract class Collectible extends Replaceable {
 	public Collectible(Vector2D pos) {
 		super(pos);
 	}
-	@Override
+
 	/**
 	 * The action for removing the collectible and calling turnToGround.
 	 * @param p stores the player
 	 */
+    @Override
 	public void doAction(Player p) {
 		p.pickupItem(createItem());
 		turnToGround();

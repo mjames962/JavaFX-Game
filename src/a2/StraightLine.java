@@ -11,9 +11,8 @@ public class StraightLine extends Entity {
 	private static final String SPRITE = 
 			"a2/resources/stock photos/Straight_Line_Enemy.png";
 	private boolean increaseDirection = true;
-	private String direction = "v";
-	
-	/**
+
+    /**
 	 * Constructs the StraightLine class.
 	 * @param enemyID the ID of the enemy
 	 * @param currentVector the position of the enemy
@@ -37,30 +36,24 @@ public class StraightLine extends Entity {
 	 * @return nextVector the requested next cell to move to
 	 */
 	public Vector2D nextMove() {
-		int cX = getCurrentVector().getX();
-		int cY = getCurrentVector().getY();
-		Vector2D nextVector = new Vector2D(cX, cY);;
-		if (direction .equals("v")) { // entity is moving vertically
-			if (increaseDirection == true) {
-				nextVector.set(cX, ++cY);
-			} else {
-				nextVector.set(cX, --cY);
-			}
-		} else {					//entity is moving horizontally
-			if (increaseDirection == true) {
-				nextVector.set(++cX, cY);
-			} else {
-				nextVector.set(--cX, cY); 
-			} 
-		}
-		if (this.isValidMove(nextVector) == false) {
-			if (increaseDirection == false) {
-				increaseDirection = true;
-			} else {
-				increaseDirection = false;
-			}
+        int cX = getCurrentVector().getX();
+        int cY = getCurrentVector().getY();
+        Vector2D nextVector = new Vector2D(cX, cY);
+        String direction = "v";
+        if (increaseDirection) {
+            nextVector.set(cX, ++cY);
+        } else {
+            nextVector.set(cX, --cY);
+        }
+        //entity is moving horizontally
+        if (increaseDirection) {
+            nextVector.set(++cX, cY);
+        } else {
+            nextVector.set(--cX, cY);
+        }
+		if (!this.isValidMove(nextVector)) {
+			increaseDirection = !increaseDirection;
 			return nextMove();
-			
 		}
 		return nextVector;
 	}		

@@ -23,22 +23,27 @@ public class Wall extends Cell {
 		
 	}
 	
-	@Override
+
 	/**
 	 * Returns false if entity tries to move onto a wall.
 	 * @return stops entities moving onto Walls
 	 */
+    @Override
+
 	public boolean isWalkable() {
 		return false;
 	}
-	@Override
+
 	/**
 	 * Getter for the WallCell Sprite.
 	 * @return gives the sprite
 	 */
+    @Override
+
 	public String getSprite() {
 		return SPRITE;
 	}
+
 	/**
 	 * Getter for unique identifying character.
 	 * @return gives the unique identifier

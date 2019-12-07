@@ -1,8 +1,6 @@
 package a2;
 
 
-import java.io.IOException;
-
 /**
  * Handles a custom exception for message of the day.
  * @author George Williams Walton

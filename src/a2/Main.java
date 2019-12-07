@@ -3,10 +3,8 @@ package a2;
 
 import javafx.application.Application; 
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
 
@@ -48,11 +46,12 @@ public class Main extends Application {
 		return curStage;
 	}
 	
-	@Override
+
 	/**
 	 * Loads the main window of the game.
 	 * @param stage is the JFX stage the game is displayed on
 	 */
+    @Override
 	public void start(Stage stage) {
 		try {
 			// Load the main scene.

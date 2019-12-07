@@ -149,12 +149,8 @@ public class Entity implements Sprite {
 	
 	public boolean isValidMove(Vector2D nextVector) {
 		if (this.entityID != 0) { // Enemies
-			if (Level.getCurrentLevel().getCellAt(nextVector) instanceof
-					Ground) {
-				return true;						//Ground Cell class
-			} else {
-				return false;
-			}
+				return Level.getCurrentLevel().getCellAt(nextVector) instanceof
+                        Ground;
 		} else { //player class will override with access restraints.
 			return false;
 		}

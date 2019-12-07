@@ -68,8 +68,7 @@ public class MOTD {
     }
     
     private static String getPuzzle() throws IOException {
-    	String puz = attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
-        return puz;
+        return attemptReadResponse(new URL(BASE_URL + PUZZLE_GET));
     }
    
     private static String submitSolvedPuzzle(String solvedPuzzle) 
@@ -82,7 +81,7 @@ public class MOTD {
     
     //Could be useful to handle no connection differently 
     //-> catch UnknownHostException
-    //In possiblility we are too slow to get solution 
+    //In possiblility we are too slow to get solution
     //-> catch InvalidPuzzleSolutionException
     //Other errors -> IOException
     

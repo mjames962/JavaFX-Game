@@ -3,7 +3,6 @@ package cell;
 import a2.Level;
 import a2.MusicPlayer;
 import a2.Player;
-import a2.Profile;
 import a2.TimeValue;
 import a2.Timer;
 import a2.UserData;

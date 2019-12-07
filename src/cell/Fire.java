@@ -26,12 +26,12 @@ public class Fire extends Cell {
 		
 	}
 	
-	@Override
+
 	/**
 	 * Kills the player conditioned on having fire boots.
 	 * @param ply references the player
 	 */
-	
+    @Override
 	public void doAction(Player ply) {
 		
 		if (!ply.hasItem(FireBoots.class)) {

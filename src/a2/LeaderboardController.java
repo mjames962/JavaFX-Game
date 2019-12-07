@@ -6,22 +6,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.property.adapter.JavaBeanStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 /**
  * Controller for the leaderboards window.
@@ -82,7 +74,7 @@ public class LeaderboardController {
 	public void changeDisplayedLeaderboard(int levelNo) {
 		
 		try {
-			Leaderboard lead = null;
+			Leaderboard lead;
 			if (timeSelected) {
 				lead = UserData.readLeaderboard(levelNo);
 			} else {

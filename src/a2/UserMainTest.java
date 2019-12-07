@@ -3,9 +3,6 @@ package a2;
 import java.io.File;
 import java.io.IOException;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
 public class UserMainTest {
 
 	public static void main(String[] args) {
@@ -17,7 +14,6 @@ public class UserMainTest {
 	try {
 		level.saveLevelProgress(currentUser);
 	} catch (IOException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
 	

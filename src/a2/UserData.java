@@ -69,7 +69,6 @@ public class UserData {
 		try {
 			inputFile.createNewFile();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -104,7 +103,6 @@ public class UserData {
 		try {
 			inputFile.createNewFile();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -127,7 +125,7 @@ public class UserData {
 	 */
 	
 	private static ArrayList<String> readUsers(Scanner in) {
-		ArrayList<String> userList = new ArrayList<String>();
+		ArrayList<String> userList = new ArrayList<>();
 		
 		while (in.hasNextLine()) {
 			String fileUser = in.nextLine();
@@ -279,7 +277,7 @@ public class UserData {
 	 */
 	
 	public static Leaderboard readLeaderboard(int levelNo) throws IOException {
-		Scanner leaderboardFile = null;
+		Scanner leaderboardFile;
 		leaderboardFile = new Scanner(getLeaderboardFile(levelNo));
 		
 		Leaderboard leader = new Leaderboard();
@@ -310,8 +308,7 @@ public class UserData {
 	 * throw exception.
 	 */
 	
-	public static Leaderboard getDeathLeaderboard(int levelNo) 
-			throws IOException {
+	public static Leaderboard getDeathLeaderboard(int levelNo) {
 		File deathfile = getDeathFile(levelNo);
 		Leaderboard leader = new Leaderboard();
 		leader.addColumn(new LeaderboardColumn<String>(String.class, "Name"));

@@ -1,7 +1,6 @@
 package a2;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -11,7 +10,7 @@ import java.util.HashMap;
  */
 public class LeaderboardEntry {
 	
-	private Leaderboard leader = null;
+	private Leaderboard leader;
 	private HashMap<String, Object> entryData = new HashMap<>(); 
 	
 	/**

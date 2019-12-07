@@ -6,7 +6,7 @@ package a2;
  */
 public interface Sprite {
 
-	final String DEFAULT_SPRITE = "a2/resources/stock photos/Wall.png";
+	String DEFAULT_SPRITE = "a2/resources/stock photos/Wall.png";
 	
 	/**
 	 * Sets a default sprite in the event a resource can't be found.
@@ -22,5 +22,5 @@ public interface Sprite {
 	 */
 	default String getSprite() {
 		return getDefaultSprite();
-	};
+	}
 }

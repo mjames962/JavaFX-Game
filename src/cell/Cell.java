@@ -13,7 +13,7 @@ import javafx.scene.image.Image;
  *
  */
 public abstract class Cell implements Sprite {
-	private Vector2D pos;
+	private final Vector2D pos;
 	
 	
 	/**
@@ -46,9 +46,9 @@ public abstract class Cell implements Sprite {
 	 * If not overriden, the cell will do nothing.
 	 * @param ply the current player
 	 */
-	public void doAction(Player ply) { };
-	
-	/**
+	public void doAction(Player ply) { }
+
+    /**
 	 * Get the y coordinate of the cell.
 	 * @return the y coordinate
 	 */

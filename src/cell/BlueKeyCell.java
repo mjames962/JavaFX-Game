@@ -18,7 +18,6 @@ public class BlueKeyCell extends Collectible {
 	 */
 	public BlueKeyCell(Vector2D pos) {
 		super(pos);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -26,7 +25,6 @@ public class BlueKeyCell extends Collectible {
 	 * @return returns the newly made item
 	 */
 	public Item createItem() {
-		// TODO Auto-generated method stub
 		return new BlueKey();
 	}
 	/**

@@ -2,8 +2,6 @@ package a2;
 
 import java.util.ArrayList;
 
-import cell.Cell;
-
 //import java.util.Queue;
 //import java.util.LinkedList;
 /**

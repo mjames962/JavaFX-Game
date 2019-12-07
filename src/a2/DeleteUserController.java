@@ -31,7 +31,7 @@ public class DeleteUserController {
 	/**
 	 * Deletes the selected user.
 	 * @param event button press
-	 * @throws IOException 
+	 * @throws IOException If file can't be found throw exception.
 	 */
 	@FXML
 	private void handleDelete(ActionEvent event) throws IOException {
