@@ -1,5 +1,6 @@
 package cell;
 
+import a2.Item;
 import a2.Player;
 import a2.RedKey;
 import a2.Vector2D;
@@ -27,7 +28,13 @@ public class RedDoor extends Door {
      */
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		return ply.hasItem(RedKey.class);
+		Item redKey = ply.getItemOfType(RedKey.class);
+		if (redKey != null) {
+			ply.removeItem(redKey);
+			return true;
+		} else {
+			return false;
+		}
 		
 	}
 	

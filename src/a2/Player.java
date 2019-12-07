@@ -278,39 +278,6 @@ public class Player extends Entity {
 		}
 		return false;
 	}
-	/**
-	 * Checking for keys before opening doors.
-	 * @param keyType the required item to open the door
-	 * @return returns boolean for if door can be opened
-	 */
-	public boolean hasKey(char keyType) {
-		int keyID;
-
-		switch (keyType) {
-			case 'r':
-				keyID = new RedKey().getItemID();
-				break;
-			case 'g':
-				keyID = new GreenKey().getItemID();
-				break;
-			case 'b':
-				keyID = new BlueKey().getItemID();
-				break;
-			default:
-				keyID = -1;
-		}
-
-		for (Item item : this.inventory) {
-			if (item.getItemID() == keyID) {
-				this.inventory.remove(item);
-				//door.turnToGround();
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
 	
 	/**
 	 * This method handles the death of the player.
@@ -355,6 +322,20 @@ public class Player extends Entity {
 			}
 		}
 		return false;
+	}
+	
+	/**
+	 * Gets the first item of type found in inventory
+	 * @param itemType the collectible type to find
+	 * @return The item found of type, otherwise null
+	 */
+	public Item getItemOfType(Class<?> itemType) {
+		for (Item item : this.inventory) {
+			if (itemType.isInstance(item)) {
+				return item;
+			}
+		}
+		return null;
 	}
 
 	/**

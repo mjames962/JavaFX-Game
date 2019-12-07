@@ -1,7 +1,9 @@
 package cell;
 
 import a2.BlueKey;
+import a2.Item;
 import a2.Player;
+import a2.RedKey;
 import a2.Vector2D;
 /**
  * Class for a type of coloured key door.
@@ -28,7 +30,13 @@ public class BlueDoor extends Door {
 
 	@Override
 	public boolean meetsRequirement(Player ply) {
-		return ply.hasItem(BlueKey.class);
+		Item blueKey = ply.getItemOfType(BlueKey.class);
+		if (blueKey != null) {
+			ply.removeItem(blueKey);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	/**
