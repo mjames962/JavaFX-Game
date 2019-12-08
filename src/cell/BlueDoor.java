@@ -3,7 +3,6 @@ package cell;
 import a2.BlueKey;
 import a2.Item;
 import a2.Player;
-import a2.RedKey;
 import a2.Vector2D;
 /**
  * Class for a type of coloured key door.
