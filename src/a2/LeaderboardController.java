@@ -21,6 +21,7 @@ import javafx.scene.layout.AnchorPane;
  * @version 1.8
  */
 public class LeaderboardController {
+	private static final String LEVELPATH = "resources/fxml docs/LevelSelection.fxml";
 	
 	@FXML 
 	private Button timeBut;
@@ -121,9 +122,6 @@ public class LeaderboardController {
             if (!file.getName().contains("_")) {
                 String fileName = file.getName();
 
-                //gets level number from file name
-                String levelString = fileName.substring(0, fileName.length() -
-                        FILE_TYPE_LENGTH);
                 int levelNum;
                 Matcher matcher = Pattern.compile("([0-9]+)\\.txt").
                         matcher(fileName);
@@ -176,7 +174,7 @@ public class LeaderboardController {
 	
 	public void backButtonPressed() throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/LevelSelection.fxml"));  
+				getResource(LEVELPATH));  
 		
 		AnchorPane ap = (AnchorPane) backButton.getScene().getRoot();
 		ap.getChildren().setAll(window);
