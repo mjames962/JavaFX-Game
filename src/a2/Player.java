@@ -30,11 +30,7 @@ public class Player extends Entity {
 	public enum ShootDirection {
 		UP, DOWN, LEFT, RIGHT,
 	}
-	private static final int IV = 4;
-	private static final int V = 5;
-	private static final String SPRITE = 
-			"a2/resources/stock photos/Player1.png";
-	private boolean alive;
+	
 	private LinkedList<Item> inventory;
 	private int tokenCount;
 
@@ -52,7 +48,6 @@ public class Player extends Entity {
 	public Player(Vector2D currentVector, int entityID, Level level) {
 		
 		super(currentVector);
-		this.alive = true;
 		this.inventory = new LinkedList<>();
 		this.tokenCount = 0;
 		
@@ -283,7 +278,6 @@ public class Player extends Entity {
 	 */
 
 	public void playerDeath() {
-		this.alive = false;
 		String audioFilePath =
 				"src/a2/resources/Sound bytes/Player Death.wav";
 		MusicPlayer deathClip = new MusicPlayer(audioFilePath);
