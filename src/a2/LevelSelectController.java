@@ -24,7 +24,6 @@ import javafx.scene.layout.AnchorPane;
  * @version 1.4
  */
 public class LevelSelectController implements Initializable {
-	private static final int IV = 4;
 	private static final String GAMEPATH = "resources/fxml docs/GameWindow.fxml";
 	private static final String MAINPATH = "resources/fxml docs/MainMenu.fxml";
 	private static final String LEADERBOARDPATH = "resources/fxml docs/Leaderboard.fxml";
