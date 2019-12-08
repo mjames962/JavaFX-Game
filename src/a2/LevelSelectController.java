@@ -20,7 +20,7 @@ import javafx.scene.layout.AnchorPane;
 
 /**
  * Displays the current level.
- * @author Jensen Beard, George Williams-Walton, Darius Thomas, Mitch Thomas
+ * @author Jensen Beard, George Williams-Walton, Darius Thomas, Mitch James
  * @version 1.4
  */
 public class LevelSelectController implements Initializable {
@@ -35,8 +35,6 @@ public class LevelSelectController implements Initializable {
 	private Button btn_LoadLevel;
 	@FXML
 	private ComboBox<String> cmb_LevelSelect;
-	@FXML
-	private AnchorPane levelBottom;
 	@FXML
 	private AnchorPane levelScene;
 	@FXML
