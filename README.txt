@@ -42,7 +42,7 @@ Contents:
 
   Make sure java 8 is correctly installed and open the command prompt in the source folder.
 
-  Run the command “ javac -cp . a2/*.java cell/*.java “ To compile the source code.
+  Run the command "javac -cp . a2/*.java cell/*.java" To compile the source code.
 
-  Then run the command “java -cp . a2.Main” to start the game.
+  Then run the command "java -cp . a2.Main" to start the game.
 
