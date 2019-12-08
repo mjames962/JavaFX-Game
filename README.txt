@@ -19,9 +19,8 @@ Contents:
 1:Controls
 1.1:Player controls
 1.2:Music controls
-2.:Running the game
-2.1:Compiling
-2.2:Help
+2: Compiling and Running the game
+
 -------------------
 1. Controls
 -------------------
@@ -38,8 +37,12 @@ Contents:
 1.2:Music controls
   Mute music = m
 -------------------
-2. Running the game
+2. Compiling and Running the game
 -------------------
-2.1:Compiling 
- 
-2.2:Help For CS235 this was made using eclipse we recommend you do the same
+
+  Make sure java 8 is correctly installed and open the command prompt in the source folder.
+
+  Run the command “ javac -cp . a2/*.java cell/*.java “ To compile the source code.
+
+  Then run the command “java -cp . a2.Main” to start the game.
+
