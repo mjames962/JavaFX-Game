@@ -37,13 +37,14 @@ public class LeaderboardColumn<T> {
 	private void setupFactory() {
 		tcolumn.setCellValueFactory(
 	    		new Callback<CellDataFeatures<LeaderboardEntry, T>,
-	    							ObservableValue<T>>() {
-	    			public ObservableValue<T> call(CellDataFeatures<
-		        		LeaderboardEntry, T> p) {
+	    		ObservableValue<T>>() {
+	    			public ObservableValue<T> call(
+	    					CellDataFeatures<LeaderboardEntry, T> p) {
 	    				LeaderboardEntry le = (LeaderboardEntry) p.getValue();
 	    				return new SimpleObjectProperty(le.getData(name));
 	    			}
-	    		});
+	    		}
+	    );
 	}
 	
 	/**
