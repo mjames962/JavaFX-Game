@@ -46,3 +46,10 @@ Contents:
 
   Then run the command "java -cp . a2.Main" to start the game.
 
+-------------------
+3. Sound Attribution
+-------------------
+Music -
+    Lonely Troutman II - William Rosati
+Sound -
+    www.freeSound.org
