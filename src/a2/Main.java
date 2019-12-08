@@ -10,7 +10,7 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * The main class for this program.
- * @author Jensen Bbeard, Mitch James, Jamie Springett
+ * @author Jensen Beard, Mitch James, Jamie Springett
  * @version 2.8
  */
 
@@ -27,6 +27,8 @@ public class Main extends Application {
 	private static final int MAIN_WINDOW_WIDTH = 800;
 	private static final int MAIN_WINDOW_HEIGHT = 500;
 	private static final String WINDOW_TITLE = "Placeholder";
+	
+	private static final String mainPath = "resources/fxml docs/MainMenu.fxml";
 
 	private static Stage curStage;
 	
@@ -55,7 +57,7 @@ public class Main extends Application {
 		try {
 			// Load the main scene.
 			AnchorPane root = (AnchorPane) FXMLLoader.load(getClass()
-					.getResource("resources/fxml docs/MainMenu.fxml"));
+					.getResource(mainPath));
 			Scene scene = new Scene(root, MAIN_WINDOW_WIDTH,
 					MAIN_WINDOW_HEIGHT);
 			// Place the main scene on stage and show it.

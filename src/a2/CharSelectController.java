@@ -29,6 +29,8 @@ public class CharSelectController implements Initializable {
 	private static final int FILEDELIMETER = 6;
 	private static String fileLocation =
 			"a2/resources/stock photos/Player1.png";
+	private static final String levelPath = "resources/fxml docs/LevelSelection.fxml";
+	
     @FXML
 	private AnchorPane charSelection;
 	
@@ -92,7 +94,7 @@ public class CharSelectController implements Initializable {
 			news.showAndWait();
 			
 			AnchorPane window = FXMLLoader.load(getClass().
-					getResource("resources/fxml docs/LevelSelection.fxml"));  
+					getResource(levelPath));  
 			charSelection.getChildren().setAll(window);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -113,7 +115,7 @@ public class CharSelectController implements Initializable {
 	@FXML
 	private void handleBackBtn(Event event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/LevelSelection.fxml"));  
+				getResource(levelPath));  
 		charSelection.getChildren().setAll(window);
 	}
 	

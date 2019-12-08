@@ -25,6 +25,12 @@ import javafx.scene.layout.AnchorPane;
  */
 public class LevelSelectController implements Initializable {
 	private static final int IV = 4;
+	private static final String gamePath = "resources/fxml docs/GameWindow.fxml";
+	private static final String mainPath = "resources/fxml docs/MainMenu.fxml";
+	private static final String leaderboardPath = "resources/fxml docs/Leaderboard.fxml";
+	private static final String charSelectPath = "resources/fxml docs/characterSelect.fxml";
+	
+	
 	private Level selectedLevel;
 	@FXML
 	private Button btn_LoadLevel;
@@ -91,7 +97,7 @@ public class LevelSelectController implements Initializable {
 	 */
 	private void displayNewLevel(Level lvl) throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
-				getResource("resources/fxml docs/GameWindow.fxml"));
+				getResource(gamePath));
 		AnchorPane window = fx.load();
 		
 	}
@@ -137,7 +143,7 @@ public class LevelSelectController implements Initializable {
     @FXML
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/MainMenu.fxml"));  
+				getResource(mainPath));  
 		levelScene.getChildren().setAll(window);
 	}
 
@@ -148,7 +154,7 @@ public class LevelSelectController implements Initializable {
     @FXML
 	private void handleLeaderboard() throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
-				getResource("resources/fxml docs/Leaderboard.fxml"));
+				getResource(leaderboardPath));
 		AnchorPane window = fx.load();  
 		levelScene.getChildren().setAll(window);
 		((LeaderboardController) fx.getController()).display();
@@ -162,7 +168,7 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private void handleCharSelectBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/characterSelect.fxml"));  
+				getResource(charSelectPath));  
 		levelScene.getChildren().setAll(window);	
 	}
 }
