@@ -166,18 +166,7 @@ public class GameWindowController implements Initializable {
 	        				nextTick(ShootDirection.RIGHT);
 	        				break;
                         case M: {
-                            if (Timer.isRunning()) {
-                                if (!MusicPlayer.isMuted()) {
-                                    backgroundMusic.getmusicClip().stop();
-                                    MusicPlayer.mute();
-                                } else {
-                                    MusicPlayer.mute();
-                                    String audioFilePath =
-                                        "src/a2/resources/Sound bytes/Background music.wav";
-                                    backgroundMusic = new MusicPlayer(audioFilePath);
-                                    backgroundMusic.play();
-                                }
-                            }
+                        	mute();
                             break;
                         }
 	        			default:
@@ -196,6 +185,21 @@ public class GameWindowController implements Initializable {
 		Main.switchScene(scene);
 		
 		hookInput(scene);
+	}
+	
+	public void mute() {
+		if (Timer.isRunning()) {
+            if (!MusicPlayer.isMuted()) {
+                backgroundMusic.getmusicClip().stop();
+                MusicPlayer.mute();
+            } else {
+                MusicPlayer.mute();
+                String audioFilePath =
+                    "src/a2/resources/Sound bytes/Background music.wav";
+                backgroundMusic = new MusicPlayer(audioFilePath);
+                backgroundMusic.play();
+            }
+        }
 	}
 	
 	/**
