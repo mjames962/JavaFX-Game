@@ -25,10 +25,10 @@ import javafx.scene.layout.AnchorPane;
  */
 public class LevelSelectController implements Initializable {
 	private static final int IV = 4;
-	private static final String gamePath = "resources/fxml docs/GameWindow.fxml";
-	private static final String mainPath = "resources/fxml docs/MainMenu.fxml";
-	private static final String leaderboardPath = "resources/fxml docs/Leaderboard.fxml";
-	private static final String charSelectPath = "resources/fxml docs/characterSelect.fxml";
+	private static final String GAMEPATH = "resources/fxml docs/GameWindow.fxml";
+	private static final String MAINPATH = "resources/fxml docs/MainMenu.fxml";
+	private static final String LEADERBOARDPATH = "resources/fxml docs/Leaderboard.fxml";
+	private static final String CHARSELECTPATH = "resources/fxml docs/characterSelect.fxml";
 	
 	
 	private Level selectedLevel;
@@ -97,7 +97,7 @@ public class LevelSelectController implements Initializable {
 	 */
 	private void displayNewLevel(Level lvl) throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
-				getResource(gamePath));
+				getResource(GAMEPATH));
 		AnchorPane window = fx.load();
 		
 	}
@@ -143,7 +143,7 @@ public class LevelSelectController implements Initializable {
     @FXML
 	private void handleLogOutBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource(mainPath));  
+				getResource(MAINPATH));  
 		levelScene.getChildren().setAll(window);
 	}
 
@@ -154,7 +154,7 @@ public class LevelSelectController implements Initializable {
     @FXML
 	private void handleLeaderboard() throws IOException {
 		FXMLLoader fx = new FXMLLoader(getClass().
-				getResource(leaderboardPath));
+				getResource(LEADERBOARDPATH));
 		AnchorPane window = fx.load();  
 		levelScene.getChildren().setAll(window);
 		((LeaderboardController) fx.getController()).display();
@@ -168,7 +168,7 @@ public class LevelSelectController implements Initializable {
 	@FXML
 	private void handleCharSelectBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource(charSelectPath));  
+				getResource(CHARSELECTPATH));  
 		levelScene.getChildren().setAll(window);	
 	}
 }

@@ -42,8 +42,8 @@ public class GameWindowController implements Initializable {
 	public static final int CELL_DIMENSIONS = 50;
 	public static final int MIN_DRAW = 3;
 	public static final int MAX_DRAW = 5;
-	private static final String mainPath = "resources/fxml docs/MainMenu.fxml";
-	private static final String levelPath = "resources/fxml docs/LevelSelection.fxml";
+	private static final String MAINPATH = "resources/fxml docs/MainMenu.fxml";
+	private static final String LEVELPATH = "resources/fxml docs/LevelSelection.fxml";
 	
 	
 	private static GameWindowController currentController;
@@ -318,7 +318,7 @@ public class GameWindowController implements Initializable {
 	    Timer.stop();
 		backgroundMusic.getmusicClip().stop();
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource(mainPath));  
+				getResource(MAINPATH));  
 		gamePane.getChildren().setAll(window);
 		Level.resetDeaths();
 	}
@@ -333,7 +333,7 @@ public class GameWindowController implements Initializable {
         backgroundMusic.getmusicClip().stop();
         Timer.stop();
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource(levelPath));  
+				getResource(LEVELPATH));  
 		gamePane.getChildren().setAll(window);
 		Level.resetDeaths();
 	}

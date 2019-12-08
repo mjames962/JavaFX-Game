@@ -25,9 +25,9 @@ import javafx.scene.control.TextField;
  * @version 1.6
  */
 public class MainMenuController implements Initializable {
-	private static final String deletePath = "resources/fxml docs/DeleteUser.fxml";
-	private static final String levelPath = "resources/fxml docs/LevelSelection.fxml";
-	private static final String createPath = "resources/fxml docs/CreateUser.fxml";
+	private static final String DELETEPATH = "resources/fxml docs/DeleteUser.fxml";
+	private static final String LEVELPATH = "resources/fxml docs/LevelSelection.fxml";
+	private static final String CREATEPATH = "resources/fxml docs/CreateUser.fxml";
 	
 	@FXML
 	private Button btn_LogIn;
@@ -64,7 +64,7 @@ public class MainMenuController implements Initializable {
 	 */
 	@FXML
 	private void handleCreateBtn(ActionEvent event) {
-		initialiseWindow(createPath);
+		initialiseWindow(CREATEPATH);
 	}
 	
 	/**
@@ -83,7 +83,7 @@ public class MainMenuController implements Initializable {
 				e.printStackTrace();
 			}
 			
-			initialiseWindow(levelPath);
+			initialiseWindow(LEVELPATH);
 		} else {
 			//Displays alert pop-up box. 
 			Alert alert = new Alert(AlertType.ERROR);
@@ -101,7 +101,7 @@ public class MainMenuController implements Initializable {
 	 */
     @FXML
 	private void handleDeleteBtn(ActionEvent event) {
-		initialiseWindow(deletePath);
+		initialiseWindow(DELETEPATH);
 	}
 	
 

@@ -19,8 +19,7 @@ import java.io.IOException;
  */
 
 public class CreateUserController {
-	private static final String mainPath = "resources/fxml docs/MainMenu.fxml";
-
+	private static final String MAINPATH = "resources/fxml docs/MainMenu.fxml";
 	
 	@FXML
 	private Button btn_CreateUser;
@@ -73,7 +72,7 @@ public class CreateUserController {
 			news.showAndWait();
 			
 			AnchorPane window = FXMLLoader.load(getClass().
-					getResource(mainPath));  
+					getResource(MAINPATH));  
 			createScene.getChildren().setAll(window);
 
 			
@@ -88,7 +87,7 @@ public class CreateUserController {
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource(mainPath));  
+				getResource(MAINPATH));  
 		createScene.getChildren().setAll(window);
 	}
 }

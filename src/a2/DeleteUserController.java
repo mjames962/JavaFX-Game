@@ -19,6 +19,8 @@ import javafx.scene.layout.AnchorPane;
  * @version 1.3 
  */
 public class DeleteUserController {
+	private static final String MAINPATH = "resources/fxml docs/MainMenu.fxml";
+	
 	@FXML
 	private Button btn_Delete;
 	@FXML
@@ -74,7 +76,7 @@ public class DeleteUserController {
 	@FXML
 	private void handleBackBtn(ActionEvent event) throws IOException {
 		AnchorPane window = FXMLLoader.load(getClass().
-				getResource("resources/fxml docs/MainMenu.fxml"));  
+				getResource(MAINPATH));  
 		DeleteRoot.getChildren().setAll(window);
 	}
 }
