@@ -187,6 +187,9 @@ public class GameWindowController implements Initializable {
 		hookInput(scene);
 	}
 	
+	/**
+	 * Mute button functionality.
+	 */
 	public void mute() {
 		if (Timer.isRunning()) {
             if (!MusicPlayer.isMuted()) {
